@@ -8,13 +8,13 @@
 <h1>Welcome, {{Auth::user()->name}}</h1>
 {{$total_users}}
 @can('isAdmin')
- ini admin    
+ ini admin
 @endcan
 @can('isHDiv')
- ini HDiv    
+ ini HDiv
 @endcan
 @can('isHDept1')
- ini HDept1    
+ ini HDept1
 @endcan
-test online
+
 @endsection
