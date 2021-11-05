@@ -82,7 +82,7 @@
                 <!-- Sidebar-->
                 <div class="border-end bg-white col-2" id="sidebar-wrapper">
                     <div class="list-group list-group-flush">
-                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/home">Dashboard</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url('/home')}}">Dashboard</a>
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Shortcuts</a>
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Overview</a>
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>
