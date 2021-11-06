@@ -7,29 +7,40 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
 
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="shortcut icon" href="{{asset('img/small-logo.png')}}">
+        <link rel="stylesheet" href="{{asset('css/signin.css')}}">
 </head>
 
 <body>
-    <div class="container">
-        <img src="{{asset("img/logo.png")}}" class="mx-auto d-block m-5" width="320px" height="80px" alt="">
+    <main class="form-signin">
         <form method="POST" action="{{ route('login') }}">
+            <img src="{{asset("img/logo.png")}}" class="mx-auto d-block mb-3" width="240px" height="60px" alt="">
             @csrf
-            <div class="form-group col-4 mx-auto">
-                <input id="email" type="email" class="mt-3 form-control @error('email') is-invalid @enderror"
-                    name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
+            <div class="form-group">
+                <div class="form-floating">
+                    <input id="username" type="text" class="mt-3 form-control @error('username') is-invalid @enderror"
+                    name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="Username">
+                    <label for="floatingInput">Username</label>
+                </div>
+                
 
-                @error('email')
+                @error('username')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
             </div>
 
-            <div class="form-group col-4 mx-auto">
-                <input id="password" type="password" class="mt-2 mb-2 form-control @error('password') is-invalid @enderror"
+            <div class="form-group">
+               
+                <div class="form-floating">
+                    <input id="password" type="password" class="mt-2 mb-2 form-control @error('password') is-invalid @enderror"
                     name="password" required autocomplete="current-password" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                    </div>
 
                 @error('password')
                 <span class="invalid-feedback" role="alert">
@@ -39,7 +50,7 @@
             </div>
 
             <div class="form-group text-center d-block">
-                <button type="submit" class="btn btn-danger col-4">
+                <button type="submit" class="w-100 btn btn-lg btn-danger">
                     {{ __('Login') }}
                 </button>
 
@@ -53,7 +64,7 @@
                 @endif
             </div>
         </form>
-    </div>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>

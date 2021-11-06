@@ -18,31 +18,31 @@ class RoleSeeder extends Seeder
             'name' => 'Admin',
         ]);
         Role::create([
-            'name' => 'HDiv',
+            'name' => 'HeadDivision',
         ]);
         Role::create([
-            'name' => 'HDept1',
+            'name' => 'HeadDepartment1',
         ]);
         Role::create([
-            'name' => 'HDept2',
+            'name' => 'HeadDepartment2',
         ]);
         Role::create([
-            'name' => 'HDept3',
+            'name' => 'HeadDepartment3',
         ]);
         Role::create([
-            'name' => 'HDept4',
+            'name' => 'HeadDepartment4',
         ]);
         Role::create([
-            'name' => 'MDept1',
+            'name' => 'MemberDepartment1',
         ]);
         Role::create([
-            'name' => 'MDept2',
+            'name' => 'MemberDepartment2',
         ]);
         Role::create([
-            'name' => 'MDept3',
+            'name' => 'MemberDepartment3',
         ]);
         Role::create([
-            'name' => 'MDept4',
+            'name' => 'MemberDepartment4',
         ]);
     }
 }
