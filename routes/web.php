@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/admin/index', [AdminController::class, 'index']);
 Route::get('/admin/create', [AdminController::class, 'create']);
 Route::get('/{user}', [AdminController::class, 'show']);
+
+Route::prefix('projects')->group(function () {
+    Route::get('/index', [ProjectController::class, 'show'])->name('projects');
+});
