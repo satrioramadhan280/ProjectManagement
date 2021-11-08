@@ -16,12 +16,12 @@ use App\Http\Controllers\AdminController;
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Auth::routes();
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/{user}', [AdminController::class, 'show']);
 Route::get('/admin/add', [AdminController::class, 'create']);
+Route::get('/{user}', [AdminController::class, 'show']);
