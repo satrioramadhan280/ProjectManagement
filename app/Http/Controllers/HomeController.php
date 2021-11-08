@@ -24,8 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
         $totalUsers = User::where('roleID', '!=', 1)->count();
-        return view('home', compact('users', 'totalUsers'));
+        return view('home', compact('totalUsers'));
     }
 }
