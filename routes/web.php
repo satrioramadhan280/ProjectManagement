@@ -30,4 +30,5 @@ Route::get('/{user}', [AdminController::class, 'show']);
 
 Route::prefix('projects')->group(function () {
     Route::get('/index', [ProjectController::class, 'show'])->name('projects');
+    Route::get('/add', [ProjectController::class, 'add']);
 });
