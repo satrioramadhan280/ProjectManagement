@@ -44,9 +44,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($username)
     {
-        $user = User::where('id', $id)->first();
+        $user = User::where('username', $username)->first();
         return view('admin.detail', compact('user'));
     }
 
