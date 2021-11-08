@@ -14,7 +14,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::where('roleID', '!=', 1)->paginate(5);
+
+        return view('admin.index', compact('users'));
     }
 
     /**
@@ -24,7 +26,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.add');
+        return view('admin.create');
     }
 
     /**

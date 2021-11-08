@@ -23,5 +23,6 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/admin/add', [AdminController::class, 'create']);
+Route::get('/admin/index', [AdminController::class, 'index']);
+Route::get('/admin/create', [AdminController::class, 'create']);
 Route::get('/{user}', [AdminController::class, 'show']);
