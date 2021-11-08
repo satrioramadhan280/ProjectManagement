@@ -25,7 +25,7 @@ Dashboard
       <td>{{$user->id-1}}</td>
       <td>{{$user->name}}</td>
       <td>{{$user->roles->name}}</td>
-      <td><a href="/admin/{{$user->id}}">Detail</a></td>
+      <td><a href="/admin/{{$user->username}}">Detail</a></td>
     </tr>
     @endforeach
   </tbody>

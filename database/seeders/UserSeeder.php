@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'username' => 'admin',
             'email' => 'admin@banksinarmas.com',
             'password' => bcrypt('admin'),
+            'photo' => 'photo-profile.png',
             'roleID' => 1,
         ]);
         User::create([
@@ -27,6 +28,7 @@ class UserSeeder extends Seeder
             'username' => 'head.division',
             'email' => 'headdivision@banksinarmas.com',
             'password' => bcrypt('simas123'),
+            'photo' => 'photo-profile.png',
             'roleID' => 2,
         ]);
         User::create([
@@ -34,6 +36,7 @@ class UserSeeder extends Seeder
             'username' => 'head.department1',
             'email' => 'headdepartment1@banksinarmas.com',
             'password' => bcrypt('simas123'),
+            'photo' => 'photo-profile.png',
             'roleID' => 3,
         ]);
         User::create([
@@ -41,6 +44,7 @@ class UserSeeder extends Seeder
             'username' => 'head.department2',
             'email' => 'headdepartment2@banksinarmas.com',
             'password' => bcrypt('simas123'),
+            'photo' => 'photo-profile.png',
             'roleID' => 4,
         ]);
         User::create([
@@ -48,6 +52,7 @@ class UserSeeder extends Seeder
             'username' => 'head.department3',
             'email' => 'headdepartment3@banksinarmas.com',
             'password' => bcrypt('simas123'),
+            'photo' => 'photo-profile.png',
             'roleID' => 5,
         ]);
         User::create([
@@ -55,6 +60,7 @@ class UserSeeder extends Seeder
             'username' => 'head.department4',
             'email' => 'headdepartment4@banksinarmas.com',
             'password' => bcrypt('simas123'),
+            'photo' => 'photo-profile.png',
             'roleID' => 6,
         ]);
         User::create([
@@ -62,6 +68,7 @@ class UserSeeder extends Seeder
             'username' => 'member.department1',
             'email' => 'memberdepartment1@banksinarmas.com',
             'password' => bcrypt('simas123'),
+            'photo' => 'photo-profile.png',
             'roleID' => 7,
         ]);
         User::create([
@@ -69,6 +76,7 @@ class UserSeeder extends Seeder
             'username' => 'member.department2',
             'email' => 'memberdepartment2@banksinarmas.com',
             'password' => bcrypt('simas123'),
+            'photo' => 'photo-profile.png',
             'roleID' => 8,
         ]);
         User::create([
@@ -76,6 +84,7 @@ class UserSeeder extends Seeder
             'username' => 'member.department3',
             'email' => 'memberdepartment3@banksinarmas.com',
             'password' => bcrypt('simas123'),
+            'photo' => 'photo-profile.png',
             'roleID' => 9,
         ]);
         User::create([
@@ -83,6 +92,7 @@ class UserSeeder extends Seeder
             'username' => 'member.department4',
             'email' => 'memberdepartment4@banksinarmas.com',
             'password' => bcrypt('simas123'),
+            'photo' => 'photo-profile.png',
             'roleID' => 10,
         ]);
     }
