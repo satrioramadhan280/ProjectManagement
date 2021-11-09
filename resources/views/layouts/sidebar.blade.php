@@ -7,24 +7,22 @@
                     Dashboard
                 </a>
             </li>
+            @can('HDept1', 'HDept2', 'HDept3', 'HDept4')
             <li class="nav-item">
                 <a class="nav-link" href="{{route('projects')}}">
                     <span data-feather="file"></span>
                     Projects
                 </a>
             </li>
+            @endcan
+            @can('HDept1', 'HDept2', 'HDept3', 'HDept4')
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <span data-feather="shopping-cart"></span>
-                    Products
+                    <span data-feather="user"></span>
+                    Profile
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <span data-feather="users"></span>
-                    Customers
-                </a>
-            </li>
+            @endcannot
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <span data-feather="bar-chart-2"></span>

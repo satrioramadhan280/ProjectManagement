@@ -18,19 +18,19 @@ Dashboard
 @endsection
 
 @section('content')
+<div class="d-flex justify-content-center">
+  <h1>Hello, {{Auth::user()->name}}</h1>
+</div>
 
 @can('Admin')
   <div class="d-flex justify-content-center flex-column mt-3">
-    <div class="d-flex justify-content-center">
-      <h1>Hello, {{Auth::user()->name}}</h1>
-    </div>
     <div class="d-flex justify-content-center mt-5" >
       <div class="d-flex flex-row justify-content-around" style="width: 1000px">
         <div class="hover_image d-flex flex-column justify-content-center">
-          <a href="/admin/index" class="normal-text" style="color: black">
+          <a href="{{URL('/admin/index')}}" class="normal-text" style="color: black">
             <img src="{{URL::asset('/img/user-icon.png')}}" class="m-3" alt="" style="height: 200px; width: 200px">
             {{-- <a href="{{url('/admin/index')}}" class="text-center">Users</a> --}}
-            <h3 class="text-center mb-3">Users</h3>
+            <h3 class="text-center mb-3">{{$TotalUsers}} Users</h3>
           </a>
         </div>
         <div class="hover_image d-flex flex-column justify-content-center">
@@ -43,18 +43,24 @@ Dashboard
       </div>
     </div>
   </div>
-
-
-  
-
 @endcan
 
 @can('isHDiv')
 ini HDiv
 @endcan
 
-@can('isHDept1')
-ini HDept1
+@can('HDept1')
+<div class="d-flex justify-content-center mt-5" >
+  <div class="d-flex flex-row justify-content-around" style="width: 1000px">
+    <div class="hover_image d-flex flex-column justify-content-center">
+      <a href="/admin/index" class="normal-text" style="color: black">
+        <h2 class="text-center">Department 1</h2>
+        <img src="{{URL::asset('/img/user-icon.png')}}" class="m-3" alt="" style="height: 200px; width: 200px">
+        {{-- <a href="{{url('/admin/index')}}" class="text-center">Users</a> --}}
+        <h3 class="text-center mb-3">{{$TotalDept1}} Users</h3>
+      </a>
+    </div>
+  </div>
 @endcan
 
 @endsection
