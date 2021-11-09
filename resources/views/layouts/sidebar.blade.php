@@ -7,7 +7,7 @@
                     Dashboard
                 </a>
             </li>
-            @can('HDept1', 'HDept2', 'HDept3', 'HDept4')
+            @can('HDiv', 'HDept1', 'HDept2', 'HDept3', 'HDept4')
             <li class="nav-item">
                 <a class="nav-link" href="{{route('projects')}}">
                     <span data-feather="file"></span>
@@ -15,7 +15,7 @@
                 </a>
             </li>
             @endcan
-            @can('HDept1', 'HDept2', 'HDept3', 'HDept4')
+            @can('HDiv', 'HDept1', 'HDept2', 'HDept3', 'HDept4')
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <span data-feather="user"></span>
