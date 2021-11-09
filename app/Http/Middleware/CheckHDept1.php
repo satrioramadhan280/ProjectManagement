@@ -16,7 +16,7 @@ class CheckHDept1
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user()->role == 'HeadDepartment1') {
+        if ($request->user()->roleID == 3) {
             return $next($request);
         }
         else{

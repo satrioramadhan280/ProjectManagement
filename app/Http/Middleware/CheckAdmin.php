@@ -16,7 +16,7 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user()->role == 'Admin') {
+        if ($request->user()->roleID == 1) {
             return $next($request);
         }
         else{

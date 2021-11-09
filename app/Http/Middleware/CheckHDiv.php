@@ -16,7 +16,7 @@ class CheckHDiv
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user()->role == 'HeadDivision') {
+        if ($request->user()->role == 2) {
             return $next($request);
         }
         else{
