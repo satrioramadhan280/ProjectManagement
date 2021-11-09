@@ -17,4 +17,9 @@ class ProjectController extends Controller
     {
         return view('project.add');
     }
+
+    public function add_project(Request $request)
+    {
+        dd($request->input('projectTitle'));
+    }
 }
