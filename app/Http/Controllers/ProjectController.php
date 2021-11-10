@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isEmpty;
+
 class ProjectController extends Controller
 {
     //
 
     public function show(Request $request)
     {
-        $projects = $request->user()->projects->toQuery()->paginate(5);
+        $projects = $request->user()->projects;
+        if (!$projects->isEmpty()) {
+            $projects = $projects->toQuery()->paginate(5);
+        }
 
         return view('project.projects', compact('projects'));
     }
