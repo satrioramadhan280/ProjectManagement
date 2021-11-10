@@ -10,6 +10,10 @@ class Project extends Model
 {
     use HasFactory;
 
+    protected $attributes = [
+        'projectStatus' => 'Ongoing',
+    ];
+
     public function users()
     {
         return $this->belongsToMany(User::class, 'project_user', 'project_id', 'user_id');
