@@ -28,6 +28,11 @@ class ProjectController extends Controller
 
     public function add_project(Request $request)
     {
+        $request->validate([
+            'projectTitle' => 'required',
+            'projectSR' => 'required',
+        ]);
+
         $project = new Project;
         $project->projectTitle = $request->input('projectTitle');
         $project->save();

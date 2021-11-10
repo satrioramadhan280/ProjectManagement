@@ -153,6 +153,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'projectTitle' => 'Project Title',
+        'projectSR' => 'Project SR',
+    ],
 
 ];
