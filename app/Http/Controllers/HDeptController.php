@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class HDeptController extends Controller
 {
@@ -13,7 +14,12 @@ class HDeptController extends Controller
      */
     public function index()
     {
-        //
+        $key = 1;
+        $dept1 = User::where('RoleID', 3)->orWhere('RoleID', 7)->paginate(5);
+        $dept2 = User::where('RoleID', 4)->orWhere('RoleID', 8)->paginate(5);
+        $dept3 = User::where('RoleID', 5)->orWhere('RoleID', 9)->paginate(5);
+        $dept4 = User::where('RoleID', 6)->orWhere('RoleID', 10)->paginate(5);
+        return view('user.index', compact('dept1', 'dept2', 'dept3', 'dept4', 'key'));
     }
 
     /**

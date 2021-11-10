@@ -35,28 +35,28 @@ Dashboard
           </a>
           @endcan
           @can('HDept1')
-          <a href="{{URL('/admin/index')}}" class="normal-text" style="color: black">
+          <a href="{{URL('/user/index')}}" class="normal-text" style="color: black">
             <img src="{{URL::asset('/img/user-icon.png')}}" class="m-3" alt="" style="height: 200px; width: 200px">
             {{-- <a href="{{url('/admin/index')}}" class="text-center">Users</a> --}}
             <h3 class="text-center mb-3">{{$TotalDept1}} Users</h3>
           </a>
           @endcan
           @can('HDept2')
-          <a href="{{URL('/admin/index')}}" class="normal-text" style="color: black">
+          <a href="{{URL('/user/index')}}" class="normal-text" style="color: black">
             <img src="{{URL::asset('/img/user-icon.png')}}" class="m-3" alt="" style="height: 200px; width: 200px">
             {{-- <a href="{{url('/admin/index')}}" class="text-center">Users</a> --}}
             <h3 class="text-center mb-3">{{$TotalDept2}} Users</h3>
           </a>
           @endcan
           @can('HDept3')
-          <a href="{{URL('/admin/index')}}" class="normal-text" style="color: black">
+          <a href="{{URL('/user/index')}}" class="normal-text" style="color: black">
             <img src="{{URL::asset('/img/user-icon.png')}}" class="m-3" alt="" style="height: 200px; width: 200px">
             {{-- <a href="{{url('/admin/index')}}" class="text-center">Users</a> --}}
             <h3 class="text-center mb-3">{{$TotalDept3}} Users</h3>
           </a>
           @endcan
           @can('HDept4')
-          <a href="{{URL('/admin/index')}}" class="normal-text" style="color: black">
+          <a href="{{URL('/user/index')}}" class="normal-text" style="color: black">
             <img src="{{URL::asset('/img/user-icon.png')}}" class="m-3" alt="" style="height: 200px; width: 200px">
             {{-- <a href="{{url('/admin/index')}}" class="text-center">Users</a> --}}
             <h3 class="text-center mb-3">{{$TotalDept4}} Users</h3>
