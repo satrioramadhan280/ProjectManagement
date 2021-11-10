@@ -38,7 +38,7 @@
                 </a>
             </li>
             @endcan
-            <@can('HDept2')
+            @can('HDept2')
             <li class="nav-item">
                 <a class="nav-link" href="{{route('projects')}}">
                     <span data-feather="file"></span>
