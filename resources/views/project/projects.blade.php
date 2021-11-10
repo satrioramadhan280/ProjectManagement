@@ -6,7 +6,7 @@ Projects
 
 @section('content')
 <h1>Hello, {{Auth::user()->name}}</h1>
-<a href="{{url('/projects/add')}}">Add  Project</a>
+<a href="{{url('/projects/add')}}" class="btn btn-primary">Add  Project</a>
 
 @isset($projects)
 <table class="table">
