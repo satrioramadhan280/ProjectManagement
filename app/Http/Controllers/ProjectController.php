@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
     //
 
-    public function show()
+    public function show(Request $request)
     {
-        return view('project.projects');
+        $projects = $request->user()->projects->toQuery()->paginate(5);
+
+        return view('project.projects', compact('projects'));
     }
 
     public function add()
@@ -20,6 +23,11 @@ class ProjectController extends Controller
 
     public function add_project(Request $request)
     {
-        dd($request->input('projectTitle'));
+        $project = new Project;
+        $project->projectTitle = $request->input('projectTitle');
+        $project->save();
+
+        $project->users()->attach($request->user()->id);
+        return redirect()->action([ProjectController::class, 'show']);
     }
 }
