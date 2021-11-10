@@ -17,6 +17,7 @@ class CreateProjectsTable extends Migration
             $table->id();
             $table->string('projectTitle');
             $table->string('projectSR')->nullable();
+            $table->string('projectFolder')->nullable();
             $table->string('projectStatus');
             $table->timestamp('projectEndDate')->nullable();
             $table->timestamps();

@@ -6,7 +6,7 @@ Add Project
 
 @section('content')
 
-<form action="{{route('add_project')}}" method="POST">
+<form action="{{route('add_project')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
       <label for="projectTitle" class="form-label">Project Title</label>

@@ -32,6 +32,10 @@ class ProjectController extends Controller
         $project->projectTitle = $request->input('projectTitle');
         $project->save();
 
+        $project->projectFolder = 'projectFile/PR-' . $project->id;
+        $project->projectSR = $request->file('projectSR')->storeAs($project->projectFolder, $request->projectSR->getClientOriginalName());
+        $project->save();
+
         $project->users()->attach($request->user()->id);
         return redirect()->action([ProjectController::class, 'show']);
     }
