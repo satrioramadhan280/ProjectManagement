@@ -8,7 +8,7 @@ Projects
 <h1>Hello, {{Auth::user()->name}}</h1>
 <a href="{{url('/projects/add')}}" class="btn btn-primary">Add  Project</a>
 
-@isset($projects)
+@if(!$projects->isEmpty())
 <table class="table">
     <thead>
         <tr>
@@ -27,6 +27,6 @@ Projects
         @endforeach
     </tbody>
 </table>
-@endisset
+@endif
 
 @endsection
