@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 
 class AdminController extends Controller
 {
@@ -14,8 +15,9 @@ class AdminController extends Controller
      */
     public function index()
     {
+        $id = 1;
         $users = User::where('roleID', '!=', 1)->paginate(5);
-        return view('admin.index', compact('users'));
+        return view('admin.index', compact('users', 'id'));
     }
 
     /**
@@ -25,7 +27,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        $roles = Role::where('name', 'like', '%MemberDepartment%')->get();
+        return view('admin.create', compact('roles'));
     }
 
     /**

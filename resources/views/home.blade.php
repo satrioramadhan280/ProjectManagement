@@ -19,7 +19,7 @@ Dashboard
 
 @section('content')
 <div class="d-flex justify-content-center">
-  <h1>Hello, {{Auth::user()->name}}</h1>
+  <h1>Hello, {{Auth::user()->firstName}} {{Auth::user()->lastName}}</h1>
 </div>
 
 {{-- @can('Admin') --}}
