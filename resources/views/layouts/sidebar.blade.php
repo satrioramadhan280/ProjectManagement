@@ -8,23 +8,7 @@
                 </a>
             </li>
             
-            @can('HDiv')
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('projects')}}">
-                    <span data-feather="file"></span>
-                    Projects
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/{{Auth::user()->username}}">
-                    <span data-feather="user"></span>
-                    Profile
-                </a>
-            </li>
-            @endcan
-
-            @can('HDept1')
+            @canany(['HDiv','HDept1', 'MDept1', 'HDept2', 'MDept2', 'HDept3', 'MDept3', 'HDept4', 'MDept4'])
             <li class="nav-item">
                 <a class="nav-link" href="{{route('projects')}}">
                     <span data-feather="file"></span>
@@ -37,49 +21,7 @@
                     Profile
                 </a>
             </li>
-            @endcan
-            @can('HDept2')
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('projects')}}">
-                    <span data-feather="file"></span>
-                    Projects
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/{{Auth::user()->username}}">
-                    <span data-feather="user"></span>
-                    Profile
-                </a>
-            </li>
-            @endcan
-            @can('HDept3')
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('projects')}}">
-                    <span data-feather="file"></span>
-                    Projects
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/{{Auth::user()->username}}">
-                    <span data-feather="user"></span>
-                    Profile
-                </a>
-            </li>
-            @endcan
-            @can('HDept4')
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('projects')}}">
-                    <span data-feather="file"></span>
-                    Projects
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/{{Auth::user()->username}}">
-                    <span data-feather="user"></span>
-                    Profile
-                </a>
-            </li>
-            @endcan
+            @endcanany
         </ul>
     </div>
 </nav>
