@@ -57,7 +57,7 @@ class AdminController extends Controller
 
         $users->save();
 
-        return redirect('/admin/index');
+        return redirect('/admin/index')->with('create', $users->firstName. ' '.$users->lastName.' has been added');
     }
 
     /**
