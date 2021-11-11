@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<form class="form-horizontal" action='{{ route('register') }}' method="POST" enctype="multipart/form-data">
+<form class="form-horizontal" action='/admin/addUser' method="POST" enctype="multipart/form-data">
     @csrf
     <fieldset>
       <div id="legend">
@@ -40,7 +40,7 @@
       <div class="control-group">
         <label class="control-label" for="dateofBirth">Date of Birth</label>
         <div class="controls">
-          <input type="date" id="dateofBirth" name="dateofBirth" placeholder="" class="input-xlarge">
+          <input type="date" id="dateofBirth" name="dateofBirth" placeholder="" class="input-xlarge" value="">
         </div>
       </div>
    

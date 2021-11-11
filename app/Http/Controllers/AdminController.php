@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use DateTime;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -39,7 +41,23 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $users = new User;
+
+        $date = new DateTime();
+        $date->format('Y-m-d');
+
+        $users->firstName = $request->firstName;
+        $users->lastName = $request->lastName;
+        $users->username = $request->username;
+        $users->email = $request->email;
+        $users->password = bcrypt('simas123');
+        $users->photo = 'photo-profile.png';
+        $users->roleID = $request->roleID;
+        $users->dateofBirth = Carbon::parse($request->myDate);
+
+        $users->save();
+
+        return redirect('/admin/index');
     }
 
     /**

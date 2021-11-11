@@ -30,6 +30,7 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/admin/index', [AdminController::class, 'index'])->middleware('CheckAdmin');
 Route::get('/admin/create', [AdminController::class, 'create'])->Middleware('CheckAdmin');
+Route::post('/admin/addUser', [AdminController::class, 'store'])->Middleware('CheckAdmin');
 Route::get('/{user}', [AdminController::class, 'show']);
 
 Route::get('/user/index', [HDeptController::class, 'index']);

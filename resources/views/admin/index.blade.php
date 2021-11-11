@@ -22,8 +22,8 @@ User Management
         @foreach ($users as $user)
         <tr>
             <td>{{$id++}}</td>
-            <td>{{$user->name}}</td>
-            <td>{{$user->roles->name}}</td>
+            <td>{{$user->firstName}} {{$user->lastName}}</td>
+            <td>{{$user->roles->display}}</td>
             <td><a href="/{{$user->username}}">Detail</a></td>
         </tr>
         @endforeach
