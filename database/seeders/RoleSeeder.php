@@ -52,7 +52,7 @@ class RoleSeeder extends Seeder
         ]);
         Role::create([
             'name' => 'MemberDepartment4',
-            'display' => 'Head of IT Internal Application'
+            'display' => 'IT Internal Application'
         ]);
     }
 }
