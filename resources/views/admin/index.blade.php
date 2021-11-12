@@ -24,7 +24,7 @@ User Management
             <td>{{$id++}}</td>
             <td>{{$user->firstName}} {{$user->lastName}}</td>
             <td>{{$user->roles->display}}</td>
-            <td><a href="/{{$user->username}}">Detail</a></td>
+            <td><a href="/{{$user->username}}/about">Detail</a></td>
         </tr>
         @endforeach
     </tbody>

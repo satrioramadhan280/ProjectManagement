@@ -8,7 +8,9 @@ use App\Http\Controllers\HDivController;
 use App\Http\Controllers\HDeptController;
 use App\Http\Controllers\MDeptController;
 use App\Http\Controllers\ProjectController;
+use App\Models\User;
 use GuzzleHttp\Middleware;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +33,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/admin/index', [AdminController::class, 'index'])->middleware('CheckAdmin');
 Route::get('/admin/create', [AdminController::class, 'create'])->Middleware('CheckAdmin');
 Route::post('/admin/addUser', [AdminController::class, 'store'])->Middleware('CheckAdmin');
-Route::get('/{user}', [AdminController::class, 'show']);
+Route::get('/{user}/{user_tabs}', [AdminController::class, 'show']);
 
 Route::get('/user/index', [HDeptController::class, 'index']);
 
@@ -40,3 +42,11 @@ Route::prefix('projects')->group(function () {
     Route::get('/add', [ProjectController::class, 'add']);
     Route::post('/ad', [ProjectController::class, 'add_project'])->name('add_project');
 });
+
+// Route::post('/change_profile_picture/{id}', [AdminController::class, 'show'], function ($id, Request $request) {
+
+    
+// });
+
+Route::post('/update/profile_picture/{id}', [AdminController::class, 'update_pp']);
+

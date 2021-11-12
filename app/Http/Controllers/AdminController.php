@@ -66,10 +66,12 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($username)
+    public function show($username, $user_tabs)
     {
         $user = User::where('username', $username)->first();
-        return view('admin.detail', compact('user'));
+        $role = Role::find($user->roleID);
+        // dd($role);
+        return view('admin.detail', compact('user', 'user_tabs', 'role'));
     }
 
     /**
@@ -105,4 +107,39 @@ class AdminController extends Controller
     {
         //
     }
+
+
+    // Numpang buat Controller User
+    public function update_pp($id, Request $request){
+        // dd($request->photo);
+
+    
+        $user = User::where('id', $id)->first();
+        // dd($user);
+
+        $request->validate([
+            'photo' => 'mimes:jpg,bmp,png'
+        ]);
+
+
+        $user->photo = 'dsadsadsa.png';
+        if($request->photo == null){
+            
+        }
+
+        // Else nya akan membuat path untuk image yg diupload disimpan dalam public
+        else{
+            // dd($request);
+            $imgPath = $request->file('photo')->store('img/users_photo', 'public');
+            // $request->file('image')->store('img/users_photo', 'public');
+            $file_name = basename($imgPath);
+            $user->photo = $file_name;
+        }
+        $user->save();
+
+        // $username = $user->username;
+
+        return redirect()->back();
+    }
+
 }
