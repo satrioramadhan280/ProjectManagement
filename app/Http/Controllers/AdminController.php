@@ -139,7 +139,7 @@ class AdminController extends Controller
         // Else nya akan membuat path untuk image yg diupload disimpan dalam public
         else{
             // dd($request);
-            $imgPath = $request->file('photo')->store('img/users_photo', 'public');
+            $imgPath = $request->file('photo')->store('users_photo');
             // $request->file('image')->store('img/users_photo', 'public');
             $file_name = basename($imgPath);
             $user->photo = $file_name;
