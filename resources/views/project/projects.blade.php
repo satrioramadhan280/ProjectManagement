@@ -5,7 +5,7 @@ Projects
 @endsection
 
 @section('content')
-<h1>Hello, {{Auth::user()->name}}</h1>
+<h1>Hello, {{Auth::user()->firstName}} {{Auth::user()->lastName}}</h1>
 <a href="{{url('/projects/add')}}" class="btn btn-primary">Add  Project</a>
 
 @if(!$projects->isEmpty())
@@ -27,6 +27,8 @@ Projects
         @endforeach
     </tbody>
 </table>
+@else
+    <h4>There are no projects available</h4>
 @endif
 
 @endsection

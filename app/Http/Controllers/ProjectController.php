@@ -30,7 +30,7 @@ class ProjectController extends Controller
     {
         $request->validate([
             'projectTitle' => 'required',
-            'projectSR' => 'required',
+            'projectSR' => 'required|mimes:pdf',
         ]);
 
         $project = new Project;
