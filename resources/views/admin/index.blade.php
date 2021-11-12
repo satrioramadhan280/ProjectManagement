@@ -9,9 +9,14 @@ User Management
 <div class="d-inline">
     <a href="{{url('/admin/create')}}" class="btn btn-primary">Add Employee</a>
 </div>
-<table class="table">
+@if (session('create'))
+    <div class="alert alert-success mt-3">
+        {{ session('create') }}
+    </div>
+@endif
+<table class="table mt-2">
     <thead>
-        <tr>
+        <tr class="bg-danger text-white">
             <th scope="col">No</th>
             <th scope="col">Name</th>
             <th scope="col">Role</th>
@@ -24,7 +29,7 @@ User Management
             <td>{{$id++}}</td>
             <td>{{$user->firstName}} {{$user->lastName}}</td>
             <td>{{$user->roles->display}}</td>
-            <td><a href="/{{$user->username}}/about">Detail</a></td>
+            <td><a class="btn btn-primary" href="/{{$user->username}}">Detail</a></td>
         </tr>
         @endforeach
     </tbody>

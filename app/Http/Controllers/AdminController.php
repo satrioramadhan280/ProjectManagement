@@ -41,10 +41,18 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $users = new User;
+        $today = Carbon::now();
 
-        $date = new DateTime();
-        $date->format('Y-m-d');
+        $request->validate([
+            'firstName' => 'required|string|min:3',
+            'lastName' => 'required|string|min:3',
+            'username' => ['required', 'string', 'min:6', 'unique:users'],
+            'email' => 'required|min:5|unique:users',
+            'dateOfBirth' => 'before:'.$today,
+            'roleID' => 'required| gt:0'
+        ]);
+
+        $users = new User;
 
         $users->firstName = $request->firstName;
         $users->lastName = $request->lastName;
@@ -53,11 +61,12 @@ class AdminController extends Controller
         $users->password = bcrypt('simas123');
         $users->photo = 'photo-profile.png';
         $users->roleID = $request->roleID;
-        $users->dateofBirth = Carbon::parse($request->myDate);
+        $users->dateOfBirth = Carbon::parse($request->myDate);
 
         $users->save();
 
-        return redirect('/admin/index');
+
+        return redirect('/admin/index')->with('create', $users->firstName. ' '.$users->lastName.' has been registered. Default password: simas123');
     }
 
     /**

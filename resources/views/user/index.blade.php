@@ -11,10 +11,10 @@
 ini HDiv
 @endcan
 
-@can('HDept1')<h1 class="m-3">Department 1 List</h1>@endcan
-@can('HDept2')<h1 class="m-3">Department 2 List</h1>@endcan
-@can('HDept3')<h1 class="m-3">Department 3 List</h1>@endcan
-@can('HDept4')<h1 class="m-3">Department 4 List</h1>@endcan
+@can('HDept1')<h1 class="mb-3">Department 1 List</h1>@endcan
+@can('HDept2')<h1 class="mb-3">Department 2 List</h1>@endcan
+@can('HDept3')<h1 class="mb-3">Department 3 List</h1>@endcan
+@can('HDept4')<h1 class="mb-3">Department 4 List</h1>@endcan
 
 <table class="table">
   <thead class="bg-danger">
@@ -25,17 +25,15 @@ ini HDiv
     </tr>
   </thead>
   <tbody>
-
     @can('HDept1')
     @foreach ($dept1 as $dept)
     <tr>
-      <td>{{$key++}}</td>
-      <td>{{$dept->name}}</td>
-      <td><a href="/{{$dept->username}}">Detail</a></td>
+      <td>{{$id++}}</td>
+      <td>{{$dept->firstName}} {{$dept->lastName}}</td>
+      <td><a class="btn btn-primary" href="/{{$dept->username}}">Detail</a></td>
     </tr>
     @endforeach
   </tbody>
-
   {{$dept1->links()}}
   @endcan
 
@@ -43,8 +41,8 @@ ini HDiv
   @foreach ($dept2 as $dept)
   <tr>
     <td>{{$key}}</td>
-    <td>{{$dept->name}}</td>
-    <td><a href="/{{$dept->username}}">Detail</a></td>
+    <td>{{$dept->firstName}} {{$dept->lastName}}</td>
+    <td><a class="btn btn-primary" href="/{{$dept->username}}">Detail</a></td>
   </tr>
   @endforeach
   </tbody>
@@ -55,8 +53,8 @@ ini HDiv
   @foreach ($dept3 as $dept)
   <tr>
     <td>{{$key}}</td>
-    <td>{{$dept->name}}</td>
-    <td><a href="/{{$dept->username}}">Detail</a></td>
+    <td>{{$dept->firstName}} {{$dept->lastName}}</td>
+    <td><a class="btn btn-primary" href="/{{$dept->username}}">Detail</a></td>
   </tr>
   @endforeach
   {{$dept3->links()}}
@@ -66,8 +64,8 @@ ini HDiv
   @foreach ($dept4 as $dept)
   <tr>
     <td>{{$key}}</td>
-    <td>{{$dept->name}}</td>
-    <td><a href="/{{$dept->username}}">Detail</a></td>
+    <td>{{$dept->firstName}} {{$dept->lastName}}</td>
+    <td><a class="btn btn-primary" href="/{{$dept->username}}">Detail</a></td>
   </tr>
   @endforeach
   </tbody>
