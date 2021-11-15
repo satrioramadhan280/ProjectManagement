@@ -61,7 +61,7 @@ class AdminController extends Controller
         $users->password = bcrypt('simas123');
         $users->photo = 'photo-profile.png';
         $users->roleID = $request->roleID;
-        $users->dateOfBirth = Carbon::parse($request->myDate);
+        $users->dateOfBirth = Carbon::parse($request->dateOfBirth);
 
         $users->save();
 
@@ -89,9 +89,11 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($user)
     {
-        //
+        $roles = Role::where('name', '!=', 'Admin')->get();
+        $user = User::where('username', $user)->first();
+        return view('admin.edit', compact('user', 'roles'));
     }
 
     /**
@@ -101,9 +103,38 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $user)
     {
-        //
+        $today = Carbon::now();
+
+        $request->validate([
+            'firstName' => 'required|string|min:3',
+            'lastName' => 'required|string|min:3',
+            'dateOfBirth' => 'before:'.$today,
+            'roleID' => 'required| gt:0'
+        ]);
+
+        if($request->username != $user){        
+            $request->validate([
+                'username' => 'required|string|min:6|unique:users'
+            ]);
+        }
+        // if($request->email !=){     
+        //     $request->validate([
+        //         'email' => 'required|string|min:6|unique:users'
+        //     ]);
+        // }
+
+        User::where('username', $user)->update([
+            'firstName' => $request->firstName,
+            'lastName' => $request->lastName,
+            'username' => $request->username,
+            'email' => $request->email,
+            'dateOfBirth' => Carbon::parse($request->dateOfBirth),
+            'roleID' => $request->roleID
+        ]);
+
+        return redirect('/'.$user.'/about')->with('update', 'User has been updated!');
     }
 
     /**
