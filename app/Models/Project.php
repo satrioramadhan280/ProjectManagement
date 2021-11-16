@@ -11,7 +11,7 @@ class Project extends Model
     use HasFactory;
 
     protected $attributes = [
-        'projectStatus' => 'Ongoing',
+        'status' => 'Ongoing',
     ];
 
     public function users()

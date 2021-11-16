@@ -20,11 +20,11 @@ Add Project
     @csrf
     <div class="mb-3">
       <label for="projectTitle" class="form-label">Project Title</label>
-      <input type="text" class="form-control" name="projectTitle">
+      <input type="text" class="form-control" name="projectTitle" value="{{ old('projectTitle') }}">
     </div>
     <div class="mb-3">
         <label for="projectSR" class="form-label">Project SR</label>
-        <input class="form-control" type="file" name="projectSR">
+        <input class="form-control" type="file" name="projectSR" value="{{ old('projectSR') }}">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
