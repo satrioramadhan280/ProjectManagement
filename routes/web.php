@@ -33,8 +33,13 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/admin/index', [AdminController::class, 'index'])->middleware('CheckAdmin');
 Route::get('/admin/create', [AdminController::class, 'create'])->Middleware('CheckAdmin');
 Route::post('/admin/addUser', [AdminController::class, 'store'])->Middleware('CheckAdmin');
+<<<<<<< Updated upstream
 Route::get('/admin/{username}/edit', [AdminController::class, 'edit'])->Middleware('CheckAdmin');
 Route::get('/user/{user}/{user_tabs}', [AdminController::class, 'show']);
+=======
+Route::get('/admin/{user:username}/edit', [AdminController::class, 'edit'])->Middleware('CheckAdmin');
+Route::get('/{user}/{user_tabs}', [AdminController::class, 'show']);
+>>>>>>> Stashed changes
 Route::patch('/admin/editUser/{username}', [AdminController::class, 'update'])->Middleware('CheckAdmin');
 
 Route::get('/user/index', [HDeptController::class, 'index']);
