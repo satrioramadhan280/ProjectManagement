@@ -29,16 +29,16 @@ class ProjectController extends Controller
     public function add_project(Request $request)
     {
         $request->validate([
-            'projectTitle' => 'required',
+            'projectTitle' => 'required|min:3|max:50',
             'projectSR' => 'required|mimes:pdf',
         ]);
 
         $project = new Project;
-        $project->projectTitle = $request->input('projectTitle');
+        $project->title = $request->input('projectTitle');
         $project->save();
 
-        $project->projectFolder = 'projectFile/PR-' . $project->id;
-        $project->projectSR = $request->file('projectSR')->storeAs($project->projectFolder, $request->projectSR->getClientOriginalName());
+        $project->folder = 'projectFiles/PR-' . $project->id;
+        $project->sysRequirements = $request->file('projectSR')->storeAs($project->folder, $request->sysRequirements->getClientOriginalName());
         $project->save();
 
         $project->users()->attach($request->user()->id);
