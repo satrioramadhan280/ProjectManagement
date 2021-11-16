@@ -29,7 +29,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        $roles = Role::where('name', 'like', '%MemberDepartment%')->get();
+        $roles = Role::where('name', '!=', 'Admin')->get();
         return view('admin.create', compact('roles'));
     }
 
@@ -48,7 +48,7 @@ class AdminController extends Controller
             'lastName' => 'required|string|min:3',
             'username' => ['required', 'string', 'min:6', 'unique:users'],
             'email' => 'required|min:5|unique:users',
-            'dateOfBirth' => 'before:'.$today,
+            'dateOfBirth' => 'before:today',
             'roleID' => 'required| gt:0'
         ]);
 
@@ -93,6 +93,7 @@ class AdminController extends Controller
     {
         $roles = Role::where('name', '!=', 'Admin')->get();
         $user = User::where('username', $user)->first();
+
         return view('admin.edit', compact('user', 'roles'));
     }
 
@@ -105,32 +106,33 @@ class AdminController extends Controller
      */
     public function update(Request $request, $user)
     {
-        $today = Carbon::now();
-
         $request->validate([
             'firstName' => 'required|string|min:3',
             'lastName' => 'required|string|min:3',
-            'dateOfBirth' => 'before:'.$today,
+            'dateOfBirth' => 'before:today',
             'roleID' => 'required| gt:0'
         ]);
-
+           
         if($request->username != $user){        
             $request->validate([
                 'username' => 'required|string|min:6|unique:users'
             ]);
         }
-        // if($request->email !=){     
-        //     $request->validate([
-        //         'email' => 'required|string|min:6|unique:users'
-        //     ]);
-        // }
+        
+        $currUser = User::where('username', $user)->first();
+        
+        if($request->email != $currUser->email){     
+            $request->validate([
+                'email' => 'required|string|min:6|unique:users'
+            ]);
+        }
 
         User::where('username', $user)->update([
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
             'username' => $request->username,
             'email' => $request->email,
-            'dateOfBirth' => Carbon::parse($request->dateOfBirth),
+            'dateOfBirth' => Carbon::parse($request->dateOfBirth)->format('Y-m-d'),
             'roleID' => $request->roleID
         ]);
 
@@ -143,9 +145,11 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($username)
     {
-        //
+        $user = User::where('username', $username)->first();
+        User::destroy($user->id);
+        return redirect('admin/index')->with('delete', 'Delete User Successful');
     }
 
 

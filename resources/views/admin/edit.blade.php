@@ -10,12 +10,17 @@ Edit Employee
   @method('patch')
   <fieldset>
     <div id="legend">
-      <legend class="">Edit Employee</legend>
+      <legend class="">Edit Profile</legend>
     </div>
     <div class="control-group">
       <label class="control-label" for="firstName">First Name</label>
       <div class="controls">
-        <input type="text" id="firstName" name="firstName" placeholder="{{old('firstName')}}" class="form-control @error('firstName') is-invalid @enderror" value="{{$user->firstName}}">
+        @can('Admin')
+          <input disabled type="text" id="firstName" name="firstName" placeholder="{{old('firstName')}}" class="form-control @error('firstName') is-invalid @enderror" value="{{$user->firstName}}">
+        @endcan
+        @canany(['HDiv','HDept1', 'MDept1', 'HDept2', 'MDept2', 'HDept3', 'MDept3', 'HDept4', 'MDept4'])
+          <input type="text" id="firstName" name="firstName" placeholder="{{old('firstName')}}" class="form-control @error('firstName') is-invalid @enderror" value="{{$user->firstName}}">
+        @endcanany
         @error('firstName')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
@@ -26,7 +31,12 @@ Edit Employee
     <div class="control-group">
       <label class="control-label" for="lastName">Last Name</label>
       <div class="controls">
-        <input type="text" id="lastName" name="lastName" placeholder="{{old('lastName')}}" class="form-control @error('lastName') is-invalid @enderror" value="{{$user->lastName}}">
+        @can('Admin')
+          <input disabled type="text" id="lastName" name="lastName" placeholder="{{old('lastName')}}" class="form-control @error('lastName') is-invalid @enderror" value="{{$user->lastName}}">
+        @endcan
+        @canany(['HDiv','HDept1', 'MDept1', 'HDept2', 'MDept2', 'HDept3', 'MDept3', 'HDept4', 'MDept4'])
+          <input type="text" id="lastName" name="lastName" placeholder="{{old('lastName')}}" class="form-control @error('lastName') is-invalid @enderror" value="{{$user->lastName}}">
+        @endcanany
         @error('lastName')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
@@ -37,7 +47,12 @@ Edit Employee
     <div class="control-group">
       <label class="control-label" for="username">Username</label>
       <div class="controls">
-        <input type="text" id="username" name="username" placeholder="{{old('username')}}" class="form-control @error('username') is-invalid @enderror" value="{{$user->username}}">
+        @can('Admin')
+          <input disabled type="text" id="username" name="username" placeholder="{{old('username')}}" class="form-control @error('username') is-invalid @enderror" value="{{$user->username}}">
+        @endcan
+        @canany(['HDiv','HDept1', 'MDept1', 'HDept2', 'MDept2', 'HDept3', 'MDept3', 'HDept4', 'MDept4'])
+          <input type="text" id="username" name="username" placeholder="{{old('username')}}" class="form-control @error('username') is-invalid @enderror" value="{{$user->username}}">
+        @endcanany
         @error('username')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
@@ -49,7 +64,12 @@ Edit Employee
     <div class="control-group">
       <label class="control-label" for="email">E-mail</label>
       <div class="controls">
-        <input type="text" id="email" name="email" placeholder="{{old('email')}}" class="form-control @error('email') is-invalid @enderror" value="{{$user->email}}">
+        @can('Admin')
+         <input disabled type="text" id="email" name="email" placeholder="{{old('email')}}" class="form-control @error('email') is-invalid @enderror" value="{{$user->email}}">
+        @endcan
+        @canany(['HDiv','HDept1', 'MDept1', 'HDept2', 'MDept2', 'HDept3', 'MDept3', 'HDept4', 'MDept4'])
+         <input type="text" id="email" name="email" placeholder="{{old('email')}}" class="form-control @error('email') is-invalid @enderror" value="{{$user->email}}">
+        @endcanany
         @error('email')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
@@ -59,9 +79,14 @@ Edit Employee
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="dateofBirth">Date of Birth</label>
+      <label class="control-label" for="dateOfBirth">Date of Birth</label>
       <div class="controls">
-        <input type="date" id="dateofBirth" name="dateofBirth" placeholder="{{old('dateOfBirth')}}" class="form-control @error('dateOfBirth') is-invalid @enderror" value="{{$user->dateOfBirth}}">
+        @can('Admin')
+          <input disabled type="date" id="dateOfBirth" name="dateOfBirth" placeholder="{{old('dateOfBirth')}}" class="form-control @error('dateOfBirth') is-invalid @enderror" value="{{$user->dateOfBirth}}">
+        @endcan
+        @canany(['HDiv','HDept1', 'MDept1', 'HDept2', 'MDept2', 'HDept3', 'MDept3', 'HDept4', 'MDept4'])
+          <input type="date" id="dateOfBirth" name="dateOfBirth" placeholder="{{old('dateOfBirth')}}" class="form-control @error('dateOfBirth') is-invalid @enderror" value="{{$user->dateOfBirth}}">
+        @endcanany
         @error('dateOfBirth')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
@@ -73,12 +98,15 @@ Edit Employee
     <div class="control-group">
       <label class="control-label" for="role">Select Department</label>
       <div class="controls">
-        <select class="custom-select form-control mb-1 @error('roleID') is-invalid @enderror" id="roleID" name="roleID">
-            {{-- <option value="">Select Department</option> --}}
-            @foreach ($roles as $role)
-                <option value="{{ $role->id }}" {{ (old("roleID") == $role->id ? "selected":"") }}>{{ $role->display }}</option>
-          {{-- <option value="{{$role->id}}">{{$role->display}}</option> --}}
-            @endforeach
+        @can('Admin')
+          <select class="custom-select form-control mb-1 @error('roleID') is-invalid @enderror" id="roleID" name="roleID">
+        @endcan
+        @canany(['HDiv','HDept1', 'MDept1', 'HDept2', 'MDept2', 'HDept3', 'MDept3', 'HDept4', 'MDept4'])
+          <select class="custom-select form-control mb-1 @error('roleID') is-invalid @enderror" id="roleID" name="roleID">
+        @endcanany
+        @foreach($roles as $role)
+          <option value="{{$user->roleID}}" {{(old('role') == $user->userID) ? 'selected':''}}>{{$role->display}}</option>
+        @endforeach
         </select>
         @error('roleID')
         <span class="invalid-feedback" role="alert">

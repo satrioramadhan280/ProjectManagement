@@ -14,6 +14,11 @@ User Management
         {{ session('create') }}
     </div>
 @endif
+@if (session('delete'))
+    <div class="alert alert-success mt-3">
+        {{ session('delete') }}
+    </div>
+@endif
 <table class="table mt-2">
     <thead>
         <tr class="bg-danger text-white">

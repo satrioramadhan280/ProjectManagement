@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/{{Auth::user()->username}}">
+                <a class="nav-link" href="/user/{{Auth::user()->username}}/about">
                     <span data-feather="user"></span>
                     Profile
                 </a>

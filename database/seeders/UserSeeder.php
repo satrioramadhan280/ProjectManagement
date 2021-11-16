@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
         ]);
         User::create([
             'firstName' => 'Head',
-            'lastName' => ' Department2',
+            'lastName' => 'Department2',
             'username' => 'head.department2',
             'email' => 'headdepartment2@banksinarmas.com',
             'password' => bcrypt('simas123'),

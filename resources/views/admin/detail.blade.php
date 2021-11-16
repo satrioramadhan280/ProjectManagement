@@ -134,7 +134,6 @@
            
         </ul>
         <div class="ms-5 mt-4 mb-4">
-
             @if ($user_tabs=='about')
                 {{-- Date of Birth --}}
                 <div class="row">
@@ -183,13 +182,17 @@
         </div>
         
     </div>
-    
-    @can('Admin')
+ 
     <div class="d-inline">
         <a href="/admin/{{$user->username}}/edit" class="btn btn-primary c">Edit Profile</a>
-        <a href="" class="btn btn-danger">Delete Account</a>
+        @can('Admin')
+        <form action="/admin/{{$user->username}}/delete" method="POST" class="d-inline">
+            @csrf
+            @method('delete')
+            <button type="submit" onclick="return confirm('Are you sure want to delete this user?')" class="btn btn-danger" >Delete User</button>
+        </form>
+        @endcan
     </div>
-    @endcan
 @endsection
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

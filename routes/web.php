@@ -33,7 +33,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/admin/index', [AdminController::class, 'index'])->middleware('CheckAdmin');
 Route::get('/admin/create', [AdminController::class, 'create'])->Middleware('CheckAdmin');
 Route::post('/admin/addUser', [AdminController::class, 'store'])->Middleware('CheckAdmin');
-Route::get('/admin/{username}/edit', [AdminController::class, 'edit'])->Middleware('CheckAdmin');
+Route::delete('/admin/{username}/delete', [AdminController::class, 'destroy'])->Middleware('CheckAdmin');
+Route::get('/admin/{username}/edit', [AdminController::class, 'edit']);
 Route::get('/user/{user}/{user_tabs}', [AdminController::class, 'show']);
 Route::patch('/admin/editUser/{username}', [AdminController::class, 'update'])->Middleware('CheckAdmin');
 

@@ -58,9 +58,9 @@ Add New Employee
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="dateofBirth">Date of Birth</label>
+      <label class="control-label" for="dateOfBirth">Date of Birth</label>
       <div class="controls">
-        <input type="date" id="dateofBirth" name="dateofBirth" placeholder="{{old('dateOfBirth')}}" class="form-control @error('dateOfBirth') is-invalid @enderror" value="">
+        <input type="date" id="dateOfBirth" name="dateOfBirth" placeholder="{{old('dateOfBirth')}}" class="form-control @error('dateOfBirth') is-invalid @enderror" value="">
         @error('dateOfBirth')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
