@@ -34,7 +34,7 @@ Route::get('/admin/index', [AdminController::class, 'index'])->middleware('Check
 Route::get('/admin/create', [AdminController::class, 'create'])->Middleware('CheckAdmin');
 Route::post('/admin/addUser', [AdminController::class, 'store'])->Middleware('CheckAdmin');
 Route::get('/admin/{username}/edit', [AdminController::class, 'edit'])->Middleware('CheckAdmin');
-Route::get('/{user}/{user_tabs}', [AdminController::class, 'show']);
+Route::get('/user/{user}/{user_tabs}', [AdminController::class, 'show']);
 Route::patch('/admin/editUser/{username}', [AdminController::class, 'update'])->Middleware('CheckAdmin');
 
 Route::get('/user/index', [HDeptController::class, 'index']);
