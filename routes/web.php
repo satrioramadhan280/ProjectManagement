@@ -42,7 +42,7 @@ Route::get('/user/index', [HDeptController::class, 'index']);
 Route::prefix('projects')->group(function () {
     Route::get('/index', [ProjectController::class, 'show'])->name('projects');
     Route::get('/add', [ProjectController::class, 'add']);
-    Route::post('/ad', [ProjectController::class, 'add_project'])->name('add_project');
+    Route::post('/addProject', [ProjectController::class, 'add_project'])->name('add_project');
 });
 
 // Route::post('/change_profile_picture/{id}', [AdminController::class, 'show'], function ($id, Request $request) {
