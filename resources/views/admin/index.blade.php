@@ -23,8 +23,8 @@ User Management
     <thead>
         <tr class="bg-danger text-white">
             <th scope="col">No</th>
-            <th scope="col">Name</th>
-            <th scope="col">Role</th>
+            <th scope="col" class="dropdown-toggle">@sortablelink('firstName', 'Name')</th>
+            <th scope="col" class="dropdown-toggle">@sortablelink('roleID', 'Division')</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -39,5 +39,6 @@ User Management
         @endforeach
     </tbody>
 </table>
-{{$users->links()}}
+
+{!! $users->appends(\Request::except('page'))->render() !!}
 @endsection

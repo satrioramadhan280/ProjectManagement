@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Role;
 use DateTime;
 use Carbon\Carbon;
+use Kyslik\ColumnSortable\Sortable;
 
 class AdminController extends Controller
 {
@@ -17,8 +18,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $id = 1;
-        $users = User::where('roleID', '!=', 1)->paginate(5);
+        $users = User::where('roleID', '!=', 1)->sortable(['firstName', 'lastName'])->paginate(5);
+        $id = ($users->currentpage() - 1) * $users->perpage() + 1;
         return view('admin.index', compact('users', 'id'));
     }
 
@@ -41,8 +42,6 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $today = Carbon::now();
-
         $request->validate([
             'firstName' => 'required|string|min:3',
             'lastName' => 'required|string|min:3',

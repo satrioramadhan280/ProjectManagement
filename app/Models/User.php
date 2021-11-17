@@ -6,12 +6,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Kyslik\ColumnSortable\Sortable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Project;
 use Illuminate\Support\Carbon;
 
 class User extends Authenticatable
 {
+    use Sortable;
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -24,6 +26,13 @@ class User extends Authenticatable
         'email',
         'password',
         'dateOfBirth',
+        'roleID'
+    ];
+
+    protected $sortable = [
+        'id',
+        'firstName',
+        'lastName',
         'roleID'
     ];
 
