@@ -24,7 +24,7 @@ Add Project
     </div>
     <div class="mb-3">
         <label for="projectSR" class="form-label">Project SR</label>
-        <input class="form-control" type="file" name="projectSR" value="{{ old('projectSR') }}">
+        <input class="form-control" type="file" name="projectSR">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

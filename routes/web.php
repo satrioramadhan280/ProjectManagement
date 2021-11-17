@@ -42,8 +42,14 @@ Route::get('/user/index', [HDeptController::class, 'index']);
 
 Route::prefix('projects')->group(function () {
     Route::get('/index', [ProjectController::class, 'show'])->name('projects');
-    Route::get('/add', [ProjectController::class, 'add']);
-    Route::post('/addProject', [ProjectController::class, 'add_project'])->name('add_project');
+    Route::get('/add', [ProjectController::class, 'add'])->name('add_project_view');
+    Route::post('/addProject', [ProjectController::class, 'addProject'])->name('add_project');
+    Route::get('/detail/{project}', [ProjectController::class, 'detailView'])->name('project_detail_view');
+});
+
+Route::prefix('task')->group(function () {
+    Route::get('/add/{project}', [ProjectController::class, 'addTaskView'])->name('add_task_view');
+    Route::post('/addTask/{project}', [ProjectController::class, 'addTask'])->name('add_task');
 });
 
 // Route::post('/change_profile_picture/{id}', [AdminController::class, 'show'], function ($id, Request $request) {

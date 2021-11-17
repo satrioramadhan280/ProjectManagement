@@ -156,6 +156,7 @@ return [
     'attributes' => [
         'projectTitle' => 'Project Title',
         'projectSR' => 'Project SR',
+        'taskName' => 'Task Name'
     ],
 
 ];

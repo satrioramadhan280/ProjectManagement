@@ -6,7 +6,7 @@ Projects
 
 @section('content')
 <h1>Hello, {{Auth::user()->firstName}} {{Auth::user()->lastName}}</h1>
-<a href="{{url('/projects/add')}}" class="btn btn-primary">Add  Project</a>
+<a href="{{ route('add_project_view') }}" class="btn btn-primary">Add  Project</a>
 
 @if(!$projects->isEmpty())
 <table class="table">
@@ -20,9 +20,9 @@ Projects
     <tbody>
         @foreach ($projects as $project)
         <tr>
-            <td>{{$project->projectTitle}}</td>
-            <td>{{$project->projectStatus}}</td>
-            <td><a href="#">Detail</a></td>
+            <td>{{$project->title}}</td>
+            <td>{{$project->status}}</td>
+            <td><a href="{{ route('project_detail_view', [$project->id]) }}">Detail</a></td>
         </tr>
         @endforeach
     </tbody>
