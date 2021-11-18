@@ -35,6 +35,9 @@ Route::get('/admin/create', [AdminController::class, 'create'])->Middleware('Che
 Route::post('/admin/addUser', [AdminController::class, 'store'])->Middleware('CheckAdmin');
 Route::delete('/admin/{username}/delete', [AdminController::class, 'destroy'])->Middleware('CheckAdmin');
 Route::get('/admin/{username}/edit', [AdminController::class, 'edit']);
+Route::get('/admin/{user:username}/editPassword', [AdminController::class, 'editPassword']);
+Route::patch('/admin/{user:username}/changePassword', [AdminController::class, 'changePassword']);
+Route::get('/admin/{user:username}/changePassword', [AdminController::class, 'editPassword']);
 Route::get('/user/{user}/{user_tabs}', [AdminController::class, 'show']);
 Route::patch('/admin/editUser/{username}', [AdminController::class, 'update'])->Middleware('CheckAdmin');
 

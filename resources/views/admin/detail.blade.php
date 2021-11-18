@@ -56,9 +56,6 @@
     }
 </style>
 
-
-
-
 @extends('layouts.app')
 
 @section('title')
@@ -70,7 +67,12 @@
 
     {{-- {{$user->name}}
     {{$user->email}} --}}
-    
+    @if (session('success'))
+        <div class="alert alert-success mt-3">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="border rounded">
         <div class="d-flex bg-warning  bg-danger " style="height: 250px;">
                 
@@ -128,9 +130,11 @@
             <li class="nav-item">
               <a class="nav-link @if ($user_tabs=='about') text-dark and Active  @endif" href="/user/{{$user->username}}/about" style="color: rgba(0, 0, 0, 0.466)">About</a>
             </li>
+            @cannot('Admin') 
             <li class="nav-item" onclick="">
-              <a class="nav-link @if ($user_tabs=='projects') text-dark and Active @endif" href="/user/{{$user->username}}/projects" style="color: rgba(0, 0, 0, 0.466)">Projects</a>
+                <a class="nav-link @if ($user_tabs=='projects') text-dark and Active @endif" href="/user/{{$user->username}}/projects" style="color: rgba(0, 0, 0, 0.466)">Projects</a>
             </li>
+            @endcannot
            
         </ul>
         <div class="ms-5 mt-4 mb-4">
@@ -192,6 +196,9 @@
             <button type="submit" onclick="return confirm('Are you sure want to delete this user?')" class="btn btn-danger" >Delete User</button>
         </form>
         @endcan
+        @cannot('Admin')
+            <a href="/admin/{{$user->username}}/editPassword" class="btn btn-secondary">Change Password</a>
+        @endcannot
     </div>
 @endsection
 

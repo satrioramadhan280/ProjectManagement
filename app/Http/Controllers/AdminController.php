@@ -137,6 +137,24 @@ class AdminController extends Controller
 
         return redirect('/'.$user.'/about')->with('update', 'User has been updated!');
     }
+    
+    public function editPassword($user){
+        $user = User::where('username', $user)->first();
+        return view('admin.changePassword', compact('user'));
+    }
+
+    public function changePassword(Request $request,  $user){
+        $request->validate([
+            'newPassword' => 'required|min:8',
+            'password_confirmation' => 'required|password|min:8|same:newPassword'
+        ]);
+
+        User::where('username', $user)->update([
+            'password' => bcrypt($request->newPassword)
+        ]);
+
+        return redirect('/user/'.$user.'/about')->with('success', 'Change Password successful');
+    }
 
     /**
      * Remove the specified resource from storage.
