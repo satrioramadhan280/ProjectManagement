@@ -1,3 +1,53 @@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['line']});
+      google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', {!!json_encode($monthName)!!});
+      
+      data.addColumn('number', 'Customer Relationship Management');
+      data.addColumn('number', 'Branch Delivery System');
+      data.addColumn('number', 'Micro and Core Loan System');
+      data.addColumn('number', 'Internal Application');
+
+      data.addRows([
+        // [1,  37.8, 80.8, 41.8, 99],
+        // [2,  37.8, 80.8, 41.8, 99],
+        // [3,  37.8, 80.8, 41.8, 99],
+        // [4,  37.8, 80.8, 41.8, 99],
+        // [5,  37.8, 80.8, 41.8, 99],
+        {!!json_encode($day7)!!},
+        {!!json_encode($day6)!!},
+        {!!json_encode($day5)!!},
+        {!!json_encode($day4)!!},
+        {!!json_encode($day3)!!},
+        {!!json_encode($day2)!!},
+        {!!json_encode($day1)!!}
+      ]);
+
+      var options = {
+        chart: {
+          title: 'Total Active Users in The Last 7 Days',
+          // subtitle: ''
+        },
+        width: 900,
+        height: 500,
+        axes: {
+          x: {
+            0: {side: 'top'}
+          }
+        }
+      };
+
+      var chart = new google.charts.Line(document.getElementById('line_top_x'));
+
+      chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+  </script>
+
 <style>
   .normal-text {
     text-decoration: none;
@@ -20,6 +70,13 @@ Dashboard
 <div class="d-flex">
   <h1>Hello, {{Auth::user()->firstName}} {{Auth::user()->lastName}}</h1>
 </div>
+
+{{-- Chart Active Users --}}
+@can('Admin')
+  <div class="d-flex justify-content-center border rounded p-5 mt-3">
+    <div id="line_top_x" style="width: 900px; height: 500px" class=""></div>
+  </div>
+@endcan
 
 <div class="d-flex justify-content-center flex-column mt-3">
   <div class="d-flex justify-content-center mt-5">
