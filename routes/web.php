@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HDivController;
 use App\Http\Controllers\HDeptController;
 use App\Http\Controllers\MDeptController;
@@ -61,4 +62,8 @@ Route::prefix('task')->group(function () {
 // });
 
 Route::post('/update/profile_picture/{id}', [AdminController::class, 'update_pp']);
+
+Route::get('/department', [DepartmentController::class, 'index']);
+
+Route::get('/department/{type}', [DepartmentController::class, 'type']);
 

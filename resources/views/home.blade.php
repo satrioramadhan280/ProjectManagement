@@ -30,7 +30,7 @@
 
       var options = {
         chart: {
-          title: 'Total Active Users in The Last 7 Days',
+          title: '',
           // subtitle: ''
         },
         width: 900,
@@ -54,7 +54,12 @@
     color: black;
   }
 
+  .hover_image {
+    transition: box-shadow 0.2s ease-in-out;
+    
+  }
   .hover_image:hover {
+    
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
   }
@@ -68,21 +73,25 @@ Dashboard
 
 @section('content')
 <div class="d-flex">
-  <h1>Hello, {{Auth::user()->firstName}} {{Auth::user()->lastName}}</h1>
+  <h1>Hello, {{Auth::user()->firstName}} {{Auth::user()->lastName}}!</h1>
 </div>
 
 {{-- Chart Active Users --}}
 @can('Admin')
   <div class="d-flex justify-content-center border rounded p-5 mt-3">
-    <div id="line_top_x" style="width: 900px; height: 500px" class=""></div>
+    <div class="d-flex flex-column text-center">
+      <h3>Total Active Users in the Past 7 Days</h3>
+      <div id="line_top_x" style="width: 900px; height: 500px" class="mt-4 "></div>
+    </div>
+
   </div>
 @endcan
 
-<div class="d-flex justify-content-center flex-column mt-3">
-  <div class="d-flex justify-content-center mt-5">
-    <div class="d-flex flex-row justify-content-around" style="width: 1000px">
+<div class="d-flex justify-content-center flex-column mt-3 border rounded " >
+  <div class="d-flex flex-row justify-content-around m-3">
+    {{-- <div class="d-flex flex-row justify-content-between bg-warning" style=" "> --}}
       @canany(['Admin', 'HDept1', 'HDept2', 'HDept3', 'HDept4'])
-      <div class="hover_image d-flex flex-column justify-content-center">
+      <div class="hover_image d-flex flex-column justify-content-center border border-3 rounded" style="background: rgba(243, 243, 243, 0.623)">
         @can('Admin')
         <a href="{{URL('/admin/index')}}" class="normal-text" style="color: black">
         @endcan
@@ -90,25 +99,26 @@ Dashboard
         <a href="{{URL('/user/index')}}" class="normal-text" style="color: black">
         @endcanany
           <img src="{{URL::asset('/img/user-icon.png')}}" class="m-3" alt="" style="height: 200px; width: 200px">
-          @can('Admin')<h3 class="text-center mb-3">{{$TotalUsers}} Users</h3> @endcan
-          @can('HDept1')<h3 class="text-center mb-3">{{$TotalDept1}} Users</h3> @endcan
-          @can('HDept2')<h3 class="text-center mb-3">{{$TotalDept2}} Users</h3> @endcan
-          @can('HDept3')<h3 class="text-center mb-3">{{$TotalDept3}} Users</h3> @endcan
-          @can('HDept4')<h3 class="text-center mb-3">{{$TotalDept4}} Users</h3> @endcan
+          @can('Admin')<h3 class="text-center mb-3">Users</h3> @endcan 
+          {{-- {{$TotalUsers}}  --}}
+          @can('HDept1')<h3 class="text-center mb-3">Users</h3> @endcan
+          @can('HDept2')<h3 class="text-center mb-3">Users</h3> @endcan
+          @can('HDept3')<h3 class="text-center mb-3">Users</h3> @endcan
+          @can('HDept4')<h3 class="text-center mb-3">Users</h3> @endcan
         </a>
       </div>
       @endcanany
 
       @can('Admin')
-      <div class="hover_image d-flex flex-column justify-content-center">
-        <a href="" class="normal-text" style="color: black">
+      <div class="hover_image d-flex flex-column justify-content-center border border-3 rounded" style="background: rgba(243, 243, 243, 0.623)">
+        <a href="/department" class="normal-text" style="color: black">
           <img src="{{URL::asset('/img/department-icon.png')}}" class="m-3" alt="" style="height: 200px; width: 200px">
           {{-- <a href="{{url('/admin/index')}}" class="text-center">Users</a> --}}
           <h3 class="text-center mb-3">Department</h3>
         </a>
       </div>
       @endcan
-    </div>
+    {{-- </div> --}}
   </div>
 </div>
 

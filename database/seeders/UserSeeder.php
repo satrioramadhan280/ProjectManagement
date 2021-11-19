@@ -115,5 +115,47 @@ class UserSeeder extends Seeder
             'roleID' => 10,
             'dateOfBirth' => '1990-01-01'
         ]);
+        User::create([
+            'firstName' => 'Derick',
+            'lastName' => 'Yudanegara',
+            'username' => 'dyuda12',
+            'email' => 'derickyudanegara@gmail.com',
+            'password' => bcrypt('simas123'),
+            'photo' => 'photo-profile.png',
+            'roleID' => 8,
+            'dateOfBirth' => '1990-01-01'
+        ]);
+
+        // Dummy
+        User::create([
+            'firstName' => 'User1',
+            'lastName' => 'Last',
+            'username' => 'user1',
+            'email' => 'user1@banksinarmas.com',
+            'password' => bcrypt('simas123'),
+            'photo' => 'photo-profile.png',
+            'roleID' => 7,
+            'dateOfBirth' => '1990-01-01'
+        ]);
+        User::create([
+            'firstName' => 'User2',
+            'lastName' => 'Last',
+            'username' => 'user2',
+            'email' => 'user2@banksinarmas.com',
+            'password' => bcrypt('simas123'),
+            'photo' => 'photo-profile.png',
+            'roleID' => 7,
+            'dateOfBirth' => '1990-01-01'
+        ]);
+        User::create([
+            'firstName' => 'User3',
+            'lastName' => 'Last',
+            'username' => 'user3',
+            'email' => 'user3@banksinarmas.com',
+            'password' => bcrypt('simas123'),
+            'photo' => 'photo-profile.png',
+            'roleID' => 7,
+            'dateOfBirth' => '1990-01-01'
+        ]);
     }
 }
