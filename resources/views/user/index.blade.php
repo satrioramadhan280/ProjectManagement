@@ -21,7 +21,6 @@ ini HDiv
     <tr>
       <th class="text-white" scope="col">No</th>
       <th class="text-white" scope="col">Name</th>
-      <th class="text-white" scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -30,7 +29,7 @@ ini HDiv
     <tr>
       <td>{{$id++}}</td>
       <td>{{$dept->firstName}} {{$dept->lastName}}</td>
-      <td><a class="btn btn-primary" href="/{{$dept->username}}">Detail</a></td>
+
     </tr>
     @endforeach
   </tbody>
@@ -42,7 +41,6 @@ ini HDiv
   <tr>
     <td>{{$key}}</td>
     <td>{{$dept->firstName}} {{$dept->lastName}}</td>
-    <td><a class="btn btn-primary" href="/{{$dept->username}}">Detail</a></td>
   </tr>
   @endforeach
   </tbody>
@@ -54,7 +52,6 @@ ini HDiv
   <tr>
     <td>{{$key}}</td>
     <td>{{$dept->firstName}} {{$dept->lastName}}</td>
-    <td><a class="btn btn-primary" href="/{{$dept->username}}">Detail</a></td>
   </tr>
   @endforeach
   {{$dept3->links()}}
@@ -65,7 +62,6 @@ ini HDiv
   <tr>
     <td>{{$key}}</td>
     <td>{{$dept->firstName}} {{$dept->lastName}}</td>
-    <td><a class="btn btn-primary" href="/{{$dept->username}}">Detail</a></td>
   </tr>
   @endforeach
   </tbody>
