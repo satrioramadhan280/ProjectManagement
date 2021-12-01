@@ -26,6 +26,10 @@ Add Project
         <label for="projectSR" class="form-label">Project SR</label>
         <input class="form-control" type="file" name="projectSR">
     </div>
+    <div class="mb-3">
+        <label for="endDate" class="form-label">Deadline</label>
+        <input class="form-control" type="date" name="endDate">
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 

@@ -14,6 +14,7 @@ Projects
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Project Status</th>
+            <th scope="col">Deadline</th>
             <th scope="col">Detail</th>
         </tr>
     </thead>
@@ -22,6 +23,7 @@ Projects
         <tr>
             <td>{{$project->title}}</td>
             <td>{{$project->status}}</td>
+            <td>{{$project->endDate}}</td>
             <td><a href="{{ route('project_detail_view', [$project->id]) }}">Detail</a></td>
         </tr>
         @endforeach
