@@ -12,7 +12,6 @@ use function PHPUnit\Framework\isEmpty;
 class ProjectController extends Controller
 {
     //
-
     public function show(Request $request)
     {
         $projects = $request->user()->projects;
