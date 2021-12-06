@@ -50,7 +50,6 @@ class ProjectController extends Controller
     }
 
     public function detailView(Project $project) {
-
         $tasks = $project->tasks;
         return view('project.detail', compact('project', 'tasks'));
     }
