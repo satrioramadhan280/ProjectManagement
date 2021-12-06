@@ -41,7 +41,7 @@ class ProjectController extends Controller
         $project->folder = 'projectFiles/PR-' . $project->id;
         $project->sysRequirements = $request->file('projectSR')->storeAs($project->folder, $request->projectSR->getClientOriginalName());
 
-        $project->startDate = Carbon::now()->format('Y-m-d');
+        $project->startDate = Carbon::parse($request->startDate)->format('Y-m-d');
         $project->endDate = Carbon::parse($request->endDate)->format('Y-m-d');
         $project->save();
 

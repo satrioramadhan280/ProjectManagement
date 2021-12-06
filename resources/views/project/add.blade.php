@@ -27,6 +27,10 @@ Add Project
         <input class="form-control" type="file" name="projectSR">
     </div>
     <div class="mb-3">
+        <label for="startDate" class="form-label">Start Date</label>
+        <input class="form-control" type="date" name="startDate">
+    </div>
+    <div class="mb-3">
         <label for="endDate" class="form-label">Deadline</label>
         <input class="form-control" type="date" name="endDate">
     </div>
