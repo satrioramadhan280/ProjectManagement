@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\ProjectUser;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-
+use Auth;
 use function PHPUnit\Framework\isEmpty;
 
 class ProjectController extends Controller
@@ -51,7 +53,19 @@ class ProjectController extends Controller
 
     public function detailView(Project $project) {
         $tasks = $project->tasks;
-        return view('project.detail', compact('project', 'tasks'));
+        if(auth()->user()->roleID == 3){
+            $users = User::where('roleID', 7)->get();
+        }
+        if(auth()->user()->roleID == 4){
+            $users = User::where('roleID', 8)->get();
+        }
+        if(auth()->user()->roleID == 5){
+            $users = User::where('roleID', 9)->get();
+        }
+        if(auth()->user()->roleID == 6){
+            $users = User::where('roleID', 10)->get();
+        }
+        return view('project.detail', compact('project', 'tasks', 'users'));
     }
 
     public function addTaskView(Project $project)
@@ -70,5 +84,16 @@ class ProjectController extends Controller
         $task->save();
 
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id]);
+    }
+
+    public function addMember(Request $request, Project $project){
+        $projectUser = new ProjectUser;
+
+        $projectUser->project_id = $project->id;
+        $projectUser->user_id = $request->user_id;
+
+        $projectUser->save();
+
+        return redirect('projects/detail/'.$projectUser->id);
     }
 }

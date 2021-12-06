@@ -50,6 +50,7 @@ Route::prefix('projects')->group(function () {
     Route::post('/addProject', [ProjectController::class, 'addProject'])->name('add_project');
     Route::get('/detail/{project}', [ProjectController::class, 'detailView'])->name('project_detail_view');
 });
+Route::post('/projects/addMember/{project}', [ProjectController::class, 'addMember'])->name('addMember');
 
 Route::prefix('task')->group(function () {
     Route::get('/add/{project}', [ProjectController::class, 'addTaskView'])->name('add_task_view');
