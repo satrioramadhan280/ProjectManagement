@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Detail
+{{$project->title}}
 @endsection
 
 @section('content')
@@ -24,7 +24,7 @@ Detail
                 @csrf
                 @foreach ($users as $user)
                 <div class="form-check d-block">
-                    <input class="form-check-input" type="checkbox" value="{{$user->id}}" id="flexCheckDefault" name="user_id">
+                    <input class="form-check-input" type="checkbox" value="{{$user->id}}" id="flexCheckDefault" name="users[]">
                     <label class="form-check-label" for="flexCheckDefault">
                         {{$user->firstName}} {{$user->lastName}}
                     </label>

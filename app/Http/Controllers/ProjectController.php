@@ -88,12 +88,15 @@ class ProjectController extends Controller
 
     public function addMember(Request $request, Project $project){
         $projectUser = new ProjectUser;
-
-        $projectUser->project_id = $project->id;
-        $projectUser->user_id = $request->user_id;
+        
+        $users = $request->input('users');    
+        foreach($users as $user){
+            $projectUser->project_id = $project->id;
+            $projectUser->user_id = $user;
+        }
 
         $projectUser->save();
 
-        return redirect('projects/detail/'.$projectUser->id);
+        return redirect('projects/detail/'.$project->id);
     }
 }
