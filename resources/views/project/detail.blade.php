@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Detail
+{{$project->title}}
 @endsection
 
 @section('content')
