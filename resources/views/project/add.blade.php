@@ -1,10 +1,10 @@
-{{-- @extends('layouts.app')
+@extends('layouts.app')
 
 @section('title')
 Add Project
-@endsection --}}
+@endsection
 
-{{-- @section('content') --}}
+@section('content')
 
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -37,4 +37,4 @@ Add Project
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
-{{-- @endsection --}}
+@endsection
