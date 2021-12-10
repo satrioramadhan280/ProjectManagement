@@ -6,7 +6,7 @@ Projects
 
 @section('content')
 <h1>Hello, {{Auth::user()->firstName}} {{Auth::user()->lastName}}</h1>
-<a href="{{ route('add_project_view') }}" class="btn btn-primary">Add  Project</a>
+<a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary">Add  Project</a>
 
 @if(!$projects->isEmpty())
 <table class="table">
@@ -32,5 +32,19 @@ Projects
 @else
     <h4>There are no projects available</h4>
 @endif
+
+<!-- Modal -->
+<div class="modal fade" id="addProjectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        </div>
+      </div>
+    </div>
+</div>
 
 @endsection

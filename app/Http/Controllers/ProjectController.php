@@ -34,7 +34,8 @@ class ProjectController extends Controller
         $request->validate([
             'projectTitle' => 'required|min:3|max:50',
             'projectSR' => 'required|mimes:pdf',
-            'endDate' => 'required|after:today'
+            'endDate' => 'required|after:today',
+            'startDate' => 'required|after_or_equal:today',
         ]);
 
         $project = new Project;
@@ -48,7 +49,8 @@ class ProjectController extends Controller
         $project->save();
 
         $project->users()->attach($request->user()->id);
-        return redirect()->action([ProjectController::class, 'show']);
+        return response()->json(['success'=>'Data is successfully added'], 200);
+        // return redirect()->action([ProjectController::class, 'show']);
     }
 
     public function detailView(Project $project) {
