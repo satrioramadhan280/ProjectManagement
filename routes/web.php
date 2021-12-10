@@ -40,7 +40,7 @@ Route::get('/admin/{user:username}/editPassword', [AdminController::class, 'edit
 Route::patch('/admin/{user:username}/changePassword', [AdminController::class, 'changePassword']);
 Route::get('/admin/{user:username}/changePassword', [AdminController::class, 'editPassword']);
 Route::get('/user/{user}/{user_tabs}', [AdminController::class, 'show']);
-Route::patch('/admin/editUser/{username}', [AdminController::class, 'update'])->Middleware('CheckAdmin');
+Route::patch('/admin/editUser/{username}', [AdminController::class, 'update']);
 
 Route::get('/user/index', [HDeptController::class, 'index']);
 
@@ -68,3 +68,4 @@ Route::get('/department', [DepartmentController::class, 'index']);
 
 Route::get('/department/{type}', [DepartmentController::class, 'type']);
 
+Route::get('/search', [AdminController::class, 'searchUser']);

@@ -125,8 +125,7 @@ class AdminController extends Controller
                 'email' => 'required|string|min:6|unique:users'
             ]);
         }
-
-        User::where('username', $user)->update([
+        User::where('id', $currUser->id)->update([
             'firstName' => $request->firstName,
             'lastName' => $request->lastName,
             'username' => $request->username,
@@ -135,7 +134,7 @@ class AdminController extends Controller
             'roleID' => $request->roleID
         ]);
 
-        return redirect('/'.$user.'/about')->with('update', 'User has been updated!');
+        return redirect('/user/'.$currUser->username.'/about')->with('update', 'User has been updated!');
     }
     
     public function editPassword($user){
@@ -203,4 +202,8 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function searchUser(Request $request){
+        $search = User::where('firstName', 'like', '%'.$request->search.'%')->orwhere('lastName', 'like', '%'.$request->search.'%')->get();
+        return $search;
+    }
 }

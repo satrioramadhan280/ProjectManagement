@@ -59,7 +59,7 @@
 @extends('layouts.app')
 
 @section('title')
-        {{$user->username}}
+        {{$user->firstName}} {{$user->lastName}}
 @endsection
 
 @section('content')
@@ -189,13 +189,6 @@
  
     <div class="d-inline">
         <a href="/admin/{{$user->username}}/edit" class="btn btn-primary c">Edit Profile</a>
-        @can('Admin')
-        <form action="/admin/{{$user->username}}/delete" method="POST" class="d-inline">
-            @csrf
-            @method('delete')
-            <button type="submit" onclick="return confirm('Are you sure want to delete this user?')" class="btn btn-danger" >Delete User</button>
-        </form>
-        @endcan
         @cannot('Admin')
             <a href="/admin/{{$user->username}}/editPassword" class="btn btn-secondary">Change Password</a>
         @endcannot
