@@ -95,32 +95,25 @@ Edit Employee
       </div>
     </div>
 
+    @can('Admin')
     <div class="control-group">
       <label class="control-label" for="role">Select Department</label>
       <div class="controls">
-        @can('Admin')
           <select class="custom-select form-control mb-1 @error('roleID') is-invalid @enderror" id="roleID" name="roleID">
             @foreach($roles as $role)
               <option value="{{$user->roleID}}" {{(old('role') == $user->userID) ? 'selected':''}}>{{$role->display}}</option>
             @endforeach
-        @endcan
-        @canany(['HDiv','HDept1', 'MDept1', 'HDept2', 'MDept2', 'HDept3', 'MDept3', 'HDept4', 'MDept4'])
-          <select  {{ $user->roleID ? 'readonly' : ''}} class="custom-select form-control mb-1 @error('roleID') is-invalid @enderror" id="roleID" name="roleID">
-          @foreach($roles as $role)
-            <option readonly value="{{$user->roleID}}" {{(old('role') == $user->userID) ? 'selected':''}}>{{$role->display}}</option>
-          @endforeach
-        @endcanany
-        
-        </select>
-        @error('roleID')
-        <span class="invalid-feedback" role="alert">
-          <strong>{{ $message }}</strong>
-        </span>
-        @enderror
+          </select>
+          @error('roleID')
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
       </div>
     </div>
+    @endcan
 
-    <div class="control-group">
+    <div class="control-group mt-2">
       <div class="controls">
         <button class="btn btn-primary" type="submit">Update</button>
       </form>

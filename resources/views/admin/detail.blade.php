@@ -67,11 +67,17 @@
 
     {{-- {{$user->name}}
     {{$user->email}} --}}
-    @if (session('success'))
+    @if (session('password'))
         <div class="alert alert-success mt-3">
-            {{ session('success') }}
+            {{ session('password') }}
         </div>
     @endif
+    @if (session('update'))
+        <div class="alert alert-success mt-3">
+            {{ session('update') }}
+        </div>
+    @endif
+    
 
     <div class="border rounded">
         <div class="d-flex bg-warning  bg-danger " style="height: 250px;">
