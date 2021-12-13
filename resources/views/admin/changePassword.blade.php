@@ -31,7 +31,7 @@ Edit Employee
         @enderror
       </div>
     </div>
-    <div class="control-group">
+    <div class="control-group mt-2">
       <div class="controls">
         <button class="btn btn-primary" type="submit">Change Password</button>
       </div>

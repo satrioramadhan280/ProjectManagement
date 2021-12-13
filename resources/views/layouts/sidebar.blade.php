@@ -2,7 +2,7 @@
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{url('/home')}}">
+                <a class="nav-link {{request()->is('home') ? 'active' : ''}}" aria-current="page" href="{{url('/home')}}">
                     <span data-feather="home"></span>
                     Dashboard
                 </a>
@@ -10,13 +10,13 @@
             
             @canany(['HDiv','HDept1', 'MDept1', 'HDept2', 'MDept2', 'HDept3', 'MDept3', 'HDept4', 'MDept4'])
             <li class="nav-item">
-                <a class="nav-link" href="{{route('projects')}}">
+                <a class="nav-link {{request()->is('projects/*') ? 'active' : ''}}" href="{{route('projects')}}">
                     <span data-feather="file"></span>
                     Projects
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/user/{{Auth::user()->username}}/about">
+                <a class="nav-link {{request()->is('*/about') ? 'active' : ''}}" href="/user/{{Auth::user()->username}}/about">
                     <span data-feather="user"></span>
                     Profile
                 </a>

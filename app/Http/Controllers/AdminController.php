@@ -109,7 +109,6 @@ class AdminController extends Controller
             'firstName' => 'required|string|min:3',
             'lastName' => 'required|string|min:3',
             'dateOfBirth' => 'before:today',
-            'roleID' => 'required| gt:0'
         ]);
            
         if($request->username != $user){        
@@ -126,16 +125,29 @@ class AdminController extends Controller
             ]);
         }
 
-        User::where('username', $user)->update([
-            'firstName' => $request->firstName,
-            'lastName' => $request->lastName,
-            'username' => $request->username,
-            'email' => $request->email,
-            'dateOfBirth' => Carbon::parse($request->dateOfBirth)->format('Y-m-d'),
-            'roleID' => $request->roleID
-        ]);
 
-        return redirect('/'.$user.'/about')->with('update', 'User has been updated!');
+        if($currUser->roleID != 1){
+            User::where('id', $currUser->id)->update([
+                'firstName' => $request->firstName,
+                'lastName' => $request->lastName,
+                'username' => $request->username,
+                'email' => $request->email,
+                'dateOfBirth' => Carbon::parse($request->dateOfBirth)->format('Y-m-d'),
+            ]);
+        }
+        else{
+            User::where('id', $currUser->id)->update([
+                'firstName' => $request->firstName,
+                'lastName' => $request->lastName,
+                'username' => $request->username,
+                'email' => $request->email,
+                'dateOfBirth' => Carbon::parse($request->dateOfBirth)->format('Y-m-d'),
+                'roleID' => $request->roleID
+            ]);
+        }
+        
+
+        return redirect('/user/'.$currUser->username.'/about')->with('update', 'User has been updated!');
     }
     
     public function editPassword($user){
@@ -153,7 +165,7 @@ class AdminController extends Controller
             'password' => bcrypt($request->newPassword)
         ]);
 
-        return redirect('/user/'.$user.'/about')->with('success', 'Change Password successful');
+        return redirect('/user/'.$user.'/about')->with('password', 'Change Password successful');
     }
 
     /**
@@ -203,4 +215,8 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function searchUser(Request $request){
+        $search = User::where('firstName', 'like', '%'.$request->search.'%')->orwhere('lastName', 'like', '%'.$request->search.'%')->get();
+        return $search;
+    }
 }

@@ -59,7 +59,7 @@
 @extends('layouts.app')
 
 @section('title')
-        {{$user->username}}
+        {{$user->firstName}} {{$user->lastName}}
 @endsection
 
 @section('content')
@@ -67,11 +67,17 @@
 
     {{-- {{$user->name}}
     {{$user->email}} --}}
-    @if (session('success'))
+    @if (session('password'))
         <div class="alert alert-success mt-3">
-            {{ session('success') }}
+            {{ session('password') }}
         </div>
     @endif
+    @if (session('update'))
+        <div class="alert alert-success mt-3">
+            {{ session('update') }}
+        </div>
+    @endif
+    
 
     <div class="border rounded">
         <div class="d-flex bg-warning  bg-danger " style="height: 250px;">
@@ -189,13 +195,6 @@
  
     <div class="d-inline">
         <a href="/admin/{{$user->username}}/edit" class="btn btn-primary c">Edit Profile</a>
-        @can('Admin')
-        <form action="/admin/{{$user->username}}/delete" method="POST" class="d-inline">
-            @csrf
-            @method('delete')
-            <button type="submit" onclick="return confirm('Are you sure want to delete this user?')" class="btn btn-danger" >Delete User</button>
-        </form>
-        @endcan
         @cannot('Admin')
             <a href="/admin/{{$user->username}}/editPassword" class="btn btn-secondary">Change Password</a>
         @endcannot

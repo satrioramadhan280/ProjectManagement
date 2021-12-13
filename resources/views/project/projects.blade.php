@@ -6,7 +6,10 @@ Projects
 
 @section('content')
 <h1>Hello, {{Auth::user()->firstName}} {{Auth::user()->lastName}}</h1>
-<a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary">Add  Project</a>
+
+@canany(['HDiv','HDept1', 'HDept2', 'HDept3', 'HDept4'])
+    <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary">Add  Project</a>   
+@endcanany
 
 @if(!$projects->isEmpty())
 <table class="table">
