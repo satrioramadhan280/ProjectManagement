@@ -40,6 +40,7 @@ class ProjectController extends Controller
 
         $project = new Project;
         $project->title = $request->input('projectTitle');
+        $project->save();
 
         $project->folder = 'projectFiles/PR-' . $project->id;
         $project->sysRequirements = $request->file('projectSR')->storeAs($project->folder, $request->projectSR->getClientOriginalName());
