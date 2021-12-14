@@ -216,7 +216,9 @@ class AdminController extends Controller
     }
 
     public function searchUser(Request $request){
-        $search = User::where('firstName', 'like', '%'.$request->search.'%')->orwhere('lastName', 'like', '%'.$request->search.'%')->get();
-        return $search;
+        $search = $request->search;
+        $searches = User::where('firstName', 'like', '%'.$search.'%')->orwhere('lastName', 'like', '%'.$search.'%')->paginate(5);
+        $id = ($searches->currentpage() - 1) * $searches->perpage() + 1;
+        return view('user.searchUser', compact('searches', 'search', 'id'));
     }
 }
