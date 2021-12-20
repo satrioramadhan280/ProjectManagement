@@ -182,7 +182,7 @@
                 <div class="row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                     <div class="col">
-                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{$user->email}}">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{$user->email}}">
                     </div>
                 </div>
             @elseif ($user_tabs=='projects')
