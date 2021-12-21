@@ -20,6 +20,7 @@ class CreateTasksTable extends Migration
                 ->references('id')
                 ->on('projects');
             $table->string('name');
+            $table->text('description');
             $table->timestamps();
         });
     }

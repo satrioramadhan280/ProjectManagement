@@ -54,20 +54,34 @@ class ProjectController extends Controller
 
     public function detailView(Project $project) {
         $tasks = $project->tasks;
-        if(auth()->user()->roleID == 3){
+        if(auth()->user()->roleID == 3 || auth()->user()->roleID == 7){
             $users = User::where('roleID', 7)->get();
+            $head = 3;
         }
-        if(auth()->user()->roleID == 4){
+        if(auth()->user()->roleID == 4 || auth()->user()->roleID == 8){
             $users = User::where('roleID', 8)->get();
+            $head = 4;
         }
-        if(auth()->user()->roleID == 5){
+        if(auth()->user()->roleID == 5 || auth()->user()->roleID == 9){
             $users = User::where('roleID', 9)->get();
+            $head = 5;
         }
-        if(auth()->user()->roleID == 6){
+        if(auth()->user()->roleID == 6 || auth()->user()->roleID == 10){
             $users = User::where('roleID', 10)->get();
+            $head = 6;
         }
-        return view('project.detail', compact('project', 'tasks', 'users'));
+
+        return view('project.detail', compact('project', 'tasks', 'users', 'head'));
     }
+
+    public function taskView(Project $project, Task $task) {
+
+        $task = Task::where('id', $task->id)->first();
+        
+
+        return view('project.task.detail', compact('task'));
+    }
+
 
     public function addTaskView(Project $project)
     {
@@ -82,6 +96,7 @@ class ProjectController extends Controller
         $task = new Task;
         $task->name = $request->input('taskName');
         $task->project()->associate($project);
+        $task->description = $request->input('description');
         $task->save();
 
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id]);

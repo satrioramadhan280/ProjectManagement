@@ -10,7 +10,8 @@ Projects
     <a href="{{ route('add_project_view') }}" class="btn btn-primary">Add  Project</a>   
 @endcanany
 
-@if(!$projects->isEmpty())
+<div class="mt-5">
+    @if(!$projects->isEmpty())
 <table class="table">
     <thead>
         <tr>
@@ -35,4 +36,5 @@ Projects
     <h4>There are no projects available</h4>
 @endif
 
+</div>
 @endsection
