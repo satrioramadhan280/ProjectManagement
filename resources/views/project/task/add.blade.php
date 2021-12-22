@@ -21,6 +21,8 @@ Add Task
     <div class="mb-3">
       <label for="taskName" class="form-label">Task Name</label>
       <input type="text" class="form-control" name="taskName" value="{{ old('taskName') }}">
+      <label for="taskName" class="form-label mt-2">Desciption</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

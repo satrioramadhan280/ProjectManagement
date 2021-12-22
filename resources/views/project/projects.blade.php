@@ -11,7 +11,8 @@ Projects
     <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary">Add  Project</a>   
 @endcanany
 
-@if(!$projects->isEmpty())
+<div class="mt-5">
+    @if(!$projects->isEmpty())
 <table class="table">
     <thead>
         <tr>
