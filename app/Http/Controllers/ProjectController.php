@@ -11,7 +11,6 @@ use Carbon\Carbon;
 use Auth;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Filesystem;
-use League\Flysystem\Adapter\Local;
 
 class ProjectController extends Controller
 {
