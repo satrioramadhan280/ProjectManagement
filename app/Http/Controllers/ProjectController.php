@@ -9,7 +9,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Auth;
-use function PHPUnit\Framework\isEmpty;
+use Illuminate\Support\Facades\Storage;
+use League\Flysystem\Filesystem;
+use League\Flysystem\Adapter\Local;
 
 class ProjectController extends Controller
 {
@@ -54,6 +56,17 @@ class ProjectController extends Controller
         // return redirect()->action([ProjectController::class, 'show']);
     }
 
+    public function formatBytes($bytes, $precision = 2) { 
+        $units = array('B', 'KB', 'MB', 'GB', 'TB'); 
+    
+        $bytes = max($bytes, 0); 
+        $pow = floor(($bytes ? log($bytes) : 0) / log(1024)); 
+        $pow = min($pow, count($units) - 1); 
+        $bytes /= pow(1024, $pow);
+
+        return round($bytes, $precision) . ' ' . $units[$pow]; 
+    } 
+
     public function detailView(Project $project) {
         $tasks = $project->tasks;
         if(auth()->user()->roleID == 3 || auth()->user()->roleID == 7){
@@ -73,7 +86,15 @@ class ProjectController extends Controller
             $head = 6;
         }
 
-        return view('project.detail', compact('project', 'tasks', 'users', 'head'));
+        $PROJECT_FOLDER = $project->folder;
+        $files = Storage::disk('local')->listContents($PROJECT_FOLDER);
+        foreach ($files as &$file) {
+            $file['size'] = $this->formatBytes($file['size']);
+        };
+        unset($file);
+        $files = collect($files);
+
+        return view('project.detail', compact('project', 'files', 'tasks', 'users', 'head'));
     }
 
     public function taskView(Project $project, Task $task) {
@@ -105,18 +126,9 @@ class ProjectController extends Controller
     }
 
     public function addMember(Request $request, Project $project){
-        // $projectUser = new ProjectUser;
         
         $users = $request->input('users');
-        // foreach($users as $user){
-        //     $projectUser->project_id = $project->id;
-        //     $projectUser->user_id = $user;
-        // }
-
-        // $projectUser->save();
-
         $project->users()->attach($users);
-
         return redirect('projects/detail/'.$project->id);
     }
 }

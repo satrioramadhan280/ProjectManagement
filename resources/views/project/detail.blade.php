@@ -66,6 +66,31 @@
 @endif
 
 
+<br>
+<h3>Files</h3>
+@if(!$files->isEmpty())
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Size</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($files as $file)
+        <tr>
+            <td>{{ $file['filename'] }}</td>
+            <td>{{ $file['extension'] }}</td>
+            <td>{{ $file['size'] }}</td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+@else
+    <h4>There are no files available</h4>
+@endif
+
 <script>
     var myModal = document.getElementById('myModal')
     var myInput = document.getElementById('myInput')
