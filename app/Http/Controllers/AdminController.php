@@ -76,10 +76,14 @@ class AdminController extends Controller
      */
     public function show($username, $user_tabs)
     {
-        $user = User::where('username', $username)->first();
-        $role = Role::find($user->roleID);
-        // dd($role);
-        return view('admin.detail', compact('user', 'user_tabs', 'role'));
+        if(auth()->user()->username == $username){
+            $user = User::where('username', $username)->first();
+            $role = Role::find($user->roleID);
+            return view('admin.detail', compact('user', 'user_tabs', 'role'));
+        }
+        else{
+            return view('error');
+        }
     }
 
     /**
