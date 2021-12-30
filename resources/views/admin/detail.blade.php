@@ -192,13 +192,16 @@
         </div>
         
     </div>
- 
-    <div class="d-inline">
-        <a href="/admin/{{$user->username}}/edit" class="btn btn-primary c">Edit Profile</a>
-        @cannot('Admin')
+    
+
+    @if ($user->username == Auth::user()->username)    
+        <div class="d-inline">
+            <a href="/admin/{{$user->username}}/edit" class="btn btn-primary c">Edit Profile</a>
+            @cannot('Admin')
             <a href="/admin/{{$user->username}}/editPassword" class="btn btn-secondary">Change Password</a>
-        @endcannot
-    </div>
+            @endcannot
+        </div>
+    @endif
 @endsection
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

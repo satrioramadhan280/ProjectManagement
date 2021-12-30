@@ -8,6 +8,7 @@ use App\Models\Role;
 use DateTime;
 use Carbon\Carbon;
 use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -76,14 +77,9 @@ class AdminController extends Controller
      */
     public function show($username, $user_tabs)
     {
-        if(auth()->user()->username == $username){
-            $user = User::where('username', $username)->first();
-            $role = Role::find($user->roleID);
-            return view('admin.detail', compact('user', 'user_tabs', 'role'));
-        }
-        else{
-            return view('error');
-        }
+        $user = User::where('username', $username)->first();
+        $role = Role::find($user->roleID);
+        return view('admin.detail', compact('user', 'user_tabs', 'role'));
     }
 
     /**
@@ -130,6 +126,17 @@ class AdminController extends Controller
         }
 
 
+        if(Auth::user()->roleID == 1){
+            User::where('id', $currUser->id)->update([
+                'firstName' => $request->firstName,
+                'lastName' => $request->lastName,
+                'username' => $request->username,
+                'email' => $request->email,
+                'dateOfBirth' => Carbon::parse($request->dateOfBirth)->format('Y-m-d'),
+                'roleID' => $request->roleID
+            ]);
+            return redirect('/admin/index')->with('update', 'User has been updated!');
+        }
         if($currUser->roleID != 1){
             User::where('id', $currUser->id)->update([
                 'firstName' => $request->firstName,
@@ -139,18 +146,7 @@ class AdminController extends Controller
                 'dateOfBirth' => Carbon::parse($request->dateOfBirth)->format('Y-m-d'),
             ]);
         }
-        else{
-            User::where('id', $currUser->id)->update([
-                'firstName' => $request->firstName,
-                'lastName' => $request->lastName,
-                'username' => $request->username,
-                'email' => $request->email,
-                'dateOfBirth' => Carbon::parse($request->dateOfBirth)->format('Y-m-d'),
-                'roleID' => $request->roleID
-            ]);
-        }
         
-
         return redirect('/user/'.$currUser->username.'/about')->with('update', 'User has been updated!');
     }
     

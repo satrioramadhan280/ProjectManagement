@@ -101,7 +101,7 @@ Edit Employee
       <div class="controls">
           <select class="custom-select form-control mb-1 @error('roleID') is-invalid @enderror" id="roleID" name="roleID">
             @foreach($roles as $role)
-              <option value="{{$user->roleID}}" {{(old('role') == $user->userID) ? 'selected':''}}>{{$role->display}}</option>
+              <option value="{{$role->id}}" {{old('roleID', $user->roleID) == $role->id ? 'selected' : ''}}>{{$role->display}}</option>
             @endforeach
           </select>
           @error('roleID')
