@@ -85,7 +85,7 @@
         </div>
         
         <div class="pp-pos" style="height: 20px;" >
-            <img class="pp-changepic rounded-circle border border-3 " src="{{asset("img/users_photo/".$user->photo)}}" height="200px" width="200px" alt="">     
+            <img class="pp-changepic rounded-circle border border-3 " src="{{asset("uploads/users_photo/".$user->photo)}}" height="200px" width="200px" alt="">     
             <div class="hide span-changepic" style="width: 110px;height: 32px;">
                 <div class="title-border d-flex justify-content-center rounded-pill border border-dark" style="width: 110px;height: 32px;">
                     <a data-toggle="modal" data-target="#exampleModalCenter" class="d-flex m-1 changepp-title" height="10px" width="10px" style="text-decoration: none;color: black" ><img src="{{asset("img/icons/pencil.png")}}" alt="pencil-icon" height="13px" width="14px">Change Picture</a>    
