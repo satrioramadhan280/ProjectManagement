@@ -22,6 +22,22 @@
                 </a>
             </li>
             @endcanany
+            <li class="nav-item">
+                <a href="{{URL('/user/index')}}" class="nav-link" style="color: black">
+                    <span data-feather="users"></span> 
+                    List Users
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link px-3" href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"> 
+                    <span data-feather="log-out"></span>
+                    Logout
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </li>
         </ul>
     </div>
 </nav>

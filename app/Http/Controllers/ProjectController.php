@@ -17,12 +17,11 @@ class ProjectController extends Controller
     //
     public function show(Request $request)
     {
-        $projects = $request->user()->projects;
-        if (!$projects->isEmpty()) {
-            $projects = $projects->toQuery()->paginate(5);
-        }
-
-        return view('project.projects', compact('projects'));
+        $projectsDept1 = Project::where('deptID', '3')->get();
+        $projectsDept2 = Project::where('deptID', '4')->get();
+        $projectsDept3 = Project::where('deptID', '5')->get();
+        $projectsDept4 = Project::where('deptID', '6')->get();
+        return view('project.projects', compact('projectsDept1', 'projectsDept2', 'projectsDept3', 'projectsDept4'));
     }
 
     public function add()
@@ -40,6 +39,7 @@ class ProjectController extends Controller
         ]);
 
         $project = new Project;
+        $project->deptID = auth()->user()->roleID;
         $project->title = $request->input('projectTitle');
         $project->save();
 

@@ -15,6 +15,7 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->integer('deptID');
             $table->string('title');
             $table->string('sysRequirements')->nullable();
             $table->string('folder')->nullable();

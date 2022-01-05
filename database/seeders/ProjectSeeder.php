@@ -18,7 +18,8 @@ class ProjectSeeder extends Seeder
     {
         //
         Project::create([
-            'title' => 'Project 1',
+            'title' => 'Project IT Customer Relationship Management',
+            'deptID' => 3,
             'sysRequirements' => 'projectFiles/PR-001/fileSR1.pdf',
             'folder' => 'projectFiles/PR-001',
             'status' => 'Ongoing',
@@ -26,9 +27,28 @@ class ProjectSeeder extends Seeder
             'endDate' => '2021-12-17',
         ]);
         Project::create([
-            'title' => 'Project 2',
+            'title' => 'Project IT Branch Delivery System',
+            'deptID' => 4,
             'sysRequirements' => 'projectFiles/PR-002/fileSR2.pdf',
             'folder' => 'projectFiles/PR-002',
+            'status' => 'Ongoing',
+            'startDate' => '2021-12-12',
+            'endDate' => '2021-12-17',
+        ]);
+        Project::create([
+            'title' => 'Project IT Micro and Retail Core Loan System',
+            'deptID' => 5,
+            'sysRequirements' => 'projectFiles/PR-002/fileSR2.pdf',
+            'folder' => 'projectFiles/PR-003',
+            'status' => 'Ongoing',
+            'startDate' => '2021-12-12',
+            'endDate' => '2021-12-17',
+        ]);
+        Project::create([
+            'title' => 'Project IT Internal Application',
+            'deptID' => 6,
+            'sysRequirements' => 'projectFiles/PR-002/fileSR2.pdf',
+            'folder' => 'projectFiles/PR-004',
             'status' => 'Ongoing',
             'startDate' => '2021-12-12',
             'endDate' => '2021-12-17',
