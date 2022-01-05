@@ -1,6 +1,5 @@
 <header class="navbar navbar-light sticky-top bg-danger flex-md-nowrap p-0  ">
-    <a class="navbar col-md-3 col-lg-2 me-0 px-3" href="{{url('/home')}}"><img src="{{asset('img/logo.png')}}" width="120px"
-            height="30px" alt=""></a>
+    <a class="navbar col-md-3 col-lg-2 me-0 px-3 navbar-brand" href="{{url('/home')}}">PT. XYZ</a>
     {{-- <input class="form-control form-control-light w-100" type="text" placeholder="Search" aria-label="Search"> --}}
     <div class="navbar-nav">
         <div class="nav-item text-nowrap">
@@ -28,5 +27,4 @@
             </li> --}}
         </div>
     </div>
-    
 </header>

@@ -18,7 +18,7 @@
     <main class="form-signin">
         <form method="POST" action="{{ route('login') }}">
             @csrf
-            <img src="{{asset("img/logo.png")}}" class="mx-auto d-block mb-3" width="240px" height="60px" alt="">
+            <h1 class="text-center">PT. XYZ</h1>
             <div class="form-group">
                 <div class="form-floating">
                     <input id="username" type="text" class="mt-3 form-control @error('username') is-invalid @enderror"
