@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\HDivController;
 use App\Http\Controllers\HDeptController;
 use App\Http\Controllers\MDeptController;
@@ -50,6 +51,7 @@ Route::prefix('projects')->group(function () {
     Route::post('/addProject', [ProjectController::class, 'addProject'])->name('add_project');
     Route::get('/detail/{project}', [ProjectController::class, 'detailView'])->name('project_detail_view');
     Route::get('/detail/{project}/{task}', [ProjectController::class, 'taskView'])->name('project_task_view');
+    Route::post('/file/add/{project}', [FileController::class, 'addFile'])->name('add_file');
 });
 Route::post('/projects/addMember/{project}', [ProjectController::class, 'addMember'])->name('addMember');
 

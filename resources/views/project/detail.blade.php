@@ -68,6 +68,18 @@
 
 <br>
 <h3>Files</h3>
+<button id="fileUploadButton" type="button" class="btn btn-primary btn-sm">Upload</button>
+
+<form id="addFile" class="row g-2 m-2" style="display: none;" action="{{ route('add_file', [$project->id]) }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="m-2 col-auto">
+        <input class="form-control form-control-sm" name="fileInput" type="file">
+    </div>
+    <div class="m-2 col-auto">
+        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+    </div>
+</form>
+
 @if(!$files->isEmpty())
 <table class="table mt-4">
     <thead>
