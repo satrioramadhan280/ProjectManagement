@@ -89,13 +89,14 @@
                 <h3>Total Active Users in the Past 7 Days</h3>
                 <div id="line_top_x" style="width: 900px; height: 500px" class="mt-4 "></div>
             </div>
-
         </div>
     @endcan
-
-    <div class="d-block mt-3">
-        @can('HDept1')
-            <h4>On Going Project at IT Customer Relationship Management</h4>
+    @cannot('Admin')
+        <div class="d-block mt-3">
+            @can('HDept1')<h4>On Going Project at IT Customer Relationship Management</h4>@endcan
+            @can('HDept2')<h4>On Going Project at IT Branch Delivery System</h4>@endcan
+            @can('HDept3')<h4>On Going Project at IT Micro and Retail Core Loan System</h4>@endcan
+            @can('HDept4')<h4>On Going Project at IT Internal Application</h4>@endcan
             <table class="table mt-2">
                 <thead>
                     <tr class="bg-danger text-white">
@@ -106,102 +107,58 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($projectsDept1 as $project)
-                        <tr>
-                            <td>{{ $project->title }}</td>
-                            <td>{{ $project->status }}</td>
-                            <td><a href="{{ route('project_detail_view', [$project->id]) }}">Detail</td>
-                        </tr>
-                    @endforeach
+                    @can('HDept1')
+                        @foreach ($projectsDept1 as $project)
+                            <tr>
+                                <td>{{ $project->title }}</td>
+                                <td>{{ $project->status }}</td>
+                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endcan
+                    @can('HDept2')
+                        @foreach ($projectsDept2 as $project)
+                            <tr>
+                                <td>{{ $project->title }}</td>
+                                <td>{{ $project->status }}</td>
+                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endcan
+                    @can('HDept3')
+                        @foreach ($projectsDept3 as $project)
+                            <tr>
+                                <td>{{ $project->title }}</td>
+                                <td>{{ $project->status }}</td>
+                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endcan
+                    @can('HDept4')
+                        @foreach ($projectsDept4 as $project)
+                            <tr>
+                                <td>{{ $project->title }}</td>
+                                <td>{{ $project->status }}</td>
+                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endcan
+                    @can('MDept1')
+                        @foreach ($onProjectsDept1 as $project)
+                            <tr>
+                                <td>{{ $project->title }}</td>
+                                <td>{{ $project->status }}</td>
+                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endcan
                 </tbody>
             </table>
-        @endcan
-        @can('HDept2')
-            <h4>On Going Project at IT Branch Delivery System</h4>
-            <table class="table mt-2">
-                <thead>
-                    <tr class="bg-danger text-white">
-                        {{-- <th scope="col">No</th> --}}
-                        <th scope="col">Title</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($projectsDept2 as $project)
-                        <tr>
-                            <td>{{ $project->title }}</td>
-                            <td>{{ $project->status }}</td>
-                            <td><a href="{{ route('project_detail_view', [$project->id]) }}">Detail</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @endcan
-        @can('HDept3')
-            <h4>On Going Project at IT Micro and Retail Core Loan System</h4>
-            <table class="table mt-2">
-                <thead>
-                    <tr class="bg-danger text-white">
-                        {{-- <th scope="col">No</th> --}}
-                        <th scope="col">Title</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($projectsDept3 as $project)
-                        <tr>
-                            <td>{{ $project->title }}</td>
-                            <td>{{ $project->status }}</td>
-                            <td><a href="{{ route('project_detail_view', [$project->id]) }}">Detail</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @endcan
-        @can('HDept4')
-            <h4>On Going Project at IT Internal Application</h4>
-            <table class="table mt-2">
-                <thead>
-                    <tr class="bg-danger text-white">
-                        {{-- <th scope="col">No</th> --}}
-                        <th scope="col">Title</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($projectsDept4 as $project)
-                        <tr>
-                            <td>{{ $project->title }}</td>
-                            <td>{{ $project->status }}</td>
-                            <td><a href="{{ route('project_detail_view', [$project->id]) }}">Detail</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @endcan
-
-        @can('Admin')
-            <div class="hover_image d-flex flex-column justify-content-center border border-3 rounded"
-                style="background: rgba(243, 243, 243, 0.623)">
-                <a href="/department" class="normal-text" style="color: black">
-                    <img src="{{ URL::asset('/img/department-icon.png') }}" class="m-3" alt=""
-                        style="height: 200px; width: 200px">
-                    {{-- <a href="{{url('/admin/index')}}" class="text-center">Users</a> --}}
-                    <h3 class="text-center mb-3">Department</h3>
-                </a>
-            </div>
-        @endcan
-
-    </div>
-
-    @can('isHDiv')
-        ini HDiv
-    @endcan
-
+        </div>
+    @endcannot
 @endsection

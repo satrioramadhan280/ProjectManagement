@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Add New Employee
+Add New User
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@ Add New Employee
   @csrf
   <fieldset>
     <div id="legend">
-      <legend class="">Add New Employee</legend>
+      <legend class="">Add New User</legend>
     </div>
     <div class="control-group">
       <label class="control-label" for="firstName">First Name</label>

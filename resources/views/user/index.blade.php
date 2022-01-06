@@ -37,10 +37,10 @@ ini HDiv
   {{$users->links()}}
   @endcan
   @can('HDept1')
-    @foreach ($dept1 as $dept)
+    @foreach ($dept1 as $user)
     <tr>
       <td>{{$id++}}</td>
-      <td>{{$dept->firstName}} {{$dept->lastName}}</td>
+      <td>{{$user->firstName}} {{$user->lastName}}</td>
 
     </tr>
     @endforeach
@@ -49,10 +49,10 @@ ini HDiv
   @endcan
 
   @can('HDept2')
-  @foreach ($dept2 as $dept)
+  @foreach ($dept2 as $user)
   <tr>
-    <td>{{$key}}</td>
-    <td>{{$dept->firstName}} {{$dept->lastName}}</td>
+    <td>{{$id}}</td>
+    <td>{{$user->firstName}} {{$user->lastName}}</td>
   </tr>
   @endforeach
   </tbody>
@@ -60,20 +60,20 @@ ini HDiv
   @endcan
 
   @can('HDept3')
-  @foreach ($dept3 as $dept)
+  @foreach ($dept3 as $user)
   <tr>
-    <td>{{$key}}</td>
-    <td>{{$dept->firstName}} {{$dept->lastName}}</td>
+    <td>{{$id}}</td>
+    <td>{{$user->firstName}} {{$user->lastName}}</td>
   </tr>
   @endforeach
   {{$dept3->links()}}
   @endcan
   </tbody>
   @can('HDept4')
-  @foreach ($dept4 as $dept)
+  @foreach ($dept4 as $user)
   <tr>
-    <td>{{$key}}</td>
-    <td>{{$dept->firstName}} {{$dept->lastName}}</td>
+    <td>{{$id}}</td>
+    <td>{{$user->firstName}} {{$user->lastName}}</td>
   </tr>
   @endforeach
   </tbody>
