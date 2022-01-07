@@ -25,7 +25,7 @@
             @endcanany
             @canany(['HDiv','HDept1', 'HDept2', 'HDept3', 'HDept4'])
             <li class="nav-item">
-                <a href="{{URL('/user/index')}}" class="nav-link" style="color: black">
+                <a class="nav-link {{request()->is('user/index') ? 'active' : ''}}" href="/user/index">
                     <span data-feather="users"></span> 
                     List Users
                 </a>
@@ -33,7 +33,7 @@
             @endcanany
             @can('Admin')
             <li class="nav-item">
-                <a href="{{URL('/admin/index')}}" class="nav-link" style="color: black">
+                <a class="nav-link {{request()->is('admin/index') ? 'active' : ''}}" href="/admin/index">
                     <span data-feather="users"></span> 
                     List Users
                 </a>

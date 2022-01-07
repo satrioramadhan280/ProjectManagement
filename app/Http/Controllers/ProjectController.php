@@ -130,4 +130,24 @@ class ProjectController extends Controller
         $project->users()->attach($users);
         return redirect('projects/detail/'.$project->id);
     }
+    
+    public function searchProject(Request $request){
+        $search = $request->search;
+        if(auth()->user()->roleID == 3 || auth()->user()->roleID == 7){
+            $deptID = 3;
+        }
+        if(auth()->user()->roleID == 4 || auth()->user()->roleID == 8){
+            $deptID = 4;
+        }
+        if(auth()->user()->roleID == 5 || auth()->user()->roleID == 9){
+            $deptID = 5;
+        }
+        if(auth()->user()->roleID == 6 || auth()->user()->roleID == 10){
+            $deptID = 6;
+        }
+
+        $searches = Project::where('title', 'like', '%'.$search.'%')->where('deptID', $deptID)->paginate(5);
+        $id = ($searches->currentpage() - 1) * $searches->perpage() + 1;
+        return view('project.searchProject', compact('searches', 'search', 'id'));
+    }
 }

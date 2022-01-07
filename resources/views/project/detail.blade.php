@@ -8,9 +8,9 @@
 <h1>{{ $project->title }}</h1>
 
 @if (Auth::user()->role!="user")
-    <a href="{{ route('add_task_view', [$project->id]) }}" class="btn btn-primary">Add  Task</a>
+    <a href="{{ route('add_task_view', [$project->id]) }}" class="btn btn-primary"><span data-feather="clipboard"></span> Add  Task</a>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Add Member
+        <span data-feather="user-plus"></span> Add Member
     </button>
     
     <!-- Modal -->

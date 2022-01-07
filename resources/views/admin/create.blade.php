@@ -12,7 +12,7 @@ Add New User
       <legend class="">Add New User</legend>
     </div>
     <div class="control-group">
-      <label class="control-label" for="name">First Name</label>
+      <label class="control-label" for="name">Name</label>
       <div class="controls">
         <input type="text" id="name" name="name" placeholder="{{old('name')}}" class="form-control @error('name') is-invalid @enderror">
         @error('name')

@@ -93,10 +93,10 @@
     @endcan
     @cannot('Admin')
         <div class="d-block mt-3">
-            @can('HDept1')<h4>On Going Project at IT Customer Relationship Management</h4>@endcan
-            @can('HDept2')<h4>On Going Project at IT Branch Delivery System</h4>@endcan
-            @can('HDept3')<h4>On Going Project at IT Micro and Retail Core Loan System</h4>@endcan
-            @can('HDept4')<h4>On Going Project at IT Internal Application</h4>@endcan
+            @can('HDept1')<h4>On Going Projects at IT Customer Relationship Management</h4>@endcan
+            @can('HDept2')<h4>On Going Projects at IT Branch Delivery System</h4>@endcan
+            @can('HDept3')<h4>On Going Projects at IT Micro and Retail Core Loan System</h4>@endcan
+            @can('HDept4')<h4>On Going Projects at IT Internal Application</h4>@endcan
             <table class="table mt-2">
                 <thead>
                     <tr class="bg-danger text-white">

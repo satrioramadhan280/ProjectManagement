@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 @section('title')
-    Projects
+    @can('HDept1')IT Customer Relationship Management Project's List>@endcan
+    @can('HDept2')IT Branch Delivery System Project's List>@endcan
+    @can('HDept3')IT Micro and Retail Core Loan System Project's List>@endcan
+    @can('HDept4')IT Internal Application Project's List>@endcan
 @endsection
 
 @section('content')
@@ -11,9 +14,14 @@
     @can('HDept4')<h4>IT Internal Application Project's List</h4>@endcan
 
     @canany(['HDept1', 'HDept2', 'HDept3', 'HDept4'])
-        <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary">Add Project</a>
+        <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary"><span data-feather="file"></span> Add Project</a>
     @endcanany
 
+    <form class="d-flex mt-3" method="GET" action="/searchProject">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"
+            value="{{ old('search') }}">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
     <div class="mt-3">
         {{-- @can('HDept1')@if (!$projectsDept1->isEmpty())@endcan
     @can('HDept2')@if (!$projectsDept2->isEmpty())@endcan
@@ -33,7 +41,8 @@
                         <tr>
                             <td class="col-8">{{ $project->title }}</td>
                             <td class="col-2">{{ $project->status }}</td>
-                            <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail</a></td>
+                            <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail</a>
+                            </td>
                         </tr>
                     @endforeach
                 @endcan
@@ -42,7 +51,8 @@
                         <tr>
                             <td class="col-8">{{ $project->title }}</td>
                             <td class="col-2">{{ $project->status }}</td>
-                            <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail</a></td>
+                            <td><a class="btn btn-primary"
+                                    href="{{ route('project_detail_view', [$project->id]) }}">Detail</a></td>
                         </tr>
                     @endforeach
                 @endcan
@@ -51,7 +61,8 @@
                         <tr>
                             <td class="col-8">{{ $project->title }}</td>
                             <td class="col-2">{{ $project->status }}</td>
-                            <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail</a></td>
+                            <td><a class="btn btn-primary"
+                                    href="{{ route('project_detail_view', [$project->id]) }}">Detail</a></td>
                         </tr>
                     @endforeach
                 @endcan
@@ -60,7 +71,8 @@
                         <tr>
                             <td class="col-8">{{ $project->title }}</td>
                             <td class="col-2">{{ $project->status }}</td>
-                            <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail</a></td>
+                            <td><a class="btn btn-primary"
+                                    href="{{ route('project_detail_view', [$project->id]) }}">Detail</a></td>
                         </tr>
                     @endforeach
                 @endcan

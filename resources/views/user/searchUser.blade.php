@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-User Management
+    User Management
 @endsection
 
 @section('content')
 <h1>User Management</h1>
 <div class="d-inline">
     <a href="{{url('/admin/create')}}" class="btn btn-primary mb-3">Add Employee</a>
-    <form class="d-flex" method="GET" action="/search">
+    <form class="d-flex" method="GET" action="/searchUser">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" value="{{old('search')}}">
         <button class="btn btn-primary" type="submit">Search</button>
     </form>

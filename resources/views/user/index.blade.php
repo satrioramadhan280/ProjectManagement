@@ -12,10 +12,10 @@ ini HDiv
 @endcan
 
 @can('Admin')<h1 class="mb-3">Users List</h1>@endcan
-@can('HDept1')<h1 class="mb-3">IT Customer Relationship Management List</h1>@endcan
-@can('HDept2')<h1 class="mb-3">IT Branch Delivery System List</h1>@endcan
-@can('HDept3')<h1 class="mb-3">IT Micro and Retail Core Loan System List</h1>@endcan
-@can('HDept4')<h1 class="mb-3">IT Internal Application List</h1>@endcan
+@can('HDept1')<h4 class="mb-3">IT Customer Relationship Management Users List</h1>@endcan
+@can('HDept2')<h4 class="mb-3">IT Branch Delivery System Users List</h1>@endcan
+@can('HDept3')<h4 class="mb-3">IT Micro and Retail Core Loan System Users List</h1>@endcan
+@can('HDept4')<h4 class="mb-3">IT Internal Application Users List</h1>@endcan
 
 <table class="table">
   <thead class="bg-danger">
