@@ -21,7 +21,7 @@ Edit Employee
       </div>
     </div>
     <div class="control-group">
-      <label class="control-label" for="firstName"> Confirm New Password</label>
+      <label class="control-label" for="confirmPassword"> Confirm New Password</label>
       <div class="controls">
           <input type="password" id="password_confirmation" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror">
         @error('password_confirmation')

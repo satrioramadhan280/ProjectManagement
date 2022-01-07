@@ -16,8 +16,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'firstName' => 'Admin',
-            'lastName' => '',
+            'name' => 'Admin',
             'username' => 'admin',
             'email' => 'admin@banksinarmas.com',
             'password' => bcrypt('admin'),
@@ -26,8 +25,7 @@ class UserSeeder extends Seeder
             'dateOfBirth' => '1990-01-01'
         ]);
         User::create([
-            'firstName' => 'Head',
-            'lastName' => 'Division',
+            'name' => 'Head Division',
             'username' => 'head.division',
             'email' => 'headdivision@banksinarmas.com',
             'password' => bcrypt('simas123'),
@@ -36,8 +34,7 @@ class UserSeeder extends Seeder
             'dateOfBirth' => '1990-01-01'
         ]);
         User::create([
-            'firstName' => 'Head',
-            'lastName' => 'Department1',
+            'name' => 'Head Department1',
             'username' => 'head.department1',
             'email' => 'headdepartment1@banksinarmas.com',
             'password' => bcrypt('simas123'),
@@ -46,8 +43,7 @@ class UserSeeder extends Seeder
             'dateOfBirth' => '1990-01-01'
         ]);
         User::create([
-            'firstName' => 'Head',
-            'lastName' => 'Department2',
+            'name' => 'Head Department2',
             'username' => 'head.department2',
             'email' => 'headdepartment2@banksinarmas.com',
             'password' => bcrypt('simas123'),
@@ -56,8 +52,7 @@ class UserSeeder extends Seeder
             'dateOfBirth' => '1990-01-01'
         ]);
         User::create([
-            'firstName' => 'Head',
-            'lastName' => ' Department3',
+            'name' => 'Head Department3',
             'username' => 'head.department3',
             'email' => 'headdepartment3@banksinarmas.com',
             'password' => bcrypt('simas123'),
@@ -66,8 +61,7 @@ class UserSeeder extends Seeder
             'dateOfBirth' => '1990-01-01'
         ]);
         User::create([
-            'firstName' => 'Head',
-            'lastName' => 'Department4',
+            'name' => 'Head Department4',
             'username' => 'head.department4',
             'email' => 'headdepartment4@banksinarmas.com',
             'password' => bcrypt('simas123'),
@@ -76,8 +70,7 @@ class UserSeeder extends Seeder
             'dateOfBirth' => '1990-01-01'
         ]);
         User::create([
-            'firstName' => 'Member',
-            'lastName' => 'Department1',
+            'name' => 'Member Department1',
             'username' => 'member.department1',
             'email' => 'memberdepartment1@banksinarmas.com',
             'password' => bcrypt('simas123'),
@@ -86,8 +79,7 @@ class UserSeeder extends Seeder
             'dateOfBirth' => '1990-01-01'
         ]);
         User::create([
-            'firstName' => 'Member',
-            'lastName' => 'Department2',
+            'name' => 'Member Department2',
             'username' => 'member.department2',
             'email' => 'memberdepartment2@banksinarmas.com',
             'password' => bcrypt('simas123'),
@@ -96,8 +88,7 @@ class UserSeeder extends Seeder
             'dateOfBirth' => '1990-01-01'
         ]);
         User::create([
-            'firstName' => 'Member',
-            'lastName' => 'Department3',
+            'name' => 'Member Department3',
             'username' => 'member.department3',
             'email' => 'memberdepartment3@banksinarmas.com',
             'password' => bcrypt('simas123'),
@@ -106,8 +97,7 @@ class UserSeeder extends Seeder
             'dateOfBirth' => '1990-01-01'
         ]);
         User::create([
-            'firstName' => 'Member',
-            'lastName' => 'Department4',
+            'name' => 'Member Department4',
             'username' => 'member.department4',
             'email' => 'memberdepartment4@banksinarmas.com',
             'password' => bcrypt('simas123'),
@@ -116,8 +106,7 @@ class UserSeeder extends Seeder
             'dateOfBirth' => '1990-01-01'
         ]);
         User::create([
-            'firstName' => 'Derick',
-            'lastName' => 'Yudanegara',
+            'name' => 'Derick Yudanegara',
             'username' => 'dyuda12',
             'email' => 'derickyudanegara@gmail.com',
             'password' => bcrypt('simas123'),
@@ -128,8 +117,7 @@ class UserSeeder extends Seeder
 
         // Dummy
         User::create([
-            'firstName' => 'User1',
-            'lastName' => 'Last',
+            'name' => 'User1 Last',
             'username' => 'user1',
             'email' => 'user1@banksinarmas.com',
             'password' => bcrypt('simas123'),
@@ -138,23 +126,21 @@ class UserSeeder extends Seeder
             'dateOfBirth' => '1990-01-01'
         ]);
         User::create([
-            'firstName' => 'User2',
-            'lastName' => 'Last',
+            'name' => 'User2 Last',
             'username' => 'user2',
             'email' => 'user2@banksinarmas.com',
             'password' => bcrypt('simas123'),
             'photo' => 'photo-profile.png',
-            'roleID' => 7,
+            'roleID' => 9,
             'dateOfBirth' => '1990-01-01'
         ]);
         User::create([
-            'firstName' => 'User3',
-            'lastName' => 'Last',
+            'name' => 'User3 Last',
             'username' => 'user3',
             'email' => 'user3@banksinarmas.com',
             'password' => bcrypt('simas123'),
             'photo' => 'photo-profile.png',
-            'roleID' => 7,
+            'roleID' => 10,
             'dateOfBirth' => '1990-01-01'
         ]);
     }

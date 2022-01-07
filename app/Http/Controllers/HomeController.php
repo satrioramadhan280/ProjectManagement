@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Project;
 use app\Models\User;
 use App\Models\UserActive;
 use Carbon\Carbon;
@@ -31,7 +32,34 @@ class HomeController extends Controller
         $TotalDept2 = User::where('RoleID', 8)->orWhere('RoleID', 4)->count();
         $TotalDept3 = User::where('RoleID', 9)->orWhere('RoleID', 5)->count();
         $TotalDept4 = User::where('RoleID', 10)->orWhere('RoleID', 6)->count();
+
+        $projectsDept1 = Project::where('status', 'Ongoing')->where('deptID', '3')->get();
+        $projectsDept2 = Project::where('status', 'Ongoing')->where('deptID', '4')->get();
+        $projectsDept3 = Project::where('status', 'Ongoing')->where('deptID', '5')->get();
+        $projectsDept4 = Project::where('status', 'Ongoing')->where('deptID', '6')->get();
+
+        // $onProjectsDept1 = Project::where('status', 'Ongoing')->where('deptID', '3')->get();
+        $onProjectsDept2 = Project::where('status', 'Ongoing')->where('deptID', '4')->get();
+        $onProjectsDept3 = Project::where('status', 'Ongoing')->where('deptID', '5')->get();
+        $onProjectsDept4 = Project::where('status', 'Ongoing')->where('deptID', '6')->get();
         
+        $onProjectsDept1 = Project::join('project_user', 'projects.id', '=', 'project_user.project_id')
+                                        ->where('projects.status', 'Ongoing')
+                                        ->where('projects.deptID', '3')
+                                        ->where('project_user.user_id', auth()->user()->id)->get();
+        $onProjectsDept2 = Project::join('project_user', 'projects.id', '=', 'project_user.project_id')
+                                        ->where('projects.status', 'Ongoing')
+                                        ->where('projects.deptID', '4')
+                                        ->where('project_user.user_id', auth()->user()->id)->get();
+        $onProjectsDept3 = Project::join('project_user', 'projects.id', '=', 'project_user.project_id')
+                                        ->where('projects.status', 'Ongoing')
+                                        ->where('projects.deptID', '5')
+                                        ->where('project_user.user_id', auth()->user()->id)->get();
+        $onProjectsDept4 = Project::join('project_user', 'projects.id', '=', 'project_user.project_id')
+                                        ->where('projects.status', 'Ongoing')
+                                        ->where('projects.deptID', '6')
+                                        ->where('project_user.user_id', auth()->user()->id)->get();
+
         // Chart
         // Day   branch, cr, micro, internal
         // [1,  37.8, 80.8, 41.8, 99],
@@ -205,11 +233,13 @@ class HomeController extends Controller
    
         $monthName = Carbon::now()->format('F');
         
-   
+        
         // var_dump($monthName);
         
+        
         return view('home', compact('TotalUsers', 'TotalDept1', 'TotalDept2', 'TotalDept3', 'TotalDept4'
-                    , 'day7', 'day6', 'day5', 'day4', 'day3', 'day2', 'day1', 'monthName' ));
+                    , 'day7', 'day6', 'day5', 'day4', 'day3', 'day2', 'day1', 'monthName', 'projectsDept1',
+                    'projectsDept2', 'projectsDept3', 'projectsDept4', 'onProjectsDept1'));
         
     }
 }

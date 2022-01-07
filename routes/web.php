@@ -71,4 +71,5 @@ Route::get('/department', [DepartmentController::class, 'index']);
 
 Route::get('/department/{type}', [DepartmentController::class, 'type']);
 
-Route::get('/search', [AdminController::class, 'searchUser']);
+Route::get('/searchUser', [AdminController::class, 'searchUser']);
+Route::get('/searchProject', [ProjectController::class, 'searchProject']);

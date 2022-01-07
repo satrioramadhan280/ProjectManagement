@@ -32,7 +32,7 @@
                                 <img class="pp-changepic rounded-circle border border-3 " src="{{asset("img/users_photo/".$user_obj->photo)}}" height="35px" width="35px" alt="">
                             </div>
                             <div class="d-flex flex-column ms-2">
-                                <span class="head-text">{{$user_obj->firstName}} {{$user_obj->lastName}}</span>
+                                <span class="head-text">{{$user_obj->name}}</span>
                                 <span class="role-text">{{$role[$user_obj->roleID-1]->display}}</span>
                             </div>
                         </a>

@@ -13,31 +13,15 @@ Edit Employee
       <legend class="">Edit Profile</legend>
     </div>
     <div class="control-group">
-      <label class="control-label" for="firstName">First Name</label>
+      <label class="control-label" for="name">Name</label>
       <div class="controls">
         @can('Admin')
-          <input readonly type="text" id="firstName" name="firstName" placeholder="{{old('firstName')}}" class="form-control @error('firstName') is-invalid @enderror" value="{{$user->firstName}}">
+          <input readonly type="text" id="name" name="name" placeholder="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" value="{{$user->name}}">
         @endcan
         @canany(['HDiv','HDept1', 'MDept1', 'HDept2', 'MDept2', 'HDept3', 'MDept3', 'HDept4', 'MDept4'])
-          <input  type="text" id="firstName" name="firstName" placeholder="{{old('firstName')}}" class="form-control @error('firstName') is-invalid @enderror" value="{{$user->firstName}}">
+          <input  type="text" id="name" name="name" placeholder="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" value="{{$user->name}}">
         @endcanany
-        @error('firstName')
-        <span class="invalid-feedback" role="alert">
-          <strong>{{ $message }}</strong>
-        </span>
-        @enderror
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label" for="lastName">Last Name</label>
-      <div class="controls">
-        @can('Admin')
-          <input readonly type="text" id="lastName" name="lastName" placeholder="{{old('lastName')}}" class="form-control @error('lastName') is-invalid @enderror" value="{{$user->lastName}}">
-        @endcan
-        @canany(['HDiv','HDept1', 'MDept1', 'HDept2', 'MDept2', 'HDept3', 'MDept3', 'HDept4', 'MDept4'])
-          <input type="text" id="lastName" name="lastName" placeholder="{{old('lastName')}}" class="form-control @error('lastName') is-invalid @enderror" value="{{$user->lastName}}">
-        @endcanany
-        @error('lastName')
+        @error('name')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
         </span>
@@ -101,7 +85,7 @@ Edit Employee
       <div class="controls">
           <select class="custom-select form-control mb-1 @error('roleID') is-invalid @enderror" id="roleID" name="roleID">
             @foreach($roles as $role)
-              <option value="{{$user->roleID}}" {{(old('role') == $user->userID) ? 'selected':''}}>{{$role->display}}</option>
+              <option value="{{$role->id}}" {{old('roleID', $user->roleID) == $role->id ? 'selected' : ''}}>{{$role->display}}</option>
             @endforeach
           </select>
           @error('roleID')

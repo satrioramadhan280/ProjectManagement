@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@can('HDept1')@section('title')Department 1 @endsection @endcan
-@can('HDept2')@section('title')Department 2 @endsection @endcan
-@can('HDept3')@section('title')Department 3 @endsection @endcan
-@can('HDept4')@section('title')Department 4 @endsection @endcan
+@can('HDept1')@section('title')IT Customer Relationship Management @endsection @endcan
+@can('HDept2')@section('title')IT Branch Delivery System @endsection @endcan
+@can('HDept3')@section('title')IT Micro and Retail Core Loan System @endsection @endcan
+@can('HDept4')@section('title')IT Internal Application @endsection @endcan
 
 @section('content')
 
@@ -11,10 +11,11 @@
 ini HDiv
 @endcan
 
-@can('HDept1')<h1 class="mb-3">Department 1 List</h1>@endcan
-@can('HDept2')<h1 class="mb-3">Department 2 List</h1>@endcan
-@can('HDept3')<h1 class="mb-3">Department 3 List</h1>@endcan
-@can('HDept4')<h1 class="mb-3">Department 4 List</h1>@endcan
+@can('Admin')<h1 class="mb-3">Users List</h1>@endcan
+@can('HDept1')<h4 class="mb-3">IT Customer Relationship Management Users List</h1>@endcan
+@can('HDept2')<h4 class="mb-3">IT Branch Delivery System Users List</h1>@endcan
+@can('HDept3')<h4 class="mb-3">IT Micro and Retail Core Loan System Users List</h1>@endcan
+@can('HDept4')<h4 class="mb-3">IT Internal Application Users List</h1>@endcan
 
 <table class="table">
   <thead class="bg-danger">
@@ -24,11 +25,22 @@ ini HDiv
     </tr>
   </thead>
   <tbody>
-    @can('HDept1')
-    @foreach ($dept1 as $dept)
+    @can('Admin')
+      @foreach ($users as $user)
+      <tr>
+        <td class="col-1">{{$id++}}</td>
+        <td class="col-5">{{$user->name}}</td>
+
+      </tr>
+      @endforeach
+  </tbody>
+  {{$users->links()}}
+  @endcan
+  @can('HDept1')
+    @foreach ($dept1 as $user)
     <tr>
-      <td>{{$id++}}</td>
-      <td>{{$dept->firstName}} {{$dept->lastName}}</td>
+      <td class="col-1">{{$id++}}</td>
+      <td class="col-5">{{$user->name}}</td>
 
     </tr>
     @endforeach
@@ -37,10 +49,10 @@ ini HDiv
   @endcan
 
   @can('HDept2')
-  @foreach ($dept2 as $dept)
+  @foreach ($dept2 as $user)
   <tr>
-    <td>{{$key}}</td>
-    <td>{{$dept->firstName}} {{$dept->lastName}}</td>
+    <td class="col-1">{{$id}}</td>
+    <td class="col-5">{{$user->name}}</td>
   </tr>
   @endforeach
   </tbody>
@@ -48,20 +60,20 @@ ini HDiv
   @endcan
 
   @can('HDept3')
-  @foreach ($dept3 as $dept)
+  @foreach ($dept3 as $user)
   <tr>
-    <td>{{$key}}</td>
-    <td>{{$dept->firstName}} {{$dept->lastName}}</td>
+    <td class="col-1">{{$id}}</td>
+    <td class="col-5">{{$user->name}}</td>
   </tr>
   @endforeach
   {{$dept3->links()}}
   @endcan
   </tbody>
   @can('HDept4')
-  @foreach ($dept4 as $dept)
+  @foreach ($dept4 as $user)
   <tr>
-    <td>{{$key}}</td>
-    <td>{{$dept->firstName}} {{$dept->lastName}}</td>
+    <td class="col-1">{{$id}}</td>
+    <td class="col-5">{{$user->name}}</td>
   </tr>
   @endforeach
   </tbody>

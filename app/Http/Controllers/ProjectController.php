@@ -17,12 +17,11 @@ class ProjectController extends Controller
     //
     public function show(Request $request)
     {
-        $projects = $request->user()->projects;
-        if (!$projects->isEmpty()) {
-            $projects = $projects->toQuery()->paginate(5);
-        }
-
-        return view('project.projects', compact('projects'));
+        $projectsDept1 = Project::where('deptID', '3')->get();
+        $projectsDept2 = Project::where('deptID', '4')->get();
+        $projectsDept3 = Project::where('deptID', '5')->get();
+        $projectsDept4 = Project::where('deptID', '6')->get();
+        return view('project.projects', compact('projectsDept1', 'projectsDept2', 'projectsDept3', 'projectsDept4'));
     }
 
     public function add()
@@ -40,6 +39,7 @@ class ProjectController extends Controller
         ]);
 
         $project = new Project;
+        $project->deptID = auth()->user()->roleID;
         $project->title = $request->input('projectTitle');
         $project->save();
 
@@ -129,5 +129,25 @@ class ProjectController extends Controller
         $users = $request->input('users');
         $project->users()->attach($users);
         return redirect('projects/detail/'.$project->id);
+    }
+    
+    public function searchProject(Request $request){
+        $search = $request->search;
+        if(auth()->user()->roleID == 3 || auth()->user()->roleID == 7){
+            $deptID = 3;
+        }
+        if(auth()->user()->roleID == 4 || auth()->user()->roleID == 8){
+            $deptID = 4;
+        }
+        if(auth()->user()->roleID == 5 || auth()->user()->roleID == 9){
+            $deptID = 5;
+        }
+        if(auth()->user()->roleID == 6 || auth()->user()->roleID == 10){
+            $deptID = 6;
+        }
+
+        $searches = Project::where('title', 'like', '%'.$search.'%')->where('deptID', $deptID)->paginate(5);
+        $id = ($searches->currentpage() - 1) * $searches->perpage() + 1;
+        return view('project.searchProject', compact('searches', 'search', 'id'));
     }
 }
