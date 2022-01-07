@@ -19,7 +19,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = User::where('roleID', '!=', 1)->sortable(['firstName', 'lastName'])->paginate(5);
+        $users = User::where('roleID', '!=', 1)->sortable(['name', 'Name'])->paginate(5);
         $id = ($users->currentpage() - 1) * $users->perpage() + 1;
         return view('admin.index', compact('users', 'id'));
     }
@@ -44,8 +44,7 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'firstName' => 'required|string|min:3',
-            'lastName' => 'required|string|min:3',
+            'name' => 'required|string|min:3',
             'username' => ['required', 'string', 'min:6', 'unique:users'],
             'email' => 'required|min:5|unique:users',
             'dateOfBirth' => 'before:today',
@@ -54,8 +53,7 @@ class AdminController extends Controller
 
         $users = new User;
 
-        $users->firstName = $request->firstName;
-        $users->lastName = $request->lastName;
+        $users->name = $request->name;
         $users->username = $request->username;
         $users->email = $request->email;
         $users->password = bcrypt('simas123');
@@ -66,7 +64,7 @@ class AdminController extends Controller
         $users->save();
 
 
-        return redirect('/admin/index')->with('create', $users->firstName. ' '.$users->lastName.' has been registered. Default password: simas123');
+        return redirect('/admin/index')->with('create', $users->name.' has been registered. Default password: simas123');
     }
 
     /**
@@ -106,8 +104,7 @@ class AdminController extends Controller
     public function update(Request $request, $user)
     {
         $request->validate([
-            'firstName' => 'required|string|min:3',
-            'lastName' => 'required|string|min:3',
+            'name' => 'required|string|min:3',
             'dateOfBirth' => 'before:today',
         ]);
            
@@ -128,8 +125,7 @@ class AdminController extends Controller
 
         if(Auth::user()->roleID == 1){
             User::where('id', $currUser->id)->update([
-                'firstName' => $request->firstName,
-                'lastName' => $request->lastName,
+                'name' => $request->name,
                 'username' => $request->username,
                 'email' => $request->email,
                 'dateOfBirth' => Carbon::parse($request->dateOfBirth)->format('Y-m-d'),
@@ -139,8 +135,7 @@ class AdminController extends Controller
         }
         if($currUser->roleID != 1){
             User::where('id', $currUser->id)->update([
-                'firstName' => $request->firstName,
-                'lastName' => $request->lastName,
+                'name' => $request->name,
                 'username' => $request->username,
                 'email' => $request->email,
                 'dateOfBirth' => Carbon::parse($request->dateOfBirth)->format('Y-m-d'),
@@ -217,7 +212,7 @@ class AdminController extends Controller
 
     public function searchUser(Request $request){
         $search = $request->search;
-        $searches = User::where('firstName', 'like', '%'.$search.'%')->orwhere('lastName', 'like', '%'.$search.'%')->paginate(5);
+        $searches = User::where('name', 'like', '%'.$search.'%')->paginate(5);
         $id = ($searches->currentpage() - 1) * $searches->perpage() + 1;
         return view('user.searchUser', compact('searches', 'search', 'id'));
     }

@@ -32,7 +32,7 @@
                                 <img class="pp-changepic rounded-circle border border-3 " src="{{asset("img/users_photo/".$department1->photo)}}" height="35px" width="35px" alt="">
                             </div>
                             <div class="d-flex flex-column ms-2">
-                                <span class="head-text">{{$department1->firstName}} {{$department1->lastName}}</span>
+                                <span class="head-text">{{$department1->name}}</span>
                                 <span class="role-text">{{$role[$department1->roleID-1]->display}}</span>
                             </div>
                         </a>
@@ -54,7 +54,7 @@
                                 <img class="pp-changepic rounded-circle border border-3 " src="{{asset("img/users_photo/".$department2->photo)}}" height="35px" width="35px" alt="">
                             </div>
                             <div class="d-flex flex-column ms-2">
-                                <span class="head-text">{{$department2->firstName}} {{$department2->lastName}}</span>
+                                <span class="head-text">{{$department2->name}}</span>
                                 <span class="role-text">{{$role[$department2->roleID-1]->display}}</span>
                             </div>
                         </a>
@@ -76,7 +76,7 @@
                                 <img class="pp-changepic rounded-circle border border-3 " src="{{asset("img/users_photo/".$department3->photo)}}" height="35px" width="35px" alt="">
                             </div>
                             <div class="d-flex flex-column ms-2">
-                                <span class="head-text">{{$department3->firstName}} {{$department3->lastName}}</span>
+                                <span class="head-text">{{$department3->name}}</span>
                                 <span class="role-text">{{$role[$department3->roleID-1]->display}}</span>
                             </div>
                         </a>
@@ -98,7 +98,7 @@
                                 <img class="pp-changepic rounded-circle border border-3 " src="{{asset("img/users_photo/".$department4->photo)}}" height="35px" width="35px" alt="">
                             </div>
                             <div class="d-flex flex-column ms-2">
-                                <span class="head-text">{{$department4->firstName}} {{$department4->lastName}}</span>
+                                <span class="head-text">{{$department4->name}}</span>
                                 <span class="role-text">{{$role[$department4->roleID-1]->display}}</span>
                             </div>
                         </a>

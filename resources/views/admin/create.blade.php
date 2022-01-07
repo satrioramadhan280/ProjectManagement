@@ -12,21 +12,10 @@ Add New User
       <legend class="">Add New User</legend>
     </div>
     <div class="control-group">
-      <label class="control-label" for="firstName">First Name</label>
+      <label class="control-label" for="name">First Name</label>
       <div class="controls">
-        <input type="text" id="firstName" name="firstName" placeholder="{{old('firstName')}}" class="form-control @error('firstName') is-invalid @enderror">
-        @error('firstName')
-        <span class="invalid-feedback" role="alert">
-          <strong>{{ $message }}</strong>
-        </span>
-        @enderror
-      </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label" for="lastName">Last Name</label>
-      <div class="controls">
-        <input type="text" id="lastName" name="lastName" placeholder="{{old('lastName')}}" class="form-control @error('lastName') is-invalid @enderror">
-        @error('lastName')
+        <input type="text" id="name" name="name" placeholder="{{old('name')}}" class="form-control @error('name') is-invalid @enderror">
+        @error('name')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
         </span>

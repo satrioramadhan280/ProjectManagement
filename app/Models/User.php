@@ -31,8 +31,7 @@ class User extends Authenticatable
 
     protected $sortable = [
         'id',
-        'firstName',
-        'lastName',
+        'name',
         'roleID'
     ];
 

@@ -32,7 +32,7 @@ User Management
     <thead>
         <tr class="bg-danger text-white">
             <th scope="col">No</th>
-            <th scope="col" class="dropdown-toggle">@sortablelink('firstName', 'Name')</th>
+            <th scope="col" class="dropdown-toggle">@sortablelink('name', 'Name')</th>
             <th scope="col" class="dropdown-toggle">@sortablelink('roleID', 'Division')</th>
             <th scope="col">Action</th>
         </tr>
@@ -41,7 +41,7 @@ User Management
         @foreach ($searches as $search)
         <tr>
             <td>{{$id++}}</td>
-            <td>{{$search->firstName}} {{$search->lastName}}</td>
+            <td>{{$search->name}}</td>
             <td>{{$search->roles->display}}</td>
             <td><a class="btn btn-primary" href="/admin/{{$search->username}}/edit">Edit Profile</a></td>
         </tr>

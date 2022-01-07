@@ -27,17 +27,17 @@ User Management
     <thead>
         <tr class="bg-danger text-white">
             <th scope="col">No</th>
-            <th scope="col" class="dropdown-toggle">@sortablelink('firstName', 'Name')</th>
-            <th scope="col" class="dropdown-toggle">@sortablelink('roleID', 'Division')</th>
+            <th scope="col" class="dropdown-toggle">Name</th>
+            <th scope="col" class="dropdown-toggle">Division</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($users as $user)
         <tr>
-            <td>{{$id++}}</td>
-            <td>{{$user->firstName}} {{$user->lastName}}</td>
-            <td>{{$user->roles->display}}</td>
+            <td class="col-1">{{$id++}}</td>
+            <td class="col-5">{{$user->name}}</td>
+            <td class="col-5">{{$user->roles->display}}</td>
             <td><a class="btn btn-primary" href="/admin/{{$user->username}}/edit">Edit Profile</a></td>
         </tr>
         @endforeach

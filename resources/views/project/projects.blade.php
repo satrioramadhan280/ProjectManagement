@@ -24,7 +24,6 @@
                 <tr class="bg-danger text-white">
                     <th scope="col">Title</th>
                     <th scope="col">Project Status</th>
-                    <th scope="col">Deadline</th>
                     <th scope="col">Detail</th>
                 </tr>
             </thead>
@@ -32,9 +31,8 @@
                 @can('HDept1')
                     @foreach ($projectsDept1 as $project)
                         <tr>
-                            <td>{{ $project->title }}</td>
-                            <td>{{ $project->status }}</td>
-                            <td>{{ $project->endDate }}</td>
+                            <td class="col-8">{{ $project->title }}</td>
+                            <td class="col-2">{{ $project->status }}</td>
                             <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail</a></td>
                         </tr>
                     @endforeach
@@ -42,9 +40,8 @@
                 @can('HDept2')
                     @foreach ($projectsDept2 as $project)
                         <tr>
-                            <td>{{ $project->title }}</td>
-                            <td>{{ $project->status }}</td>
-                            <td>{{ $project->endDate }}</td>
+                            <td class="col-8">{{ $project->title }}</td>
+                            <td class="col-2">{{ $project->status }}</td>
                             <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail</a></td>
                         </tr>
                     @endforeach
@@ -52,9 +49,8 @@
                 @can('HDept3')
                     @foreach ($projectsDept3 as $project)
                         <tr>
-                            <td>{{ $project->title }}</td>
-                            <td>{{ $project->status }}</td>
-                            <td>{{ $project->endDate }}</td>
+                            <td class="col-8">{{ $project->title }}</td>
+                            <td class="col-2">{{ $project->status }}</td>
                             <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail</a></td>
                         </tr>
                     @endforeach
@@ -62,9 +58,8 @@
                 @can('HDept4')
                     @foreach ($projectsDept4 as $project)
                         <tr>
-                            <td>{{ $project->title }}</td>
-                            <td>{{ $project->status }}</td>
-                            <td>{{ $project->endDate }}</td>
+                            <td class="col-8">{{ $project->title }}</td>
+                            <td class="col-2">{{ $project->status }}</td>
                             <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail</a></td>
                         </tr>
                     @endforeach

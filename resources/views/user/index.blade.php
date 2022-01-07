@@ -28,8 +28,8 @@ ini HDiv
     @can('Admin')
       @foreach ($users as $user)
       <tr>
-        <td>{{$id++}}</td>
-        <td>{{$user->firstName}} {{$user->lastName}}</td>
+        <td class="col-1">{{$id++}}</td>
+        <td class="col-5">{{$user->name}}</td>
 
       </tr>
       @endforeach
@@ -39,8 +39,8 @@ ini HDiv
   @can('HDept1')
     @foreach ($dept1 as $user)
     <tr>
-      <td>{{$id++}}</td>
-      <td>{{$user->firstName}} {{$user->lastName}}</td>
+      <td class="col-1">{{$id++}}</td>
+      <td class="col-5">{{$user->name}}</td>
 
     </tr>
     @endforeach
@@ -51,8 +51,8 @@ ini HDiv
   @can('HDept2')
   @foreach ($dept2 as $user)
   <tr>
-    <td>{{$id}}</td>
-    <td>{{$user->firstName}} {{$user->lastName}}</td>
+    <td class="col-1">{{$id}}</td>
+    <td class="col-5">{{$user->name}}</td>
   </tr>
   @endforeach
   </tbody>
@@ -62,8 +62,8 @@ ini HDiv
   @can('HDept3')
   @foreach ($dept3 as $user)
   <tr>
-    <td>{{$id}}</td>
-    <td>{{$user->firstName}} {{$user->lastName}}</td>
+    <td class="col-1">{{$id}}</td>
+    <td class="col-5">{{$user->name}}</td>
   </tr>
   @endforeach
   {{$dept3->links()}}
@@ -72,8 +72,8 @@ ini HDiv
   @can('HDept4')
   @foreach ($dept4 as $user)
   <tr>
-    <td>{{$id}}</td>
-    <td>{{$user->firstName}} {{$user->lastName}}</td>
+    <td class="col-1">{{$id}}</td>
+    <td class="col-5">{{$user->name}}</td>
   </tr>
   @endforeach
   </tbody>

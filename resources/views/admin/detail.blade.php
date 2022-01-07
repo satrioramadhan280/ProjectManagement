@@ -59,7 +59,7 @@
 @extends('layouts.app')
 
 @section('title')
-        {{$user->firstName}} {{$user->lastName}}
+        {{$user->name}}
 @endsection
 
 @section('content')
@@ -122,7 +122,7 @@
         <div class="d-flex flex-column" style="height: 124px">
             <div class="d-flex ">
                 <div class="d-flex user-info flex-column">
-                    <h1>{{$user->firstName}} {{$user->lastName}}</h1>
+                    <h1>{{$user->name}}</h1>
                     <span>Role : {{$role->display}}</span>
                 </div>
             </div>
@@ -163,19 +163,13 @@
 
                 {{-- First name --}}
                 <div class="row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">First Name</label>
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
                     <div class="col">
-                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{$user->firstName}}">
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{$user->name}}">
                     </div>
                 </div>
 
                 {{-- Last Name --}}
-                <div class="row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Last Name</label>
-                    <div class="col">
-                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{$user->lastName}}">
-                    </div>
-                </div>
 
 
                 {{-- Email --}}
