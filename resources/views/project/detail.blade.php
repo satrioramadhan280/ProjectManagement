@@ -12,7 +12,7 @@
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <span data-feather="user-plus"></span> Add Member
     </button>
-    
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -87,6 +87,7 @@
             <th scope="col">Name</th>
             <th scope="col">Type</th>
             <th scope="col">Size</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -95,6 +96,16 @@
             <td>{{ $file['filename'] }}</td>
             <td>{{ $file['extension'] }}</td>
             <td>{{ $file['size'] }}</td>
+            <td>
+                <form method="POST" action="{{ route('delete_file', [$project->id]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <div class="form-group">
+                        <input type='hidden' name="filePath" value="{{ $file['path'] }}">
+                        <input type="submit" class="btn btn-sm btn-danger delete-file" value="Delete">
+                    </div>
+                </form>
+            </td>
         </tr>
         @endforeach
     </tbody>
@@ -104,12 +115,20 @@
 @endif
 
 <script>
+    $('.delete-file').on('click', function (e) {
+        e.preventDefault() // Don't post the form, unless confirmed
+        console.log('test');
+        if (confirm('Are you sure?')) {
+            // Post the form
+            $(e.target).closest('form').submit(); // Post the surrounding form
+        }
+    });
+
     var myModal = document.getElementById('myModal')
     var myInput = document.getElementById('myInput')
 
     myModal.addEventListener('shown.bs.modal', function () {
-    myInput.focus()
-})
-
+        myInput.focus()
+    })
 </script>
 @endsection

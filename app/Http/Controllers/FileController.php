@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
@@ -15,7 +16,9 @@ class FileController extends Controller
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id]);
     }
 
-    public function deleteFile(Request $request){
-
+    public function deleteFile(Request $request, Project $project){
+        $filePath = $request->input('filePath');
+        Storage::delete($filePath);
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id]);
     }
 }

@@ -55,16 +55,16 @@ class ProjectController extends Controller
         // return redirect()->action([ProjectController::class, 'show']);
     }
 
-    public function formatBytes($bytes, $precision = 2) { 
-        $units = array('B', 'KB', 'MB', 'GB', 'TB'); 
-    
-        $bytes = max($bytes, 0); 
-        $pow = floor(($bytes ? log($bytes) : 0) / log(1024)); 
-        $pow = min($pow, count($units) - 1); 
+    public function formatBytes($bytes, $precision = 2) {
+        $units = array('B', 'KB', 'MB', 'GB', 'TB');
+
+        $bytes = max($bytes, 0);
+        $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+        $pow = min($pow, count($units) - 1);
         $bytes /= pow(1024, $pow);
 
-        return round($bytes, $precision) . ' ' . $units[$pow]; 
-    } 
+        return round($bytes, $precision) . ' ' . $units[$pow];
+    }
 
     public function detailView(Project $project) {
         $tasks = $project->tasks;
@@ -92,6 +92,7 @@ class ProjectController extends Controller
         };
         unset($file);
         $files = collect($files);
+        // dd($files);
 
         return view('project.detail', compact('project', 'files', 'tasks', 'users', 'head'));
     }
@@ -99,7 +100,7 @@ class ProjectController extends Controller
     public function taskView(Project $project, Task $task) {
 
         $task = Task::where('id', $task->id)->first();
-        
+
 
         return view('project.task.detail', compact('task'));
     }
@@ -107,7 +108,7 @@ class ProjectController extends Controller
 
     public function addTaskView(Project $project)
     {
-        return view('project.task.add', compact('project'));   
+        return view('project.task.add', compact('project'));
     }
 
     public function addTask(Request $request, Project $project)
@@ -125,12 +126,12 @@ class ProjectController extends Controller
     }
 
     public function addMember(Request $request, Project $project){
-        
+
         $users = $request->input('users');
         $project->users()->attach($users);
         return redirect('projects/detail/'.$project->id);
     }
-    
+
     public function searchProject(Request $request){
         $search = $request->search;
         if(auth()->user()->roleID == 3 || auth()->user()->roleID == 7){
