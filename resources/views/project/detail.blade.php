@@ -97,14 +97,27 @@
             <td>{{ $file['extension'] }}</td>
             <td>{{ $file['size'] }}</td>
             <td>
-                <form method="POST" action="{{ route('delete_file', [$project->id]) }}">
-                    @csrf
-                    @method('DELETE')
-                    <div class="form-group">
-                        <input type='hidden' name="filePath" value="{{ $file['path'] }}">
-                        <input type="submit" class="btn btn-sm btn-danger delete-file" value="Delete">
+                <div class='row'>
+                    <div class="col-sm-auto">
+                        <form method="GET" action="{{ route('download_file') }}">
+                            @csrf
+                            <div class="form-group">
+                                <input type='hidden' name="filePath" value="{{ $file['path'] }}">
+                                <input type="submit" class="btn btn-sm btn-primary" value="Download">
+                            </div>
+                        </form>
                     </div>
-                </form>
+                    <div class="col-sm-auto">
+                        <form method="POST" action="{{ route('delete_file', [$project->id]) }}">
+                            @csrf
+                            @method('DELETE')
+                            <div class="form-group">
+                                <input type='hidden' name="filePath" value="{{ $file['path'] }}">
+                                <input type="submit" class="btn btn-sm btn-danger delete-file" value="Delete">
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </td>
         </tr>
         @endforeach

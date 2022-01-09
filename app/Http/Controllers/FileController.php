@@ -21,4 +21,9 @@ class FileController extends Controller
         Storage::delete($filePath);
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id]);
     }
+
+    public function downloadFile(Request $request){
+        $filePath = $request->input('filePath');
+        return Storage::download($filePath);
+    }
 }

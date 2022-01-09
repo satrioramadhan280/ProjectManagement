@@ -53,6 +53,7 @@ Route::prefix('projects')->group(function () {
     Route::get('/detail/{project}/{task}', [ProjectController::class, 'taskView'])->name('project_task_view');
     Route::post('/file/add/{project}', [FileController::class, 'addFile'])->name('add_file');
     Route::delete('/file/delete/{project}', [FileController::class, 'deleteFile'])->name('delete_file');
+    Route::get('/file/download', [FileController::class, 'downloadFile'])->name('download_file');
 });
 Route::post('/projects/addMember/{project}', [ProjectController::class, 'addMember'])->name('addMember');
 
