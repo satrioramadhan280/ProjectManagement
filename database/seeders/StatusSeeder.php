@@ -16,7 +16,7 @@ class StatusSeeder extends Seeder
     {
         // Ongoing, SIT - Ongoing, UAT - Ongoing, Live
         // Completed, SIT - Completed, UAT - Completed
-        $statuses = ['Ongoing', 'Completed', 'SIT - Ongoing', 'SIT - Completed', 'UAT - Ongoing', 'UAT - Completed', 'Live'];
+        $statuses = ['Development - Ongoing', 'Development - Completed', 'SIT - Ongoing', 'SIT - Completed', 'UAT - Ongoing', 'UAT - Completed', 'Live'];
         foreach ($statuses as $status) {
             Status::create([
                 'name' => $status,
