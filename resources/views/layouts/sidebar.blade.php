@@ -2,11 +2,17 @@
     <div class="position-sticky pt-3">
         <div class="ml-auto mt-auto">
             <li class="nav-item d-inline">
-                <img class="rounded-circle border border-3 ml-3 mr-1 d-inline" src="{{asset("uploads/users_photo/".Auth::user()->photo)}}" height="100px" width="100px" alt="">   
-                {{Auth::user()->name}}
-                <a class="nav-link ml-2" href="/user/{{Auth::user()->username}}/about">
-                    Edit Profile
-                </a>  
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex flex-column justify-content-center ">
+                        <div class="d-flex justify-content-center"><img class="rounded-circle border border-3 d-inline" src="{{asset("uploads/users_photo/".Auth::user()->photo)}}" height="100px" width="100px" alt=""></div>   
+                        <div class="text-center">{{Auth::user()->name}}</div>
+                        <div class="text-center mt-2">
+                            <a class="nav-link" href="/user/{{Auth::user()->username}}/about">
+                                Edit Profile
+                            </a>
+                        </div>  
+                    </div>
+                </div>
             </li>
         </div>
         <hr>

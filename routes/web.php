@@ -48,7 +48,7 @@ Route::prefix('projects')->group(function () {
     Route::get('/index', [ProjectController::class, 'show'])->name('projects');
     Route::get('/add', [ProjectController::class, 'add'])->name('add_project_view');
     Route::post('/addProject', [ProjectController::class, 'addProject'])->name('add_project');
-    Route::get('/detail/{project}', [ProjectController::class, 'detailView'])->name('project_detail_view');
+    Route::get('/detail/{project}/{user_tabs}', [ProjectController::class, 'detailView'])->name('project_detail_view');
     Route::get('/detail/{project}/{task}', [ProjectController::class, 'taskView'])->name('project_task_view');
 });
 Route::post('/projects/addMember/{project}', [ProjectController::class, 'addMember'])->name('addMember');

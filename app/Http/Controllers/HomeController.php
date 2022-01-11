@@ -239,7 +239,7 @@ class HomeController extends Controller
         
         return view('home', compact('TotalUsers', 'TotalDept1', 'TotalDept2', 'TotalDept3', 'TotalDept4'
                     , 'day7', 'day6', 'day5', 'day4', 'day3', 'day2', 'day1', 'monthName', 'projectsDept1',
-                    'projectsDept2', 'projectsDept3', 'projectsDept4', 'onProjectsDept1'));
+                    'projectsDept2', 'projectsDept3', 'projectsDept4', 'onProjectsDept1', 'onProjectsDept2', 'onProjectsDept3', 'onProjectsDept4'));
         
     }
 }

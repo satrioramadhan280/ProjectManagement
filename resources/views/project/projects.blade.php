@@ -41,7 +41,7 @@
                         <tr>
                             <td class="col-8">{{ $project->title }}</td>
                             <td class="col-2">{{ $project->status }}</td>
-                            <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail</a>
+                            <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
                             </td>
                         </tr>
                     @endforeach
