@@ -13,8 +13,8 @@
         @canany(['HDept1', 'HDept2', 'HDept3', 'HDept4'])
             <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary mt-1"><span data-feather="file"></span> Add Project</a>
         @endcanany
-        <form class="d-flex mt-2" method="GET" action="/searchProject">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" value="{{ old('search') }}">
+        <form class="d-flex mt-2" method="GET" action="{{route('searchProject')}}">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" value="{{$search}}">
             <button class="btn btn-primary" type="submit">Search</button>
         </form>
     </div>
@@ -29,8 +29,9 @@
         </div>
     @endif
     @if ($searches->isEmpty())
-        <h3>{{ $search }} not found</h3>
+        <h4>{{ $search }} not found</h4>
     @else
+        <h4 class="mb-2 mt-2">Search for '{{ $search }}'</h4>
         <table class="table mt-2">
             <thead>
                 <tr class="bg-danger text-white">
@@ -46,7 +47,7 @@
                         <td>{{ $id++ }}</td>
                         <td>{{ $search->title }}</td>
                         <td>{{ $search->status }}</td>
-                        <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$search->id]) }}">Detail</a>
+                        <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$search->id, 'tasks']) }}">Detail</a>
                         </td>
                     </tr>
                 @endforeach

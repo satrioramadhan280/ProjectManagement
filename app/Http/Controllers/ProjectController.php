@@ -15,7 +15,7 @@ use League\Flysystem\Filesystem;
 class ProjectController extends Controller
 {
     //
-    public function show(Request $request)
+    public function index(Request $request)
     {
         $projectsDept1 = Project::where('deptID', '3')->get();
         $projectsDept2 = Project::where('deptID', '4')->get();
@@ -134,7 +134,7 @@ class ProjectController extends Controller
         
         $users = $request->input('users');
         $project->users()->attach($users);
-        return redirect('projects/detail/'.$project->id);
+        return redirect('projects/detail/'.$project->id.'/tasks');
     }
     
     public function searchProject(Request $request){

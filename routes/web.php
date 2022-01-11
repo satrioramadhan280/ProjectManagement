@@ -45,11 +45,12 @@ Route::patch('/admin/editUser/{username}', [AdminController::class, 'update']);
 Route::get('/user/index', [HDeptController::class, 'index']);
 
 Route::prefix('projects')->group(function () {
-    Route::get('/index', [ProjectController::class, 'show'])->name('projects');
+    Route::get('/index', [ProjectController::class, 'index'])->name('projects');
     Route::get('/add', [ProjectController::class, 'add'])->name('add_project_view');
     Route::post('/addProject', [ProjectController::class, 'addProject'])->name('add_project');
     Route::get('/detail/{project}/{user_tabs}', [ProjectController::class, 'detailView'])->name('project_detail_view');
     Route::get('/detail/{project}/{task}', [ProjectController::class, 'taskView'])->name('project_task_view');
+    Route::get('/searchProject', [ProjectController::class, 'searchProject'])->name('searchProject');
 });
 Route::post('/projects/addMember/{project}', [ProjectController::class, 'addMember'])->name('addMember');
 
@@ -70,4 +71,3 @@ Route::get('/department', [DepartmentController::class, 'index']);
 Route::get('/department/{type}', [DepartmentController::class, 'type']);
 
 Route::get('/searchUser', [AdminController::class, 'searchUser']);
-Route::get('/searchProject', [ProjectController::class, 'searchProject']);
