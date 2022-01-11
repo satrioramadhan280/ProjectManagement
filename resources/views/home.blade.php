@@ -81,7 +81,7 @@
     <div class="d-flex">
         <h1>Hello, {{ Auth::user()->name }}</h1>
     </div>
-
+    <hr>
     {{-- Chart Active Users --}}
     @can('Admin')
         <div class="d-flex justify-content-center border rounded p-5 mt-3">
