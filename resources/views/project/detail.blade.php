@@ -26,7 +26,7 @@
     .hide {
         display: none;
     }
-    
+
     .add-task-btn:hover + .hide {
         display: block;
         color: red;
@@ -98,6 +98,17 @@
         {{-- <a href="{{ route('add_task_view', [$project->id]) }}" class="btn btn-primary"><span data-feather="clipboard"></span> Add  Task</a> --}}
         <div class="d-flex flex-row">
 
+            <div class="btn-group mr-3">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+                  {{ $project->status->name }}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+                    @foreach ($statuses as $status)
+                        <li><a class="dropdown-item" href="{{ route('change_project_status', [$project->id, $status->id]) }}">{{ $status->name }}</a></li>
+                    @endforeach
+                </ul>
+            </div>
+
             <div class="@if ($project_members->isEmpty())
                 tooltip-div
             @endif">
@@ -108,8 +119,8 @@
                 </button>
                 <span class="tooltip-span">Assign Member First!</span>
             </div>
-              
-            
+
+
             <button type="button" class="btn btn-primary ml-3" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                 <span data-feather="user-plus"></span> Add / Remove Member
             </button>
@@ -142,7 +153,7 @@
 
                     <div class="mb-3">
                         <label for="taskName" class="form-label">Task Name <label style="font-size: 13px">(*required)</label></label>
-                        <input type="text" class="form-control" name="taskName" value="{{ old('taskName') }}" required> 
+                        <input type="text" class="form-control" name="taskName" value="{{ old('taskName') }}" required>
                         <label for="descrption" class="form-label mt-3">Description <label style="font-size: 13px">(*required)</label></label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="taskDescription" required></textarea>
                         <label for="taskMember" class="form-label mt-3">Assign Task Member <label style="font-size: 13px">(*required at least 1)</label></label>
@@ -289,7 +300,7 @@
                     @endif
 
                 @elseif ($user_tabs=='files')
-                
+
                     <div class="m-4">
                         <h3>Files</h3>
                         <button id="fileUploadButton" type="button" class="btn btn-primary btn-sm">Upload</button>
@@ -356,7 +367,7 @@
                     <div class="m-4">
                         <h3>Files</h3>
                         @if(!$files->isEmpty())
-    
+
                         @else
                             <h4>There are no files available</h4>
                         @endif

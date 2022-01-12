@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\ProjectUser;
+use App\Models\Status;
 use App\Models\Task;
 use App\Models\TaskUser;
 use App\Models\User;
@@ -73,6 +74,8 @@ class ProjectController extends Controller
 
     public function detailView(Project $project, $user_tabs) {
         $tasks = $project->tasks;
+        $statuses = Status::where('id', '!=', $project->status->id)->get();
+
         if(auth()->user()->roleID == 3 ||  $project->deptID == 3){
             $users_department = User::where('roleID', 7)->get();
             $head = 3;
@@ -104,7 +107,7 @@ class ProjectController extends Controller
         $project_members = ProjectUser::where('project_id', $project->id)->get();
         $task_user = TaskUser::where('project_id', $project->id)->get();
 
-        return view('project.detail', compact('project', 'files', 'tasks', 'users', 'head', 'user_tabs', 'task_members', 'users_department', 'project_members', 'task_user'));
+        return view('project.detail', compact('project', 'statuses', 'files', 'tasks', 'users', 'head', 'user_tabs', 'task_members', 'users_department', 'project_members', 'task_user'));
     }
 
     public function taskView(Project $project, Task $task) {
@@ -126,7 +129,7 @@ class ProjectController extends Controller
 
          $updateTasks = Task::all();
          // Misalnya salah satu record di delete, id task akan tidak teratur
-         // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi 
+         // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
          $index = 1;
          foreach ($updateTasks as $key => $f) {
              $f->id = $index;
@@ -167,7 +170,7 @@ class ProjectController extends Controller
             'users' => 'required'
         ]);
 
-    
+
 
         $task = new Task;
         $task->name = $request->input('taskName');
@@ -221,7 +224,7 @@ class ProjectController extends Controller
 
         $updateProjectUser = ProjectUser::all();
         // Misalnya salah satu record di delete, id task akan tidak teratur
-        // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi 
+        // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
         $index = 1;
         foreach ($updateProjectUser as $key => $f) {
             $f->id = $index;
@@ -251,5 +254,13 @@ class ProjectController extends Controller
         $searches = Project::where('title', 'like', '%'.$search.'%')->where('deptID', $deptID)->paginate(5);
         $id = ($searches->currentpage() - 1) * $searches->perpage() + 1;
         return view('project.searchProject', compact('searches', 'search', 'id'));
+    }
+
+    public function changeStatus(Project $project, Status $status){
+
+        $project->status()->associate($status);
+        $project->save();
+
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
     }
 }
