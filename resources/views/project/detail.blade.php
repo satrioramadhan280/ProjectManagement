@@ -8,8 +8,7 @@
 <h1>{{ $project->title }}</h1>
 
 @if (Auth::user()->role!="user")
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
     <div class="mt-4 mb-4">
         {{-- <a href="{{ route('add_task_view', [$project->id]) }}" class="btn btn-primary"><span data-feather="clipboard"></span> Add  Task</a> --}}
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
