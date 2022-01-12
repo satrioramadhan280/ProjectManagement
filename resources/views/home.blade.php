@@ -119,7 +119,7 @@
                         @foreach ($projectsDept1 as $project)
                             <tr>
                                 <td class="col-6">{{ $project->title }}</td>
-                                <td class="col-2">{{ $project->status }}</td>
+                                <td class="col-2">{{ $project->status->name }}</td>
                                 <td class="col-3">{{ $project->endDate }}</td>
                                 <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                                 </td>
@@ -134,7 +134,7 @@
                         @foreach ($projectsDept2 as $project)
                             <tr>
                                 <td class="col-6">{{ $project->title }}</td>
-                                <td class="col-2">{{ $project->status }}</td>
+                                <td class="col-2">{{ $project->status->name }}</td>
                                 <td class="col-3">{{ $project->endDate }}</td>
                                 <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                                 </td>
@@ -149,7 +149,7 @@
                         @foreach ($projectsDept3 as $project)
                             <tr>
                                 <td class="col-6">{{ $project->title }}</td>
-                                <td class="col-2">{{ $project->status }}</td>
+                                <td class="col-2">{{ $project->status->name }}</td>
                                 <td class="col-3">{{ $project->endDate }}</td>
                                 <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                                 </td>
@@ -164,7 +164,7 @@
                         @foreach ($projectsDept4 as $project)
                             <tr>
                                 <td class="col-6">{{ $project->title }}</td>
-                                <td class="col-2">{{ $project->status }}</td>
+                                <td class="col-2">{{ $project->status->name }}</td>
                                 <td class="col-3">{{ $project->endDate }}</td>
                                 <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                                 </td>
@@ -179,7 +179,7 @@
                         @foreach ($onProjectsDept1 as $project)
                             <tr>
                                 <td class="col-6">{{ $project->title }}</td>
-                                <td class="col-2">{{ $project->status }}</td>
+                                <td class="col-2">{{ $project->status->name }}</td>
                                 <td class="col-3">{{ $project->endDate }}</td>
                                 <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                                 </td>
@@ -194,7 +194,7 @@
                         @foreach ($onProjectsDept2 as $project)
                             <tr>
                                 <td class="col-6">{{ $project->title }}</td>
-                                <td class="col-2">{{ $project->status }}</td>
+                                <td class="col-2">{{ $project->status->name }}</td>
                                 <td class="col-3">{{ $project->endDate }}</td>
                                 <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                                 </td>
@@ -209,7 +209,7 @@
                         @foreach ($onProjectsDept3 as $project)
                             <tr>
                                 <td class="col-6">{{ $project->title }}</td>
-                                <td class="col-2">{{ $project->status }}</td>
+                                <td class="col-2">{{ $project->status->name }}</td>
                                 <td class="col-3">{{ $project->endDate }}</td>
                                 <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id], 'tasks') }}">Detail
                                 </td>
@@ -224,7 +224,7 @@
                         @foreach ($onProjectsDept4 as $project)
                             <tr>
                                 <td class="col-6">{{ $project->title }}</td>
-                                <td class="col-2">{{ $project->status }}</td>
+                                <td class="col-2">{{ $project->status->name }}</td>
                                 <td class="col-3">{{ $project->endDate }}</td>
                                 <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                                 </td>
