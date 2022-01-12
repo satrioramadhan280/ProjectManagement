@@ -15,7 +15,7 @@ use League\Flysystem\Filesystem;
 class ProjectController extends Controller
 {
     //
-    public function show(Request $request)
+    public function index(Request $request)
     {
         $projectsDept1 = Project::where('deptID', '3')->get();
         $projectsDept2 = Project::where('deptID', '4')->get();
@@ -66,25 +66,29 @@ class ProjectController extends Controller
         return round($bytes, $precision) . ' ' . $units[$pow];
     }
 
-    public function detailView(Project $project) {
+    public function detailView(Project $project, $user_tabs) {
         $tasks = $project->tasks;
-        if(auth()->user()->roleID == 3 || auth()->user()->roleID == 7){
-            $users = User::where('roleID', 7)->get();
+        if(auth()->user()->roleID == 3 ||  $project->deptID == 3){
+            $users_department = User::where('roleID', 7)->get();
             $head = 3;
+            $task_members = ProjectUser::where('project_id', $project->id)->orderBy('user_id')->get();
         }
-        if(auth()->user()->roleID == 4 || auth()->user()->roleID == 8){
-            $users = User::where('roleID', 8)->get();
+        else if(auth()->user()->roleID == 4 || $project->deptID == 4){
+            $users_department = User::where('roleID', 8)->get();
             $head = 4;
+            $task_members = ProjectUser::where('project_id', $project->id)->orderBy('user_id')->get();
         }
-        if(auth()->user()->roleID == 5 || auth()->user()->roleID == 9){
-            $users = User::where('roleID', 9)->get();
+        else if(auth()->user()->roleID == 5 || $project->deptID == 5){
+            $users_department = User::where('roleID', 9)->get();
             $head = 5;
+            $task_members = ProjectUser::where('project_id', $project->id)->orderBy('user_id')->get();
         }
-        if(auth()->user()->roleID == 6 || auth()->user()->roleID == 10){
-            $users = User::where('roleID', 10)->get();
+        else if(auth()->user()->roleID == 6 || $project->deptID == 6){
+            $users_department = User::where('roleID', 10)->get();
             $head = 6;
+            $task_members = ProjectUser::where('project_id', $project->id)->orderBy('user_id')->get();
         }
-
+        $users = User::all();
         $PROJECT_FOLDER = $project->folder;
         $files = Storage::disk('local')->listContents($PROJECT_FOLDER);
         foreach ($files as &$file) {
@@ -92,9 +96,10 @@ class ProjectController extends Controller
         };
         unset($file);
         $files = collect($files);
-        // dd($files);
+        $project_members = ProjectUser::where('project_id', $project->id)->get();
 
-        return view('project.detail', compact('project', 'files', 'tasks', 'users', 'head'));
+
+        return view('project.detail', compact('project', 'files', 'tasks', 'users', 'head', 'user_tabs', 'task_members', 'users_department', 'project_members'));
     }
 
     public function taskView(Project $project, Task $task) {
@@ -129,7 +134,7 @@ class ProjectController extends Controller
 
         $users = $request->input('users');
         $project->users()->attach($users);
-        return redirect('projects/detail/'.$project->id);
+        return redirect('projects/detail/'.$project->id.'/tasks');
     }
 
     public function searchProject(Request $request){

@@ -97,6 +97,10 @@
             @can('HDept2')<h4>On Going Projects at IT Branch Delivery System</h4>@endcan
             @can('HDept3')<h4>On Going Projects at IT Micro and Retail Core Loan System</h4>@endcan
             @can('HDept4')<h4>On Going Projects at IT Internal Application</h4>@endcan
+            @canany(['MDept1', 'MDept2', 'MDept3', 'MDept4'])
+                <h4>Your On Going Projects</h4>
+            @endcanany
+
             <table class="table mt-2">
                 <thead>
                     <tr class="bg-danger text-white">
@@ -109,92 +113,124 @@
                 </thead>
                 <tbody>
                     @can('HDept1')
+                        @if ($projectsDept1->isEmpty())
+                            <td>There are no on going projects</td>
+                        @else
                         @foreach ($projectsDept1 as $project)
                             <tr>
                                 <td class="col-6">{{ $project->title }}</td>
                                 <td class="col-2">{{ $project->status }}</td>
                                 <td class="col-3">{{ $project->endDate }}</td>
-                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail
+                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                                 </td>
                             </tr>
                         @endforeach
+                        @endif
                     @endcan
                     @can('HDept2')
+                         @if ($projectsDept1->isEmpty())
+                            <td>There are no on going projects</td>
+                        @else
                         @foreach ($projectsDept2 as $project)
                             <tr>
                                 <td class="col-6">{{ $project->title }}</td>
                                 <td class="col-2">{{ $project->status }}</td>
                                 <td class="col-3">{{ $project->endDate }}</td>
-                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail
+                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                                 </td>
                             </tr>
                         @endforeach
+                        @endif
                     @endcan
                     @can('HDept3')
+                         @if ($projectsDept1->isEmpty())
+                            <td>There are no on going projects</td>
+                        @else
                         @foreach ($projectsDept3 as $project)
                             <tr>
                                 <td class="col-6">{{ $project->title }}</td>
                                 <td class="col-2">{{ $project->status }}</td>
                                 <td class="col-3">{{ $project->endDate }}</td>
-                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail
+                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                                 </td>
                             </tr>
                         @endforeach
+                        @endif
                     @endcan
                     @can('HDept4')
+                         @if ($projectsDept1->isEmpty())
+                            <td>There are no on going projects</td>
+                        @else
                         @foreach ($projectsDept4 as $project)
                             <tr>
                                 <td class="col-6">{{ $project->title }}</td>
                                 <td class="col-2">{{ $project->status }}</td>
                                 <td class="col-3">{{ $project->endDate }}</td>
-                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail
+                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                                 </td>
                             </tr>
                         @endforeach
+                        @endif
                     @endcan
                     @can('MDept1')
+                        @if ($onProjectsDept1->isEmpty())
+                            <td>There are no on going projects</td>
+                        @else
                         @foreach ($onProjectsDept1 as $project)
                             <tr>
                                 <td class="col-6">{{ $project->title }}</td>
                                 <td class="col-2">{{ $project->status }}</td>
                                 <td class="col-3">{{ $project->endDate }}</td>
-                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail
+                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                                 </td>
                             </tr>
                         @endforeach
+                        @endif
                     @endcan
                     @can('MDept2')
+                         @if ($onProjectsDept2->isEmpty())
+                            <td>There are no on going projects</td>
+                        @else
                         @foreach ($onProjectsDept2 as $project)
                             <tr>
                                 <td class="col-6">{{ $project->title }}</td>
                                 <td class="col-2">{{ $project->status }}</td>
                                 <td class="col-3">{{ $project->endDate }}</td>
-                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail
+                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                                 </td>
                             </tr>
                         @endforeach
+                        @endif
                     @endcan
                     @can('MDept3')
+                         @if ($onProjectsDept3->isEmpty())
+                            <td>There are no on going projects</td>
+                        @else
                         @foreach ($onProjectsDept3 as $project)
                             <tr>
                                 <td class="col-6">{{ $project->title }}</td>
                                 <td class="col-2">{{ $project->status }}</td>
                                 <td class="col-3">{{ $project->endDate }}</td>
-                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail
+                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id], 'tasks') }}">Detail
                                 </td>
                             </tr>
                         @endforeach
+                        @endif
                     @endcan
                     @can('MDept4')
+                         @if ($onProjectsDept4->isEmpty())
+                            <td>There are no on going projects</td>
+                        @else
                         @foreach ($onProjectsDept4 as $project)
                             <tr>
                                 <td class="col-6">{{ $project->title }}</td>
                                 <td class="col-2">{{ $project->status }}</td>
                                 <td class="col-3">{{ $project->endDate }}</td>
-                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id]) }}">Detail
+                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                                 </td>
                             </tr>
                         @endforeach
+                        @endif
                     @endcan
                 </tbody>
             </table>
