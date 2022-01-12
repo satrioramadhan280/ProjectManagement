@@ -15,17 +15,17 @@ class ProjectUserSeeder extends Seeder
     public function run()
     {
         //
-        ProjectUser::create([
-            'project_id' => 1,
-            'user_id' => 12,
-        ]);
-        ProjectUser::create([
-            'project_id' => 1,
-            'user_id' => 16,
-        ]);
-        ProjectUser::create([
-            'project_id' => 1,
-            'user_id' => 20,
-        ]);
+        // ProjectUser::create([
+        //     'project_id' => 1,
+        //     'user_id' => 12,
+        // ]);
+        // ProjectUser::create([
+        //     'project_id' => 1,
+        //     'user_id' => 16,
+        // ]);
+        // ProjectUser::create([
+        //     'project_id' => 1,
+        //     'user_id' => 20,
+        // ]);
     }
 }

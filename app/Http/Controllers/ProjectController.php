@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\ProjectUser;
 use App\Models\Task;
+use App\Models\TaskUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use League\Flysystem\Filesystem;
 
 use function PHPUnit\Framework\isEmpty;
@@ -99,9 +102,9 @@ class ProjectController extends Controller
         unset($file);
         $files = collect($files);
         $project_members = ProjectUser::where('project_id', $project->id)->get();
+        $task_user = TaskUser::where('project_id', $project->id)->get();
 
-
-        return view('project.detail', compact('project', 'files', 'tasks', 'users', 'head', 'user_tabs', 'task_members', 'users_department', 'project_members'));
+        return view('project.detail', compact('project', 'files', 'tasks', 'users', 'head', 'user_tabs', 'task_members', 'users_department', 'project_members', 'task_user'));
     }
 
     public function taskView(Project $project, Task $task) {
@@ -116,6 +119,21 @@ class ProjectController extends Controller
     {
         $task = Task::where('id', $task->id)->first();
         $task->delete();
+
+         // Pada saat delete, auto increment terjadi
+         DB::statement("ALTER TABLE tasks AUTO_INCREMENT =  1");
+
+
+         $updateTasks = Task::all();
+         // Misalnya salah satu record di delete, id task akan tidak teratur
+         // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi 
+         $index = 1;
+         foreach ($updateTasks as $key => $f) {
+             $f->id = $index;
+             $index++;
+             $f->save();
+         }
+
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
     }
 
@@ -140,17 +158,33 @@ class ProjectController extends Controller
 
     public function addTask(Request $request, Project $project)
     {
+        $users = $request->input('users');
+        // dd($users);
+
         $request->validate([
             'taskName' => 'required|min:3',
+            'taskDescription' => 'required|min:10',
+            'users' => 'required'
         ]);
+
+    
+
         $task = new Task;
         $task->name = $request->input('taskName');
         $task->project()->associate($project);
-        $task->description = $request->input('description');
+        $task->description = $request->input('taskDescription');
         $task->status = 'Ongoing';
         $task->save();
 
-        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id]);
+        foreach($users as $user){
+            $task_user = new TaskUser();
+            $task_user->task_id = $task->id;
+            $task_user->project_id = $project->id;
+            $task_user->user_id = $user;
+            $task_user->save();
+        }
+
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
     }
 
     public function addMember(Request $request, Project $project){
@@ -168,7 +202,6 @@ class ProjectController extends Controller
         }
 
 
-
         if($users==null){
 
         }
@@ -182,7 +215,21 @@ class ProjectController extends Controller
 
         }
 
-        return redirect('projects/detail/'.$project->id. '/tasks')->with('addMember', 'Assign Member Successfuly');
+        // Pada saat delete, auto increment terjadi
+        DB::statement("ALTER TABLE project_user AUTO_INCREMENT =  1");
+
+
+        $updateProjectUser = ProjectUser::all();
+        // Misalnya salah satu record di delete, id task akan tidak teratur
+        // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi 
+        $index = 1;
+        foreach ($updateProjectUser as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
+
+        return redirect('projects/detail/'.$project->id. '/tasks')->with('addMember', 'Update Member Successfuly');
 
     }
 
