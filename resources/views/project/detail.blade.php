@@ -1,10 +1,46 @@
+<style>
+    .task-record{
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+    .active, .task-record:hover{
+        background-color: rgba(95, 95, 95, 0.301);
+    }
+
+
+
+    .content {
+
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #ffffff;
+    }
+</style>
+
+
 @extends('layouts.app')
 
 @section('title')
 {{$project->title}}
 @endsection
 
+
+
 @section('content')
+
+@if (session('addMember'))
+    <div class="alert alert-success mt-3">
+        {{ session('addMember') }}
+    </div>
+@endif
+
 <h1>{{ $project->title }}</h1>
 
 @if (Auth::user()->role!="user")
@@ -15,7 +51,7 @@
             Add Task
         </button>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-            <span data-feather="user-plus"></span> Add Member
+            <span data-feather="user-plus"></span> Add / Remove Member
         </button>
     </div>
 
@@ -75,7 +111,7 @@
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add Member to Project</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Add / Remove Project Members</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="/projects/addMember/{{$project->id}}" method="POST" enctype="multipart/form-data" >
@@ -110,103 +146,179 @@
 @endif
 
 
-<div class="border rounded-top mt-3 d-flex justify-content-start flex-column">
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link @if ($user_tabs=='tasks') text-dark and Active  @endif" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}" style="color: rgba(0, 0, 0, 0.466)">Tasks</a>
-        </li>
-        @cannot('Admin')
-        <li class="nav-item" onclick="">
-            <a class="nav-link @if ($user_tabs=='projects') text-dark and Active @endif" href="{{ route('project_detail_view', [$project->id, 'files']) }}" style="color: rgba(0, 0, 0, 0.466)">Files</a>
-        </li>
-        @endcannot
+<div class="d-flex mt-3 justify-content-between">
 
-    </ul>
-    <div class="ms-5 mt-4 mb-4">
-        @if ($user_tabs=='tasks')
-            {{-- Isi dari Tasks --}}
-            @if(!$tasks->isEmpty())
-                <table class="table mt-4">
-                    <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Detail</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($tasks as $task)
-                        <tr>
-                            <td>{{$task->name}}</td>
-                            <td><a href="/projects/detail/{{$project->id}}/{{$task->id}}">Detail</a></td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @else
-                <h4>There are no tasks available</h4>
-            @endif
+    {{-- Section Tabs --}}
+    <div  style="width: 100%">
+        <div class="border rounded-top d-flex justify-content-start flex-column" >
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link @if ($user_tabs=='tasks') text-dark and Active  @endif" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}" style="color: rgba(0, 0, 0, 0.466)">Tasks</a>
+                </li>
+                @cannot('Admin')
+                <li class="nav-item" onclick="">
+                    <a class="nav-link @if ($user_tabs=='files') text-dark and Active @endif" href="{{ route('project_detail_view', [$project->id, 'files']) }}" style="color: rgba(0, 0, 0, 0.466)">Files</a>
+                </li>
+                <li class="nav-item" onclick="">
+                    <a class="nav-link @if ($user_tabs=='forum') text-dark and Active @endif" href="{{ route('project_detail_view', [$project->id, 'forum']) }}" style="color: rgba(0, 0, 0, 0.466)">Forum</a>
+                </li>
+                @endcannot
 
-        @elseif ($user_tabs=='files')
-            <h3>Files</h3>
-            <button id="fileUploadButton" type="button" class="btn btn-primary btn-sm">Upload</button>
+            </ul>
+            <div class="mt-3">
+                @if ($user_tabs=='tasks')
+                    {{-- Isi dari Tasks --}}
+                    @if(!$tasks->isEmpty())
+                    @foreach ($tasks as $task)
+                    <div class="task-record border-bottom">
+                        {{-- <td>1.</td> --}}
+                        <div class="d-flex flex-row justify-content-between">
+                            <td class="p-3"><h5>{{$task->name}}</h5></td>
+                            <div class="d-flex flex-row">
+                                @if ($task->status == 'Ongoing')
+                                    <span>{{$task->status}}</span>
+                                    <img class="ml-1" src="{{asset("img/icons/ongoing.png")}}" height="20px" width="20px" alt="">
 
-            <form id="addFile" class="row g-2 m-2" style="display: none;" action="{{ route('add_file', [$project->id]) }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="m-2 col-auto">
-                    <input class="form-control form-control-sm" name="fileInput" type="file">
-                </div>
-                <div class="m-2 col-auto">
-                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                </div>
-            </form>
+                                @elseif ($task->status == 'Completed')
+                                    <span>{{$task->status}}</span>
+                                    <img class="ml-1" src="{{asset("img/icons/completed.png")}}" height="20px" width="20px" alt="">
+                                @endif
+                            </div>
+                        </div>
 
-            @if(!$files->isEmpty())
-            <table class="table mt-4">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Size</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($files as $file)
-                    <tr>
-                        <td>{{ $file['filename'] }}</td>
-                        <td>{{ $file['extension'] }}</td>
-                        <td>{{ $file['size'] }}</td>
-                        <td>
-                            <div class='row'>
-                                <div class="col-sm-auto">
-                                    <form method="GET" action="{{ route('download_file') }}">
-                                        @csrf
-                                        <div class="form-group">
-                                            <input type='hidden' name="filePath" value="{{ $file['path'] }}">
-                                            <input type="submit" class="btn btn-sm btn-primary" value="Download">
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-sm-auto">
-                                    <form method="POST" action="{{ route('delete_file', [$project->id]) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <div class="form-group">
-                                            <input type='hidden' name="filePath" value="{{ $file['path'] }}">
-                                            <input type="submit" class="btn btn-sm btn-danger delete-file" value="Delete">
-                                        </div>
-                                    </form>
+                        {{-- <td><a href="/projects/detail/{{$project->id}}/{{$task->id}}">Detail</a></td> --}}
+                    </div>
+                    <div class="content border">
+                        <div class="m-4 d-flex justify-content-between">
+                            <div>
+                                <p style="font-size: 20px">{{$task->description}}</p>
+                                <div class="d-flex flex-column" style="font-size: 15px">
+
+                                    <span>Handled by : User</span>
                                 </div>
                             </div>
-                        </td>
-                    </tr>
+                            <div class="d-flex flex-column">
+                                <form action="/projects/detail/{{$project->id}}/{{$task->id}}/change_task_status" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary btn-sm" style="color: white">Change Status</button>
+                                </form>
+                                <form action="/projects/detail/{{$project->id}}/{{$task->id}}/remove" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm">Remove Task</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
                     @endforeach
-                </tbody>
-            </table>
-            @else
-                <h4>There are no files available</h4>
-            @endif
-        @endif
+                    @else
+                        <h4 class="m-4">There are no tasks available</h4>
+                    @endif
+
+                @elseif ($user_tabs=='files')
+                    <h3>Files</h3>
+                    <button id="fileUploadButton" type="button" class="btn btn-primary btn-sm">Upload</button>
+
+                    <form id="addFile" class="row g-2 m-2" style="display: none;" action="{{ route('add_file', [$project->id]) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="m-2 col-auto">
+                            <input class="form-control form-control-sm" name="fileInput" type="file">
+                        </div>
+                        <div class="m-2 col-auto">
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
+                    </form>
+
+                    @if(!$files->isEmpty())
+                    <table class="table mt-4">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($files as $file)
+                            <tr>
+                                <td>{{ $file['filename'] }}</td>
+                                <td>{{ $file['extension'] }}</td>
+                                <td>{{ $file['size'] }}</td>
+                                <td>
+                                    <div class='row'>
+                                        <div class="col-sm-auto">
+                                            <form method="GET" action="{{ route('download_file') }}">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <input type='hidden' name="filePath" value="{{ $file['path'] }}">
+                                                    <input type="submit" class="btn btn-sm btn-primary" value="Download">
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-auto">
+                                            <form method="POST" action="{{ route('delete_file', [$project->id]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <div class="form-group">
+                                                    <input type='hidden' name="filePath" value="{{ $file['path'] }}">
+                                                    <input type="submit" class="btn btn-sm btn-danger delete-file" value="Delete">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    @else
+                        <h4>There are no files available</h4>
+                    @endif
+
+                @elseif ($user_tabs=='forum')
+                    <h3>Files</h3>
+                    @if(!$files->isEmpty())
+
+                    @else
+                        <h4>There are no files available</h4>
+                    @endif
+
+                @endif
+
+            </div>
+        </div>
+    </div>
+
+
+    {{-- Section Members --}}
+    <div class="d-flex ml-5"  >
+            <div>
+                <div class="border rounded-top d-flex justify-content-start flex-column p-3"  style="width: 100%">
+                    <h5 class="text-center">Project Members</h5>
+                    <div class="mt-3">
+                        @foreach ($project_members as $project_member)
+                            <div class="d-flex flex-row m-2 ">
+                                <div><img class="rounded-circle border border-3 d-inline" src="{{asset("uploads/users_photo/".$users[$project_member->user_id-1]->photo)}}" height="30px" width="30px" alt=""></div>
+                                <div class="ml-2">{{$users[$project_member->user_id-1]->name}}</div>
+                            </div>
+
+                        @endforeach
+                    </div>
+
+                </div>
+            </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
 
     </div>
 
@@ -222,6 +334,21 @@
         }
     });
 
+var coll = document.getElementsByClassName("task-record");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+
     var myModal = document.getElementById('myModal')
     var myInput = document.getElementById('myInput')
 
@@ -230,3 +357,4 @@
     })
 </script>
 @endsection
+
