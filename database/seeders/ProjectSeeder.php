@@ -22,7 +22,7 @@ class ProjectSeeder extends Seeder
             'deptID' => 3,
             'sysRequirements' => 'projectFiles/PR-001/fileSR1.pdf',
             'folder' => 'projectFiles/PR-001',
-            'status' => 'Ongoing',
+            'status_id' => 1,
             'startDate' => '2021-12-12',
             'endDate' => '2021-12-17',
         ]);
@@ -31,7 +31,7 @@ class ProjectSeeder extends Seeder
             'deptID' => 4,
             'sysRequirements' => 'projectFiles/PR-002/fileSR2.pdf',
             'folder' => 'projectFiles/PR-002',
-            'status' => 'Ongoing',
+            'status_id' => 1,
             'startDate' => '2021-12-12',
             'endDate' => '2021-12-17',
         ]);
@@ -40,7 +40,7 @@ class ProjectSeeder extends Seeder
             'deptID' => 5,
             'sysRequirements' => 'projectFiles/PR-002/fileSR2.pdf',
             'folder' => 'projectFiles/PR-003',
-            'status' => 'Ongoing',
+            'status_id' => 1,
             'startDate' => '2021-12-12',
             'endDate' => '2021-12-17',
         ]);
@@ -49,7 +49,7 @@ class ProjectSeeder extends Seeder
             'deptID' => 6,
             'sysRequirements' => 'projectFiles/PR-002/fileSR2.pdf',
             'folder' => 'projectFiles/PR-004',
-            'status' => 'Ongoing',
+            'status_id' => 1,
             'startDate' => '2021-12-12',
             'endDate' => '2021-12-17',
         ]);

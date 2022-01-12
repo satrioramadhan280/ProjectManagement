@@ -19,7 +19,10 @@ class CreateProjectsTable extends Migration
             $table->string('title');
             $table->string('sysRequirements')->nullable();
             $table->string('folder')->nullable();
-            $table->string('status');
+            $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')
+                ->references('id')
+                ->on('statuses');
             $table->timestamp('startDate')->nullable();
             $table->timestamp('endDate')->nullable();
             $table->timestamps();

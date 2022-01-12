@@ -8,15 +8,15 @@
         outline: none;
         font-size: 15px;
     }
-    
+
     .active, .task-record:hover{
         background-color: rgba(95, 95, 95, 0.301);
     }
 
-    
+
 
     .content {
-        
+
         padding: 0 18px;
         display: none;
         overflow: hidden;
@@ -44,6 +44,7 @@
 <h1>{{ $project->title }}</h1>
 
 @if (Auth::user()->role!="user")
+
     <div class="mt-4 mb-4">
         {{-- <a href="{{ route('add_task_view', [$project->id]) }}" class="btn btn-primary"><span data-feather="clipboard"></span> Add  Task</a> --}}
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
@@ -53,7 +54,7 @@
             <span data-feather="user-plus"></span> Add / Remove Member
         </button>
     </div>
-    
+
     <!-- Modal 1 -->
     <div class="modal fade"   id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -66,7 +67,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
-                
+
                 <div class="modal-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -115,7 +116,7 @@
             </div>
             <form action="/projects/addMember/{{$project->id}}" method="POST" enctype="multipart/form-data" >
                 <div class="modal-body ml-3">
-                    
+
                     <div class="d-flex flex-wrap">
                         @csrf
                         @foreach ($users_department as $user)
@@ -154,7 +155,7 @@
                 <li class="nav-item">
                   <a class="nav-link @if ($user_tabs=='tasks') text-dark and Active  @endif" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}" style="color: rgba(0, 0, 0, 0.466)">Tasks</a>
                 </li>
-                @cannot('Admin') 
+                @cannot('Admin')
                 <li class="nav-item" onclick="">
                     <a class="nav-link @if ($user_tabs=='files') text-dark and Active @endif" href="{{ route('project_detail_view', [$project->id, 'files']) }}" style="color: rgba(0, 0, 0, 0.466)">Files</a>
                 </li>
@@ -162,7 +163,7 @@
                     <a class="nav-link @if ($user_tabs=='forum') text-dark and Active @endif" href="{{ route('project_detail_view', [$project->id, 'forum']) }}" style="color: rgba(0, 0, 0, 0.466)">Forum</a>
                 </li>
                 @endcannot
-               
+
             </ul>
             <div class="mt-3">
                 @if ($user_tabs=='tasks')
@@ -177,14 +178,14 @@
                                 @if ($task->status == 'Ongoing')
                                     <span>{{$task->status}}</span>
                                     <img class="ml-1" src="{{asset("img/icons/ongoing.png")}}" height="20px" width="20px" alt="">
-                                
+
                                 @elseif ($task->status == 'Completed')
                                     <span>{{$task->status}}</span>
                                     <img class="ml-1" src="{{asset("img/icons/completed.png")}}" height="20px" width="20px" alt="">
                                 @endif
                             </div>
                         </div>
-                        
+
                         {{-- <td><a href="/projects/detail/{{$project->id}}/{{$task->id}}">Detail</a></td> --}}
                     </div>
                     <div class="content border">
@@ -192,7 +193,7 @@
                             <div>
                                 <p style="font-size: 20px">{{$task->description}}</p>
                                 <div class="d-flex flex-column" style="font-size: 15px">
-    
+
                                     <span>Handled by : User</span>
                                 </div>
                             </div>
@@ -208,34 +209,70 @@
                             </div>
                         </div>
                     </div>
-                    
+
 
                     @endforeach
                     @else
                         <h4 class="m-4">There are no tasks available</h4>
                     @endif
-        
+
                 @elseif ($user_tabs=='files')
                     <h3>Files</h3>
+                    <button id="fileUploadButton" type="button" class="btn btn-primary btn-sm">Upload</button>
+
+                    <form id="addFile" class="row g-2 m-2" style="display: none;" action="{{ route('add_file', [$project->id]) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="m-2 col-auto">
+                            <input class="form-control form-control-sm" name="fileInput" type="file">
+                        </div>
+                        <div class="m-2 col-auto">
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
+                    </form>
+
                     @if(!$files->isEmpty())
-                        <table class="table mt-4">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Type</th>
-                                    <th scope="col">Size</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($files as $file)
-                                <tr>
-                                    <td>{{ $file['filename'] }}</td>
-                                    <td>{{ $file['extension'] }}</td>
-                                    <td>{{ $file['size'] }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                    <table class="table mt-4">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($files as $file)
+                            <tr>
+                                <td>{{ $file['filename'] }}</td>
+                                <td>{{ $file['extension'] }}</td>
+                                <td>{{ $file['size'] }}</td>
+                                <td>
+                                    <div class='row'>
+                                        <div class="col-sm-auto">
+                                            <form method="GET" action="{{ route('download_file') }}">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <input type='hidden' name="filePath" value="{{ $file['path'] }}">
+                                                    <input type="submit" class="btn btn-sm btn-primary" value="Download">
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-auto">
+                                            <form method="POST" action="{{ route('delete_file', [$project->id]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <div class="form-group">
+                                                    <input type='hidden' name="filePath" value="{{ $file['path'] }}">
+                                                    <input type="submit" class="btn btn-sm btn-danger delete-file" value="Delete">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                     @else
                         <h4>There are no files available</h4>
                     @endif
@@ -243,13 +280,13 @@
                 @elseif ($user_tabs=='forum')
                     <h3>Files</h3>
                     @if(!$files->isEmpty())
-                        
+
                     @else
                         <h4>There are no files available</h4>
                     @endif
 
                 @endif
-                
+
             </div>
         </div>
     </div>
@@ -266,13 +303,13 @@
                                 <div><img class="rounded-circle border border-3 d-inline" src="{{asset("uploads/users_photo/".$users[$project_member->user_id-1]->photo)}}" height="30px" width="30px" alt=""></div>
                                 <div class="ml-2">{{$users[$project_member->user_id-1]->name}}</div>
                             </div>
-                            
+
                         @endforeach
                     </div>
-                      
+
                 </div>
             </div>
-        
+
     </div>
 </div>
 
@@ -283,13 +320,23 @@
 
 
 
+    </div>
 
+</div>
 
 <script>
+    $('.delete-file').on('click', function (e) {
+        e.preventDefault() // Don't post the form, unless confirmed
+        console.log('test');
+        if (confirm('Are you sure?')) {
+            // Post the form
+            $(e.target).closest('form').submit(); // Post the surrounding form
+        }
+    });
 
 var coll = document.getElementsByClassName("task-record");
     var i;
-    
+
     for (i = 0; i < coll.length; i++) {
       coll[i].addEventListener("click", function() {
         this.classList.toggle("active");
@@ -308,10 +355,6 @@ var coll = document.getElementsByClassName("task-record");
     myModal.addEventListener('shown.bs.modal', function () {
         myInput.focus()
     })
-
-
-    
-
 </script>
 @endsection
 

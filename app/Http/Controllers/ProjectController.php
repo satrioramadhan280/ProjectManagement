@@ -57,16 +57,16 @@ class ProjectController extends Controller
         // return redirect()->action([ProjectController::class, 'show']);
     }
 
-    public function formatBytes($bytes, $precision = 2) { 
-        $units = array('B', 'KB', 'MB', 'GB', 'TB'); 
-    
-        $bytes = max($bytes, 0); 
-        $pow = floor(($bytes ? log($bytes) : 0) / log(1024)); 
-        $pow = min($pow, count($units) - 1); 
+    public function formatBytes($bytes, $precision = 2) {
+        $units = array('B', 'KB', 'MB', 'GB', 'TB');
+
+        $bytes = max($bytes, 0);
+        $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+        $pow = min($pow, count($units) - 1);
         $bytes /= pow(1024, $pow);
 
-        return round($bytes, $precision) . ' ' . $units[$pow]; 
-    } 
+        return round($bytes, $precision) . ' ' . $units[$pow];
+    }
 
     public function detailView(Project $project, $user_tabs) {
         $tasks = $project->tasks;
@@ -99,7 +99,7 @@ class ProjectController extends Controller
         unset($file);
         $files = collect($files);
         $project_members = ProjectUser::where('project_id', $project->id)->get();
-        
+
 
         return view('project.detail', compact('project', 'files', 'tasks', 'users', 'head', 'user_tabs', 'task_members', 'users_department', 'project_members'));
     }
@@ -107,7 +107,7 @@ class ProjectController extends Controller
     public function taskView(Project $project, Task $task) {
 
         $task = Task::where('id', $task->id)->first();
-        
+
 
         return view('project.task.detail', compact('task'));
     }
@@ -131,11 +131,11 @@ class ProjectController extends Controller
         $task->save();
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
     }
-    
+
 
     public function addTaskView(Project $project)
     {
-        return view('project.task.add', compact('project'));   
+        return view('project.task.add', compact('project'));
     }
 
     public function addTask(Request $request, Project $project)
@@ -154,11 +154,11 @@ class ProjectController extends Controller
     }
 
     public function addMember(Request $request, Project $project){
-        
+
         // dd($request->users);
 
         $users = $request->input('users');
-        
+
         $project_users = ProjectUser::where('project_id', $project->id)->get();
 
         // dd($project_users);
@@ -170,7 +170,7 @@ class ProjectController extends Controller
 
 
         if($users==null){
-            
+
         }
         else{
             foreach($users as $user){
@@ -179,13 +179,13 @@ class ProjectController extends Controller
                 $project_users->user_id = $user;
                 $project_users->save();
             }
-            
+
         }
 
         return redirect('projects/detail/'.$project->id. '/tasks')->with('addMember', 'Assign Member Successfuly');
-        
+
     }
-    
+
     public function searchProject(Request $request){
         $search = $request->search;
         if(auth()->user()->roleID == 3 || auth()->user()->roleID == 7){
