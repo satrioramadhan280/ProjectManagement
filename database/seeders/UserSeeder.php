@@ -164,7 +164,7 @@ class UserSeeder extends Seeder
             'dateOfBirth' => '1990-01-01'
         ]);
         User::create([
-            'name' => 'Anton',
+            'name' => 'Anton Joni Malaka Bu',
             'username' => 'anton',
             'email' => 'anton@banksinarmas.com',
             'password' => bcrypt('simas123'),

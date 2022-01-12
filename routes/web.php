@@ -50,6 +50,8 @@ Route::prefix('projects')->group(function () {
     Route::post('/addProject', [ProjectController::class, 'addProject'])->name('add_project');
     Route::get('/detail/{project}/{user_tabs}', [ProjectController::class, 'detailView'])->name('project_detail_view');
     Route::get('/detail/{project}/{task}', [ProjectController::class, 'taskView'])->name('project_task_view');
+    Route::post('/detail/{project}/{task}/remove', [ProjectController::class, 'taskRemove']);
+    Route::post('/detail/{project}/{task}/change_task_status', [ProjectController::class, 'taskChangeStatus']);
 });
 Route::post('/projects/addMember/{project}', [ProjectController::class, 'addMember'])->name('addMember');
 

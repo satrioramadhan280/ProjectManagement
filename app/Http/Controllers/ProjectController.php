@@ -12,6 +12,8 @@ use Auth;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Filesystem;
 
+use function PHPUnit\Framework\isEmpty;
+
 class ProjectController extends Controller
 {
     //
@@ -110,6 +112,26 @@ class ProjectController extends Controller
         return view('project.task.detail', compact('task'));
     }
 
+    public function taskRemove(Project $project, Task $task)
+    {
+        $task = Task::where('id', $task->id)->first();
+        $task->delete();
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
+    }
+
+    public function taskChangeStatus(Project $project, Task $task)
+    {
+        $task = Task::where('id', $task->id)->first();
+        if($task->status == 'Ongoing'){
+            $task->status = 'Completed';
+        }
+        else{
+            $task->status = 'Ongoing';
+        }
+        $task->save();
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
+    }
+    
 
     public function addTaskView(Project $project)
     {
@@ -125,6 +147,7 @@ class ProjectController extends Controller
         $task->name = $request->input('taskName');
         $task->project()->associate($project);
         $task->description = $request->input('description');
+        $task->status = 'Ongoing';
         $task->save();
 
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id]);
@@ -132,9 +155,35 @@ class ProjectController extends Controller
 
     public function addMember(Request $request, Project $project){
         
+        // dd($request->users);
+
         $users = $request->input('users');
-        $project->users()->attach($users);
-        return redirect('projects/detail/'.$project->id);
+        
+        $project_users = ProjectUser::where('project_id', $project->id)->get();
+
+        // dd($project_users);
+        $flag = 0;
+        foreach($project_users as $project_user){
+            $project_user->delete();
+        }
+
+
+
+        if($users==null){
+            
+        }
+        else{
+            foreach($users as $user){
+                $project_users = new ProjectUser();
+                $project_users->project_id = $project->id;
+                $project_users->user_id = $user;
+                $project_users->save();
+            }
+            
+        }
+
+        return redirect('projects/detail/'.$project->id. '/tasks')->with('addMember', 'Assign Member Successfuly');
+        
     }
     
     public function searchProject(Request $request){
