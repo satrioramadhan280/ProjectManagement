@@ -33,37 +33,37 @@ class HomeController extends Controller
         $TotalDept3 = User::where('RoleID', 9)->orWhere('RoleID', 5)->count();
         $TotalDept4 = User::where('RoleID', 10)->orWhere('RoleID', 6)->count();
 
-        $projectsDept1 = Project::where('status', 'Ongoing')->where('deptID', '3')->get();
-        $projectsDept2 = Project::where('status', 'Ongoing')->where('deptID', '4')->get();
-        $projectsDept3 = Project::where('status', 'Ongoing')->where('deptID', '5')->get();
-        $projectsDept4 = Project::where('status', 'Ongoing')->where('deptID', '6')->get();
+        $projectsDept1 = Project::where('status_id', '1')->where('deptID', '3')->get();
+        $projectsDept2 = Project::where('status_id', '1')->where('deptID', '4')->get();
+        $projectsDept3 = Project::where('status_id', '1')->where('deptID', '5')->get();
+        $projectsDept4 = Project::where('status_id', '1')->where('deptID', '6')->get();
 
-        // $onProjectsDept1 = Project::where('status', 'Ongoing')->where('deptID', '3')->get();
-        $onProjectsDept2 = Project::where('status', 'Ongoing')->where('deptID', '4')->get();
-        $onProjectsDept3 = Project::where('status', 'Ongoing')->where('deptID', '5')->get();
-        $onProjectsDept4 = Project::where('status', 'Ongoing')->where('deptID', '6')->get();
-        
+        // $onProjectsDept1 = Project::where('status_id', '1')->where('deptID', '3')->get();
+        $onProjectsDept2 = Project::where('status_id', '1')->where('deptID', '4')->get();
+        $onProjectsDept3 = Project::where('status_id', '1')->where('deptID', '5')->get();
+        $onProjectsDept4 = Project::where('status_id', '1')->where('deptID', '6')->get();
+
         $onProjectsDept1 = Project::join('project_user', 'projects.id', '=', 'project_user.project_id')
-                                        ->where('projects.status', 'Ongoing')
+                                        ->where('projects.status_id', '1')
                                         ->where('projects.deptID', '3')
                                         ->where('project_user.user_id', auth()->user()->id)->get();
         $onProjectsDept2 = Project::join('project_user', 'projects.id', '=', 'project_user.project_id')
-                                        ->where('projects.status', 'Ongoing')
+                                        ->where('projects.status_id', '1')
                                         ->where('projects.deptID', '4')
                                         ->where('project_user.user_id', auth()->user()->id)->get();
         $onProjectsDept3 = Project::join('project_user', 'projects.id', '=', 'project_user.project_id')
-                                        ->where('projects.status', 'Ongoing')
+                                        ->where('projects.status_id', '1')
                                         ->where('projects.deptID', '5')
                                         ->where('project_user.user_id', auth()->user()->id)->get();
         $onProjectsDept4 = Project::join('project_user', 'projects.id', '=', 'project_user.project_id')
-                                        ->where('projects.status', 'Ongoing')
+                                        ->where('projects.status_id', '1')
                                         ->where('projects.deptID', '6')
                                         ->where('project_user.user_id', auth()->user()->id)->get();
 
         // Chart
         // Day   branch, cr, micro, internal
         // [1,  37.8, 80.8, 41.8, 99],
-       
+
         $day7 = [];$day6 = [];$day5 = [];$day4 = [];
         $day3 = [];$day2 = [];$day1 = [];
 
@@ -160,7 +160,7 @@ class HomeController extends Controller
         }
         $current_date = (integer)Carbon::now()->subDay($index_day)->format('d');
         $day4 = [$current_date, $dept1, $dept2, $dept3, $dept4];
-        
+
         // ====================================
         $index_day = $index_day - 1;
         $current_date = Carbon::today()->subDay($index_day)->format('Y-m-d');
@@ -230,16 +230,16 @@ class HomeController extends Controller
         $current_date = (integer)Carbon::now()->subDay($index_day)->format('d');
         $day1 = [$current_date, $dept1, $dept2, $dept3, $dept4];
         // dd(json_encode($day7));
-   
+
         $monthName = Carbon::now()->format('F');
-        
-        
+
+
         // var_dump($monthName);
-        
-        
+
+
         return view('home', compact('TotalUsers', 'TotalDept1', 'TotalDept2', 'TotalDept3', 'TotalDept4'
                     , 'day7', 'day6', 'day5', 'day4', 'day3', 'day2', 'day1', 'monthName', 'projectsDept1',
                     'projectsDept2', 'projectsDept3', 'projectsDept4', 'onProjectsDept1', 'onProjectsDept2', 'onProjectsDept3', 'onProjectsDept4'));
-        
+
     }
 }
