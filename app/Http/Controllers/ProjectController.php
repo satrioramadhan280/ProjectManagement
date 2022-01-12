@@ -17,7 +17,7 @@ use function PHPUnit\Framework\isEmpty;
 class ProjectController extends Controller
 {
     //
-    public function show(Request $request)
+    public function index(Request $request)
     {
         $projectsDept1 = Project::where('deptID', '3')->get();
         $projectsDept2 = Project::where('deptID', '4')->get();
