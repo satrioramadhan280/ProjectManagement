@@ -61,6 +61,7 @@ Route::prefix('projects')->group(function () {
     Route::get('/file/download', [FileController::class, 'downloadFile'])->name('download_file');
 
     Route::get('/searchProject', [ProjectController::class, 'searchProject'])->name('searchProject');
+    Route::get('/status/{status}', [ProjectController::class, 'projectStatus'])->name('projectStatus');
 });
 Route::post('/projects/addMember/{project}', [ProjectController::class, 'addMember'])->name('addMember');
 
@@ -75,6 +76,8 @@ Route::prefix('task')->group(function () {
 // });
 
 Route::post('/update/profile_picture/{id}', [AdminController::class, 'update_pp']);
+
+Route::get('/department/{role}', [HDeptController::class, 'deptUser']);
 
 Route::get('/department', [DepartmentController::class, 'index']);
 

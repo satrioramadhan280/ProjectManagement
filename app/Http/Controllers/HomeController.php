@@ -33,32 +33,29 @@ class HomeController extends Controller
         $TotalDept3 = User::where('RoleID', 9)->orWhere('RoleID', 5)->count();
         $TotalDept4 = User::where('RoleID', 10)->orWhere('RoleID', 6)->count();
 
-        $projectsDept1 = Project::where('status_id', '1')->where('deptID', '3')->get();
-        $projectsDept2 = Project::where('status_id', '1')->where('deptID', '4')->get();
-        $projectsDept3 = Project::where('status_id', '1')->where('deptID', '5')->get();
-        $projectsDept4 = Project::where('status_id', '1')->where('deptID', '6')->get();
 
-        // $onProjectsDept1 = Project::where('status_id', '1')->where('deptID', '3')->get();
-        $onProjectsDept2 = Project::where('status_id', '1')->where('deptID', '4')->get();
-        $onProjectsDept3 = Project::where('status_id', '1')->where('deptID', '5')->get();
-        $onProjectsDept4 = Project::where('status_id', '1')->where('deptID', '6')->get();
+        $projectsDiv = Project::where('status_id', 1)->paginate(10);
+        $projectsDept1 = Project::where('status_id', '1')->where('deptID', '3')->paginate(10);
+        $projectsDept2 = Project::where('status_id', '1')->where('deptID', '4')->paginate(10);
+        $projectsDept3 = Project::where('status_id', '1')->where('deptID', '5')->paginate(10);
+        $projectsDept4 = Project::where('status_id', '1')->where('deptID', '6')->paginate(10);
 
         $onProjectsDept1 = Project::join('project_user', 'projects.id', '=', 'project_user.project_id')
                                         ->where('projects.status_id', '1')
                                         ->where('projects.deptID', '3')
-                                        ->where('project_user.user_id', auth()->user()->id)->get();
+                                        ->where('project_user.user_id', auth()->user()->id)->paginate(10);
         $onProjectsDept2 = Project::join('project_user', 'projects.id', '=', 'project_user.project_id')
                                         ->where('projects.status_id', '1')
                                         ->where('projects.deptID', '4')
-                                        ->where('project_user.user_id', auth()->user()->id)->get();
+                                        ->where('project_user.user_id', auth()->user()->id)->paginate(10);
         $onProjectsDept3 = Project::join('project_user', 'projects.id', '=', 'project_user.project_id')
                                         ->where('projects.status_id', '1')
                                         ->where('projects.deptID', '5')
-                                        ->where('project_user.user_id', auth()->user()->id)->get();
+                                        ->where('project_user.user_id', auth()->user()->id)->paginate(10);
         $onProjectsDept4 = Project::join('project_user', 'projects.id', '=', 'project_user.project_id')
                                         ->where('projects.status_id', '1')
                                         ->where('projects.deptID', '6')
-                                        ->where('project_user.user_id', auth()->user()->id)->get();
+                                        ->where('project_user.user_id', auth()->user()->id)->paginate(10);
 
         // Chart
         // Day   branch, cr, micro, internal
@@ -238,8 +235,8 @@ class HomeController extends Controller
 
 
         return view('home', compact('TotalUsers', 'TotalDept1', 'TotalDept2', 'TotalDept3', 'TotalDept4'
-                    , 'day7', 'day6', 'day5', 'day4', 'day3', 'day2', 'day1', 'monthName', 'projectsDept1',
-                    'projectsDept2', 'projectsDept3', 'projectsDept4', 'onProjectsDept1', 'onProjectsDept2', 'onProjectsDept3', 'onProjectsDept4'));
+                    , 'day7', 'day6', 'day5', 'day4', 'day3', 'day2', 'day1', 'monthName', 'projectsDiv',
+                    'projectsDept1','projectsDept2', 'projectsDept3', 'projectsDept4', 'onProjectsDept1', 'onProjectsDept2', 'onProjectsDept3', 'onProjectsDept4'));
 
     }
 }

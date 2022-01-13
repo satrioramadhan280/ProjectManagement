@@ -21,13 +21,16 @@ use function PHPUnit\Framework\isEmpty;
 class ProjectController extends Controller
 {
     //
-    public function index(Request $request)
+    public function index()
     {
-        $projectsDept1 = Project::where('deptID', '3')->get();
-        $projectsDept2 = Project::where('deptID', '4')->get();
-        $projectsDept3 = Project::where('deptID', '5')->get();
-        $projectsDept4 = Project::where('deptID', '6')->get();
-        return view('project.projects', compact('projectsDept1', 'projectsDept2', 'projectsDept3', 'projectsDept4'));
+        $projectsDiv = Project::paginate(10);
+        $projectsDept1 = Project::where('deptID', '3')->paginate(10);
+        $projectsDept2 = Project::where('deptID', '4')->paginate(10);
+        $projectsDept3 = Project::where('deptID', '5')->paginate(10);
+        $projectsDept4 = Project::where('deptID', '6')->paginate(10);
+        $statuses = Status::all();
+        
+        return view('project.projects', compact('projectsDiv', 'projectsDept1', 'projectsDept2', 'projectsDept3', 'projectsDept4', 'statuses'));
     }
 
     public function add()
@@ -250,7 +253,11 @@ class ProjectController extends Controller
         if(auth()->user()->roleID == 6 || auth()->user()->roleID == 10){
             $deptID = 6;
         }
-
+        if(auth()->user()->roleID == 2){
+            $searches = Project::where('title', 'like', '%'.$search.'%')->paginate(5);
+            $id = ($searches->currentpage() - 1) * $searches->perpage() + 1;
+            return view('project.searchProject', compact('searches', 'search', 'id'));
+        }
         $searches = Project::where('title', 'like', '%'.$search.'%')->where('deptID', $deptID)->paginate(5);
         $id = ($searches->currentpage() - 1) * $searches->perpage() + 1;
         return view('project.searchProject', compact('searches', 'search', 'id'));
@@ -262,5 +269,16 @@ class ProjectController extends Controller
         $project->save();
 
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
+    }
+
+    public function projectStatus(Status $status){
+        $projectsDiv = Project::where('status_id', $status->id)->paginate(10);
+        $projectsDept1 = Project::where('deptID', '3')->where('status_id', $status->id)->paginate(10);
+        $projectsDept2 = Project::where('deptID', '4')->where('status_id', $status->id)->paginate(10);
+        $projectsDept3 = Project::where('deptID', '5')->where('status_id', $status->id)->paginate(10);
+        $projectsDept4 = Project::where('deptID', '6')->where('status_id', $status->id)->paginate(10);
+        $statuses = Status::all();
+        
+        return view('project.statusProject', compact('projectsDiv', 'projectsDept1', 'projectsDept2', 'projectsDept3', 'projectsDept4', 'statuses', 'status'));
     }
 }

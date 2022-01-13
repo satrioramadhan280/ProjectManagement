@@ -93,6 +93,7 @@
     @endcan
     @cannot('Admin')
         <div class="d-block mt-3">
+            @can('HDiv')<h4>On Going Projects at IT Internal Business Process Application</h4>@endcan
             @can('HDept1')<h4>On Going Projects at IT Customer Relationship Management</h4>@endcan
             @can('HDept2')<h4>On Going Projects at IT Branch Delivery System</h4>@endcan
             @can('HDept3')<h4>On Going Projects at IT Micro and Retail Core Loan System</h4>@endcan
@@ -112,6 +113,21 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @can('HDiv')
+                        @if ($projectsDiv->isEmpty())
+                            <td>There are no on going projects</td>
+                        @else
+                        @foreach ($projectsDiv as $project)
+                            <tr>
+                                <td class="col-6">{{ $project->title }}</td>
+                                <td class="col-2">{{ $project->status->name }}</td>
+                                <td class="col-3">{{ $project->endDate }}</td>
+                                <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
+                                </td>
+                            </tr>
+                        @endforeach
+                        @endif
+                    @endcan
                     @can('HDept1')
                         @if ($projectsDept1->isEmpty())
                             <td>There are no on going projects</td>
@@ -234,6 +250,15 @@
                     @endcan
                 </tbody>
             </table>
+            @can('HDiv') {!! $projectsDiv->appends(\Request::except('page'))->render() !!} @endcan
+            @can('HDept1') {!! $projectsDept1->appends(\Request::except('page'))->render() !!} @endcan
+            @can('HDept2') {!! $projectsDept2->appends(\Request::except('page'))->render() !!} @endcan
+            @can('HDept3') {!! $projectsDept3->appends(\Request::except('page'))->render() !!} @endcan
+            @can('HDept4') {!! $projectsDept4->appends(\Request::except('page'))->render() !!} @endcan
+            @can('MDept1') {!! $onProjectsDept1->appends(\Request::except('page'))->render() !!} @endcan
+            @can('MDept2') {!! $onProjectsDept2->appends(\Request::except('page'))->render() !!} @endcan
+            @can('MDept3') {!! $onProjectsDept3->appends(\Request::except('page'))->render() !!} @endcan
+            @can('MDept4') {!! $onProjectsDept4->appends(\Request::except('page'))->render() !!} @endcan
         </div>
     @endcannot
 @endsection

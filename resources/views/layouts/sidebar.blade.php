@@ -31,9 +31,6 @@
                     Projects
                 </a>
             </li>
-            <li class="nav-item">
-                
-            </li>
             @endcanany
             @canany(['HDiv','HDept1', 'HDept2', 'HDept3', 'HDept4'])
             <li class="nav-item">
@@ -45,7 +42,7 @@
             @endcanany
             @can('Admin')
             <li class="nav-item">
-                <a class="nav-link {{request()->is('admin/index') ? 'active' : ''}}" href="/admin/index">
+                <a class="nav-link {{request()->is('admin/index') ? 'active' : ''}} " href="/admin/index">
                     <span data-feather="users"></span> 
                     List Users
                 </a>

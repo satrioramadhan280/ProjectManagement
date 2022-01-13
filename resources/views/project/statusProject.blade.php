@@ -19,7 +19,7 @@
     
     <div class="d-inline">
         <div class="dropdown show d-inline">
-            <label for="">Status: All</label>
+            <label for="">Status: {{$status->name}}</label>
             <a class="btn btn-primary dropdown-toggle" href="{{route('projects')}}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Filter Status
             </a>
@@ -29,10 +29,10 @@
                     <a class="dropdown-item" href="{{route('projectStatus', $s->id)}}">{{$s->name}}</a>
                 @endforeach
             </div>
+            @canany(['HDept1', 'HDept2', 'HDept3', 'HDept4'])
+                <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary"><spandata-feather="file"></span> Add Project</a>
+            @endcanany
         </div>
-        @canany(['HDept1', 'HDept2', 'HDept3', 'HDept4'])
-            <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary"><span data-feather="file"></span> Add Project</a>
-        @endcanany  
         <form class="d-flex mt-3" method="GET" action="{{ route('searchProject') }}">
             <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search" name="search"
             value="{{ old('search') }}">
@@ -53,7 +53,7 @@
             <tbody>
                 @can('HDiv')
                     @if ($projectsDiv->isEmpty())
-                        <h4>There are no projects available</h4>
+                        <td>There are no projects available</h4>
                     @else
                         @foreach ($projectsDiv as $project)
                             <tr>
@@ -69,7 +69,7 @@
                 @endcan
                 @canany(['HDept1', 'MDept1'])
                     @if ($projectsDept1->isEmpty())
-                        <h4>There are no projects available</h4>
+                        <td>There are no projects available</h4>
                     @else
                     @foreach ($projectsDept1 as $project)
                         <tr>
@@ -84,7 +84,7 @@
                 @endcanany
                 @canany(['HDept2', 'MDept2'])
                     @if ($projectsDept2->isEmpty())
-                        <h4>There are no projects available</h4>
+                        <td>There are no projects available</h4>
                     @else
                     @foreach ($projectsDept2 as $project)
                         <tr>
@@ -99,7 +99,7 @@
                 @endcanany
                 @canany(['HDept3', 'MDept3'])
                     @if ($projectsDept3->isEmpty())
-                        <h4>There are no projects available</h4>
+                        <td>There are no projects available</h4>
                     @else
                     @foreach ($projectsDept3 as $project)
                         <tr>
@@ -114,7 +114,7 @@
                 @endcanany
                 @canany(['HDept4', 'MDept4'])
                     @if ($projectsDept4->isEmpty())
-                        <h4>There are no projects available</h4>
+                        <td>There are no projects available</td>
                     @else
                     @foreach ($projectsDept4 as $project)
                         <tr>

@@ -9,14 +9,11 @@
         font-size: 15px;
     }
 
-    .active, .task-record:hover{
+    .task-record:hover{
         background-color: rgba(95, 95, 95, 0.301);
     }
 
-
-
     .content {
-
         padding: 0 18px;
         display: none;
         overflow: hidden;

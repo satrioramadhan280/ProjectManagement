@@ -212,7 +212,7 @@ class AdminController extends Controller
 
     public function searchUser(Request $request){
         $search = $request->search;
-        $searches = User::where('name', 'like', '%'.$search.'%')->paginate(5);
+        $searches = User::where('name', 'like', '%'.$search.'%')->paginate(10);
         $id = ($searches->currentpage() - 1) * $searches->perpage() + 1;
         return view('user.searchUser', compact('searches', 'search', 'id'));
     }

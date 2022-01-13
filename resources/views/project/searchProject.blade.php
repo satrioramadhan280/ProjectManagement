@@ -5,10 +5,11 @@
 @endsection
 
 @section('content')
-    @can('HDept1')<h4>IT Customer Relationship Management Project's List</h4>@endcan
-    @can('HDept2')<h4>IT Branch Delivery System Project's List</h4>@endcan
-    @can('HDept3')<h4>IT Micro and Retail Core Loan System Project's List</h4>@endcan
-    @can('HDept4')<h4>IT Internal Application Project's List</h4>@endcan
+    @can('HDiv')<h4>IT Internal Business Process Application Project's List</h4>@endcan
+    @canany(['HDept1', 'MDept1'])<h4>IT Customer Relationship Management Project's List</h4>@endcan
+    @canany(['HDept2', 'MDept2'])<h4>IT Branch Delivery System Project's List</h4>@endcan
+    @canany(['HDept3', 'MDept3'])<h4>IT Micro and Retail Core Loan System Project's List</h4>@endcan
+    @canany(['HDept4', 'MDept4'])<h4>IT Internal Application Project's List</h4>@endcan
     <div class="d-inline">
         @canany(['HDept1', 'HDept2', 'HDept3', 'HDept4'])
             <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary mt-1"><span data-feather="file"></span> Add Project</a>
@@ -46,7 +47,7 @@
                     <tr>
                         <td>{{ $id++ }}</td>
                         <td>{{ $search->title }}</td>
-                        <td>{{ $search->status }}</td>
+                        <td>{{ $search->statuses->name }}</td>
                         <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$search->id, 'tasks']) }}">Detail</a>
                         </td>
                     </tr>

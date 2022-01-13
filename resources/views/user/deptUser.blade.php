@@ -16,7 +16,18 @@
     @can('HDept3')<h4 class="mb-3">IT Micro and Retail Core Loan System Users List</h4>@endcan
     @can('HDept4')<h4 class="mb-3">IT Internal Application Users List</h4>@endcan
 
-    <label for="">Department: All</label>
+    @if ($role->id == 3)
+        <label for="">Department: IT Customer Relationship Management</label>
+    @endif
+    @if ($role->id == 4)
+        <label for="">Department: IT Branch Delivery System</label>
+    @endif
+    @if ($role->id == 5)
+        <label for="">Department: IT Micro and Retail Core Loan System</label>
+    @endif
+    @if ($role->id == 6)
+        <label for="">Department: IT Internal Application</label>
+    @endif
     <a class="btn btn-primary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         Filter Department
@@ -49,7 +60,7 @@
             <tr>
                 <th class="text-white" scope="col">No</th>
                 <th class="text-white" scope="col">Name</th>
-                <th class="text-white" scope="col"> Department</th>
+                <th class="text-white" scope="col">Department</th>
                 <th class="text-white" scope="col">Detail</th>
             </tr>
         </thead>
@@ -73,52 +84,9 @@
                         @endif
                     </tr>
                 @endforeach
-            </tbody>
-        @endcan
-        @can('HDept1')
-            @foreach ($dept1 as $user)
-                <tr>
-                    <td class="col-1">{{ $id++ }}</td>
-                    <td class="col-5">{{ $user->name }}</td>
-
-                </tr>
-            @endforeach
-            </tbody>
-        @endcan
-        @can('HDept2')
-            @foreach ($dept2 as $user)
-                <tr>
-                    <td class="col-1">{{ $id }}</td>
-                    <td class="col-5">{{ $user->name }}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        @endcan
-        @can('HDept3')
-            @foreach ($dept3 as $user)
-                <tr>
-                    <td class="col-1">{{ $id }}</td>
-                    <td class="col-5">{{ $user->name }}</td>
-                </tr>
-            @endforeach
-        @endcan
+            @endcanany
         </tbody>
-        @can('HDept4')
-            @foreach ($dept4 as $user)
-                <tr>
-                    <td class="col-1">{{ $id }}</td>
-                    <td class="col-5">{{ $user->name }}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        @endcan
     </table>
 
     @canany(['Admin', 'HDiv']){!! $users->appends(\Request::except('page'))->render() !!}@endcanany
-        @can('HDept1'){!! $dept1->appends(\Request::except('page'))->render() !!}@endcan
-            @can('HDept2'){!! $dept2->appends(\Request::except('page'))->render() !!}@endcan
-                @can('HDept3'){!! $dept3->appends(\Request::except('page'))->render() !!}@endcan
-                    @can('HDept4'){!! $dept4->appends(\Request::except('page'))->render() !!}@endcan
-
-
-                    @endsection
+    @endsection
