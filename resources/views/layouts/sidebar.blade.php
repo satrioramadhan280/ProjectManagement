@@ -32,12 +32,14 @@
                 </a>
             </li>
             @endcanany
+            @canany(['Admin', 'HDiv','HDept1', 'HDept2', 'HDept3', 'HDept4'])
             <li class="nav-item">
                 <a class="nav-link {{request()->is('user/index') ? 'active' : ''}}" href="/user/index">
                     <span data-feather="users"></span> 
                     List Users
                 </a>
             </li>
+            @endcanany
             <li class="nav-item">
                 <a class="nav-link px-3" href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();"> 

@@ -47,7 +47,7 @@
                     <th scope="col">Title</th>
                     <th scope="col">Department</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Deadline</th>
+                    <th scope="col">End Date</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>

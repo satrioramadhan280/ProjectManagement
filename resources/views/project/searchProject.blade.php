@@ -12,10 +12,12 @@
     @canany(['HDept4', 'MDept4'])<h4>IT Internal Application Project's List</h4>@endcan
     <div class="d-inline">
         @canany(['HDept1', 'HDept2', 'HDept3', 'HDept4'])
-            <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary mt-1"><span data-feather="file"></span> Add Project</a>
+            <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary mt-1"><span
+                    data-feather="file"></span> Add Project</a>
         @endcanany
-        <form class="d-flex mt-2" method="GET" action="{{route('searchProject')}}">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" value="{{$search}}">
+        <form class="d-flex mt-2" method="GET" action="{{ route('searchProject') }}">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"
+                value="{{ $search }}">
             <button class="btn btn-primary" type="submit">Search</button>
         </form>
     </div>
@@ -29,34 +31,57 @@
             {{ session('delete') }}
         </div>
     @endif
-    @if ($searches->isEmpty())
-        <h4>{{ $search }} not found</h4>
-    @else
-        <h4 class="mb-2 mt-2">Search for '{{ $search }}'</h4>
-        <table class="table mt-2">
-            <thead>
-                <tr class="bg-danger text-white">
-                    <th scope="col">No</th>
-                    <th scope="col" class="dropdown-toggle">Title</th>
-                    <th scope="col" class="dropdown-toggle">Status</th>
-                    <th scope="col">Action</th>
+    <h4 class="mb-2 mt-2">Search for '{{ $search }}'</h4>
+    <table class="table mt-2">
+        <thead>
+            <tr class="bg-danger text-white">
+                <th scope="col">No</th>
+                <th scope="col">Title</th>
+                <th scope="col">Department</th>
+                <th scope="col">Status</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if ($searches->isEmpty())
+                <tr>
+                    <td>{{ $search }} not found</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
-            </thead>
-            <tbody>
+            @else
                 @foreach ($searches as $search)
                     <tr>
                         <td>{{ $id++ }}</td>
                         <td>{{ $search->title }}</td>
+                        @if ($search->deptID == 3)
+                            <td class="col-3">IT Customer Relationship Management</td>
+                        @endif
+                        @if ($search->deptID == 4)
+                            <td class="col-3">IT Branch Delivery System</td>
+                        @endif
+                        @if ($search->deptID == 5)
+                            <td class="col-3">IT Micro and Retail Core Loan System</td>
+                        @endif
+                        @if ($search->deptID == 6)
+                            <td class="col-3">IT Internal Application</td>
+                        @endif
                         <td>{{ $search->status->name }}</td>
-                        <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$search->id, 'tasks']) }}">Detail</a>
+                        <td>{{ $search->endDate }}</td>
+                        <td><a class="btn btn-primary"
+                                href="{{ route('project_detail_view', [$search->id, 'tasks']) }}">Detail</a>
                         </td>
                     </tr>
                 @endforeach
-            </tbody>
-        </table>
+            @endif
+        </tbody>
+    </table>
 
-        {!! $searches->appends(\Request::except('page'))->render() !!}
-    @endif
+    {!! $searches->appends(\Request::except('page'))->render() !!}
 
     <div class="modal fade" id="addProjectModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">

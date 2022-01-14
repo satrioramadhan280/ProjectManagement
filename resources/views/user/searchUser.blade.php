@@ -31,23 +31,32 @@
             {{ session('delete') }}
         </div>
     @endif
-    @if ($searches->isEmpty())
-        <h3>{{ $search }} not found</h3>
-    @else
-        <table class="table mt-2">
-            <thead>
-                <tr class="bg-danger text-white">
-                    <th class="text-white" scope="col">No</th>
-                    <th class="text-white" scope="col">Name</th>
-                    <th class="text-white" scope="col">Department</th>
-                    <th class="text-white" scope="col">Detail</th>
+
+    <table class="table mt-2">
+        <thead>
+            <tr class="bg-danger text-white">
+                <th class="text-white" scope="col">No</th>
+                <th class="text-white" scope="col">Name</th>
+                <th class="text-white" scope="col">Department</th>
+                <th class="text-white" scope="col">Detail</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if ($searches->isEmpty())
+                <tr>
+                    <td>{{ $search }} not found</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
-            </thead>
-            <tbody>
+            @else
                 @foreach ($searches as $search)
                     <tr>
                         <td class="col-1">{{ $id++ }}</td>
                         <td class="col-6">{{ $search->name }}</td>
+                        @if ($search->roleID == 2)
+                            <td class="col-3">IT Internal Business Process Application Head Division</td>
+                        @endif
                         @if ($search->roleID == 3 || $search->roleID == 7)
                             <td class="col-3">IT Customer Relationship Management</td>
                         @endif
@@ -63,9 +72,9 @@
                         <td><a class="btn btn-primary" href="/admin/{{ $search->username }}/edit">Edit Profile</a></td>
                     </tr>
                 @endforeach
-            </tbody>
-        </table>
+            @endif
+        </tbody>
+    </table>
 
-        {!! $searches->appends(\Request::except('page'))->render() !!}
-    @endif
+    {!! $searches->appends(\Request::except('page'))->render() !!}
 @endsection

@@ -50,47 +50,51 @@
                     <th scope="col">Title</th>
                     <th scope="col">Status</th>
                     <th scope="col">Department</th>
-                    <th scope="col">Deadline</th>
+                    <th scope="col">End Date</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @can('HDiv')
                     @if ($projectsDiv->isEmpty())
-                        <td>There are no projects available</h4>
-                        @else
-                            @foreach ($projectsDiv as $project)
-                                <tr>
-                                    <td class="col-1">{{$id++}}</td>
-                                    <td class="col-4">{{ $project->title }}</td>
-                                    @if ($project->deptID == 3)
-                                        <td class="col-3">IT Customer Relationship Management</td>
-                                    @endif
-                                    @if ($project->deptID == 4)
-                                        <td class="col-3">IT Branch Delivery System</td>
-                                    @endif
-                                    @if ($project->deptID == 5)
-                                        <td class="col-3">IT Micro and Retail Core Loan System</td>
-                                    @endif
-                                    @if ($project->deptID == 6)
-                                        <td class="col-3">IT Internal Application</td>
-                                    @endif
-                                    <td class="col-2">{{ $project->status->name }}</td>
-                                    <td class="col-3">{{ $project->endDate }}</td>
-                                    <td><a class="btn btn-primary"
-                                            href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
-                                    </td>
-                                </tr>
-                            @endforeach
+                        <tr>
+                            <td>There are no projects available</td>
+                            <td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                    @else
+                        @foreach ($projectsDiv as $project)
+                            <tr>
+                                <td class="col-1">{{ $id++ }}</td>
+                                <td class="col-4">{{ $project->title }}</td>
+                                @if ($project->deptID == 3)
+                                    <td class="col-3">IT Customer Relationship Management</td>
+                                @endif
+                                @if ($project->deptID == 4)
+                                    <td class="col-3">IT Branch Delivery System</td>
+                                @endif
+                                @if ($project->deptID == 5)
+                                    <td class="col-3">IT Micro and Retail Core Loan System</td>
+                                @endif
+                                @if ($project->deptID == 6)
+                                    <td class="col-3">IT Internal Application</td>
+                                @endif
+                                <td class="col-2">{{ $project->status->name }}</td>
+                                <td class="col-3">{{ $project->endDate }}</td>
+                                <td><a class="btn btn-primary"
+                                        href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
+                                </td>
+                            </tr>
+                        @endforeach
                     @endif
                 @endcan
                 @canany(['HDept1', 'MDept1'])
                     @if ($projectsDept1->isEmpty())
-                        <td>There are no projects available</h4>
+                        <td>There are no projects available</td>
+                        <td></td><td></td><td></td><td></td><td></td>
                         @else
                             @foreach ($projectsDept1 as $project)
                                 <tr>
-                                    <td class="col-1">{{$id1++}}</td>
+                                    <td class="col-1">{{ $id1++ }}</td>
                                     <td class="col-4">{{ $project->title }}</td>
                                     @if ($project->deptID == 3)
                                         <td class="col-3">IT Customer Relationship Management</td>
@@ -106,11 +110,12 @@
                 @endcanany
                 @canany(['HDept2', 'MDept2'])
                     @if ($projectsDept2->isEmpty())
-                        <td>There are no projects available</h4>
+                        <td>There are no projects available</td>
+                        <td></td><td></td><td></td><td></td><td></td>
                         @else
                             @foreach ($projectsDept2 as $project)
                                 <tr>
-                                    <td class="col-1">{{$id2++}}</td>
+                                    <td class="col-1">{{ $id2++ }}</td>
                                     <td class="col-4">{{ $project->title }}</td>
                                     @if ($project->deptID == 4)
                                         <td class="col-3">IT Branch Delivery System</td>
@@ -126,11 +131,12 @@
                 @endcanany
                 @canany(['HDept3', 'MDept3'])
                     @if ($projectsDept3->isEmpty())
-                        <td>There are no projects available</h4>
+                        <td>There are no projects available</td>
+                        <td></td><td></td><td></td><td></td><td></td>
                         @else
                             @foreach ($projectsDept3 as $project)
                                 <tr>
-                                    <td class="col-1">{{$id3++}}</td>
+                                    <td class="col-1">{{ $id3++ }}</td>
                                     <td class="col-4">{{ $project->title }}</td>
                                     @if ($project->deptID == 5)
                                         <td class="col-3">IT Micro and Retail Core Loan System</td>
@@ -148,10 +154,11 @@
                 @canany(['HDept4', 'MDept4'])
                     @if ($projectsDept4->isEmpty())
                         <td>There are no projects available</td>
+                        <td></td><td></td><td></td><td></td><td></td>
                     @else
                         @foreach ($projectsDept4 as $project)
                             <tr>
-                                <td class="col-1">{{$id4++}}</td>
+                                <td class="col-1">{{ $id4++ }}</td>
                                 <td class="col-4">{{ $project->title }}</td>
                                 @if ($project->deptID == 6)
                                     <td class="col-3">IT Internal Application</td>
