@@ -32,6 +32,7 @@
         aria-haspopup="true" aria-expanded="false">
         Filter Department
     </a>
+    <a href="{{ url('/admin/create') }}" class="btn btn-primary"><span data-feather="user-plus"></span> Add New User</a>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         <a class="dropdown-item" href="/user/index">All</a>
         @foreach ($roles as $role)

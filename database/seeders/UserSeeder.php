@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
             'name' => 'Head Division',
             'username' => 'head.division',
             'email' => 'headdivision@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 2,
             'dateOfBirth' => '1990-01-01'
@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
             'name' => 'Head Department1',
             'username' => 'head.department1',
             'email' => 'headdepartment1@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 3,
             'dateOfBirth' => '1990-01-01'
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
             'name' => 'Head Department2',
             'username' => 'head.department2',
             'email' => 'headdepartment2@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 4,
             'dateOfBirth' => '1990-01-01'
@@ -55,7 +55,7 @@ class UserSeeder extends Seeder
             'name' => 'Head Department3',
             'username' => 'head.department3',
             'email' => 'headdepartment3@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 5,
             'dateOfBirth' => '1990-01-01'
@@ -64,7 +64,7 @@ class UserSeeder extends Seeder
             'name' => 'Head Department4',
             'username' => 'head.department4',
             'email' => 'headdepartment4@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 6,
             'dateOfBirth' => '1990-01-01'
@@ -73,7 +73,7 @@ class UserSeeder extends Seeder
             'name' => 'Member Department1',
             'username' => 'member.department1',
             'email' => 'memberdepartment1@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
             'dateOfBirth' => '1990-01-01'
@@ -82,7 +82,7 @@ class UserSeeder extends Seeder
             'name' => 'Member Department2',
             'username' => 'member.department2',
             'email' => 'memberdepartment2@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
             'dateOfBirth' => '1990-01-01'
@@ -91,7 +91,7 @@ class UserSeeder extends Seeder
             'name' => 'Member Department3',
             'username' => 'member.department3',
             'email' => 'memberdepartment3@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
             'dateOfBirth' => '1990-01-01'
@@ -100,7 +100,7 @@ class UserSeeder extends Seeder
             'name' => 'Member Department4',
             'username' => 'member.department4',
             'email' => 'memberdepartment4@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
             'dateOfBirth' => '1990-01-01'
@@ -109,7 +109,7 @@ class UserSeeder extends Seeder
             'name' => 'Derick Yudanegara',
             'username' => 'dyuda12',
             'email' => 'derickyudanegara@gmail.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
             'dateOfBirth' => '1990-01-01'
@@ -120,7 +120,7 @@ class UserSeeder extends Seeder
             'name' => 'User1 Last',
             'username' => 'user1',
             'email' => 'user1@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
             'dateOfBirth' => '1990-01-01'
@@ -129,7 +129,7 @@ class UserSeeder extends Seeder
             'name' => 'User2 Last',
             'username' => 'user2',
             'email' => 'user2@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
             'dateOfBirth' => '1990-01-01'
@@ -138,7 +138,7 @@ class UserSeeder extends Seeder
             'name' => 'User3 Last',
             'username' => 'user3',
             'email' => 'user3@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
             'dateOfBirth' => '1990-01-01'
@@ -147,7 +147,7 @@ class UserSeeder extends Seeder
             'name' => 'User3 Last',
             'username' => 'user4',
             'email' => 'user4@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
             'dateOfBirth' => '1990-01-01'
@@ -158,7 +158,7 @@ class UserSeeder extends Seeder
             'name' => 'Billy',
             'username' => 'billy',
             'email' => 'billy@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
             'dateOfBirth' => '1990-01-01'
@@ -167,7 +167,7 @@ class UserSeeder extends Seeder
             'name' => 'Anton Joni Malaka Bu',
             'username' => 'anton',
             'email' => 'anton@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
             'dateOfBirth' => '1990-01-01'
@@ -176,7 +176,7 @@ class UserSeeder extends Seeder
             'name' => 'Jeremy',
             'username' => 'jeremy',
             'email' => 'jeremy@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
             'dateOfBirth' => '1990-01-01'
@@ -185,7 +185,7 @@ class UserSeeder extends Seeder
             'name' => 'Jessica',
             'username' => 'jessica',
             'email' => 'jessica@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
             'dateOfBirth' => '1990-01-01'
@@ -196,7 +196,7 @@ class UserSeeder extends Seeder
             'name' => 'Bonar',
             'username' => 'bonar',
             'email' => 'bonar@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
             'dateOfBirth' => '1990-01-01'
@@ -205,7 +205,7 @@ class UserSeeder extends Seeder
             'name' => 'Michael',
             'username' => 'michael',
             'email' => 'michael@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
             'dateOfBirth' => '1990-01-01'
@@ -214,7 +214,7 @@ class UserSeeder extends Seeder
             'name' => 'Sisca',
             'username' => 'sisca',
             'email' => 'sisca@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
             'dateOfBirth' => '1990-01-01'
@@ -223,7 +223,7 @@ class UserSeeder extends Seeder
             'name' => 'Dora',
             'username' => 'dora',
             'email' => 'dora@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
             'dateOfBirth' => '1990-01-01'
@@ -234,7 +234,7 @@ class UserSeeder extends Seeder
             'name' => 'Stanley',
             'username' => 'stanley',
             'email' => 'stanley@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
             'dateOfBirth' => '1990-01-01'
@@ -243,7 +243,7 @@ class UserSeeder extends Seeder
             'name' => 'Kikky',
             'username' => 'kikky',
             'email' => 'kikky@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
             'dateOfBirth' => '1990-01-01'
@@ -252,7 +252,7 @@ class UserSeeder extends Seeder
             'name' => 'Verrent',
             'username' => 'verrent',
             'email' => 'verrent@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
             'dateOfBirth' => '1990-01-01'
@@ -261,7 +261,7 @@ class UserSeeder extends Seeder
             'name' => 'Sinta',
             'username' => 'sinta',
             'email' => 'sinta@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
             'dateOfBirth' => '1990-01-01'
@@ -272,7 +272,7 @@ class UserSeeder extends Seeder
             'name' => 'Marlo',
             'username' => 'marlo',
             'email' => 'marlo@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
             'dateOfBirth' => '1990-01-01'
@@ -281,7 +281,7 @@ class UserSeeder extends Seeder
             'name' => 'Marco',
             'username' => 'marco',
             'email' => 'marco@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
             'dateOfBirth' => '1990-01-01'
@@ -290,7 +290,7 @@ class UserSeeder extends Seeder
             'name' => 'Amadea',
             'username' => 'amadea',
             'email' => 'amadea@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
             'dateOfBirth' => '1990-01-01'
@@ -299,7 +299,7 @@ class UserSeeder extends Seeder
             'name' => 'Fanny',
             'username' => 'fanny',
             'email' => 'fanny@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
             'dateOfBirth' => '1990-01-01'
@@ -310,7 +310,7 @@ class UserSeeder extends Seeder
             'name' => 'Gilang',
             'username' => 'gilang',
             'email' => 'gilang@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
             'dateOfBirth' => '1990-01-01'
@@ -319,7 +319,7 @@ class UserSeeder extends Seeder
             'name' => 'Leonardo',
             'username' => 'leonardo',
             'email' => 'leonardo@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
             'dateOfBirth' => '1990-01-01'
@@ -328,7 +328,7 @@ class UserSeeder extends Seeder
             'name' => 'Putri',
             'username' => 'putri',
             'email' => 'putri@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
             'dateOfBirth' => '1990-01-01'
@@ -337,7 +337,7 @@ class UserSeeder extends Seeder
             'name' => 'Margaretha',
             'username' => 'margaretha',
             'email' => 'margaretha@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
             'dateOfBirth' => '1990-01-01'
@@ -348,7 +348,7 @@ class UserSeeder extends Seeder
             'name' => 'Heung Min Son',
             'username' => 'hmson',
             'email' => 'hmson@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
             'dateOfBirth' => '1990-01-01'
@@ -357,7 +357,7 @@ class UserSeeder extends Seeder
             'name' => 'Kevin de Bruyne',
             'username' => 'kdb',
             'email' => 'kdb@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
             'dateOfBirth' => '1990-01-01'
@@ -366,7 +366,7 @@ class UserSeeder extends Seeder
             'name' => 'Cristiano Ronaldo',
             'username' => 'cr7',
             'email' => 'cr7@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
             'dateOfBirth' => '1990-01-01'
@@ -375,7 +375,7 @@ class UserSeeder extends Seeder
             'name' => 'Leo Messi',
             'username' => 'lm10',
             'email' => 'lm10@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
             'dateOfBirth' => '1990-01-01'
@@ -386,7 +386,7 @@ class UserSeeder extends Seeder
             'name' => 'Declan Rice',
             'username' => 'declanrice',
             'email' => 'declanrice@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
             'dateOfBirth' => '1990-01-01'
@@ -395,7 +395,7 @@ class UserSeeder extends Seeder
             'name' => 'Bruno Fernandes',
             'username' => 'brunofernandes',
             'email' => 'brunofernandes@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
             'dateOfBirth' => '1990-01-01'
@@ -404,7 +404,7 @@ class UserSeeder extends Seeder
             'name' => 'Alexander Lacazette',
             'username' => 'lacazette',
             'email' => 'lacazette@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
             'dateOfBirth' => '1990-01-01'
@@ -413,7 +413,7 @@ class UserSeeder extends Seeder
             'name' => 'Mo Salah',
             'username' => 'mosalah',
             'email' => 'mosalah@banksinarmas.com',
-            'password' => bcrypt('simas123'),
+            'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
             'dateOfBirth' => '1990-01-01'

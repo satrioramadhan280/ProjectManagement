@@ -24,28 +24,23 @@
                     <input id="username" type="text" class="mt-3 form-control @error('username') is-invalid @enderror"
                     name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="Username">
                     <label for="floatingInput">Username</label>
-                </div>
-                
-
-                @error('username')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
+                    @error('username')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>            
             </div>
-
             <div class="form-group">
-               
                 <div class="form-floating">
                     <input id="password" type="password" class="mt-2 mb-2 form-control @error('password') is-invalid @enderror"
                     name="password" required autocomplete="current-password" placeholder="Password">
                     <label for="floatingPassword">Password</label>
-                    </div>
-
-                @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
+                    @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                </div>
                 @enderror
             </div>
 

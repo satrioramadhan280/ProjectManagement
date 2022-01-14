@@ -1,20 +1,25 @@
 @extends('layouts.app')
 
 @section('title')
-    search for '{{$search}}'
+    search for '{{ $search }}'
 @endsection
 
 @section('content')
-    <h4>search for '{{$search}}'</h4>
+    <h4>search for '{{ $search }}'</h4>
     <div class="d-inline">
         @can('Admin')
-            <a href="{{ url('/admin/create') }}" class="btn btn-primary mb-3">Add Employee</a>
+            <a href="{{ url('/admin/create') }}" class="btn btn-primary mb-3">Add New User</a>
         @endcan
         <form class="d-flex" method="GET" action="/searchUser">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"
-                value="{{ old('search') }}">
+            <input class="form-control me-2 @error('search') is-invalid @enderror" type="search" placeholder="Search"
+                aria-label="Search" name="search" value="{{ old('search') }}">
             <button class="btn btn-primary" type="submit">Search</button>
         </form>
+        @error('search')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div>
     @if (session('create'))
         <div class="alert alert-success mt-3">
@@ -28,23 +33,13 @@
     @endif
     @if ($searches->isEmpty())
         <h3>{{ $search }} not found</h3>
-    @else    
+    @else
         <table class="table mt-2">
             <thead>
                 <tr class="bg-danger text-white">
                     <th class="text-white" scope="col">No</th>
                     <th class="text-white" scope="col">Name</th>
-                    <th class="text-white" scope="col">Division
-                        <select class="dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" name=""
-                            id=""><span class="sr-only">Toggle Dropdown</span></select>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <option value="" class="dropdown-item">All</option>
-                            <option value="" class="dropdown-item">IT Customer Relationship Management</option>
-                            <option value="" class="dropdown-item">IT Branch Delivery System</option>
-                            <option value="" class="dropdown-item">IT Micro and Retail Core Loan System</option>
-                            <option value="" class="dropdown-item">IT Internal Application</option>
-                        </div>
-                    </th>
+                    <th class="text-white" scope="col">Department</th>
                     <th class="text-white" scope="col">Detail</th>
                 </tr>
             </thead>

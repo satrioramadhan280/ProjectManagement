@@ -29,8 +29,14 @@ class ProjectController extends Controller
         $projectsDept3 = Project::where('deptID', '5')->paginate(10);
         $projectsDept4 = Project::where('deptID', '6')->paginate(10);
         $statuses = Status::all();
+
+        $id = ($projectsDiv->currentpage() - 1) * $projectsDiv->perpage() + 1;
+        $id1 = ($projectsDept1->currentpage() - 1) * $projectsDept1->perpage() + 1;
+        $id2 = ($projectsDept2->currentpage() - 1) * $projectsDept2->perpage() + 1;
+        $id3 = ($projectsDept3->currentpage() - 1) * $projectsDept3->perpage() + 1;
+        $id4 = ($projectsDept4->currentpage() - 1) * $projectsDept4->perpage() + 1;
         
-        return view('project.projects', compact('projectsDiv', 'projectsDept1', 'projectsDept2', 'projectsDept3', 'projectsDept4', 'statuses'));
+        return view('project.projects', compact('projectsDiv', 'projectsDept1', 'projectsDept2', 'projectsDept3', 'projectsDept4', 'statuses', 'id', 'id1', 'id2', 'id3', 'id4'));
     }
 
     public function add()
@@ -241,6 +247,10 @@ class ProjectController extends Controller
 
     public function searchProject(Request $request){
         $search = $request->search;
+
+        if($search == null){
+            return redirect('projects/index');
+        }
         if(auth()->user()->roleID == 3 || auth()->user()->roleID == 7){
             $deptID = 3;
         }
@@ -254,11 +264,11 @@ class ProjectController extends Controller
             $deptID = 6;
         }
         if(auth()->user()->roleID == 2){
-            $searches = Project::where('title', 'like', '%'.$search.'%')->paginate(5);
+            $searches = Project::where('title', 'like', '%'.$search.'%')->paginate(10);
             $id = ($searches->currentpage() - 1) * $searches->perpage() + 1;
             return view('project.searchProject', compact('searches', 'search', 'id'));
         }
-        $searches = Project::where('title', 'like', '%'.$search.'%')->where('deptID', $deptID)->paginate(5);
+        $searches = Project::where('title', 'like', '%'.$search.'%')->where('deptID', $deptID)->paginate(10);
         $id = ($searches->currentpage() - 1) * $searches->perpage() + 1;
         return view('project.searchProject', compact('searches', 'search', 'id'));
     }
@@ -278,7 +288,13 @@ class ProjectController extends Controller
         $projectsDept3 = Project::where('deptID', '5')->where('status_id', $status->id)->paginate(10);
         $projectsDept4 = Project::where('deptID', '6')->where('status_id', $status->id)->paginate(10);
         $statuses = Status::all();
+
+        $id = ($projectsDiv->currentpage() - 1) * $projectsDiv->perpage() + 1;
+        $id1 = ($projectsDept1->currentpage() - 1) * $projectsDept1->perpage() + 1;
+        $id2 = ($projectsDept2->currentpage() - 1) * $projectsDept2->perpage() + 1;
+        $id3 = ($projectsDept3->currentpage() - 1) * $projectsDept3->perpage() + 1;
+        $id4 = ($projectsDept4->currentpage() - 1) * $projectsDept4->perpage() + 1;
         
-        return view('project.statusProject', compact('projectsDiv', 'projectsDept1', 'projectsDept2', 'projectsDept3', 'projectsDept4', 'statuses', 'status'));
+        return view('project.statusProject', compact('projectsDiv', 'projectsDept1', 'projectsDept2', 'projectsDept3', 'projectsDept4', 'statuses', 'status', 'id', 'id1', 'id2', 'id3', 'id4'));
     }
 }

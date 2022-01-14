@@ -43,8 +43,9 @@
         <table class="table mt-2">
             <thead>
                 <tr class="bg-danger text-white">
-                    {{-- <th scope="col">No</th> --}}
+                    <th scope="col">No</th>
                     <th scope="col">Title</th>
+                    <th scope="col">Department</th>
                     <th scope="col">Status</th>
                     <th scope="col">Deadline</th>
                     <th scope="col">Action</th>
@@ -57,10 +58,23 @@
                     @else
                         @foreach ($projectsDiv as $project)
                             <tr>
-                                <td class="col-6">{{ $project->title }}</td>
+                                <td class="col-1">{{$id++}}</td>
+                                <td class="col-4">{{ $project->title }}</td>
+                                @if ($project->deptID == 3)
+                                    <td class="col-3">IT Customer Relationship Management</td>
+                                @endif
+                                @if ($project->deptID == 4)
+                                    <td class="col-3">IT Branch Delivery System</td>
+                                @endif
+                                @if ($project->deptID == 5)
+                                    <td class="col-3">IT Micro and Retail Core Loan System</td>
+                                @endif
+                                @if ($project->deptID == 6)
+                                    <td class="col-3">IT Internal Application</td>
+                                @endif
                                 <td class="col-2">{{ $project->status->name }}</td>
-                                <td class="col-3">{{ $project->endDate }}</td>
-                                <td><a class="btn btn-primary"
+                                <td class="col-2">{{ $project->endDate }}</td>
+                                <td class="col-1"><a class="btn btn-primary"
                                         href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                                 </td>
                             </tr>
@@ -73,10 +87,14 @@
                     @else
                     @foreach ($projectsDept1 as $project)
                         <tr>
-                            <td class="col-6">{{ $project->title }}</td>
+                            <td class="col-1">{{$id1++}}</td>
+                            <td class="col-4">{{ $project->title }}</td>
+                            @if ($project->deptID == 3)
+                                <td class="col-3">IT Customer Relationship Management</td>
+                            @endif
                             <td class="col-2">{{ $project->status->name }}</td>
-                            <td class="col-3">{{ $project->endDate }}</td>
-                            <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
+                            <td class="col-2">{{ $project->endDate }}</td>
+                            <td class="col-1"><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                             </td>
                         </tr>
                     @endforeach
@@ -88,10 +106,14 @@
                     @else
                     @foreach ($projectsDept2 as $project)
                         <tr>
-                            <td class="col-6">{{ $project->title }}</td>
+                            <td class="col-1">{{$id2++}}</td>
+                            <td class="col-4">{{ $project->title }}</td>
+                            @if ($project->deptID == 4)
+                                <td class="col-3">IT Branch Delivery System</td>
+                            @endif
                             <td class="col-2">{{ $project->status->name }}</td>
-                            <td class="col-3">{{ $project->endDate }}</td>
-                            <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
+                            <td class="col-2">{{ $project->endDate }}</td>
+                            <td class="col-1"><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                             </td>
                         </tr>
                     @endforeach
@@ -103,10 +125,14 @@
                     @else
                     @foreach ($projectsDept3 as $project)
                         <tr>
-                            <td class="col-6">{{ $project->title }}</td>
+                            <td class="col-1">{{$id3++}}</td>
+                            <td class="col-4">{{ $project->title }}</td>
+                            @if ($project->deptID == 5)
+                                <td class="col-3">IT Micro and Retail Core Loan System</td>
+                            @endif
                             <td class="col-2">{{ $project->status->name }}</td>
-                            <td class="col-3">{{ $project->endDate }}</td>
-                            <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
+                            <td class="col-2">{{ $project->endDate }}</td>
+                            <td class="col-1"><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                             </td>
                         </tr>
                     @endforeach
@@ -118,10 +144,14 @@
                     @else
                     @foreach ($projectsDept4 as $project)
                         <tr>
-                            <td class="col-6">{{ $project->title }}</td>
+                            <td class="col-1">{{$id4++}}</td>
+                            <td class="col-4">{{ $project->title }}</td>
+                            @if ($project->deptID == 6)
+                                <td class="col-3">IT Internal Application</td>
+                            @endif
                             <td class="col-2">{{ $project->status->name }}</td>
-                            <td class="col-3">{{ $project->endDate }}</td>
-                            <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
+                            <td class="col-2">{{ $project->endDate }}</td>
+                            <td class="col-1"><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
                             </td>
                         </tr>
                     @endforeach

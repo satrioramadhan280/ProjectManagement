@@ -16,6 +16,22 @@
     @can('HDept3')<h4 class="mb-3">IT Micro and Retail Core Loan System Users List</h4>@endcan
     @can('HDept4')<h4 class="mb-3">IT Internal Application Users List</h4>@endcan
 
+    @if (session('create'))
+        <div class="alert alert-success mt-3">
+            {{ session('create') }}
+        </div>
+    @endif
+    @if (session('update'))
+        <div class="alert alert-success mt-3">
+            {{ session('update') }}
+        </div>
+    @endif
+    @if (session('delete'))
+        <div class="alert alert-success mt-3">
+            {{ session('delete') }}
+        </div>
+    @endif
+
     <label for="">Department: All</label>
     <a class="btn btn-primary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
@@ -38,7 +54,10 @@
             @endif
         @endforeach
     </div>
-    <div class="d-inline">
+    @can('Admin')
+        <a href="{{ url('/admin/create') }}" class="btn btn-primary"><span data-feather="user-plus"></span> Add New User</a>
+    @endcan
+    <div class="d-block">
         <form class="d-flex" method="GET" action="/searchUser">
             <input class="form-control mr-2 mt-2" type="search" placeholder="Search" aria-label="Search" name="search">
             <button class="btn btn-primary" type="submit">Search</button>
@@ -49,16 +68,19 @@
             <tr>
                 <th class="text-white" scope="col">No</th>
                 <th class="text-white" scope="col">Name</th>
-                <th class="text-white" scope="col"> Department</th>
+                <th class="text-white" scope="col">Department</th>
                 <th class="text-white" scope="col">Detail</th>
             </tr>
         </thead>
         <tbody>
-            @canany(['Admin', 'HDiv'])
+            @can('Admin')
                 @foreach ($users as $user)
                     <tr>
                         <td class="col-1">{{ $id++ }}</td>
-                        <td class="col-6">{{ $user->name }}</td>
+                        <td class="col-4">{{ $user->name }}</td>
+                        @if ($user->roleID == 2)
+                            <td class="col-3">Head Division</td>
+                        @endif
                         @if ($user->roleID == 3 || $user->roleID == 7)
                             <td class="col-3">IT Customer Relationship Management</td>
                         @endif
@@ -71,8 +93,31 @@
                         @if ($user->roleID == 6 || $user->roleID == 10)
                             <td class="col-3">IT Internal Application</td>
                         @endif
+                        <td class="col-1"><a class="btn btn-primary" href="/admin/{{$user->username}}/edit">Edit Profile</a></td>
                     </tr>
                 @endforeach
+            </tbody>
+        @endcan
+        @can('HDiv')
+            @foreach ($div as $user)
+                <tr>
+                    <td class="col-1">{{ $id++ }}</td>
+                    <td class="col-4">{{ $user->name }}</td>
+                    @if ($user->roleID == 3 || $user->roleID == 7)
+                        <td class="col-3">IT Customer Relationship Management</td>
+                    @endif
+                    @if ($user->roleID == 4 || $user->roleID == 8)
+                        <td class="col-3">IT Branch Delivery System</td>
+                    @endif
+                    @if ($user->roleID == 5 || $user->roleID == 9)
+                        <td class="col-3">IT Micro and Retail Core Loan System</td>
+                    @endif
+                    @if ($user->roleID == 6 || $user->roleID == 10)
+                        <td class="col-3">IT Internal Application</td>
+                    @endif
+                    <td class="col-1"><a class="btn btn-primary" href="/user/{{$user->username}}/about">Detail</a></td>
+                </tr>
+            @endforeach
             </tbody>
         @endcan
         @can('HDept1')
@@ -80,7 +125,10 @@
                 <tr>
                     <td class="col-1">{{ $id++ }}</td>
                     <td class="col-5">{{ $user->name }}</td>
-
+                    @if ($user->roleID == 3 || $user->roleID == 7)
+                        <td class="col-3">IT Customer Relationship Management</td>
+                    @endif
+                    <td class="col-1"><a class="btn btn-primary" href="/user/{{$user->username}}/about">Detail</a></td>
                 </tr>
             @endforeach
             </tbody>
@@ -90,6 +138,10 @@
                 <tr>
                     <td class="col-1">{{ $id }}</td>
                     <td class="col-5">{{ $user->name }}</td>
+                    @if ($user->roleID == 4 || $user->roleID == 8)
+                        <td class="col-3">IT Branch Delivery System</td>
+                    @endif
+                    <td class="col-1"><a class="btn btn-primary" href="/user/{{$user->username}}/about">Detail</a></td>
                 </tr>
             @endforeach
             </tbody>
@@ -99,6 +151,10 @@
                 <tr>
                     <td class="col-1">{{ $id }}</td>
                     <td class="col-5">{{ $user->name }}</td>
+                    @if ($user->roleID == 5 || $user->roleID == 9)
+                        <td class="col-3">IT Micro and Retail Core Loan System</td>
+                    @endif
+                    <td class="col-1"><a class="btn btn-primary" href="/user/{{$user->username}}/about">Detail</a></td>
                 </tr>
             @endforeach
         @endcan
@@ -108,17 +164,22 @@
                 <tr>
                     <td class="col-1">{{ $id }}</td>
                     <td class="col-5">{{ $user->name }}</td>
+                    @if ($user->roleID == 6 || $user->roleID == 10)
+                        <td class="col-3">IT Internal Application</td>
+                    @endif
+                    <td class="col-1"><a class="btn btn-primary" href="/user/{{$user->username}}/about">Detail</a></td>
                 </tr>
             @endforeach
             </tbody>
         @endcan
     </table>
 
-    @canany(['Admin', 'HDiv']){!! $users->appends(\Request::except('page'))->render() !!}@endcanany
-        @can('HDept1'){!! $dept1->appends(\Request::except('page'))->render() !!}@endcan
-            @can('HDept2'){!! $dept2->appends(\Request::except('page'))->render() !!}@endcan
-                @can('HDept3'){!! $dept3->appends(\Request::except('page'))->render() !!}@endcan
-                    @can('HDept4'){!! $dept4->appends(\Request::except('page'))->render() !!}@endcan
+    @can('Admin'){!! $users->appends(\Request::except('page'))->render() !!}@endcan
+        @can('HDiv'){!! $div->appends(\Request::except('page'))->render() !!}@endcan
+            @can('HDept1'){!! $dept1->appends(\Request::except('page'))->render() !!}@endcan
+                @can('HDept2'){!! $dept2->appends(\Request::except('page'))->render() !!}@endcan
+                    @can('HDept3'){!! $dept3->appends(\Request::except('page'))->render() !!}@endcan
+                        @can('HDept4'){!! $dept4->appends(\Request::except('page'))->render() !!}@endcan
 
 
-                    @endsection
+                        @endsection

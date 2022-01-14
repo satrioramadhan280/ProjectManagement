@@ -15,7 +15,8 @@ class HDeptController extends Controller
      */
     public function index()
     {
-        $users = User::where('RoleID', '!=', 1)->where('RoleID', '!=', 2)->paginate(10);
+        $users = User::where('RoleID', '!=', 1)->paginate(10);
+        $div = User::where('RoleID', '!=', 1)->where('RoleID', '!=', 2)->paginate(10);
         $id = ($users->currentpage() - 1) * $users->perpage() + 1;
         $dept1 = User::where('RoleID', 3)->orWhere('RoleID', 7)->paginate(10);
         $dept2 = User::where('RoleID', 4)->orWhere('RoleID', 8)->paginate(10);
@@ -23,7 +24,7 @@ class HDeptController extends Controller
         $dept4 = User::where('RoleID', 6)->orWhere('RoleID', 10)->paginate(10);
         $roles = Role::where('id', 3)->orWhere('id', 4)->orWhere('id', 5)->orWhere('id', 6)->get();
 
-        return view('user.index', compact('users' ,'dept1', 'dept2', 'dept3', 'dept4', 'id', 'roles'));
+        return view('user.index', compact('users' ,'dept1', 'dept2', 'dept3', 'dept4', 'id', 'roles', 'div'));
     }
 
     public function deptUser(Role $role)

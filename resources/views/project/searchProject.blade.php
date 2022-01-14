@@ -47,7 +47,7 @@
                     <tr>
                         <td>{{ $id++ }}</td>
                         <td>{{ $search->title }}</td>
-                        <td>{{ $search->statuses->name }}</td>
+                        <td>{{ $search->status->name }}</td>
                         <td><a class="btn btn-primary" href="{{ route('project_detail_view', [$search->id, 'tasks']) }}">Detail</a>
                         </td>
                     </tr>

@@ -64,7 +64,7 @@ class AdminController extends Controller
         $users->save();
 
 
-        return redirect('/admin/index')->with('create', $users->name.' has been registered. Default password: simas123');
+        return redirect('/user/index')->with('create', $users->name.' has been registered. Default password: xyz12345');
     }
 
     /**
@@ -131,7 +131,7 @@ class AdminController extends Controller
                 'dateOfBirth' => Carbon::parse($request->dateOfBirth)->format('Y-m-d'),
                 'roleID' => $request->roleID
             ]);
-            return redirect('/admin/index')->with('update', 'User has been updated!');
+            return redirect('/user/index')->with('update', 'Profile has been updated!');
         }
         if($currUser->roleID != 1){
             User::where('id', $currUser->id)->update([
@@ -142,7 +142,7 @@ class AdminController extends Controller
             ]);
         }
         
-        return redirect('/user/'.$currUser->username.'/about')->with('update', 'User has been updated!');
+        return redirect('/user/'.$currUser->username.'/about')->with('update', 'Profile has been updated!');
     }
     
     public function editPassword($user){
@@ -173,7 +173,7 @@ class AdminController extends Controller
     {
         $user = User::where('username', $username)->first();
         User::destroy($user->id);
-        return redirect('admin/index')->with('delete', 'Delete User Successful');
+        return redirect('/user/index')->with('delete', 'Delete User Successful');
     }
 
 
@@ -212,6 +212,10 @@ class AdminController extends Controller
 
     public function searchUser(Request $request){
         $search = $request->search;
+
+        if($search == null){
+            return redirect('/user/index');
+        }
         $searches = User::where('name', 'like', '%'.$search.'%')->paginate(10);
         $id = ($searches->currentpage() - 1) * $searches->perpage() + 1;
         return view('user.searchUser', compact('searches', 'search', 'id'));
