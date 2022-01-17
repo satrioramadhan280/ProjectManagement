@@ -16,7 +16,7 @@
     @canany(['HDept3', 'MDept3'])<h4>IT Micro and Retail Core Loan System Project's List</h4>@endcan
     @canany(['HDept4', 'MDept4'])<h4>IT Internal Application Project's List</h4>@endcan
 
-    
+
     <div class="d-inline">
         <div class="dropdown show d-inline">
             <label for="">Status: All</label>
@@ -32,7 +32,7 @@
         </div>
         @canany(['HDept1', 'HDept2', 'HDept3', 'HDept4'])
             <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary"><span data-feather="file"></span> Add Project</a>
-        @endcanany  
+        @endcanany
         <form class="d-flex mt-3" method="GET" action="{{ route('searchProject') }}">
             <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search" name="search"
             value="{{ old('search') }}">
@@ -74,8 +74,21 @@
                                 @endif
                                 <td class="col-2">{{ $project->status->name }}</td>
                                 <td class="col-2">{{ $project->endDate }}</td>
-                                <td class="col-1"><a class="btn btn-primary"
-                                        href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
+                                <td class="col-1">
+                                    <div class="row">
+                                        <div class="col-sm-auto">
+                                            <form method="GET" action="{{ route('download_file') }}">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
+                                                    <input type="submit" class="btn btn-sm btn-primary" value="Download SR">
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-auto">
+                                            <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -94,7 +107,21 @@
                             @endif
                             <td class="col-2">{{ $project->status->name }}</td>
                             <td class="col-2">{{ $project->endDate }}</td>
-                            <td class="col-1"><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
+                            <td class="col-1">
+                                <div class="row">
+                                    <div class="col-sm-auto">
+                                        <form method="GET" action="{{ route('download_file') }}">
+                                            @csrf
+                                            <div class="form-group">
+                                                <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
+                                                <input type="submit" class="btn btn-sm btn-primary" value="Download SR">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-auto">
+                                        <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -113,7 +140,21 @@
                             @endif
                             <td class="col-2">{{ $project->status->name }}</td>
                             <td class="col-2">{{ $project->endDate }}</td>
-                            <td class="col-1"><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
+                            <td class="col-1">
+                                <div class="row">
+                                    <div class="col-sm-auto">
+                                        <form method="GET" action="{{ route('download_file') }}">
+                                            @csrf
+                                            <div class="form-group">
+                                                <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
+                                                <input type="submit" class="btn btn-sm btn-primary" value="Download SR">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-auto">
+                                        <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -132,7 +173,21 @@
                             @endif
                             <td class="col-2">{{ $project->status->name }}</td>
                             <td class="col-2">{{ $project->endDate }}</td>
-                            <td class="col-1"><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
+                            <td class="col-1">
+                                <div class="row">
+                                    <div class="col-sm-auto">
+                                        <form method="GET" action="{{ route('download_file') }}">
+                                            @csrf
+                                            <div class="form-group">
+                                                <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
+                                                <input type="submit" class="btn btn-sm btn-primary" value="Download SR">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-auto">
+                                        <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -151,7 +206,21 @@
                             @endif
                             <td class="col-2">{{ $project->status->name }}</td>
                             <td class="col-2">{{ $project->endDate }}</td>
-                            <td class="col-1"><a class="btn btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail
+                            <td class="col-1">
+                                <div class="row">
+                                    <div class="col-sm-auto">
+                                        <form method="GET" action="{{ route('download_file') }}">
+                                            @csrf
+                                            <div class="form-group">
+                                                <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
+                                                <input type="submit" class="btn btn-sm btn-primary" value="Download SR">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-auto">
+                                        <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -178,6 +247,6 @@
                 </div>
             </div>
         </div>
-        
+
 
     @endsection

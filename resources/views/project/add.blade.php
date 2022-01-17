@@ -25,7 +25,7 @@ Add Project
         <input class="form-control" type="date" name="startDate">
     </div>
     <div class="mb-3">
-        <label for="endDate" class="form-label">Deadline</label>
+        <label for="endDate" class="form-label">End Date</label>
         <input class="form-control" type="date" name="endDate">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
