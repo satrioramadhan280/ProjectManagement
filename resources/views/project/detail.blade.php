@@ -87,14 +87,15 @@
     </div>
 @endif
 
+
+
 <h1>{{ $project->title }}</h1>
 
 @if (Auth::user()->role!="user")
 
-    <div class="mt-4 mb-4">
+    <div class="mt-4 mb-4 d-inline">
         {{-- <a href="{{ route('add_task_view', [$project->id]) }}" class="btn btn-primary"><span data-feather="clipboard"></span> Add  Task</a> --}}
         <div class="d-flex flex-row">
-
             <div class="btn-group mr-3">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
                   {{ $project->status->name }}
@@ -117,10 +118,15 @@
                 <span class="tooltip-span">Assign Member First!</span>
             </div>
 
-
             <button type="button" class="btn btn-primary ml-3" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                 <span data-feather="user-plus"></span> Add / Remove Member
             </button>
+
+            <form class="ml-3" action="/deleteProject/{{$project->id}}" method="POST">
+                @csrf
+                @method('delete')
+                <button class="btn btn-danger" type="submit" onclick="confirm('Are you sure want to delete this project?')"><span data-feather="trash-2"></span> Delete Project</button>
+            </form>
         </div>
     </div>
 

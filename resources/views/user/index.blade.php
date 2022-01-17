@@ -31,29 +31,30 @@
             {{ session('delete') }}
         </div>
     @endif
-
-    <label for="">Department: All</label>
-    <a class="btn btn-primary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        Filter Department
-    </a>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="/user/index">All</a>
-        @foreach ($roles as $role)
-            @if ($role->id == 3)
-                <a class="dropdown-item" href="/department/{{ $role->id }}">IT Customer Relationship Management</a>
-            @endif
-            @if ($role->id == 4)
-                <a class="dropdown-item" href="/department/{{ $role->id }}">IT Branch Delivery System</a>
-            @endif
-            @if ($role->id == 5)
-                <a class="dropdown-item" href="/department/{{ $role->id }}">IT Micro and Retail Core Loan System</a>
-            @endif
-            @if ($role->id == 6)
-                <a class="dropdown-item" href="/department/{{ $role->id }}">IT Internal Application</a>
-            @endif
-        @endforeach
-    </div>
+    @canany(['Admin', 'HDiv'])
+        <label for="">Department: All</label>
+        <a class="btn btn-primary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Filter Department
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="/user/index">All</a>
+            @foreach ($roles as $role)
+                @if ($role->id == 3)
+                    <a class="dropdown-item" href="/department/{{ $role->id }}">IT Customer Relationship Management</a>
+                @endif
+                @if ($role->id == 4)
+                    <a class="dropdown-item" href="/department/{{ $role->id }}">IT Branch Delivery System</a>
+                @endif
+                @if ($role->id == 5)
+                    <a class="dropdown-item" href="/department/{{ $role->id }}">IT Micro and Retail Core Loan System</a>
+                @endif
+                @if ($role->id == 6)
+                    <a class="dropdown-item" href="/department/{{ $role->id }}">IT Internal Application</a>
+                @endif
+            @endforeach
+        </div>
+    @endcanany
     @can('Admin')
         <a href="{{ url('/admin/create') }}" class="btn btn-primary"><span data-feather="user-plus"></span> Add New User</a>
     @endcan
@@ -93,7 +94,8 @@
                         @if ($user->roleID == 6 || $user->roleID == 10)
                             <td class="col-3">IT Internal Application</td>
                         @endif
-                        <td class="col-1"><a class="btn btn-primary" href="/admin/{{$user->username}}/edit">Edit Profile</a></td>
+                        <td class="col-1"><a class="btn btn-primary col-1"
+                                href="/admin/{{ $user->username }}/edit">Edit Profile</a></td>
                     </tr>
                 @endforeach
             </tbody>
@@ -115,7 +117,8 @@
                     @if ($user->roleID == 6 || $user->roleID == 10)
                         <td class="col-3">IT Internal Application</td>
                     @endif
-                    <td class="col-1"><a class="btn btn-primary" href="/user/{{$user->username}}/about">Detail</a></td>
+                    <td class="col-1"><a class="btn btn-primary" href="/user/{{ $user->username }}/about">Detail</a>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
@@ -128,7 +131,8 @@
                     @if ($user->roleID == 3 || $user->roleID == 7)
                         <td class="col-3">IT Customer Relationship Management</td>
                     @endif
-                    <td class="col-1"><a class="btn btn-primary" href="/user/{{$user->username}}/about">Detail</a></td>
+                    <td class="col-1"><a class="btn btn-primary" href="/user/{{ $user->username }}/about">Detail</a>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
@@ -141,7 +145,8 @@
                     @if ($user->roleID == 4 || $user->roleID == 8)
                         <td class="col-3">IT Branch Delivery System</td>
                     @endif
-                    <td class="col-1"><a class="btn btn-primary" href="/user/{{$user->username}}/about">Detail</a></td>
+                    <td class="col-1"><a class="btn btn-primary" href="/user/{{ $user->username }}/about">Detail</a>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
@@ -154,7 +159,8 @@
                     @if ($user->roleID == 5 || $user->roleID == 9)
                         <td class="col-3">IT Micro and Retail Core Loan System</td>
                     @endif
-                    <td class="col-1"><a class="btn btn-primary" href="/user/{{$user->username}}/about">Detail</a></td>
+                    <td class="col-1"><a class="btn btn-primary" href="/user/{{ $user->username }}/about">Detail</a>
+                    </td>
                 </tr>
             @endforeach
         @endcan
@@ -167,7 +173,8 @@
                     @if ($user->roleID == 6 || $user->roleID == 10)
                         <td class="col-3">IT Internal Application</td>
                     @endif
-                    <td class="col-1"><a class="btn btn-primary" href="/user/{{$user->username}}/about">Detail</a></td>
+                    <td class="col-1"><a class="btn btn-primary" href="/user/{{ $user->username }}/about">Detail</a>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

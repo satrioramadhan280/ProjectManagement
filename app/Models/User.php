@@ -30,12 +30,6 @@ class User extends Authenticatable
         'photo'
     ];
 
-    protected $sortable = [
-        'id',
-        'name',
-        'roleID'
-    ];
-
     /**
      * The attributes that should be hidden for serialization.
      *

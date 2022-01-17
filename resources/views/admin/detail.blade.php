@@ -190,9 +190,9 @@
 
     @if ($user->username == Auth::user()->username)    
         <div class="d-inline">
-            <a href="/admin/{{$user->username}}/edit" class="btn btn-primary c">Edit Profile</a>
+            <a href="/admin/{{$user->username}}/edit" class="btn btn-primary mt-3">Edit Profile</a>
             @cannot('Admin')
-            <a href="/admin/{{$user->username}}/editPassword" class="btn btn-secondary">Change Password</a>
+            <a href="/admin/{{$user->username}}/editPassword" class="btn btn-secondary mt-3">Change Password</a>
             @endcannot
         </div>
     @endif

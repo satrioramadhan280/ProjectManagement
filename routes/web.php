@@ -63,6 +63,8 @@ Route::prefix('projects')->group(function () {
     Route::get('/searchProject', [ProjectController::class, 'searchProject'])->name('searchProject');
     Route::get('/status/{status}', [ProjectController::class, 'projectStatus'])->name('projectStatus');
 });
+Route::delete('/deleteProject/{project}', [ProjectController::class, 'deleteProject'])->name('deleteProject');
+
 Route::post('/projects/addMember/{project}', [ProjectController::class, 'addMember'])->name('addMember');
 
 Route::prefix('task')->group(function () {

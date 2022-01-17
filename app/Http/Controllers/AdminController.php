@@ -216,7 +216,45 @@ class AdminController extends Controller
         if($search == null){
             return redirect('/user/index');
         }
-        $searches = User::where('name', 'like', '%'.$search.'%')->paginate(10);
+        if(auth()->user()->roleID == 1){
+            $searches = User::where('name', 'like', '%'.$search.'%')->where('roleID', '!=', '1')->paginate(10);
+        }
+        else if(auth()->user()->roleID == 2){
+            $searches = User::where('name', 'like', '%'.$search.'%')->where('roleID', '!=', '1')->where('roleID', '!=', '2')->paginate(10);
+        }
+        else if(auth()->user()->roleID == 3){
+            $list = [3, 7];
+            $searches = User::where('name', 'like', '%'.$search.'%')
+            ->where('roleID', '!=', 1)
+            ->where('roleID', '!=', 2)
+            ->whereIn('roleID', $list)
+            ->paginate(10);
+        }
+        else if(auth()->user()->roleID == 4){
+            $list = [4, 8];
+            $searches = User::where('name', 'like', '%'.$search.'%')
+            ->where('roleID', '!=', 1)
+            ->where('roleID', '!=', 2)
+            ->whereIn('roleID', $list)
+            ->paginate(10);
+        }
+        else if(auth()->user()->roleID == 5){
+            $list = [5, 9];
+            $searches = User::where('name', 'like', '%'.$search.'%')
+            ->where('roleID', '!=', 1)
+            ->where('roleID', '!=', 2)
+            ->whereIn('roleID', $list)
+            ->paginate(10);
+        }
+        else if(auth()->user()->roleID == 6){
+            $list = [6, 10];
+            $searches = User::where('name', 'like', '%'.$search.'%')
+            ->where('roleID', '!=', 1)
+            ->where('roleID', '!=', 2)
+            ->whereIn('roleID', $list)
+            ->paginate(10);
+        }
+
         $id = ($searches->currentpage() - 1) * $searches->perpage() + 1;
         return view('user.searchUser', compact('searches', 'search', 'id'));
     }

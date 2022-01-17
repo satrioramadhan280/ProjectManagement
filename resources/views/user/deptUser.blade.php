@@ -32,7 +32,9 @@
         aria-haspopup="true" aria-expanded="false">
         Filter Department
     </a>
-    <a href="{{ url('/admin/create') }}" class="btn btn-primary"><span data-feather="user-plus"></span> Add New User</a>
+    @can('Admin')
+        <a href="{{ url('/admin/create') }}" class="btn btn-primary"><span data-feather="user-plus"></span> Add New User</a>
+    @endcan
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         <a class="dropdown-item" href="/user/index">All</a>
         @foreach ($roles as $role)
@@ -70,7 +72,7 @@
                 @foreach ($users as $user)
                     <tr>
                         <td class="col-1">{{ $id++ }}</td>
-                        <td class="col-6">{{ $user->name }}</td>
+                        <td class="col-4">{{ $user->name }}</td>
                         @if ($user->roleID == 3 || $user->roleID == 7)
                             <td class="col-3">IT Customer Relationship Management</td>
                         @endif
@@ -83,6 +85,12 @@
                         @if ($user->roleID == 6 || $user->roleID == 10)
                             <td class="col-3">IT Internal Application</td>
                         @endif
+                        @can('Admin')
+                        <td class="col-1"><a class="btn btn-primary col-1" href="/admin/{{$user->username}}/edit">Edit Profile</a></td>
+                        @endcan
+                        @cannot('Admin')
+                            <td class="col-1"><a class="btn btn-primary" href="/user/{{$user->username}}/about">Detail</a></td> 
+                        @endcannot
                     </tr>
                 @endforeach
             @endcanany

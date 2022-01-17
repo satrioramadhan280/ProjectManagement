@@ -16,26 +16,39 @@
     @canany(['HDept3', 'MDept3'])<h4>IT Micro and Retail Core Loan System Project's List</h4>@endcan
     @canany(['HDept4', 'MDept4'])<h4>IT Internal Application Project's List</h4>@endcan
 
+    @if (session('success'))
+        <div class="alert alert-success mt-3">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (session('delete'))
+        <div class="alert alert-success mt-3">
+            {{ session('delete') }}
+        </div>
+    @endif
 
     <div class="d-inline">
         <div class="dropdown show d-inline">
             <label for="">Status: All</label>
-            <a class="btn btn-primary dropdown-toggle" href="{{route('projects')}}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="btn btn-primary dropdown-toggle" href="{{ route('projects') }}" role="button" id="dropdownMenuLink"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Filter Status
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="{{route('projects')}}">All</a>
+                <a class="dropdown-item" href="{{ route('projects') }}">All</a>
                 @foreach ($statuses as $s)
-                    <a class="dropdown-item" href="{{route('projectStatus', $s->id)}}">{{$s->name}}</a>
+                    <a class="dropdown-item" href="{{ route('projectStatus', $s->id) }}">{{ $s->name }}</a>
                 @endforeach
             </div>
         </div>
         @canany(['HDept1', 'HDept2', 'HDept3', 'HDept4'])
             <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary"><span data-feather="file"></span> Add Project</a>
+            <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary"><span
+                    data-feather="file"></span> Add Project</a>
         @endcanany
         <form class="d-flex mt-3" method="GET" action="{{ route('searchProject') }}">
             <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search" name="search"
-            value="{{ old('search') }}">
+                value="{{ old('search') }}">
             <button class="btn btn-primary" type="submit">Search</button>
         </form>
     </div>
@@ -58,7 +71,7 @@
                     @else
                         @foreach ($projectsDiv as $project)
                             <tr>
-                                <td class="col-1">{{$id++}}</td>
+                                <td class="col-1">{{ $id++ }}</td>
                                 <td class="col-4">{{ $project->title }}</td>
                                 @if ($project->deptID == 3)
                                     <td class="col-3">IT Customer Relationship Management</td>

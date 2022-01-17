@@ -53,7 +53,7 @@
                 @foreach ($searches as $search)
                     <tr>
                         <td class="col-1">{{ $id++ }}</td>
-                        <td class="col-6">{{ $search->name }}</td>
+                        <td class="col-4">{{ $search->name }}</td>
                         @if ($search->roleID == 2)
                             <td class="col-3">IT Internal Business Process Application Head Division</td>
                         @endif
@@ -69,7 +69,12 @@
                         @if ($search->roleID == 6 || $search->roleID == 10)
                             <td class="col-3">IT Internal Application</td>
                         @endif
-                        <td><a class="btn btn-primary" href="/admin/{{ $search->username }}/edit">Edit Profile</a></td>
+                        @can('Admin')
+                            <td><a class="btn btn-primary col-1" href="/admin/{{ $search->username }}/edit">Edit Profile</a></td>
+                        @endcan
+                        @cannot('Admin')
+                            <td class="col-1"><a class="btn btn-primary" href="/user/{{$search->username}}/about">Detail</a></td>
+                        @endcannot
                     </tr>
                 @endforeach
             @endif

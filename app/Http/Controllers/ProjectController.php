@@ -297,4 +297,11 @@ class ProjectController extends Controller
         
         return view('project.statusProject', compact('projectsDiv', 'projectsDept1', 'projectsDept2', 'projectsDept3', 'projectsDept4', 'statuses', 'status', 'id', 'id1', 'id2', 'id3', 'id4'));
     }
+
+    public function deleteProject(Project $project){
+        ProjectUser::where('project_id', $project->id)->delete();
+        Project::destroy($project->id);
+
+        return redirect('projects/index')->with('delete', 'Project sucessfull deleted');
+    }
 }
