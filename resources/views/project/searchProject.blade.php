@@ -72,8 +72,21 @@
                         @endif
                         <td>{{ $search->status->name }}</td>
                         <td>{{ $search->endDate }}</td>
-                        <td><a class="btn btn-primary"
-                                href="{{ route('project_detail_view', [$search->id, 'tasks']) }}">Detail</a>
+                        <td>
+                            <div class="row">
+                                <div class="col-sm-auto">
+                                    <form method="GET" action="{{ route('download_file') }}">
+                                        @csrf
+                                        <div class="form-group">
+                                            <input type='hidden' name="filePath" value="{{ $search->sysRequirements }}">
+                                            <input type="submit" class="btn btn-sm btn-primary" value="Download SR">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$search->id, 'tasks']) }}">Detail</a>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
