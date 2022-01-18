@@ -133,6 +133,12 @@
     </div>
 @endif
 
+@if (session('create'))
+    <div class="alert alert-success mt-3">
+        {{ session('create') }}
+    </div>
+@endif
+
 
 
 <h1>{{ $project->title }}</h1>

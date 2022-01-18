@@ -71,7 +71,7 @@ class ProjectController extends Controller
         $project->save();
 
         $project->users()->attach($request->user()->id);
-        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks'])->with('create', 'Create Project Sucessful');
         // return redirect()->action([ProjectController::class, 'show']);
     }
 
@@ -234,7 +234,7 @@ class ProjectController extends Controller
             }
             if($flag == 0){
                 $notification = new Notification();
-                $notification->  notification_type_id_id = 3;
+                $notification->  notification_type_id = 3;
                 $notification->user_id = $project_user->user_id;
                 $notification->assign_project_id = $project->id;
                 $notification->status = 0;
