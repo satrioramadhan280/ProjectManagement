@@ -32,6 +32,8 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+ROute::patch('/password/reset', [AdminController::class, 'resetPassword'])->name('resetPassword');
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Route::get('/admin/index', [HDeptController::class, 'index'])->middleware('CheckAdmin');
 Route::get('/admin/create', [AdminController::class, 'create'])->Middleware('CheckAdmin');

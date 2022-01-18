@@ -153,7 +153,7 @@ class AdminController extends Controller
     public function changePassword(Request $request,  $user){
         $request->validate([
             'newPassword' => 'required|min:8',
-            'password_confirmation' => 'required|password|min:8|same:newPassword'
+            'password_confirmation' => 'required|min:8|same:newPassword'
         ]);
 
         User::where('username', $user)->update([
@@ -257,5 +257,26 @@ class AdminController extends Controller
 
         $id = ($searches->currentpage() - 1) * $searches->perpage() + 1;
         return view('user.searchUser', compact('searches', 'search', 'id'));
+    }
+
+    public function resetPassword(Request $request){
+        $username = $request->username;
+        $dateOfBirth = $request->dateOfBirth;
+
+        $request->validate([
+            'username' => 'required',
+            'dateOfBirth' => 'required'
+        ]);
+
+        $currUser = User::where('username', $username)->where('dateOfBirth', $dateOfBirth)->first();
+        if($currUser != null){
+            $currUser = User::where('username', $username)->where('dateOfBirth', $dateOfBirth)->update([
+                'password' => bcrypt('xyz12345')
+            ]);
+            return redirect('/')->with('changePassword', 'Change Password Successfull');
+        }
+        else{
+            return redirect('/password/reset')->with('fail', 'These credentials do not match our records.');
+        }
     }
 }

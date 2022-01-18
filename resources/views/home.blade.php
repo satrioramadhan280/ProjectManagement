@@ -79,7 +79,7 @@
 
 @section('content')
     <div class="d-flex">
-        <h1>Hello, {{ Auth::user()->name }}</h1>
+        <h3>Hello, {{ Auth::user()->name }}</h3>
     </div>
     <hr>
     {{-- Chart Active Users --}}
@@ -91,6 +91,7 @@
             </div>
         </div>
     @endcan
+    
     @cannot('Admin')
         <div class="d-block mt-3">
             @can('HDiv')<h4>On Going Projects at IT Internal Business Process Application</h4>@endcan
