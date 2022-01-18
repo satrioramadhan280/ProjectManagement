@@ -5,6 +5,7 @@ Add Project
 @endsection
 
 @section('content')
+<h4>Add Project</h4>
 
 <form id='addProjectForm' action="{{route('add_project')}}" method="POST" enctype="multipart/form-data">
     @csrf
