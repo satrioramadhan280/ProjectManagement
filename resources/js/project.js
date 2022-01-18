@@ -1,4 +1,4 @@
-$('#addProjectbtn').on('click', function (e) {
+/* $('#addProjectbtn').on('click', function (e) {
     e.preventDefault();
     const URL = $(this).attr('data-href');
     const METHOD = 'GET';
@@ -8,13 +8,13 @@ $('#addProjectbtn').on('click', function (e) {
         dataType: "html",
         success: function (response) {
             const MODAL_TITLE = 'Create Project';
-            
+
             $('#addProjectModal .modal-title').text(MODAL_TITLE);
             $('#addProjectModal .modal-body').html(response);
             $('#addProjectModal').modal('show');
         }
     });
-});
+}); */
 
 $('#fileUploadButton').on('click', function () {
     $('#addFile').toggle();

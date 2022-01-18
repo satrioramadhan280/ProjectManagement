@@ -42,9 +42,7 @@
             </div>
         </div>
         @canany(['HDept1', 'HDept2', 'HDept3', 'HDept4'])
-            <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary"><span data-feather="file"></span> Add Project</a>
-            <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary"><span
-                    data-feather="file"></span> Add Project</a>
+            <a id='addProjectbtn' href="{{ route('add_project_view') }}" class="btn btn-primary"><span data-feather="file"></span> Add Project</a>
         @endcanany
         <form class="d-flex mt-3" method="GET" action="{{ route('searchProject') }}">
             <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search" name="search"
@@ -246,20 +244,6 @@
         @canany(['HDept2', 'MDept2']) {!! $projectsDept2->appends(\Request::except('page'))->render() !!} @endcanany
         @canany(['HDept3', 'MDept3']) {!! $projectsDept3->appends(\Request::except('page'))->render() !!} @endcanany
         @canany(['HDept4', 'MDept4']) {!! $projectsDept4->appends(\Request::except('page'))->render() !!} @endcanany
-
-        <!-- Modal -->
-        <div class="modal fade" id="addProjectModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title"></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
     @endsection

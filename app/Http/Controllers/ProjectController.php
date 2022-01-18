@@ -40,7 +40,7 @@ class ProjectController extends Controller
         $id2 = ($projectsDept2->currentpage() - 1) * $projectsDept2->perpage() + 1;
         $id3 = ($projectsDept3->currentpage() - 1) * $projectsDept3->perpage() + 1;
         $id4 = ($projectsDept4->currentpage() - 1) * $projectsDept4->perpage() + 1;
-        
+
         return view('project.projects', compact('projectsDiv', 'projectsDept1', 'projectsDept2', 'projectsDept3', 'projectsDept4', 'statuses', 'id', 'id1', 'id2', 'id3', 'id4'));
     }
 
@@ -71,7 +71,7 @@ class ProjectController extends Controller
         $project->save();
 
         $project->users()->attach($request->user()->id);
-        return response()->json(['success'=>'Data is successfully added'], 200);
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
         // return redirect()->action([ProjectController::class, 'show']);
     }
 
@@ -223,7 +223,7 @@ class ProjectController extends Controller
         $project_users = ProjectUser::where('project_id', $project->id)->get();
 
         // dd($project_users);
-        
+
         foreach($project_users as $project_user){
             $flag = 0;
             foreach($users as $user){
@@ -252,20 +252,20 @@ class ProjectController extends Controller
                                 $task->delete();
                             }
                         }
-                        
+
                     }
                     else{
                         // foreach($task_users)
                         $task_users = TaskUser::where('task_id', $task->id)->where('user_id', $project_user->user_id)->where('project_id', $project_user->project_id)->first();
                         // dd($task_users);
                         if($task_users!=null){
-                            
+
                             $task_users->delete();
-                        }   
+                        }
                     }
                 }
             }
-            $project_user->delete();            
+            $project_user->delete();
         }
 
 
@@ -286,7 +286,7 @@ class ProjectController extends Controller
                 $notification->save();
             }
         }
-        
+
 
         if($users==null){
 
@@ -298,28 +298,28 @@ class ProjectController extends Controller
                 $project_users->user_id = $user;
                 $project_users->save();
 
-                
+
                 $flag = 0;
-                
-                
+
+
             }
-            
+
 
         }
 
-        
-        
+
+
 
         // $project_users = ProjectUser::where('project_id', $project->id)->get();
         // foreach($project_users as $project_user){
-            
+
         //     $notification = new Notification();
         //     $notification-> notification_type_id = 3;
         //     $notification->user_id = $project_user->user_id;
         //     $notification->assign_project_id = $project->id;
         //     $notification->status = 0;
         //     $notification->save();
-            
+
         // }
 
         // Pada saat delete, auto increment terjadi
@@ -411,7 +411,7 @@ class ProjectController extends Controller
         $id2 = ($projectsDept2->currentpage() - 1) * $projectsDept2->perpage() + 1;
         $id3 = ($projectsDept3->currentpage() - 1) * $projectsDept3->perpage() + 1;
         $id4 = ($projectsDept4->currentpage() - 1) * $projectsDept4->perpage() + 1;
-        
+
         return view('project.statusProject', compact('projectsDiv', 'projectsDept1', 'projectsDept2', 'projectsDept3', 'projectsDept4', 'statuses', 'status', 'id', 'id1', 'id2', 'id3', 'id4'));
     }
 
@@ -421,10 +421,10 @@ class ProjectController extends Controller
 
         return redirect('projects/index')->with('delete', 'Project sucessfull deleted');
     }
-    
 
-    public function forum(Request $request, Project $project){   
-        
+
+    public function forum(Request $request, Project $project){
+
 
         $request->validate([
             'description' => 'required|min:3',
@@ -436,25 +436,25 @@ class ProjectController extends Controller
         $forum->description = $request->description;
         // dd($forum);
         $forum->save();
-        // $forum_reply->user_id = 
+        // $forum_reply->user_id =
 
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum']);
     }
 
-    public function forum_delete(Request $request, Project $project){   
-        
+    public function forum_delete(Request $request, Project $project){
+
 
         // dd($request->forum_id);
         $forum = Forum::where('id', $request->forum_id)->first();
-        
+
         $forum_reply = ForumReply::where('forum_id', $forum->id)->get();
-        
+
         if($forum_reply->isNotEmpty()){
             dd($forum_reply);
             foreach($forum_reply as $reply){
                 $reply->delete();
             }
-    
+
             DB::statement("ALTER TABLE forum_reply AUTO_INCREMENT =  1");
             $updateForumReply = ForumReply::all();
             // Misalnya salah satu record di delete, id task akan tidak teratur
@@ -466,7 +466,7 @@ class ProjectController extends Controller
                 $f->save();
             }
         }
-        
+
 
         $forum = $forum->delete();
 
@@ -484,8 +484,8 @@ class ProjectController extends Controller
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum']);
     }
 
-    public function reply(Request $request, Project $project, Forum $forum){   
-        
+    public function reply(Request $request, Project $project, Forum $forum){
+
 
         $request->validate([
             'description' => 'required|min:3',
@@ -496,7 +496,7 @@ class ProjectController extends Controller
         $forum_reply->user_id = FacadesAuth::user()->id;
         $forum_reply->description = $request->description;
         $forum_reply->save();
-        // $forum_reply->user_id = 
+        // $forum_reply->user_id =
 
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum']);
     }

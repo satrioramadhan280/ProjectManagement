@@ -1,12 +1,12 @@
-{{-- @extends('layouts.app')
+@extends('layouts.app')
 
 @section('title')
 Add Project
 @endsection
 
-@section('content') --}}
+@section('content')
 
-<form id='addProjectForm' data-action="{{route('add_project')}}" method="POST" enctype="multipart/form-data">
+<form id='addProjectForm' action="{{route('add_project')}}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="alert alert-danger" style='display: none;'>
@@ -31,7 +31,7 @@ Add Project
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
-<script>
+{{-- <script>
     $('#addProjectForm').on('submit', function (e) {
         e.preventDefault();
         const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -70,6 +70,6 @@ Add Project
             }
         });
     });
-</script>
+</script> --}}
 
-{{-- @endsection --}}
+@endsection
