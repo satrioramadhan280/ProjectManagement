@@ -190,5 +190,18 @@ class ProjectUserSeeder extends Seeder
             'project_id' => 16,
             'user_id' => 43,
         ]);
+        
+        ProjectUser::create([
+            'project_id' => 1,
+            'user_id' => 20,
+        ]);
+        ProjectUser::create([
+            'project_id' => 1,
+            'user_id' => 28,
+        ]);
+        ProjectUser::create([
+            'project_id' => 1,
+            'user_id' => 36,
+        ]);
     }
 }

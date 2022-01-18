@@ -17,10 +17,19 @@
         </div>
         <hr>
         <ul class="nav flex-column">
+            
             <li class="nav-item">
                 <a class="nav-link {{request()->is('home') ? 'active' : ''}}" aria-current="page" href="{{url('/home')}}">
                     <span data-feather="home"></span>
                     Dashboard
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{request()->is('notifications') ? 'active' : ''}}" aria-current="page" href="{{url('/notifications')}}">
+                    <span data-feather="bell"></span>
+                    <span>Notifications</span>
+                    
                 </a>
             </li>
             

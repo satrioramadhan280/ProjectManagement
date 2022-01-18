@@ -1,3 +1,4 @@
+<script src="https://unpkg.com/feather-icons"></script>
 <style>
     .task-record{
         cursor: pointer;
@@ -13,8 +14,48 @@
         background-color: rgba(95, 95, 95, 0.301);
     }
 
+    .active, .task-record:hover{
+        
+    }
+
+
+    .forum-record{
+        cursor: pointer;
+        
+    }
+
+    .active, .forum-record:hover{
+        color: blue;
+    }
+
+    .reply{
+        cursor: pointer;
+        
+    }
+
+    .active, .reply:hover{
+        color: blue;
+    }
+
+
+
+    .reply-content {
+
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #ffffff;
+    }
+
     .content {
         padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #ffffff;
+    }
+
+    .forum-content {
+
         display: none;
         overflow: hidden;
         background-color: #ffffff;
@@ -66,6 +107,11 @@
     .tooltip-div:hover .tooltip-span {
         visibility: visible;
         cursor: pointer;
+    }
+
+    .forum-box {
+        box-shadow: 0 4px 8px 0 rgba(172, 167, 167, 0.363), 2px 6px 20px 0 rgba(180, 173, 173, 0.068);
+        text-align: center;
     }
 
 </style>
@@ -368,12 +414,157 @@
 
                 @elseif ($user_tabs=='forum')
                     <div class="m-4">
-                        <h3>Files</h3>
-                        @if(!$files->isEmpty())
 
-                        @else
-                            <h4>There are no files available</h4>
-                        @endif
+                        <div class="m-3 ">
+                            <div class="p-3 forum-box rounded">
+                                <div class="d-flex flex-column p-2">
+                                    <div class="d-flex justify-content-between border-bottom">
+                                        <div class="d-flex flex-row mb-2">
+                                            <div><img class="rounded-circle border border-3 d-inline ml-2" src="{{asset("uploads/users_photo/".$users[Auth::user()->id-1]->photo)}}" height="45px" width="45px" alt=""></div>
+                                            <div class=" align-items-center d-flex ml-3 mb-3">
+                                                <div class="d-flex flex-column">
+                                                    <div class="d-flex justify-content-start "><span class="font-weight-bold" style="font-size: 20px">{{Auth::user()->name}}</span></div>
+                                                    
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <div class="" style="font-size: 13px"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <form  method="POST" action="/projects/detail/{{$project->id}}/forum">
+                                            @csrf
+                                            
+                                            <div class="d-flex justify-content-start">
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" placeholder="Post a comment"></textarea>
+                                                
+                                            </div>
+                                            <div class="d-flex justify-content-end mt-2">
+                                                <input class="btn-sm btn-primary pl-3 pr-3" type="submit" value="Post" name="post">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    
+                                </div>
+
+                                {{-- Button forum reply --}}
+                                
+                                
+                            </div>
+                            
+                        </div>
+                            
+                        @foreach ($forums as $forum)
+                            <div class="m-3 ">
+                                <div class="p-3 forum-box rounded">
+                                    <div class="d-flex flex-column p-2">
+                                        <div class="d-flex justify-content-between border-bottom">
+                                            <div class="d-flex flex-row">
+                                                <div><img class="rounded-circle border border-3 d-inline ml-2" src="{{asset("uploads/users_photo/".$users[$forum->user_id-1]->photo)}}" height="45px" width="45px" alt=""></div>
+                                                <div class=" align-items-center d-flex ml-3 mb-3">
+                                                    <div class="d-flex flex-column">
+                                                        <div class="d-flex justify-content-start align-items-center"><span class="font-weight-bold" style="font-size: 20px">{{$users[$forum->user_id-1]->name}}</span> @if ($users[$forum->user_id-1]->id == Auth::user()->id)
+                                                            <a href="/projects/detail/{{$project->id}}/forum/delete/{{$forum->id}}" style="color: rgb(179, 0, 0)"><span data-feather="trash-2" class="ml-2"></span></a>
+                                                        @endif</div>
+                                                        <div class="d-flex align-items-center "><span style="font-size: 13px; color: rgb(78, 78, 78)" class="">{{$forum->created_at->format('H:i:s')}}</span></div>
+                                                        
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="d-flex flex-column ">
+                                                <div class="" style="font-size: 13px">{{$forum->created_at->format('d/m/Y')}}</div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <div class="d-flex justify-content-start">
+                                                <p>{{$forum->description}}</p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+
+                                    {{-- Button forum reply --}}
+                                    <div class="d-flex flex-row justify-content-end" style="font-size: 13px">
+                                        <div class="m-2 forum-record" 
+                                        @php
+                                            $count = 0;
+                                        @endphp
+                                        @foreach ($forums_reply as $forum_reply)
+                                            @if ($forum_reply->forum_id == $forum->id) 
+                                            @php
+                                                $count = $count + 1
+                                            @endphp
+                                            @endif
+                                        @endforeach
+                                        @if ($count == 0)
+                                            hidden
+                                        @endif
+                                            >
+                                            
+                                            <span class="">Show Replies</span></div>
+                                        <div class="m-2 reply" ><span>Reply</span></div>
+                                    </div>
+                                    <div class="reply-content mt-4 border-top">
+                                        <div class="d-flex justify-content-start mt-3">
+                                            <span class="">Comments</span>
+                                        </div>
+                                        <form class=" flex-row justify-content-between mt-2" method="POST" action="/projects/detail/{{$project->id}}/forum/{{$forum->id}}/reply">
+                                            @csrf
+                                            <div class="form-group">
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+                                            </div>
+                                            <div class="d-flex justify-content-end">
+                                                <input class="btn-sm btn-primary pl-3 pr-3" type="submit" value="Post" name="post">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="m-3 forum-content">
+                                @foreach ($forums_reply as $forum_reply)
+                                
+                                    @if ($forum_reply->forum_id == $forum->id)
+                                        <div class="p-3 forum-box ml-5 mr-1 mt-1 mb-1">
+                                            <div class="d-flex flex-column p-2">
+                                                <div class="d-flex justify-content-between border-bottom">
+                                                    <div class="d-flex flex-row">
+                                                        <div><img class="rounded-circle border border-3 d-inline ml-2" src="{{asset("uploads/users_photo/".$users[$forum_reply->user_id-1]->photo)}}" height="30px" width="30px" alt=""></div>
+                                                        <div class=" align-items-center d-flex ml-3 mb-3">
+                                                            <div class="d-flex flex-column">
+                                                                <div class="d-flex justify-content-start"><span class="font-weight-bold" style="font-size: 15px">{{$users[$forum_reply->user_id-1]->name}}  @if ($users[$forum_reply->user_id-1]->id == Auth::user()->id)
+                                                                    <a href="/projects/detail/{{$project->id}}/forum/delete/{{$forum->id}}" style="color: rgb(179, 0, 0)"><span data-feather="trash-2" class="ml-1"></span></a>
+                                                                @endif</span></div>
+                                                                <div class="d-flex align-items-center "><span style="font-size: 12px; color: rgb(78, 78, 78)" class="">{{$forum_reply->updated_at->format('H:i:s')}}</span></div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="d-flex flex-column">
+                                                        <div class="" style="font-size: 13px">{{$forum_reply->updated_at->format('d/m/Y')}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <div class="d-flex justify-content-start" style="font-size: 14px">
+                                                        <p>{{$forum_reply->description}}</p>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+
+                                        </div>
+                                    @endif
+                                @endforeach
+                                
+                            </div>
+                            
+                        @endforeach
+                        
                     </div>
 
                 @endif
@@ -420,6 +611,8 @@
 </div>
 
 <script>
+
+
     $('.delete-file').on('click', function (e) {
         e.preventDefault() // Don't post the form, unless confirmed
         console.log('test');
@@ -429,20 +622,102 @@
         }
     });
 
-var coll = document.getElementsByClassName("task-record");
-    var i;
+    $('.task-record').ready(function () {
+        var coll = document.getElementsByClassName("task-record");
 
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
+        var i;
+        
+        for (i = 0; i < coll.length; i++) {
+
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                
+                // var content = this.nextElementSibling;
+                var currentElement = this;
+                
+                while (currentElement) {
+                    if (currentElement.className == "content border") {
+                        
+                        break;
+                    }
+                    currentElement = currentElement.nextElementSibling;
+                } 
+                var content = currentElement;
+                console.log(content);
+                if (content.style.display === "block") {
+                content.style.display = "none";
+                } else {
+                content.style.display = "block";
+                }
+            });
         }
-      });
-    }
+        
+    });
+    
+    $('.forum-record').ready(function () {
+        var coll = document.getElementsByClassName("forum-record");
+
+        var i;
+        
+        for (i = 0; i < coll.length; i++) {
+
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                
+                // var content = this.nextElementSibling;
+                var currentElement = this.parentNode.parentNode.parentNode;
+                
+                while (currentElement) {
+                    if (currentElement.className === "m-3 forum-content") {
+                        // console.log(currentElement);
+                        break;
+                    }
+                    currentElement = currentElement.nextElementSibling;
+                } 
+                var content = currentElement;
+                // console.log(content);
+                if (content.style.display === "block") {
+                content.style.display = "none";
+                } else {
+                content.style.display = "block";
+                }
+            });
+        }
+        
+    });
+
+
+    $('.reply').ready(function () {
+        var coll = document.getElementsByClassName("reply");
+
+        var i;
+        
+        for (i = 0; i < coll.length; i++) {
+
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                
+                // var content = this.nextElementSibling;
+                var currentElement = this.parentNode;
+                console.log(currentElement);
+                while (currentElement) {
+                    if (currentElement.className === "reply-content mt-4 border-top") {
+                        // console.log(currentElement);
+                        break;
+                    }
+                    currentElement = currentElement.nextElementSibling;
+                } 
+                var content = currentElement;
+                // console.log(content);
+                if (content.style.display === "block") {
+                content.style.display = "none";
+                } else {
+                content.style.display = "block";
+                }
+            });
+        }
+        
+    });
 
     var myModal = document.getElementById('myModal')
     var myInput = document.getElementById('myInput')
@@ -450,6 +725,13 @@ var coll = document.getElementsByClassName("task-record");
     myModal.addEventListener('shown.bs.modal', function () {
         myInput.focus()
     })
+
+    
+
+    
+
+    
+    
 </script>
 @endsection
 

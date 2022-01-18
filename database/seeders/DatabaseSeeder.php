@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\ForumReply;
+use App\Models\NotificationType;
 use App\Models\ProjectUser;
+use App\Models\TaskUser;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,6 +24,10 @@ class DatabaseSeeder extends Seeder
             ProjectSeeder::class,
             ProjectUserSeeder::class,
             TaskSeeder::class,
+            TaskUserSeeder::class,
+            ForumSeeder::class,
+            ForumReplySeeder::class,
+            NotificationTypeSeeder::class,
         ]);
     }
 }

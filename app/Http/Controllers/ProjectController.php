@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Forum;
+use App\Models\ForumReply;
+use App\Models\Notification;
 use App\Models\Project;
 use App\Models\ProjectUser;
 use App\Models\Status;
@@ -11,10 +14,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use League\Flysystem\Filesystem;
+use phpDocumentor\Reflection\Types\Null_;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -116,7 +121,9 @@ class ProjectController extends Controller
         $project_members = ProjectUser::where('project_id', $project->id)->get();
         $task_user = TaskUser::where('project_id', $project->id)->get();
 
-        return view('project.detail', compact('project', 'statuses', 'files', 'tasks', 'users', 'head', 'user_tabs', 'task_members', 'users_department', 'project_members', 'task_user'));
+        $forums = Forum::where('project_id', $project->id)->orderByDesc('created_at')->get();
+        $forums_reply = ForumReply::orderByDesc('created_at')->get();
+        return view('project.detail', compact('project', 'statuses', 'files', 'tasks', 'users', 'head', 'user_tabs', 'task_members', 'users_department', 'project_members', 'task_user', 'forums', 'forums_reply'));
     }
 
     public function taskView(Project $project, Task $task) {
@@ -194,6 +201,13 @@ class ProjectController extends Controller
             $task_user->project_id = $project->id;
             $task_user->user_id = $user;
             $task_user->save();
+
+            $notification = new Notification();
+            $notification-> notification_type_id = 2;
+            $notification->user_id = $user;
+            $notification->assign_task_id = $task->id;
+            $notification->status = 0;
+            $notification->save();
         }
 
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
@@ -202,17 +216,77 @@ class ProjectController extends Controller
     public function addMember(Request $request, Project $project){
 
         // dd($request->users);
+        $notification_all =  Notification::all();
 
         $users = $request->input('users');
 
         $project_users = ProjectUser::where('project_id', $project->id)->get();
 
         // dd($project_users);
-        $flag = 0;
+        
         foreach($project_users as $project_user){
-            $project_user->delete();
+            $flag = 0;
+            foreach($users as $user){
+                if($user == $project_user->user_id){
+                    $flag = 1;
+                    break;
+                }
+            }
+            if($flag == 0){
+                $notification = new Notification();
+                $notification->  notification_type_id_id = 3;
+                $notification->user_id = $project_user->user_id;
+                $notification->assign_project_id = $project->id;
+                $notification->status = 0;
+                $notification->save();
+
+                $tasks = Task::where('project_id', $project_user->project_id)->get();
+                // dd($tasks);
+                foreach($tasks as $task){
+                    $task_users = TaskUser::where('project_id', $task->project_id)->where('task_id', $task->id)->get();
+                    // dd($task_users);
+                    // dd(count($task_users));
+                    if(count($task_users)==1){
+                        foreach($task_users as $task_user){
+                            if($task_user->user_id == $project_user->user_id){
+                                $task->delete();
+                            }
+                        }
+                        
+                    }
+                    else{
+                        // foreach($task_users)
+                        $task_users = TaskUser::where('task_id', $task->id)->where('user_id', $project_user->user_id)->where('project_id', $project_user->project_id)->first();
+                        // dd($task_users);
+                        if($task_users!=null){
+                            
+                            $task_users->delete();
+                        }   
+                    }
+                }
+            }
+            $project_user->delete();            
         }
 
+
+        foreach($users as $user){
+            $flag = 0;
+            foreach($project_users as $project_user){
+                if($project_user->user_id == $user){
+                    $flag = 1;
+                    break;
+                }
+            }
+            if($flag == 0){
+                $notification = new Notification();
+                $notification-> notification_type_id = 1;
+                $notification->user_id = $user;
+                $notification->assign_project_id = $project->id;
+                $notification->status = 0;
+                $notification->save();
+            }
+        }
+        
 
         if($users==null){
 
@@ -223,9 +297,30 @@ class ProjectController extends Controller
                 $project_users->project_id = $project->id;
                 $project_users->user_id = $user;
                 $project_users->save();
+
+                
+                $flag = 0;
+                
+                
             }
+            
 
         }
+
+        
+        
+
+        // $project_users = ProjectUser::where('project_id', $project->id)->get();
+        // foreach($project_users as $project_user){
+            
+        //     $notification = new Notification();
+        //     $notification-> notification_type_id = 3;
+        //     $notification->user_id = $project_user->user_id;
+        //     $notification->assign_project_id = $project->id;
+        //     $notification->status = 0;
+        //     $notification->save();
+            
+        // }
 
         // Pada saat delete, auto increment terjadi
         DB::statement("ALTER TABLE project_user AUTO_INCREMENT =  1");
@@ -236,6 +331,28 @@ class ProjectController extends Controller
         // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
         $index = 1;
         foreach ($updateProjectUser as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
+
+        DB::statement("ALTER TABLE task_user AUTO_INCREMENT =  1");
+        $updateTaskUser = TaskUser::all();
+        // Misalnya salah satu record di delete, id task akan tidak teratur
+        // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
+        $index = 1;
+        foreach ($updateTaskUser as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
+
+        DB::statement("ALTER TABLE tasks AUTO_INCREMENT =  1");
+        $updateTasks = Task::all();
+        // Misalnya salah satu record di delete, id task akan tidak teratur
+        // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
+        $index = 1;
+        foreach ($updateTasks as $key => $f) {
             $f->id = $index;
             $index++;
             $f->save();
@@ -303,5 +420,84 @@ class ProjectController extends Controller
         Project::destroy($project->id);
 
         return redirect('projects/index')->with('delete', 'Project sucessfull deleted');
+    }
+    
+
+    public function forum(Request $request, Project $project){   
+        
+
+        $request->validate([
+            'description' => 'required|min:3',
+        ]);
+
+        $forum = new Forum();
+        $forum->project_id = $project->id;
+        $forum->user_id = FacadesAuth::user()->id;
+        $forum->description = $request->description;
+        // dd($forum);
+        $forum->save();
+        // $forum_reply->user_id = 
+
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum']);
+    }
+
+    public function forum_delete(Request $request, Project $project){   
+        
+
+        // dd($request->forum_id);
+        $forum = Forum::where('id', $request->forum_id)->first();
+        
+        $forum_reply = ForumReply::where('forum_id', $forum->id)->get();
+        
+        if($forum_reply->isNotEmpty()){
+            dd($forum_reply);
+            foreach($forum_reply as $reply){
+                $reply->delete();
+            }
+    
+            DB::statement("ALTER TABLE forum_reply AUTO_INCREMENT =  1");
+            $updateForumReply = ForumReply::all();
+            // Misalnya salah satu record di delete, id task akan tidak teratur
+            // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
+            $index = 1;
+            foreach ($updateForumReply as $key => $f) {
+                $f->id = $index;
+                $index++;
+                $f->save();
+            }
+        }
+        
+
+        $forum = $forum->delete();
+
+        DB::statement("ALTER TABLE forums AUTO_INCREMENT =  1");
+        $updateForum = Forum::all();
+        // Misalnya salah satu record di delete, id task akan tidak teratur
+        // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
+        $index = 1;
+        foreach ($updateForum as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
+
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum']);
+    }
+
+    public function reply(Request $request, Project $project, Forum $forum){   
+        
+
+        $request->validate([
+            'description' => 'required|min:3',
+        ]);
+
+        $forum_reply = new ForumReply();
+        $forum_reply->forum_id = $request->forum_id;
+        $forum_reply->user_id = FacadesAuth::user()->id;
+        $forum_reply->description = $request->description;
+        $forum_reply->save();
+        // $forum_reply->user_id = 
+
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum']);
     }
 }
