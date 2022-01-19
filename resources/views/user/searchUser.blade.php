@@ -12,7 +12,7 @@
             <a href="{{ url('/admin/create') }}" class="btn btn-primary mb-3">Add New User</a>
         @endcan
         <form class="d-flex" method="GET" action="/searchUser">
-            <input class="form-control me-2 @error('search') is-invalid @enderror" type="search" placeholder="Search"
+            <input class="form-control mr-2 @error('search') is-invalid @enderror" type="search" placeholder="Search"
                 aria-label="Search" name="search" value="{{ old('search') }}">
             <button class="btn btn-primary" type="submit">Search</button>
         </form>

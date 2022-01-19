@@ -66,8 +66,8 @@ class ProjectController extends Controller
         $project->folder = 'projectFiles/PR-' . $project->id;
         $project->sysRequirements = $request->file('projectSR')->storeAs($project->folder, $request->projectSR->getClientOriginalName());
 
-        $project->startDate = Carbon::parse($request->startDate)->format('Y-m-d');
-        $project->endDate = Carbon::parse($request->endDate)->format('Y-m-d');
+        $project->startDate = Carbon::parse($request->startDate);
+        $project->endDate = Carbon::parse($request->endDate); 
         $project->save();
 
         $project->users()->attach($request->user()->id);
@@ -87,8 +87,8 @@ class ProjectController extends Controller
         ]);
 
         $project->title = $request->input('projectTitle');
-        $project->startDate = Carbon::parse($request->startDate)->format('Y-m-d');
-        $project->endDate = Carbon::parse($request->endDate)->format('Y-m-d');
+        $project->startDate = Carbon::parse($request->startDate);
+        $project->endDate = Carbon::parse($request->endDate);
         $project->save();
 
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks'])->with('update', 'Update Project Sucessful');

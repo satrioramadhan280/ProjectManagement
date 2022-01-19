@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Project;
 use DateTime;
 use Carbon\Carbon;
 use Kyslik\ColumnSortable\Sortable;
@@ -77,7 +78,29 @@ class AdminController extends Controller
     {
         $user = User::where('username', $username)->first();
         $role = Role::find($user->roleID);
-        return view('admin.detail', compact('user', 'user_tabs', 'role'));
+
+        if(auth()->user()->roleID == 7){
+            $deptID = 3;
+        }
+        else if(auth()->user()->roleID == 8){
+            $deptID = 4;
+        }
+        else if(auth()->user()->roleID == 9){
+            $deptID = 5;
+        }
+        else if(auth()->user()->roleID == 10){
+            $deptID = 6;
+        }
+        else{
+            $deptID = 0;
+        }
+        
+        $projects = Project::join('project_user', 'projects.id', '=', 'project_user.project_id')
+            ->where('projects.deptID', $deptID)
+            ->where('project_user.user_id', auth()->user()->id)->paginate(10);
+        $id = ($projects->currentpage() - 1) * $projects->perpage() + 1;
+        
+        return view('admin.detail', compact('user', 'user_tabs', 'role', 'projects', 'id'));
     }
 
     /**

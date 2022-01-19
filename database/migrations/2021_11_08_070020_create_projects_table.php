@@ -23,8 +23,8 @@ class CreateProjectsTable extends Migration
             $table->foreign('status_id')
                 ->references('id')
                 ->on('statuses');
-            $table->timestamp('startDate')->nullable();
-            $table->timestamp('endDate')->nullable();
+            $table->date('startDate')->nullable();
+            $table->date('endDate')->nullable();
             $table->timestamps();
         });
     }
