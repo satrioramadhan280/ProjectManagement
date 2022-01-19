@@ -56,6 +56,8 @@ Route::prefix('projects')->group(function () {
     Route::get('/index', [ProjectController::class, 'index'])->name('projects');
     Route::get('/add', [ProjectController::class, 'add'])->name('add_project_view');
     Route::post('/addProject', [ProjectController::class, 'addProject'])->name('add_project');
+    Route::get('/editProject/{project}', [ProjectController::class, 'editProjectView'])->name('edit_project_view');
+    Route::put('/editProject/post/{project}', [ProjectController::class, 'editProject'])->name('edit_project');
     Route::get('/changeStatus/{project}/{status}', [ProjectController::class, 'changeStatus'])->name('change_project_status');
 
     Route::get('/detail/{project}/{user_tabs}', [ProjectController::class, 'detailView'])->name('project_detail_view');

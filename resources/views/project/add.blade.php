@@ -10,8 +10,15 @@ Add Project
 <form id='addProjectForm' action="{{route('add_project')}}" method="POST" enctype="multipart/form-data">
     @csrf
 
-    <div class="alert alert-danger" style='display: none;'>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
+    @endif
 
     <div class="mb-3">
       <label for="projectTitle" class="form-label">Project Title</label>

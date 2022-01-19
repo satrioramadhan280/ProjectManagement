@@ -15,13 +15,13 @@
     }
 
     .active, .task-record:hover{
-        
+
     }
 
 
     .forum-record{
         cursor: pointer;
-        
+
     }
 
     .active, .forum-record:hover{
@@ -30,7 +30,7 @@
 
     .reply{
         cursor: pointer;
-        
+
     }
 
     .active, .reply:hover{
@@ -139,6 +139,12 @@
     </div>
 @endif
 
+@if (session('update'))
+    <div class="alert alert-success mt-3">
+        {{ session('update') }}
+    </div>
+@endif
+
 
 
 <h1>{{ $project->title }}</h1>
@@ -148,6 +154,8 @@
     <div class="mt-4 mb-4 d-inline">
         {{-- <a href="{{ route('add_task_view', [$project->id]) }}" class="btn btn-primary"><span data-feather="clipboard"></span> Add  Task</a> --}}
         <div class="d-flex flex-row">
+            <a href="{{ route('edit_project_view', [$project->id]) }}" class="btn btn-primary mr-3"> Edit Project</a>
+
             <div class="btn-group mr-3">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
                   {{ $project->status->name }}
@@ -430,10 +438,10 @@
                                             <div class=" align-items-center d-flex ml-3 mb-3">
                                                 <div class="d-flex flex-column">
                                                     <div class="d-flex justify-content-start "><span class="font-weight-bold" style="font-size: 20px">{{Auth::user()->name}}</span></div>
-                                                    
+
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                         <div class="d-flex flex-column">
                                             <div class="" style="font-size: 13px"></div>
@@ -442,26 +450,26 @@
                                     <div class="mt-3">
                                         <form  method="POST" action="/projects/detail/{{$project->id}}/forum">
                                             @csrf
-                                            
+
                                             <div class="d-flex justify-content-start">
                                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" placeholder="Post a comment"></textarea>
-                                                
+
                                             </div>
                                             <div class="d-flex justify-content-end mt-2">
                                                 <input class="btn-sm btn-primary pl-3 pr-3" type="submit" value="Post" name="post">
                                             </div>
                                         </form>
                                     </div>
-                                    
+
                                 </div>
 
                                 {{-- Button forum reply --}}
-                                
-                                
+
+
                             </div>
-                            
+
                         </div>
-                            
+
                         @foreach ($forums as $forum)
                             <div class="m-3 ">
                                 <div class="p-3 forum-box rounded">
@@ -475,14 +483,14 @@
                                                             <a href="/projects/detail/{{$project->id}}/forum/delete/{{$forum->id}}" style="color: rgb(179, 0, 0)"><span data-feather="trash-2" class="ml-2"></span></a>
                                                         @endif</div>
                                                         <div class="d-flex align-items-center "><span style="font-size: 13px; color: rgb(78, 78, 78)" class="">{{$forum->created_at->format('H:i:s')}}</span></div>
-                                                        
+
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="d-flex flex-column ">
                                                 <div class="" style="font-size: 13px">{{$forum->created_at->format('d/m/Y')}}</div>
-                                                
+
                                             </div>
                                         </div>
                                         <div class="mt-3">
@@ -490,17 +498,17 @@
                                                 <p>{{$forum->description}}</p>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
 
                                     {{-- Button forum reply --}}
                                     <div class="d-flex flex-row justify-content-end" style="font-size: 13px">
-                                        <div class="m-2 forum-record" 
+                                        <div class="m-2 forum-record"
                                         @php
                                             $count = 0;
                                         @endphp
                                         @foreach ($forums_reply as $forum_reply)
-                                            @if ($forum_reply->forum_id == $forum->id) 
+                                            @if ($forum_reply->forum_id == $forum->id)
                                             @php
                                                 $count = $count + 1
                                             @endphp
@@ -510,7 +518,7 @@
                                             hidden
                                         @endif
                                             >
-                                            
+
                                             <span class="">Show Replies</span></div>
                                         <div class="m-2 reply" ><span>Reply</span></div>
                                     </div>
@@ -529,12 +537,12 @@
                                         </form>
                                     </div>
                                 </div>
-                                
+
                             </div>
-                            
+
                             <div class="m-3 forum-content">
                                 @foreach ($forums_reply as $forum_reply)
-                                
+
                                     @if ($forum_reply->forum_id == $forum->id)
                                         <div class="p-3 forum-box ml-5 mr-1 mt-1 mb-1">
                                             <div class="d-flex flex-column p-2">
@@ -549,7 +557,7 @@
                                                                 <div class="d-flex align-items-center "><span style="font-size: 12px; color: rgb(78, 78, 78)" class="">{{$forum_reply->updated_at->format('H:i:s')}}</span></div>
                                                             </div>
                                                         </div>
-                                                        
+
                                                     </div>
                                                     <div class="d-flex flex-column">
                                                         <div class="" style="font-size: 13px">{{$forum_reply->updated_at->format('d/m/Y')}}</div>
@@ -560,17 +568,17 @@
                                                         <p>{{$forum_reply->description}}</p>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
 
                                         </div>
                                     @endif
                                 @endforeach
-                                
+
                             </div>
-                            
+
                         @endforeach
-                        
+
                     </div>
 
                 @endif
@@ -632,22 +640,22 @@
         var coll = document.getElementsByClassName("task-record");
 
         var i;
-        
+
         for (i = 0; i < coll.length; i++) {
 
             coll[i].addEventListener("click", function() {
                 this.classList.toggle("active");
-                
+
                 // var content = this.nextElementSibling;
                 var currentElement = this;
-                
+
                 while (currentElement) {
                     if (currentElement.className == "content border") {
-                        
+
                         break;
                     }
                     currentElement = currentElement.nextElementSibling;
-                } 
+                }
                 var content = currentElement;
                 console.log(content);
                 if (content.style.display === "block") {
@@ -657,29 +665,29 @@
                 }
             });
         }
-        
+
     });
-    
+
     $('.forum-record').ready(function () {
         var coll = document.getElementsByClassName("forum-record");
 
         var i;
-        
+
         for (i = 0; i < coll.length; i++) {
 
             coll[i].addEventListener("click", function() {
                 this.classList.toggle("active");
-                
+
                 // var content = this.nextElementSibling;
                 var currentElement = this.parentNode.parentNode.parentNode;
-                
+
                 while (currentElement) {
                     if (currentElement.className === "m-3 forum-content") {
                         // console.log(currentElement);
                         break;
                     }
                     currentElement = currentElement.nextElementSibling;
-                } 
+                }
                 var content = currentElement;
                 // console.log(content);
                 if (content.style.display === "block") {
@@ -689,7 +697,7 @@
                 }
             });
         }
-        
+
     });
 
 
@@ -697,12 +705,12 @@
         var coll = document.getElementsByClassName("reply");
 
         var i;
-        
+
         for (i = 0; i < coll.length; i++) {
 
             coll[i].addEventListener("click", function() {
                 this.classList.toggle("active");
-                
+
                 // var content = this.nextElementSibling;
                 var currentElement = this.parentNode;
                 console.log(currentElement);
@@ -712,7 +720,7 @@
                         break;
                     }
                     currentElement = currentElement.nextElementSibling;
-                } 
+                }
                 var content = currentElement;
                 // console.log(content);
                 if (content.style.display === "block") {
@@ -722,7 +730,7 @@
                 }
             });
         }
-        
+
     });
 
     var myModal = document.getElementById('myModal')
@@ -732,12 +740,12 @@
         myInput.focus()
     })
 
-    
 
-    
 
-    
-    
+
+
+
+
 </script>
 @endsection
 
