@@ -3,7 +3,7 @@
 @section('title')
     search for '{{ $search }}'
 @endsection
-
+<hr>
 @section('content')
     @can('HDiv')<h4>IT Internal Business Process Application Project's List</h4>@endcan
     @canany(['HDept1', 'MDept1'])<h4>IT Customer Relationship Management Project's List</h4>@endcan
@@ -12,8 +12,7 @@
     @canany(['HDept4', 'MDept4'])<h4>IT Internal Application Project's List</h4>@endcan
     <div class="d-inline">
         @canany(['HDept1', 'HDept2', 'HDept3', 'HDept4'])
-            <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary mt-1"><span
-                    data-feather="file"></span> Add Project</a>
+            <a id='addProjectbtn' href="{{ route('add_project_view') }}" class="btn btn-primary"><span data-feather="file"></span> Add Project</a>
         @endcanany
         <form class="d-flex mt-2" method="GET" action="{{ route('searchProject') }}">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"

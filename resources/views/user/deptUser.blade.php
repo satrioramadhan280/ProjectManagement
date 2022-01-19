@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 
-@can('Admin')@section('title')User List @endsection @endcan
-@can('HDiv')@section('title')IT Internal Business Process Application @endsection @endcan
-@can('HDept1')@section('title')IT Customer Relationship Management @endsection @endcan
-@can('HDept2')@section('title')IT Branch Delivery System @endsection @endcan
-@can('HDept3')@section('title')IT Micro and Retail Core Loan System @endsection @endcan
-@can('HDept4')@section('title')IT Internal Application @endsection @endcan
+@can('Admin')@section('title')List Users @endsection @endcan
+@can('HDiv')@section('title')List UsersIT Internal Business Process Application @endsection @endcan
+@can('HDept1')@section('title')List UsersIT Customer Relationship Management @endsection @endcan
+@can('HDept2')@section('title')List UsersIT Branch Delivery System @endsection @endcan
+@can('HDept3')@section('title')List UsersIT Micro and Retail Core Loan System @endsection @endcan
+@can('HDept4')@section('title')List UsersIT Internal Application @endsection @endcan
 
 @section('content')
     @can('Admin')<h4 class="mb-3">Users List</h4>@endcan
@@ -15,7 +15,8 @@
     @can('HDept2')<h4 class="mb-3">IT Branch Delivery System Users List</h4>@endcan
     @can('HDept3')<h4 class="mb-3">IT Micro and Retail Core Loan System Users List</h4>@endcan
     @can('HDept4')<h4 class="mb-3">IT Internal Application Users List</h4>@endcan
-
+    
+    <hr>
     @if ($role->id == 3)
         <label for="">Department: IT Customer Relationship Management</label>
     @endif
@@ -68,7 +69,6 @@
             </tr>
         </thead>
         <tbody>
-            @canany(['Admin', 'HDiv'])
                 @foreach ($users as $user)
                     <tr>
                         <td class="col-1">{{ $id++ }}</td>
@@ -86,16 +86,22 @@
                             <td class="col-3">IT Internal Application</td>
                         @endif
                         @can('Admin')
-                        <td class="col-1"><a class="btn btn-primary col-1" href="/admin/{{$user->username}}/edit">Edit Profile</a></td>
+                        <td class="col-2">
+                            <a class="btn btn-primary" href="/admin/{{ $user->username }}/edit">Edit Profile</a>
+                            <form action="/admin/{{$user->username}}/delete" method="POST" class="d-inline">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" onclick="return confirm('Are you sure want to delete this user?')"
+                                class="btn btn-danger">Delete User</button>
+                            </form>
+                        </td>
                         @endcan
                         @cannot('Admin')
-                            <td class="col-1"><a class="btn btn-primary" href="/user/{{$user->username}}/about">Detail</a></td> 
+                            <td class="col-1"><a class="btn btn-primary" href="/user/{{ $user->username }}/about">Detail</a>
                         @endcannot
                     </tr>
                 @endforeach
-            @endcanany
         </tbody>
     </table>
-
-    @canany(['Admin', 'HDiv']){!! $users->appends(\Request::except('page'))->render() !!}@endcanany
+    {!! $users->appends(\Request::except('page'))->render() !!}
     @endsection

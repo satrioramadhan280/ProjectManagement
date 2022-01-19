@@ -101,13 +101,7 @@ Edit Employee
       <div class="controls">
         <button class="btn btn-primary" type="submit">Update</button>
       </form>
-      @can('Admin')
-        <form action="/admin/{{$user->username}}/delete" method="POST" class="d-inline">
-            @csrf
-            @method('delete')
-            <button type="submit" onclick="return confirm('Are you sure want to delete this user?')" class="btn btn-danger" >Delete User</button>
-        </form>
-      @endcan  
+      
       </div>
     </div>
   </fieldset>

@@ -15,7 +15,7 @@
     @canany(['HDept2', 'MDept2'])<h4>IT Branch Delivery System Project's List</h4>@endcan
     @canany(['HDept3', 'MDept3'])<h4>IT Micro and Retail Core Loan System Project's List</h4>@endcan
     @canany(['HDept4', 'MDept4'])<h4>IT Internal Application Project's List</h4>@endcan
-
+    <hr>
     @if (session('success'))
         <div class="alert alert-success mt-3">
             {{ session('success') }}

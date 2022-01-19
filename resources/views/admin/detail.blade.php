@@ -123,7 +123,7 @@
             <div class="d-flex ">
                 <div class="d-flex user-info flex-column">
                     <h1>{{$user->name}}</h1>
-                    <span>Role : {{$role->display}}</span>
+                    <span>{{$role->display}}</span>
                 </div>
             </div>
         </div>
@@ -144,12 +144,12 @@
            
         </ul>
         <div class="ms-5 mt-4 mb-4">
-            @if ($user_tabs=='about')
-                {{-- Date of Birth --}}
+            @if ($user_tabs=='about')  
+                {{-- Name --}}
                 <div class="row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Date Of Birth</label>
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
                     <div class="col">
-                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{$user->dateOfBirth}}">
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{$user->name}}">
                     </div>
                 </div>
 
@@ -159,24 +159,21 @@
                     <div class="col">
                     <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{$user->username}}">
                     </div>
-                </div>
-
-                {{-- First name --}}
-                <div class="row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
-                    <div class="col">
-                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{$user->name}}">
-                    </div>
-                </div>
-
-                {{-- Last Name --}}
-
+                </div>  
 
                 {{-- Email --}}
                 <div class="row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                     <div class="col">
                         <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{$user->email}}">
+                    </div>
+                </div>
+                
+                {{-- Date of Birth --}}
+                <div class="row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Date Of Birth</label>
+                    <div class="col">
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{$user->dateOfBirth}}">
                     </div>
                 </div>
             @elseif ($user_tabs=='projects')

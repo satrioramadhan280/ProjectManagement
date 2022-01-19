@@ -27,8 +27,8 @@
 
 @section('content')
 <h4>Notifications</h4>
-
-<table class="table mt-2">
+<hr>
+<table class="table">
     <thead>
         <tr class="bg-danger text-white">
             {{-- <th scope="col">No</th> --}}

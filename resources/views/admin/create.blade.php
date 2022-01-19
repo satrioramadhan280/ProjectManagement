@@ -14,7 +14,7 @@ Add New User
     <div class="control-group">
       <label class="control-label" for="name">Name</label>
       <div class="controls">
-        <input type="text" id="name" name="name" placeholder="{{old('name')}}" class="form-control @error('name') is-invalid @enderror">
+        <input type="text" id="name" name="name" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror">
         @error('name')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
@@ -25,7 +25,7 @@ Add New User
     <div class="control-group">
       <label class="control-label" for="username">Username</label>
       <div class="controls">
-        <input type="text" id="username" name="username" placeholder="{{old('username')}}" class="form-control @error('username') is-invalid @enderror">
+        <input type="text" id="username" name="username" value="{{old('username')}}" class="form-control @error('username') is-invalid @enderror">
         @error('username')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
@@ -37,7 +37,7 @@ Add New User
     <div class="control-group">
       <label class="control-label" for="email">E-mail</label>
       <div class="controls">
-        <input type="text" id="email" name="email" placeholder="{{old('email')}}" class="form-control @error('email') is-invalid @enderror">
+        <input type="text" id="email" name="email" value="{{old('email')}}" class="form-control @error('email') is-invalid @enderror">
         @error('email')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@ Add New User
     <div class="control-group">
       <label class="control-label" for="dateOfBirth">Date of Birth</label>
       <div class="controls">
-        <input type="date" id="dateOfBirth" name="dateOfBirth" placeholder="{{old('dateOfBirth')}}" class="form-control @error('dateOfBirth') is-invalid @enderror" value="">
+        <input type="date" id="dateOfBirth" name="dateOfBirth" value="{{old('dateOfBirth')}}" class="form-control @error('dateOfBirth') is-invalid @enderror" value="">
         @error('dateOfBirth')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
@@ -64,7 +64,7 @@ Add New User
         <select class="custom-select form-control mb-1 @error('roleID') is-invalid @enderror" id="roleID" name="roleID">
           <option value="">Select Department</option>
           @foreach ($roles as $role)
-          <option value="{{$role->id}}">{{$role->display}}</option>
+          <option value="{{$role->id}}" {{old('roleID') == $role->id ? 'selected' : ''}}>{{$role->display}}</option>
           @endforeach
         </select>
         @error('roleID')

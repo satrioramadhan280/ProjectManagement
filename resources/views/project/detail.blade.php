@@ -141,8 +141,8 @@
 
 
 
-<h1>{{ $project->title }}</h1>
-
+<h4>{{ $project->title }}</h4>
+<hr>
 @if (Auth::user()->role!="user")
 
     <div class="mt-4 mb-4 d-inline">

@@ -56,7 +56,7 @@ class AdminController extends Controller
         $users->name = $request->name;
         $users->username = $request->username;
         $users->email = $request->email;
-        $users->password = bcrypt('simas123');
+        $users->password = bcrypt('xyz12345');
         $users->photo = 'photo-profile.png';
         $users->roleID = $request->roleID;
         $users->dateOfBirth = Carbon::parse($request->dateOfBirth);
@@ -265,7 +265,7 @@ class AdminController extends Controller
 
         $request->validate([
             'username' => 'required',
-            'dateOfBirth' => 'required'
+            'dateOfBirth' => 'required|before:today'
         ]);
 
         $currUser = User::where('username', $username)->where('dateOfBirth', $dateOfBirth)->first();
@@ -273,7 +273,7 @@ class AdminController extends Controller
             $currUser = User::where('username', $username)->where('dateOfBirth', $dateOfBirth)->update([
                 'password' => bcrypt('xyz12345')
             ]);
-            return redirect('/')->with('changePassword', 'Change Password Successfull');
+            return redirect('/')->with('changePassword', 'Reset Password Successfull. Password : xyz12345');
         }
         else{
             return redirect('/password/reset')->with('fail', 'These credentials do not match our records.');

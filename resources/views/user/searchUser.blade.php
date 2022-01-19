@@ -6,6 +6,7 @@
 
 @section('content')
     <h4>search for '{{ $search }}'</h4>
+    <hr>
     <div class="d-inline">
         @can('Admin')
             <a href="{{ url('/admin/create') }}" class="btn btn-primary mb-3">Add New User</a>
@@ -70,7 +71,15 @@
                             <td class="col-3">IT Internal Application</td>
                         @endif
                         @can('Admin')
-                            <td><a class="btn btn-primary col-1" href="/admin/{{ $search->username }}/edit">Edit Profile</a></td>
+                        <td class="col-2">
+                            <a class="btn btn-primary" href="/admin/{{ $search->username }}/edit">Edit Profile</a>
+                            <form action="/admin/{{$search->username}}/delete" method="POST" class="d-inline">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" onclick="return confirm('Are you sure want to delete this user?')"
+                                class="btn btn-danger">Delete User</button>
+                            </form>
+                        </td>
                         @endcan
                         @cannot('Admin')
                             <td class="col-1"><a class="btn btn-primary" href="/user/{{$search->username}}/about">Detail</a></td>
@@ -80,6 +89,5 @@
             @endif
         </tbody>
     </table>
-
     {!! $searches->appends(\Request::except('page'))->render() !!}
 @endsection

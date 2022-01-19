@@ -15,7 +15,7 @@
     @canany(['HDept2', 'MDept2'])<h4>IT Branch Delivery System Project's List</h4>@endcan
     @canany(['HDept3', 'MDept3'])<h4>IT Micro and Retail Core Loan System Project's List</h4>@endcan
     @canany(['HDept4', 'MDept4'])<h4>IT Internal Application Project's List</h4>@endcan
-
+    <hr>
 
     <div class="d-inline">
         <div class="dropdown show d-inline">
@@ -31,9 +31,7 @@
                 @endforeach
             </div>
             @canany(['HDept1', 'HDept2', 'HDept3', 'HDept4'])
-                <a id='addProjectbtn' data-href="{{ route('add_project_view') }}" class="btn btn-primary">
-                    <spandata-feather="file"></span> Add Project
-                </a>
+                <a id='addProjectbtn' href="{{ route('add_project_view') }}" class="btn btn-primary"><span data-feather="file"></span> Add Project</a>
             @endcanany
         </div>
         <form class="d-flex mt-3" method="GET" action="{{ route('searchProject') }}">
