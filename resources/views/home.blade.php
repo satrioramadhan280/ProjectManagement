@@ -180,7 +180,7 @@
                                             </form>
                                         </div>
                                         <div class="col-sm-auto">
-                                            <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->project_id, 'tasks']) }}">Detail</a>
+                                            <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
                                         </div>
                                     </div>
                                 </td>
@@ -211,7 +211,7 @@
                                             </form>
                                         </div>
                                         <div class="col-sm-auto">
-                                            <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->project_id, 'tasks']) }}">Detail</a>
+                                            <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
                                         </div>
                                     </div>
                                 </td>
@@ -242,7 +242,7 @@
                                             </form>
                                         </div>
                                         <div class="col-sm-auto">
-                                            <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->project_id, 'tasks']) }}">Detail</a>
+                                            <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
                                         </div>
                                     </div>
                                 </td>
@@ -273,7 +273,7 @@
                                             </form>
                                         </div>
                                         <div class="col-sm-auto">
-                                            <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->project_id, 'tasks']) }}">Detail</a>
+                                            <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
                                         </div>
                                     </div>
                                 </td>
