@@ -23,4 +23,30 @@ class NotificationsController extends Controller
         
         return view('notifications', compact('notifications', 'notification_types', 'users', 'projects', 'tasks'));
     }
+
+    
+
+    public function markAsRead(Request $request){
+
+        // dd($request->notification_id);
+        $notification = Notification::where('id', $request->notification_id)->first();
+        $notification->status = 1;
+        $notification->save();
+        
+        return redirect('notifications');
+    }
+
+    public function markAsReadAll(){
+
+        // dd($request->notification_id);
+        $notifications = Notification::where('user_id', Auth::user()->id)->where('status', 0)->get();
+
+        foreach($notifications as $notification){
+            $notification->status = 1;
+            $notification->save();
+        }
+        
+        
+        return redirect('notifications');
+    }
 }

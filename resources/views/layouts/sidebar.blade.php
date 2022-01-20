@@ -1,3 +1,17 @@
+<style>
+    
+
+    .numberCircle {
+        width: 23px;
+        line-height: 18px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 14px;
+        border: 2px solid rgb(114, 114, 114);
+        font-weight: bold;
+    }
+</style>
+
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div class="position-sticky pt-3">
         <div class="ml-auto mt-auto">
@@ -28,8 +42,31 @@
 
             <li class="nav-item">
                 <a class="nav-link {{request()->is('notifications') ? 'active' : ''}}" aria-current="page" href="{{url('/notifications')}}">
-                    <span data-feather="bell"></span>
-                    <span>Notifications</span>
+                    
+                    <div class="d-flex flex-row">
+                        <div><span data-feather="bell"></span>Notifications</div>
+                    
+                    
+                        <?php
+                            $count = 0;
+                        ?>
+                        @foreach (Auth::user()->notifications as $item)
+                            @if ($item->status == 0)
+                                <?php
+                                    $count = $count+1;
+                                ?>
+                            @endif
+                        @endforeach
+                        
+                    
+                        @if ($count > 1)
+                            <div class="ml-2 numberCircle" style="color: red">
+                                <?php
+                                    echo $count
+                                ?>
+                            </div>
+                        @endif
+                    </div>
                 </a>
             </li>
             

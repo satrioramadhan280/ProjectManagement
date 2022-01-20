@@ -57,4 +57,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Project::class, 'project_user', 'user_id', 'project_id');
     }
+
+    public function notifications(){
+        return $this->hasMany('App\Models\Notification', 'user_id', 'id');
+        // $notifications = Notification::where('user_id', Auth::user()->id)->where('status', 0)->get();
+        // return $notifications->count();
+    }
+    
 }
