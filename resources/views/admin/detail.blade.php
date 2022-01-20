@@ -152,7 +152,7 @@
 
 
 
-    <div class="ms-5 mt-4 mb-4">
+    <div class="ms-5 mt-4 mb-4 mr-5">
         @if ($user_tabs=='about')
         {{-- Name --}}
         <div class="row">
@@ -235,14 +235,15 @@
                 @endforeach
             </tbody>
         </table>
-        @endif
         {!! $projects->appends(\Request::except('page'))->render() !!}
+        @endif
         @endcanany
         @endif
     </div>
 </div>
+
 @if ($user->username == Auth::user()->username)
-<div class="mt-3">
+<div class=" mt-3">
     <a href="/admin/{{$user->username}}/edit" class="btn btn-primary mt-3">Edit Profile</a>
     <a href="/admin/{{$user->username}}/editPassword" class="btn btn-secondary mt-3">Change Password</a>
 </div>

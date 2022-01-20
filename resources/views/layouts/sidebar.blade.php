@@ -59,7 +59,7 @@
                         @endforeach
                         
                     
-                        @if ($count > 1)
+                        @if ($count > 0)
                             <div class="ml-2 numberCircle" style="color: red">
                                 <?php
                                     echo $count
