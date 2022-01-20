@@ -130,9 +130,14 @@
                 <h1>{{$user->name}}</h1>
                 <span>{{$role->display}}</span>
             </div>
-        </div>
+        </div>        
+    </div> 
+    @if ($user->username == Auth::user()->username)
+    <div class=" ml-3 mb-3">
+        <a href="/admin/{{$user->username}}/edit" class="btn btn-primary mt-3">Edit Profile</a>
+        <a href="/admin/{{$user->username}}/editPassword" class="btn btn-secondary mt-3">Change Password</a>
     </div>
-
+    @endif
 
 </div>
 
@@ -142,15 +147,13 @@
             <a class="nav-link @if ($user_tabs=='about') text-dark and Active  @endif"
                 href="/user/{{$user->username}}/about" style="color: rgba(0, 0, 0, 0.466)">About</a>
         </li>
-        @canany(['MDept1', 'MDept2', 'MDept3', 'MDept4'])
+        @if ($user->roleID == 7)
         <li class="nav-item" onclick="">
             <a class="nav-link @if ($user_tabs=='projects') text-dark and Active @endif"
-                href="/user/{{$user->username}}/projects" style="color: rgba(0, 0, 0, 0.466)">Projects</a>
+            href="/user/{{$user->username}}/projects" style="color: rgba(0, 0, 0, 0.466)">Projects</a>
         </li>
-        @endcanany
+        @endif
     </ul>
-
-
 
     <div class="ms-5 mt-4 mb-4 mr-5">
         @if ($user_tabs=='about')
@@ -186,8 +189,10 @@
                     value="{{$user->dateOfBirth}}">
             </div>
         </div>
+
+       
+
         @elseif ($user_tabs=='projects')
-        @canany(['MDept1', 'MDept2', 'MDept3', 'MDept4'])
         <table class="table">
             <thead>
                 <tr class="bg-danger text-white">
@@ -210,7 +215,16 @@
                     <td class="col-1">{{$id++}}</td>
                     <td class="col-4">{{ $project->title }}</td>
                     @if ($project->deptID == 3)
-                    <td class="col-3">IT Customer Relationship Management</td>
+                        <td class="col-3">IT Customer Relationship Management</td>
+                    @endif
+                    @if ($project->deptID == 4)
+                        <td class="col-3">IT Branch Delivery System</td>
+                    @endif
+                    @if ($project->deptID == 5)
+                        <td class="col-3">IT Micro and Retail Core Loan System</td>
+                    @endif
+                    @if ($project->deptID == 6)
+                        <td class="col-3">IT IT Internal Application</td>
                     @endif
                     <td class="col-2">{{ $project->status->name }}</td>
                     <td class="col-2">{{ $project->endDate }}</td>
@@ -233,21 +247,15 @@
                     </td>
                 </tr>
                 @endforeach
+                @endif
             </tbody>
         </table>
         {!! $projects->appends(\Request::except('page'))->render() !!}
         @endif
-        @endcanany
-        @endif
     </div>
 </div>
 
-@if ($user->username == Auth::user()->username)
-<div class=" mt-3">
-    <a href="/admin/{{$user->username}}/edit" class="btn btn-primary mt-3">Edit Profile</a>
-    <a href="/admin/{{$user->username}}/editPassword" class="btn btn-secondary mt-3">Change Password</a>
-</div>
-@endif
+
 
 @endsection
 

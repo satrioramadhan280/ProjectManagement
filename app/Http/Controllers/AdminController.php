@@ -79,16 +79,16 @@ class AdminController extends Controller
         $user = User::where('username', $username)->first();
         $role = Role::find($user->roleID);
 
-        if(auth()->user()->roleID == 7){
+        if($user->roleID == 7){
             $deptID = 3;
         }
-        else if(auth()->user()->roleID == 8){
+        else if($user->roleID == 8){
             $deptID = 4;
         }
-        else if(auth()->user()->roleID == 9){
+        else if($user->roleID == 9){
             $deptID = 5;
         }
-        else if(auth()->user()->roleID == 10){
+        else if($user->roleID == 10){
             $deptID = 6;
         }
         else{
@@ -99,6 +99,7 @@ class AdminController extends Controller
             ->where('projects.deptID', $deptID)
             ->where('project_user.user_id', $user->id)->paginate(10);
         $id = ($projects->currentpage() - 1) * $projects->perpage() + 1;
+        
         
         return view('admin.detail', compact('user', 'user_tabs', 'role', 'projects', 'id'));
     }
