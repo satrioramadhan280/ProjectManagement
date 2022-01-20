@@ -23,7 +23,7 @@
             <div class="form-group">
                 <div class="form-floating">
                     <input id="username" type="text" class="mt-3 form-control @error('username') is-invalid @enderror"
-                        name="username" value="{{ old('username') }}" autocomplete="username" autofocus
+                        name="username" value="{{ old('username') }}" autofocus
                         placeholder="Username">
                     <label for="floatingInput">Username</label>
                     @error('username')

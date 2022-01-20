@@ -457,7 +457,7 @@ class ProjectController extends Controller
         $forum->save();
         // $forum_reply->user_id =
 
-        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum']);
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum'])->with('post_success', 'Post Successful');
     }
 
     public function forum_delete(Request $request, Project $project){
@@ -469,7 +469,6 @@ class ProjectController extends Controller
         $forum_reply = ForumReply::where('forum_id', $forum->id)->get();
 
         if($forum_reply->isNotEmpty()){
-            dd($forum_reply);
             foreach($forum_reply as $reply){
                 $reply->delete();
             }
@@ -500,7 +499,7 @@ class ProjectController extends Controller
             $f->save();
         }
 
-        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum']);
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum'])->with('post_delete', 'Post Successful Deleted');
     }
 
     public function reply(Request $request, Project $project, Forum $forum){
@@ -517,6 +516,6 @@ class ProjectController extends Controller
         $forum_reply->save();
         // $forum_reply->user_id =
 
-        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum']);
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum'])->with('post_reply', 'Post Successful Replied');
     }
 }

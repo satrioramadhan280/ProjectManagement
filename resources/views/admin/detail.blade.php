@@ -242,7 +242,7 @@
     </div>
 </div>
 @if ($user->username == Auth::user()->username)
-<div class="d-inline mt-3">
+<div class="mt-3">
     <a href="/admin/{{$user->username}}/edit" class="btn btn-primary mt-3">Edit Profile</a>
     <a href="/admin/{{$user->username}}/editPassword" class="btn btn-secondary mt-3">Change Password</a>
 </div>

@@ -225,7 +225,6 @@ class HomeController extends Controller
 
         // var_dump($monthName);
 
-
         return view('home', compact(
             'day7',
             'day6',

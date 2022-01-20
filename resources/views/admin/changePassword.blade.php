@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
 @section('title')
-Edit Employee
+Change Password
 @endsection
 
 @section('content')
+<h4>Change Password</h4>
+<hr>
 <form class="form-horizontal" action='/admin/{{$user->username}}/changePassword' method="POST" enctype="multipart/form-data">
   @csrf
   @method('patch')

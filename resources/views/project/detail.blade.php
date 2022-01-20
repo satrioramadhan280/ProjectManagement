@@ -123,8 +123,6 @@
 {{$project->title}}
 @endsection
 
-
-
 @section('content')
 
 @if (session('addMember'))
@@ -145,17 +143,42 @@
     </div>
 @endif
 
+@if (session('post_success'))
+    <div class="alert alert-success mt-3">
+        {{ session('post_success') }}
+    </div>
+@endif
 
+@if (session('post_delete'))
+    <div class="alert alert-danger mt-3">
+        {{ session('post_delete') }}
+    </div>
+@endif
 
-<h4>{{ $project->title }}</h4>
+@if (session('post_reply'))
+    <div class="alert alert-success mt-3">
+        {{ session('post_reply') }}
+    </div>
+@endif
+
+<div class="d-flex flex-row">
+    <h4 class="mt-1">{{ $project->title }}</h4>
+    @if (Auth::user()->roleID == 2 || Auth::user()->roleID == 3 || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 ||
+    Auth::user()->roleID == 6)
+        <form class="ml-3" action="/deleteProject/{{$project->id}}" method="POST">
+            @csrf
+            @method('delete')
+            <button class="btn btn-danger" type="submit" onclick="confirm('Are you sure want to delete this project?')"><span data-feather="trash-2"></span> Delete Project</button>
+        </form>    
+    @endif  
+</div>
 <hr>
-@if (Auth::user()->role!="user")
-
+    @if ($project->users()->where('user_id', Auth::user()->id)->first() || Auth::user()->roleID == 2 || Auth::user()->roleID == 3 || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 ||
+    Auth::user()->roleID == 6)
+    
     <div class="mt-4 mb-4 d-inline">
         {{-- <a href="{{ route('add_task_view', [$project->id]) }}" class="btn btn-primary"><span data-feather="clipboard"></span> Add  Task</a> --}}
         <div class="d-flex flex-row">
-            <a href="{{ route('edit_project_view', [$project->id]) }}" class="btn btn-primary mr-3"> Edit Project</a>
-
             <div class="btn-group mr-3">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
                   {{ $project->status->name }}
@@ -181,12 +204,8 @@
             <button type="button" class="btn btn-primary ml-3" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                 <span data-feather="user-plus"></span> Add / Remove Member
             </button>
-
-            <form class="ml-3" action="/deleteProject/{{$project->id}}" method="POST">
-                @csrf
-                @method('delete')
-                <button class="btn btn-danger" type="submit" onclick="confirm('Are you sure want to delete this project?')"><span data-feather="trash-2"></span> Delete Project</button>
-            </form>
+            <a href="{{ route('edit_project_view', [$project->id]) }}" class="btn btn-primary ml-3 mr-3"> Edit Project</a>
+           
         </div>
     </div>
 
@@ -308,7 +327,7 @@
                     <div class="task-record border-bottom">
                         {{-- <td>1.</td> --}}
                         <div class="d-flex flex-row justify-content-between">
-                            <td class="p-3"><h5>{{$task->name}}</h5></td>
+                            <td class="p-3"><p>{{$task->name}}</p></td>
                             <div class="d-flex flex-row">
                                 @if ($task->status == 'Ongoing')
                                     <span>{{$task->status}}</span>
@@ -341,7 +360,10 @@
                                     @endforeach</span>
                                 </div>
                             </div>
+                            @if ($task->users()->where('user_id', Auth::user()->id)->first())       
                             <div class="d-flex flex-column">
+                                
+                                {{-- @if (Auth::user()->projects->id == $project->id) --}}
                                 <div>
                                     <form action="/projects/detail/{{$project->id}}/{{$task->id}}/change_task_status" method="POST">
                                         @csrf
@@ -352,7 +374,9 @@
                                     @csrf
                                     <button type="submit" class="btn btn-danger btn-sm">Remove Task</button>
                                 </form>
+                                {{-- @endif --}}
                             </div>
+                            @endif
                         </div>
                     </div>
 
@@ -366,7 +390,10 @@
 
                     <div class="m-4">
                         <h3>Files</h3>
-                        <button id="fileUploadButton" type="button" class="btn btn-primary btn-sm">Upload</button>
+                        @if ($project->users()->where('user_id', Auth::user()->id)->first() || Auth::user()->roleID == 2 || Auth::user()->roleID == 3 || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 ||
+                        Auth::user()->roleID == 6)
+                            <button id="fileUploadButton" type="button" class="btn btn-primary btn-sm">Upload</button>
+                        @endif
 
                         <form id="addFile" class="row g-2 m-2" style="display: none;" action="{{ route('add_file', [$project->id]) }}" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -405,6 +432,8 @@
                                                         </div>
                                                     </form>
                                                 </div>
+                                                @if ($project->users()->where('user_id', Auth::user()->id)->first() || Auth::user()->roleID == 2 || Auth::user()->roleID == 3 || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 ||
+                                                Auth::user()->roleID == 6)
                                                 <div class="col-sm-auto">
                                                     <form method="POST" action="{{ route('delete_file', [$project->id]) }}">
                                                         @csrf
@@ -415,6 +444,7 @@
                                                         </div>
                                                     </form>
                                                 </div>
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>
@@ -430,6 +460,8 @@
                     <div class="m-4">
 
                         <div class="m-3 ">
+                            @if ($project->users()->where('user_id', Auth::user()->id)->first() || Auth::user()->roleID == 2 || Auth::user()->roleID == 3 || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 ||
+                            Auth::user()->roleID == 6)
                             <div class="p-3 forum-box rounded">
                                 <div class="d-flex flex-column p-2">
                                     <div class="d-flex justify-content-between border-bottom">
@@ -467,6 +499,7 @@
 
 
                             </div>
+                            @endif
 
                         </div>
 
@@ -520,7 +553,10 @@
                                             >
 
                                             <span class="">Show Replies</span></div>
-                                        <div class="m-2 reply" ><span>Reply</span></div>
+                                            @if ($project->users()->where('user_id', Auth::user()->id)->first() || Auth::user()->roleID == 2 || Auth::user()->roleID == 3 || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 ||
+                                            Auth::user()->roleID == 6)
+                                                <div class="m-2 reply" ><span>Reply</span></div>
+                                            @endif
                                     </div>
                                     <div class="reply-content mt-4 border-top">
                                         <div class="d-flex justify-content-start mt-3">

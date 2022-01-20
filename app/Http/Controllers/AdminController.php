@@ -97,7 +97,7 @@ class AdminController extends Controller
         
         $projects = Project::join('project_user', 'projects.id', '=', 'project_user.project_id')
             ->where('projects.deptID', $deptID)
-            ->where('project_user.user_id', auth()->user()->id)->paginate(10);
+            ->where('project_user.user_id', $user->id)->paginate(10);
         $id = ($projects->currentpage() - 1) * $projects->perpage() + 1;
         
         return view('admin.detail', compact('user', 'user_tabs', 'role', 'projects', 'id'));
