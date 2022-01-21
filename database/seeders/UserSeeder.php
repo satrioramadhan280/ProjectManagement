@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Admin',
             'username' => 'admin',
-            'email' => 'admin@banksinarmas.com',
+            'email' => 'admin@xyz.com',
             'password' => bcrypt('admin'),
             'photo' => 'photo-profile.png',
             'roleID' => 1,
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Head Division',
             'username' => 'head.division',
-            'email' => 'headdivision@banksinarmas.com',
+            'email' => 'headdivision@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 2,
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Head Department1',
             'username' => 'head.department1',
-            'email' => 'headdepartment1@banksinarmas.com',
+            'email' => 'headdepartment1@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 3,
@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Head Department2',
             'username' => 'head.department2',
-            'email' => 'headdepartment2@banksinarmas.com',
+            'email' => 'headdepartment2@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 4,
@@ -54,7 +54,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Head Department3',
             'username' => 'head.department3',
-            'email' => 'headdepartment3@banksinarmas.com',
+            'email' => 'headdepartment3@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 5,
@@ -63,7 +63,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Head Department4',
             'username' => 'head.department4',
-            'email' => 'headdepartment4@banksinarmas.com',
+            'email' => 'headdepartment4@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 6,
@@ -72,7 +72,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Member Department1',
             'username' => 'member.department1',
-            'email' => 'memberdepartment1@banksinarmas.com',
+            'email' => 'memberdepartment1@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
@@ -81,7 +81,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Member Department2',
             'username' => 'member.department2',
-            'email' => 'memberdepartment2@banksinarmas.com',
+            'email' => 'memberdepartment2@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
@@ -90,7 +90,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Member Department3',
             'username' => 'member.department3',
-            'email' => 'memberdepartment3@banksinarmas.com',
+            'email' => 'memberdepartment3@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
@@ -99,7 +99,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Member Department4',
             'username' => 'member.department4',
-            'email' => 'memberdepartment4@banksinarmas.com',
+            'email' => 'memberdepartment4@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
@@ -119,7 +119,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'User1 Last',
             'username' => 'user1',
-            'email' => 'user1@banksinarmas.com',
+            'email' => 'user1@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
@@ -128,7 +128,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'User2 Last',
             'username' => 'user2',
-            'email' => 'user2@banksinarmas.com',
+            'email' => 'user2@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
@@ -137,7 +137,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'User3 Last',
             'username' => 'user3',
-            'email' => 'user3@banksinarmas.com',
+            'email' => 'user3@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
@@ -146,7 +146,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'User3 Last',
             'username' => 'user4',
-            'email' => 'user4@banksinarmas.com',
+            'email' => 'user4@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
@@ -157,7 +157,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Billy',
             'username' => 'billy',
-            'email' => 'billy@banksinarmas.com',
+            'email' => 'billy@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
@@ -166,7 +166,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Anton Joni Malaka Bu',
             'username' => 'anton',
-            'email' => 'anton@banksinarmas.com',
+            'email' => 'anton@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
@@ -175,7 +175,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Jeremy',
             'username' => 'jeremy',
-            'email' => 'jeremy@banksinarmas.com',
+            'email' => 'jeremy@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
@@ -184,7 +184,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Jessica',
             'username' => 'jessica',
-            'email' => 'jessica@banksinarmas.com',
+            'email' => 'jessica@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
@@ -195,7 +195,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Bonar',
             'username' => 'bonar',
-            'email' => 'bonar@banksinarmas.com',
+            'email' => 'bonar@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
@@ -204,7 +204,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Michael',
             'username' => 'michael',
-            'email' => 'michael@banksinarmas.com',
+            'email' => 'michael@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
@@ -213,7 +213,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Sisca',
             'username' => 'sisca',
-            'email' => 'sisca@banksinarmas.com',
+            'email' => 'sisca@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
@@ -222,7 +222,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Dora',
             'username' => 'dora',
-            'email' => 'dora@banksinarmas.com',
+            'email' => 'dora@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
@@ -233,7 +233,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Stanley',
             'username' => 'stanley',
-            'email' => 'stanley@banksinarmas.com',
+            'email' => 'stanley@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
@@ -242,7 +242,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Kikky',
             'username' => 'kikky',
-            'email' => 'kikky@banksinarmas.com',
+            'email' => 'kikky@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
@@ -251,7 +251,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Verrent',
             'username' => 'verrent',
-            'email' => 'verrent@banksinarmas.com',
+            'email' => 'verrent@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
@@ -260,7 +260,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Sinta',
             'username' => 'sinta',
-            'email' => 'sinta@banksinarmas.com',
+            'email' => 'sinta@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
@@ -271,7 +271,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Marlo',
             'username' => 'marlo',
-            'email' => 'marlo@banksinarmas.com',
+            'email' => 'marlo@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
@@ -280,7 +280,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Marco',
             'username' => 'marco',
-            'email' => 'marco@banksinarmas.com',
+            'email' => 'marco@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
@@ -289,7 +289,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Amadea',
             'username' => 'amadea',
-            'email' => 'amadea@banksinarmas.com',
+            'email' => 'amadea@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
@@ -298,7 +298,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Fanny',
             'username' => 'fanny',
-            'email' => 'fanny@banksinarmas.com',
+            'email' => 'fanny@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
@@ -309,7 +309,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Gilang',
             'username' => 'gilang',
-            'email' => 'gilang@banksinarmas.com',
+            'email' => 'gilang@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
@@ -318,7 +318,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Leonardo',
             'username' => 'leonardo',
-            'email' => 'leonardo@banksinarmas.com',
+            'email' => 'leonardo@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
@@ -327,7 +327,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Putri',
             'username' => 'putri',
-            'email' => 'putri@banksinarmas.com',
+            'email' => 'putri@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
@@ -336,7 +336,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Margaretha',
             'username' => 'margaretha',
-            'email' => 'margaretha@banksinarmas.com',
+            'email' => 'margaretha@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
@@ -347,7 +347,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Heung Min Son',
             'username' => 'hmson',
-            'email' => 'hmson@banksinarmas.com',
+            'email' => 'hmson@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
@@ -356,7 +356,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Kevin de Bruyne',
             'username' => 'kdb',
-            'email' => 'kdb@banksinarmas.com',
+            'email' => 'kdb@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
@@ -365,7 +365,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Cristiano Ronaldo',
             'username' => 'cr7',
-            'email' => 'cr7@banksinarmas.com',
+            'email' => 'cr7@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
@@ -374,7 +374,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Leo Messi',
             'username' => 'lm10',
-            'email' => 'lm10@banksinarmas.com',
+            'email' => 'lm10@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
@@ -385,7 +385,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Declan Rice',
             'username' => 'declanrice',
-            'email' => 'declanrice@banksinarmas.com',
+            'email' => 'declanrice@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
@@ -394,7 +394,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Bruno Fernandes',
             'username' => 'brunofernandes',
-            'email' => 'brunofernandes@banksinarmas.com',
+            'email' => 'brunofernandes@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
@@ -403,7 +403,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Alexander Lacazette',
             'username' => 'lacazette',
-            'email' => 'lacazette@banksinarmas.com',
+            'email' => 'lacazette@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
@@ -412,7 +412,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Mo Salah',
             'username' => 'mosalah',
-            'email' => 'mosalah@banksinarmas.com',
+            'email' => 'mosalah@xyz.com',
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,

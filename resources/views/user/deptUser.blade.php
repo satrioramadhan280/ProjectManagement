@@ -9,12 +9,12 @@
 @can('HDept4')@section('title')List UsersIT Internal Application @endsection @endcan
 
 @section('content')
-    @can('Admin')<h4 class="mb-3">Users List</h4>@endcan
-    @can('HDiv')<h4 class="mb-3">IT Internal Business Process Application Users List</h4>@endcan
-    @can('HDept1')<h4 class="mb-3">IT Customer Relationship Management Users List</h4>@endcan
-    @can('HDept2')<h4 class="mb-3">IT Branch Delivery System Users List</h4>@endcan
-    @can('HDept3')<h4 class="mb-3">IT Micro and Retail Core Loan System Users List</h4>@endcan
-    @can('HDept4')<h4 class="mb-3">IT Internal Application Users List</h4>@endcan
+    @can('Admin')<h4 class="mb-3">List Users</h4>@endcan
+    @can('HDiv')<h4 class="mb-3">List Users IT Internal Business Process Application</h4>@endcan
+    @canany(['HDept1', 'MDept1'])<h4 class="mb-3">List Users IT Customer Relationship Management</h4>@endcanany
+    @canany(['HDept2', 'MDept2'])<h4 class="mb-3">List Users IT Branch Delivery System</h4>@endcanany
+    @canany(['HDept3', 'MDept3'])<h4 class="mb-3">List Users IT Micro and Retail Core Loan System</h4>@endcanany
+    @canany(['HDept4', 'MDept4'])<h4 class="mb-3">List Users IT Internal Application</h4>@endcanany
     
     <hr>
     @if ($role->id == 3)

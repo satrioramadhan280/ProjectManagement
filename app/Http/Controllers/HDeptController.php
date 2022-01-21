@@ -16,7 +16,7 @@ class HDeptController extends Controller
     public function index()
     {
         $users = User::where('RoleID', '!=', 1)->paginate(10);
-        $div = User::where('RoleID', '!=', 1)->where('RoleID', '!=', 2)->paginate(10);
+        $div = User::where('RoleID', '!=', 1)->paginate(10);
         $id = ($users->currentpage() - 1) * $users->perpage() + 1;
         $dept1 = User::where('RoleID', 3)->orWhere('RoleID', 7)->paginate(10);
         $dept2 = User::where('RoleID', 4)->orWhere('RoleID', 8)->paginate(10);

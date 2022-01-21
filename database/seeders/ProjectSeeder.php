@@ -23,8 +23,8 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-001/fileSR1.pdf',
             'folder' => 'projectFiles/PR-001',
             'status_id' => 1,
-            'startDate' => '2021-12-12',
-            'endDate' => '2021-12-17',
+            'startDate' => '2022-01-21',
+            'endDate' => '2022-02-28',
         ]);
 
         Project::create([
@@ -33,8 +33,8 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-002/fileSR2.pdf',
             'folder' => 'projectFiles/PR-002',
             'status_id' => 4,
-            'startDate' => '2021-12-12',
-            'endDate' => '2021-12-17',
+            'startDate' => '2022-01-21',
+            'endDate' => '2022-02-28',
         ]);
 
         Project::create([
@@ -43,8 +43,8 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-003/fileSR3.pdf',
             'folder' => 'projectFiles/PR-003',
             'status_id' => 7,
-            'startDate' => '2021-12-12',
-            'endDate' => '2021-12-17',
+            'startDate' => '2022-01-21',
+            'endDate' => '2022-02-01',
         ]);
 
         Project::create([
@@ -53,8 +53,8 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-004/fileSR4.pdf',
             'folder' => 'projectFiles/PR-004',
             'status_id' => 7,
-            'startDate' => '2021-12-12',
-            'endDate' => '2021-12-17',
+            'startDate' => '2022-01-21',
+            'endDate' => '2022-02-03',
         ]);
 
         Project::create([
@@ -63,8 +63,8 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-005/fileSR5.pdf',
             'folder' => 'projectFiles/PR-005',
             'status_id' => 1,
-            'startDate' => '2021-12-12',
-            'endDate' => '2021-12-17',
+            'startDate' => '2022-01-21',
+            'endDate' => '2022-02-28',
         ]);
 
         Project::create([
@@ -73,8 +73,8 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-006/fileSR6.pdf',
             'folder' => 'projectFiles/PR-006',
             'status_id' => 6,
-            'startDate' => '2021-12-12',
-            'endDate' => '2021-12-17',
+            'startDate' => '2022-01-21',
+            'endDate' => '2022-02-28',
         ]);
 
         Project::create([
@@ -83,8 +83,8 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-007/fileSR7.pdf',
             'folder' => 'projectFiles/PR-002',
             'status_id' => 7,
-            'startDate' => '2021-12-12',
-            'endDate' => '2021-12-17',
+            'startDate' => '2022-01-21',
+            'endDate' => '2022-02-10',
         ]);
 
         Project::create([
@@ -93,8 +93,8 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-008/fileSR8.pdf',
             'folder' => 'projectFiles/PR-008',
             'status_id' => 7,
-            'startDate' => '2021-12-12',
-            'endDate' => '2021-12-17',
+            'startDate' => '2022-01-21',
+            'endDate' => '2022-02-12',
         ]);
 
         Project::create([
@@ -103,8 +103,8 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-009/fileSR9.pdf',
             'folder' => 'projectFiles/PR-009',
             'status_id' => 1,
-            'startDate' => '2021-12-12',
-            'endDate' => '2021-12-17',
+            'startDate' => '2022-01-21',
+            'endDate' => '2022-02-28',
         ]);
 
         Project::create([
@@ -113,8 +113,8 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-010/fileSR10.pdf',
             'folder' => 'projectFiles/PR-010',
             'status_id' => 4,
-            'startDate' => '2021-12-12',
-            'endDate' => '2021-12-17',
+            'startDate' => '2022-01-21',
+            'endDate' => '2022-02-28',
         ]);
 
         Project::create([
@@ -123,8 +123,8 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-011/fileSR11.pdf',
             'folder' => 'projectFiles/PR-011',
             'status_id' => 6,
-            'startDate' => '2021-12-12',
-            'endDate' => '2021-12-17',
+            'startDate' => '2022-01-21',
+            'endDate' => '2022-02-28',
         ]);
 
         Project::create([
@@ -133,8 +133,8 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-012/fileSR12.pdf',
             'folder' => 'projectFiles/PR-012',
             'status_id' => 7,
-            'startDate' => '2021-12-12',
-            'endDate' => '2021-12-17',
+            'startDate' => '2022-01-21',
+            'endDate' => '2022-02-20',
         ]);
 
         Project::create([
@@ -143,8 +143,8 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-013/fileSR13.pdf',
             'folder' => 'projectFiles/PR-013',
             'status_id' => 1,
-            'startDate' => '2021-12-12',
-            'endDate' => '2021-12-17',
+            'startDate' => '2022-01-21',
+            'endDate' => '2022-02-28',
         ]);
         
         Project::create([
@@ -153,8 +153,8 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-014/fileSR14.pdf',
             'folder' => 'projectFiles/PR-014',
             'status_id' => 4,
-            'startDate' => '2021-12-12',
-            'endDate' => '2021-12-17',
+            'startDate' => '2022-01-21',
+            'endDate' => '2022-02-28',
         ]);
 
         Project::create([
@@ -163,8 +163,8 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-015/fileSR15.pdf',
             'folder' => 'projectFiles/PR-015',
             'status_id' => 6,
-            'startDate' => '2021-12-12',
-            'endDate' => '2021-12-17',
+            'startDate' => '2022-01-21',
+            'endDate' => '2022-02-28',
         ]);
 
         Project::create([
@@ -173,8 +173,8 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-016/fileSR16.pdf',
             'folder' => 'projectFiles/PR-016',
             'status_id' => 7,
-            'startDate' => '2021-12-12',
-            'endDate' => '2021-12-17',
+            'startDate' => '2022-01-21',
+            'endDate' => '2022-02-25',
         ]);
 
     }
