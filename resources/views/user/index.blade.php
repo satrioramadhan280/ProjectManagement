@@ -3,10 +3,10 @@
 
 @can('Admin')@section('title')List Users @endsection @endcan
 @can('HDiv')@section('title')List Users IT Internal Business Process Application @endsection @endcan
-@can('HDept1')@section('title')List Users IT Customer Relationship Management @endsection @endcan
-@can('HDept2')@section('title')List Users IT Branch Delivery System @endsection @endcan
-@can('HDept3')@section('title')List Users IT Micro and Retail Core Loan System @endsection @endcan
-@can('HDept4')@section('title')List Users IT Internal Application @endsection @endcan
+@canany(['HDept1', 'MDept1'])@section('title')List Users IT Customer Relationship Management @endsection @endcanany
+@canany(['HDept2', 'MDept2'])@section('title')List Users IT Branch Delivery System @endsection @endcanany
+@canany(['HDept3', 'MDept3'])@section('title')List Users IT Micro and Retail Core Loan System @endsection @endcanany
+@canany(['HDept4', 'MDept4'])@section('title')List Users IT Internal Application @endsection @endcanany
 
 @section('content')
 @can('Admin')<h4 class="mb-3">List Users</h4>@endcan

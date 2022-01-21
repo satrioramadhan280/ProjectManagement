@@ -12,6 +12,7 @@ Edit Employee
     <div id="legend">
       <legend class="">Edit Profile</legend>
     </div>
+    <hr>
     <div class="control-group">
       <label class="control-label" for="name">Name</label>
       <div class="controls">
