@@ -112,6 +112,9 @@
     <tr>
         <td class="col-1">{{ $id++ }}</td>
         <td class="col-4">{{ $user->name }}</td>
+        @if ($user->roleID == 2)
+            <td class="col-3">Head Division</td>
+        @endif
         @if ($user->roleID == 3 || $user->roleID == 7)
         <td class="col-3">IT Customer Relationship Management</td>
         @endif
