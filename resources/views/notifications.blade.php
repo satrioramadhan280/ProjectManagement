@@ -91,6 +91,16 @@
                             href="{{ route('project_detail_view', [$projects[$notification->project_id-1]->id, 'tasks']) }}">Detail
                         </td>
 
+                @elseif($notification->notification_type_id == 4)
+            
+                        <td class="col-3">Removed from Task'{{$notification->additional_description}}'</td>
+                        <td class="col-3"></td>
+                        <td class="col-2">{{$projects[$notification->project_id-1]->title}}</td>
+                        <td class="col-2">{{$notification->created_at}}</td>
+                        <td class="col-1">
+                            
+                        </td>
+
                 @elseif($notification->notification_type_id == 5)
             
                     <td class="col-3">New Project Created</td>

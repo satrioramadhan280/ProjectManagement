@@ -167,6 +167,16 @@ class ProjectController extends Controller
 
     public function taskRemove(Project $project, Task $task)
     {
+        $task_users = TaskUser::where('task_id', $task->id)->get();
+        foreach($task_users as $task_user){
+            $notification = new Notification();
+            $notification-> notification_type_id = 4;
+            $notification->user_id = $task_user->user_id;
+            $notification->status = 0;
+            $notification->additional_description = $task->name;
+            $notification->save();
+        }
+            
         $task = Task::where('id', $task->id)->first();
         $task->delete();
 

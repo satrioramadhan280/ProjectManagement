@@ -82,7 +82,7 @@ Edit Employee
 
     @can('Admin')
     <div class="control-group">
-      <label class="control-label" for="role">Select Department</label>
+      <label class="control-label" for="role">Select Role</label>
       <div class="controls">
           <select class="custom-select form-control mb-1 @error('roleID') is-invalid @enderror" id="roleID" name="roleID">
             @foreach($roles as $role)

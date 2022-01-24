@@ -60,10 +60,10 @@ Add New User
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="role">Select Department</label>
+      <label class="control-label" for="role">Select Role</label>
       <div class="controls">
         <select class="custom-select form-control mb-1 @error('roleID') is-invalid @enderror" id="roleID" name="roleID">
-          <option value="">Select Department</option>
+          <option value="">Select Role</option>
           @foreach ($roles as $role)
           <option value="{{$role->id}}" {{old('roleID') == $role->id ? 'selected' : ''}}>{{$role->display}}</option>
           @endforeach
