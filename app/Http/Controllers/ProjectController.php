@@ -51,6 +51,9 @@ class ProjectController extends Controller
 
     public function addProject(Request $request)
     {
+        
+        // dd($request);
+        // dd($request->user()->id);
         $request->validate([
             'projectTitle' => 'required|min:3|max:50',
             'projectSR' => 'required|mimes:pdf',
@@ -70,7 +73,16 @@ class ProjectController extends Controller
         $project->endDate = Carbon::parse($request->endDate); 
         $project->save();
 
-        $project->users()->attach($request->user()->id);
+
+        $notification = new Notification();
+        $notification->  notification_type_id = 5;
+        $notification->user_id = $request->user()->id;
+        $notification->project_id = $project->id;
+        $notification->status = 0;
+        $notification->save();
+
+        
+        // $project->users()->attach($request->user()->id);
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks'])->with('create', 'Create Project Sucessful');
         // return redirect()->action([ProjectController::class, 'show']);
     }
@@ -141,7 +153,7 @@ class ProjectController extends Controller
         $task_user = TaskUser::where('project_id', $project->id)->get();
 
         $forums = Forum::where('project_id', $project->id)->orderByDesc('created_at')->get();
-        $forums_reply = ForumReply::orderByDesc('created_at')->get();
+        $forums_reply = ForumReply::orderBy('created_at')->get();
         return view('project.detail', compact('project', 'statuses', 'files', 'tasks', 'users', 'head', 'user_tabs', 'task_members', 'users_department', 'project_members', 'task_user', 'forums', 'forums_reply'));
     }
 
@@ -224,7 +236,7 @@ class ProjectController extends Controller
             $notification = new Notification();
             $notification-> notification_type_id = 2;
             $notification->user_id = $user;
-            $notification->assign_task_id = $task->id;
+            $notification->task_id = $task->id;
             $notification->status = 0;
             $notification->save();
         }
@@ -255,7 +267,7 @@ class ProjectController extends Controller
                 $notification = new Notification();
                 $notification->  notification_type_id = 3;
                 $notification->user_id = $project_user->user_id;
-                $notification->assign_project_id = $project->id;
+                $notification->project_id = $project->id;
                 $notification->status = 0;
                 $notification->save();
 
@@ -300,7 +312,7 @@ class ProjectController extends Controller
                 $notification = new Notification();
                 $notification-> notification_type_id = 1;
                 $notification->user_id = $user;
-                $notification->assign_project_id = $project->id;
+                $notification->project_id = $project->id;
                 $notification->status = 0;
                 $notification->save();
             }
@@ -410,10 +422,35 @@ class ProjectController extends Controller
     }
 
     public function changeStatus(Project $project, Status $status){
+        $project_users = ProjectUser::where('project_id', $project->id)->get();
+        // dd($project_users);
+
+        $head_dept = User::where('roleID', $project->deptID)->first();
+        $notification = new Notification();
+        $notification-> notification_type_id = 7;
+        $notification->user_id = $head_dept->id;
+        $notification->project_id = $project->id;
+        $notification->status = 0;
+        $notification->additional_description = $status->name;
+        $notification->save();
+        if(!empty($project_users)){
+            foreach($project_users as $project_user){
+                $notification = new Notification();
+                $notification-> notification_type_id = 7;
+                $notification->user_id = $project_user->user_id;
+                $notification->project_id = $project->id;
+                $notification->status = 0;
+                $notification->additional_description = $status->name;
+                $notification->save();
+            }
+        }
 
         $project->status()->associate($status);
         $project->save();
 
+        
+        
+        
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
     }
 
@@ -434,10 +471,91 @@ class ProjectController extends Controller
         return view('project.statusProject', compact('projectsDiv', 'projectsDept1', 'projectsDept2', 'projectsDept3', 'projectsDept4', 'statuses', 'status', 'id', 'id1', 'id2', 'id3', 'id4'));
     }
 
-    public function deleteProject(Project $project){
+    public function deleteProject(Request $request, Project $project){
+
+        // dd($request->user()->id);
+        $notification = new Notification();
+        $notification-> notification_type_id = 6;
+        $notification->user_id = $request->user()->id;
+        $notification->additional_description = "$project->title";
+        $notification->status = 0;
+        $notification->save();
+
         ProjectUser::where('project_id', $project->id)->delete();
+        
         Project::destroy($project->id);
 
+        // Update key dari Projects
+        DB::statement("ALTER TABLE projects AUTO_INCREMENT =  1");
+        $update = Project::all();
+        $index = 1;
+        foreach ($update as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
+
+        // Update key dari Projects User
+        DB::statement("ALTER TABLE projects AUTO_INCREMENT =  1");
+        $update = ProjectUser::all();
+        $index = 1;
+        foreach ($update as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
+        
+        // Update key dari tasks
+        DB::statement("ALTER TABLE tasks AUTO_INCREMENT =  1");
+        $update = Task::all();
+        $index = 1;
+        foreach ($update as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
+
+        // Update key dari tasks User
+        DB::statement("ALTER TABLE task_user AUTO_INCREMENT =  1");
+        $update = TaskUser::all();
+        $index = 1;
+        foreach ($update as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
+
+        // Update key dari fORUMS Reply
+        DB::statement("ALTER TABLE forums AUTO_INCREMENT =  1");
+        $update = Forum::all();
+        $index = 1;
+        foreach ($update as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
+
+        // Update key dari Forums Reply
+        DB::statement("ALTER TABLE forum_reply AUTO_INCREMENT =  1");
+        $update = ForumReply::all();
+        $index = 1;
+        foreach ($update as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
+
+        // Update key dari Notificatioons Reply
+        DB::statement("ALTER TABLE notifications AUTO_INCREMENT =  1");
+        $update = Notification::all();
+        $index = 1;
+        foreach ($update as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
+
+    
         return redirect('projects/index')->with('delete', 'Project sucessfull deleted');
     }
 
@@ -455,6 +573,23 @@ class ProjectController extends Controller
         $forum->description = $request->description;
         // dd($forum);
         $forum->save();
+        
+        $forum = Forum::where('user_id', FacadesAuth::user()->id)->orderByDesc('created_at')->first();
+        // dd($forum);
+        if(FacadesAuth::user()->roleID == 2 || FacadesAuth::user()->roleID == 3 ||
+        FacadesAuth::user()->roleID == 4 || FacadesAuth::user()->roleID == 5 || FacadesAuth::user()->roleID == 6){
+            $project_users = ProjectUser::where('project_id', $project->id)->get();
+            foreach($project_users as $project_user){
+                $notification = new Notification();
+                $notification->notification_type_id = 8;
+                $notification->user_id = $project_user->user_id;
+                $notification->forum_id = $forum->id;
+                $notification->status = 0;
+                $notification->additional_description = $request->description;
+                $notification->save();
+            }
+        }
+        
         // $forum_reply->user_id =
 
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum'])->with('post_success', 'Post Successful');
@@ -514,7 +649,18 @@ class ProjectController extends Controller
         $forum_reply->user_id = FacadesAuth::user()->id;
         $forum_reply->description = $request->description;
         $forum_reply->save();
-        // $forum_reply->user_id =
+
+        $forum = Forum::where('id', $request->forum_id)->first();
+        if($forum->user_id != FacadesAuth::user()->id){
+            $notification = new Notification();
+            $notification->notification_type_id = 9;
+            $notification->user_id = $forum->user_id;
+            $notification->forum_id = $forum->id;
+            $notification->status = 0;
+            $notification->additional_description = "( " . FacadesAuth::user()->name . " ) ". $request->description;
+            $notification->save();
+        }
+        
 
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum'])->with('post_reply', 'Post Successful Replied');
     }

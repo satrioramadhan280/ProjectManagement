@@ -52,7 +52,8 @@ Route::get('/user/index', [HDeptController::class, 'index']);
 Route::get('/notifications', [NotificationsController::class, 'index'])->name('notifications');
 
 Route::get('/notifications/mark_as_read/{notification_id}', [NotificationsController::class, 'markAsRead']);
-Route::get('/notifications/mark_all', [NotificationsController::class, 'markAsReadAll'])->name('markAsReadAll');
+Route::get('/notifications/mark_all_notification', [NotificationsController::class, 'markAsReadAll'])->name('markAsReadAll');
+Route::get('/notifications/delete_all_notification', [NotificationsController::class, 'deleteAllRead'])->name('deleteAllRead');
 
 Route::prefix('projects')->group(function () {
     Route::get('/index', [ProjectController::class, 'index'])->name('projects');

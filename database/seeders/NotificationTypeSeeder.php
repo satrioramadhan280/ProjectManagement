@@ -34,5 +34,31 @@ class NotificationTypeSeeder extends Seeder
             'id' => 4,
             'display' => "Removed From Task",
         ]);
+
+        NotificationType::create([
+            'id' => 5,
+            'display' => "Project Created",
+        ]);
+
+        NotificationType::create([
+            'id' => 6,
+            'display' => "Project Deleted",
+        ]);
+
+
+        NotificationType::create([
+            'id' => 7,
+            'display' => "Project Status Updated",
+        ]);
+        
+        NotificationType::create([
+            'id' => 8,
+            'display' => "Head Forum Notification",
+        ]);
+
+        NotificationType::create([
+            'id' => 9,
+            'display' => "Reply Forum",
+        ]);
     }
 }

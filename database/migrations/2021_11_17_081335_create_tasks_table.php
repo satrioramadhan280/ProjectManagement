@@ -18,7 +18,7 @@ class CreateTasksTable extends Migration
             $table->unsignedBigInteger('project_id')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('project_id')
                 ->references('id')
-                ->on('projects');
+                ->on('projects')->onDelete('cascade')->onUpdate('cascade');;
             $table->string('name');
             $table->text('description');
             $table->string('status');

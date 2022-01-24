@@ -244,7 +244,7 @@ class AdminController extends Controller
             $searches = User::where('name', 'like', '%'.$search.'%')->where('roleID', '!=', '1')->paginate(10);
         }
         else if(auth()->user()->roleID == 2){
-            $searches = User::where('name', 'like', '%'.$search.'%')->where('roleID', '!=', '1')->where('roleID', '!=', '2')->paginate(10);
+            $searches = User::where('name', 'like', '%'.$search.'%')->where('roleID', '!=', '1')->paginate(10);
         }
         else if(auth()->user()->roleID == 3 || auth()->user()->roleID == 7){
             $list = [3, 7];

@@ -168,7 +168,7 @@
         <form class="ml-3" action="/deleteProject/{{$project->id}}" method="POST">
             @csrf
             @method('delete')
-            <button class="btn btn-danger" type="submit" onclick="confirm('Are you sure want to delete this project?')"><span data-feather="trash-2"></span> Delete Project</button>
+            <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure want to delete this project?')"><span data-feather="trash-2"></span> Delete Project</button>
         </form>    
     @endif  
 </div>
