@@ -1,45 +1,66 @@
 @extends('layouts.app')
 
 @section('title')
-Add Project
+    Add Project
 @endsection
 
 @section('content')
-<h4>Add Project</h4>
-<hr>
-<form id='addProjectForm' action="{{route('add_project')}}" method="POST" enctype="multipart/form-data">
-    @csrf
+    <h4>Add Project</h4>
+    <hr>
+    <form id='addProjectForm' action="{{ route('add_project') }}" method="POST" enctype="multipart/form-data">
+        @csrf
 
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-    <div class="mb-3">
-      <label for="projectTitle" class="form-label">Project Title</label>
-      <input type="text" class="form-control" name="projectTitle" value="{{ old('projectTitle') }}">
-    </div>
-    <div class="mb-3">
-        <label for="projectSR" class="form-label">Project SR</label>
-        <input class="form-control" type="file" name="projectSR">
-    </div>
-    <div class="mb-3">
-        <label for="startDate" class="form-label">Start Date</label>
-        <input class="form-control" type="date" name="startDate">
-    </div>
-    <div class="mb-3">
-        <label for="endDate" class="form-label">End Date</label>
-        <input class="form-control" type="date" name="endDate">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+        <div class="mb-3">
+            <label for="projectTitle" class="form-label">Project Title</label>
+            <input type="text" class="form-control @error('projectTitle') is-invalid @enderror" name="projectTitle"
+                value="{{ old('projectTitle') }}">
+            @error('projectTitle')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="projectSR" class="form-label">Project SR</label>
+            <input class="form-control  @error('projectSR') is-invalid @enderror" type="file" name="projectSR">
+            @error('projectSR')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input class="form-control @error('startDate') is-invalid @enderror" type="date" name="startDate">
+            @error('startDate')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="endDate" class="form-label">End Date</label>
+            <input class="form-control @error('endDate') is-invalid @enderror" type="date" name="endDate">
+            @error('endDate')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
-{{-- <script>
+    {{-- <script>
     $('#addProjectForm').on('submit', function (e) {
         e.preventDefault();
         const CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');

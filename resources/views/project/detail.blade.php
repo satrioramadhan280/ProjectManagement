@@ -125,6 +125,12 @@
 
 @section('content')
 
+@if (session('status'))
+    <div class="alert alert-success mt-3">
+        {{ session('status') }}
+    </div>
+@endif
+
 @if (session('addMember'))
     <div class="alert alert-success mt-3">
         {{ session('addMember') }}
@@ -217,27 +223,28 @@
                 @csrf
                 <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Add Task</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal" onclick="closeDialog()">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
+               
 
                 <div class="modal-body">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
                     <div class="mb-3">
                         <label for="taskName" class="form-label">Task Name <label style="font-size: 13px">(*required)</label></label>
-                        <input type="text" class="form-control" name="taskName" value="{{ old('taskName') }}" required>
+                        <input type="text" class="form-control @error('taskName') is-invalid @enderror" name="taskName" value="{{ old('taskName') }}" required>
+                        @error('taskName')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                         <label for="descrption" class="form-label mt-3">Description <label style="font-size: 13px">(*required)</label></label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="taskDescription" required></textarea>
+                        <textarea class="form-control @error('taskDescription') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="taskDescription" required></textarea>
+                        @error('taskDescription')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                         <label for="taskMember" class="form-label mt-3">Assign Task Member <label style="font-size: 13px">(*required at least 1)</label></label>
                         <div class="d-flex flex-wrap">
                             @foreach ($task_members as $task_member)
@@ -248,11 +255,11 @@
                                 </label>
                             </div>
                             @endforeach
-                        </div>
+                        </div>                        
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModal" onclick="closeDialog()">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
@@ -659,7 +666,13 @@
     </div>
 
 </div>
-
+@if (count($errors) > 0)
+    <script type="text/javascript">
+        $(document).ready(function() {
+             $('#exampleModal1').modal('show');
+        });
+    </script>
+@endif
 <script>
 
 
@@ -776,11 +789,10 @@
         myInput.focus()
     })
 
-
-
-
-
-
+    
+    function closeDialog() {
+        $('#exampleModal1').modal('hide');
+    }
 
 </script>
 @endsection

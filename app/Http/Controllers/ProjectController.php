@@ -461,7 +461,7 @@ class ProjectController extends Controller
         
         
         
-        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks'])->with('status', 'Update Status Successful');
     }
 
     public function projectStatus(Status $status){
