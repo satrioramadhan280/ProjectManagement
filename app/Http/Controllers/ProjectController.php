@@ -674,4 +674,28 @@ class ProjectController extends Controller
 
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum'])->with('post_reply', 'Post Successful Replied');
     }
+
+    public function forum_reply_delete(Request $request, Project $project){
+
+
+        // dd($request->forum_reply_id);
+        $forum_reply = ForumReply::where('id', $request->forum_reply_id)->first();
+        $forum_reply->delete();
+
+        
+
+        DB::statement("ALTER TABLE forum_reply AUTO_INCREMENT =  1");
+        $updateForumReply = ForumReply::all();
+        // Misalnya salah satu record di delete, id task akan tidak teratur
+        // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
+        $index = 1;
+        foreach ($updateForumReply as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
+        
+
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum'])->with('post_delete', 'Reply Successful Deleted');
+    }
 }

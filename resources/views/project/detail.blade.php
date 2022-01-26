@@ -595,7 +595,7 @@
                                                         <div class=" align-items-center d-flex ml-3 mb-3">
                                                             <div class="d-flex flex-column">
                                                                 <div class="d-flex justify-content-start"><span class="font-weight-bold" style="font-size: 15px">{{$users[$forum_reply->user_id-1]->name}}  @if ($users[$forum_reply->user_id-1]->id == Auth::user()->id)
-                                                                    <a href="/projects/detail/{{$project->id}}/forum/delete/{{$forum->id}}" style="color: rgb(179, 0, 0)"><span data-feather="trash-2" class="ml-1"></span></a>
+                                                                    <a href="/projects/detail/{{$project->id}}/forum_reply/delete/{{$forum_reply->id}}" style="color: rgb(179, 0, 0)"><span data-feather="trash-2" class="ml-1"></span></a>
                                                                 @endif</span></div>
                                                                 <div class="d-flex align-items-center "><span style="font-size: 12px; color: rgb(78, 78, 78)" class="">{{$forum_reply->updated_at->format('H:i:s')}}</span></div>
                                                             </div>
