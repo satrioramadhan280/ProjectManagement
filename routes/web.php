@@ -71,6 +71,7 @@ Route::prefix('projects')->group(function () {
     Route::post('/detail/{project}/forum', [ProjectController::class, 'forum']);
     Route::post('/detail/{project}/forum/{forum_id}/reply', [ProjectController::class, 'reply']);
     Route::get('/detail/{project}/forum/delete/{forum_id}', [ProjectController::class, 'forum_delete']);
+    Route::get('/detail/{project}/forum_reply/delete/{forum_reply_id}', [ProjectController::class, 'forum_reply_delete']);
 
     Route::post('/file/add/{project}', [FileController::class, 'addFile'])->name('add_file');
     Route::delete('/file/delete/{project}', [FileController::class, 'deleteFile'])->name('delete_file');
