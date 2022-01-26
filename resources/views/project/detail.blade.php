@@ -232,14 +232,14 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="taskName" class="form-label">Task Name <label style="font-size: 13px">(*required)</label></label>
-                        <input type="text" class="form-control @error('taskName') is-invalid @enderror" name="taskName" value="{{ old('taskName') }}" required>
+                        <input type="text" class="form-control @error('taskName') is-invalid @enderror" name="taskName" value="{{ old('taskName') }}">
                         @error('taskName')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                         <label for="descrption" class="form-label mt-3">Description <label style="font-size: 13px">(*required)</label></label>
-                        <textarea class="form-control @error('taskDescription') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="taskDescription" required></textarea>
+                        <textarea class="form-control @error('taskDescription') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="taskDescription" ></textarea>
                         @error('taskDescription')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
