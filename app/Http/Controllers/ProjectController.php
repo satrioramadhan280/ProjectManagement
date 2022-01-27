@@ -95,7 +95,8 @@ class ProjectController extends Controller
         $request->validate([
             'projectTitle' => 'required|min:3|max:50',
             'endDate' => 'required|after:today',
-            'startDate' => 'required|after_or_equal:today',
+            'startDate' => 'required|after_or_equal:today|equal:',
+            'endDate' => 'required|after_or_equal:today',
         ]);
 
         $project->title = $request->input('projectTitle');
@@ -171,6 +172,7 @@ class ProjectController extends Controller
         foreach($task_users as $task_user){
             $notification = new Notification();
             $notification-> notification_type_id = 4;
+            $notification->project_id = $project->id;
             $notification->user_id = $task_user->user_id;
             $notification->status = 0;
             $notification->additional_description = $task->name;
@@ -189,6 +191,17 @@ class ProjectController extends Controller
          // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
          $index = 1;
          foreach ($updateTasks as $key => $f) {
+             $f->id = $index;
+             $index++;
+             $f->save();
+         }
+
+         DB::statement("ALTER TABLE notifications AUTO_INCREMENT =  1");
+         $update = Notification::all();
+         // Misalnya salah satu record di delete, id task akan tidak teratur
+         // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
+         $index = 1;
+         foreach ($update as $key => $f) {
              $f->id = $index;
              $index++;
              $f->save();
@@ -398,6 +411,17 @@ class ProjectController extends Controller
             $index++;
             $f->save();
         }
+
+        DB::statement("ALTER TABLE notifications AUTO_INCREMENT =  1");
+         $update = Notification::all();
+         // Misalnya salah satu record di delete, id task akan tidak teratur
+         // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
+         $index = 1;
+         foreach ($update as $key => $f) {
+             $f->id = $index;
+             $index++;
+             $f->save();
+         }
 
         return redirect('projects/detail/'.$project->id. '/tasks')->with('addMember', 'Update Member Successfuly');
 
@@ -644,6 +668,15 @@ class ProjectController extends Controller
             $f->save();
         }
 
+        DB::statement("ALTER TABLE notifications AUTO_INCREMENT =  1");
+        $update = Notification::all();
+        $index = 1;
+        foreach ($update as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
+
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum'])->with('post_delete', 'Post Successful Deleted');
     }
 
@@ -695,6 +728,14 @@ class ProjectController extends Controller
             $f->save();
         }
         
+        DB::statement("ALTER TABLE notifications AUTO_INCREMENT =  1");
+        $update = Notification::all();
+        $index = 1;
+        foreach ($update as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
 
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum'])->with('post_delete', 'Reply Successful Deleted');
     }

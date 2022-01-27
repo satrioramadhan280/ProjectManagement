@@ -167,8 +167,11 @@
     </div>
 @endif
 
+
+
 <div class="d-flex flex-row">
     <h4 class="mt-1">{{ $project->title }}</h4>
+    
     @if (Auth::user()->roleID == 2 || Auth::user()->roleID == 3 || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 ||
     Auth::user()->roleID == 6)
         <form class="ml-3" action="/deleteProject/{{$project->id}}" method="POST">
@@ -176,7 +179,12 @@
             @method('delete')
             <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure want to delete this project?')"><span data-feather="trash-2"></span> Delete Project</button>
         </form>    
+        
     @endif  
+</div>
+<div class="d-fl;ex flex-column justify-content-between">
+    <div><span>Start Date : {{$project->startDate->format('d-m-Y')}}</span></div>
+    <div><span>End Date : {{$project->endDate->format('d-m-Y')}}</span></div>
 </div>
 <hr>
     @if ($project->users()->where('user_id', Auth::user()->id)->first() || Auth::user()->roleID == 2 || Auth::user()->roleID == 3 || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 ||
@@ -305,6 +313,7 @@
         </div>
     </div>
 @endif
+
 
 
 <div class="d-flex mt-3 justify-content-between">
