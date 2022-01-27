@@ -280,10 +280,12 @@ class ProjectController extends Controller
 
         foreach($project_users as $project_user){
             $flag = 0;
-            foreach($users as $user){
-                if($user == $project_user->user_id){
-                    $flag = 1;
-                    break;
+            if($users!=null){
+                foreach($users as $user){
+                    if($user == $project_user->user_id){
+                        $flag = 1;
+                        break;
+                    }
                 }
             }
             if($flag == 0){
@@ -323,30 +325,29 @@ class ProjectController extends Controller
         }
 
 
-        foreach($users as $user){
-            $flag = 0;
-            foreach($project_users as $project_user){
-                if($project_user->user_id == $user){
-                    $flag = 1;
-                    break;
-                }
-            }
-            if($flag == 0){
-                $notification = new Notification();
-                $notification-> notification_type_id = 1;
-                $notification->user_id = $user;
-                $notification->project_id = $project->id;
-                $notification->status = 0;
-                $notification->save();
-            }
-        }
-
+        
 
         if($users==null){
 
         }
         else{
             foreach($users as $user){
+                $flag = 0;
+                foreach($project_users as $project_user){
+                    if($project_user->user_id == $user){
+                        $flag = 1;
+                        break;
+                    }
+                }
+                if($flag == 0){
+                    $notification = new Notification();
+                    $notification-> notification_type_id = 1;
+                    $notification->user_id = $user;
+                    $notification->project_id = $project->id;
+                    $notification->status = 0;
+                    $notification->save();
+                }
+
                 $project_users = new ProjectUser();
                 $project_users->project_id = $project->id;
                 $project_users->user_id = $user;

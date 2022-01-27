@@ -376,7 +376,8 @@
                                     @endforeach</span>
                                 </div>
                             </div>
-                            @if ($task->users()->where('user_id', Auth::user()->id)->first())       
+                            @if ($task->users()->where('user_id', Auth::user()->id)->first() || Auth::user()->roleID == 3
+                            || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 || Auth::user()->roleID == 6)       
                             <div class="d-flex flex-column">
                                 
                                 {{-- @if (Auth::user()->projects->id == $project->id) --}}

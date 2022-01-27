@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
             'dateOfBirth' => '1990-01-01'
         ]);
         User::create([
-            'name' => 'Head Department1',
+            'name' => 'xamptment1',
             'username' => 'head.department1',
             'email' => 'headdepartment1@xyz.com',
             'password' => bcrypt('xyz12345'),
