@@ -327,6 +327,7 @@ class ProjectController extends Controller
 
         
 
+
         if($users==null){
 
         }
@@ -347,7 +348,8 @@ class ProjectController extends Controller
                     $notification->status = 0;
                     $notification->save();
                 }
-
+            }
+            foreach($users as $user){
                 $project_users = new ProjectUser();
                 $project_users->project_id = $project->id;
                 $project_users->user_id = $user;
