@@ -17,10 +17,10 @@ Edit Employee
       <label class="control-label" for="name">Name</label>
       <div class="controls">
         @can('Admin')
-          <input readonly type="text" id="name" name="name" placeholder="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" value="{{$user->name}}">
+          <input readonly type="text" id="name" name="name"  class="form-control @error('name') is-invalid @enderror" value="{{$user->name}}">
         @endcan
         @canany(['HDiv','HDept1', 'MDept1', 'HDept2', 'MDept2', 'HDept3', 'MDept3', 'HDept4', 'MDept4'])
-          <input  type="text" id="name" name="name" placeholder="{{old('name')}}" class="form-control @error('name') is-invalid @enderror" value="{{$user->name}}">
+          <input  type="text" id="name" name="name"  class="form-control @error('name') is-invalid @enderror" value="{{$user->name}}">
         @endcanany
         @error('name')
         <span class="invalid-feedback" role="alert">
@@ -33,10 +33,10 @@ Edit Employee
       <label class="control-label" for="username">Username</label>
       <div class="controls">
         @can('Admin')
-          <input readonly type="text" id="username" name="username" placeholder="{{old('username')}}" class="form-control @error('username') is-invalid @enderror" value="{{$user->username}}">
+          <input readonly type="text" id="username" name="username"  class="form-control @error('username') is-invalid @enderror" value="{{$user->username}}">
         @endcan
         @canany(['HDiv','HDept1', 'MDept1', 'HDept2', 'MDept2', 'HDept3', 'MDept3', 'HDept4', 'MDept4'])
-          <input type="text" id="username" name="username" placeholder="{{old('username')}}" class="form-control @error('username') is-invalid @enderror" value="{{$user->username}}">
+          <input type="text" id="username" name="username"  class="form-control @error('username') is-invalid @enderror" value="{{$user->username}}">
         @endcanany
         @error('username')
         <span class="invalid-feedback" role="alert">
@@ -50,10 +50,10 @@ Edit Employee
       <label class="control-label" for="email">E-mail</label>
       <div class="controls">
         @can('Admin')
-         <input readonly type="text" id="email" name="email" placeholder="{{old('email')}}" class="form-control @error('email') is-invalid @enderror" value="{{$user->email}}">
+         <input readonly type="text" id="email" name="email"  class="form-control @error('email') is-invalid @enderror" value="{{$user->email}}">
         @endcan
         @canany(['HDiv','HDept1', 'MDept1', 'HDept2', 'MDept2', 'HDept3', 'MDept3', 'HDept4', 'MDept4'])
-         <input type="text" id="email" name="email" placeholder="{{old('email')}}" class="form-control @error('email') is-invalid @enderror" value="{{$user->email}}">
+         <input type="text" id="email" name="email"  class="form-control @error('email') is-invalid @enderror" value="{{$user->email}}">
         @endcanany
         @error('email')
         <span class="invalid-feedback" role="alert">
@@ -67,10 +67,10 @@ Edit Employee
       <label class="control-label" for="dateOfBirth">Date of Birth</label>
       <div class="controls">
         @can('Admin')
-          <input readonly type="date" id="dateOfBirth" name="dateOfBirth" placeholder="{{old('dateOfBirth')}}" class="form-control @error('dateOfBirth') is-invalid @enderror" value="{{$user->dateOfBirth}}">
+          <input readonly type="date" id="dateOfBirth" name="dateOfBirth"  class="form-control @error('dateOfBirth') is-invalid @enderror" value="{{$user->dateOfBirth}}">
         @endcan
         @canany(['HDiv','HDept1', 'MDept1', 'HDept2', 'MDept2', 'HDept3', 'MDept3', 'HDept4', 'MDept4'])
-          <input type="date" id="dateOfBirth" name="dateOfBirth" placeholder="{{old('dateOfBirth')}}" class="form-control @error('dateOfBirth') is-invalid @enderror" value="{{$user->dateOfBirth}}">
+          <input type="date" id="dateOfBirth" name="dateOfBirth"  class="form-control @error('dateOfBirth') is-invalid @enderror" value="{{$user->dateOfBirth}}">
         @endcanany
         @error('dateOfBirth')
         <span class="invalid-feedback" role="alert">

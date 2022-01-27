@@ -132,16 +132,12 @@ class AdminController extends Controller
             'dateOfBirth' => 'before:today',
         ]);
            
-        if($request->username != $user){        
-            $request->validate([
-                'username' => 'required|string|min:6|unique:users'
-            ]);
-        }
         
         $currUser = User::where('username', $user)->first();
         
-        if($request->email != $currUser->email){     
+        if($request->email != $currUser->email || $request->username != $currUser->username){     
             $request->validate([
+                'username' => 'required|string|min:6|unique:users',
                 'email' => 'required|string|min:6|unique:users'
             ]);
         }
