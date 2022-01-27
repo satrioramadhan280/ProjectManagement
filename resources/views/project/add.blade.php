@@ -9,20 +9,9 @@
     <hr>
     <form id='addProjectForm' action="{{ route('add_project') }}" method="POST" enctype="multipart/form-data">
         @csrf
-
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
         <div class="mb-3">
             <label for="projectTitle" class="form-label">Project Title</label>
-            <input type="text" class="form-control @error('projectTitle') is-invalid @enderror" name="projectTitle"
+            <input type="text" class="form-control @error('projectTitle') is-invalid @enderror" placeholder="Input Project Title [min. 3 characters]" name="projectTitle"
                 value="{{ old('projectTitle') }}">
             @error('projectTitle')
                 <span class="invalid-feedback" role="alert">
@@ -31,17 +20,18 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="projectSR" class="form-label">Project SR</label>
-            <input class="form-control  @error('projectSR') is-invalid @enderror" type="file" name="projectSR">
+            <label for="projectSR" class="form-label">Project SR <span class="text-danger">*pdf only</span></label> 
+            <input class="form-control  @error('projectSR') is-invalid @enderror" type="file" name="projectSR" id="projectSR">
             @error('projectSR')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
+            
         </div>
         <div class="mb-3">
             <label for="startDate" class="form-label">Start Date</label>
-            <input class="form-control @error('startDate') is-invalid @enderror" type="date" name="startDate">
+            <input class="form-control @error('startDate') is-invalid @enderror" type="date" name="startDate" value="{{$today}}">
             @error('startDate')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -50,7 +40,7 @@
         </div>
         <div class="mb-3">
             <label for="endDate" class="form-label">End Date</label>
-            <input class="form-control @error('endDate') is-invalid @enderror" type="date" name="endDate">
+            <input class="form-control @error('endDate') is-invalid @enderror" type="date" name="endDate" value="{{$tmrw}}">
             @error('endDate')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

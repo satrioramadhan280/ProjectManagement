@@ -247,7 +247,7 @@
                             </span>
                         @enderror
                         <label for="descrption" class="form-label mt-3">Description <label style="font-size: 13px">(*required)</label></label>
-                        <textarea class="form-control @error('taskDescription') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="taskDescription" ></textarea>
+                        <textarea class="form-control @error('taskDescription') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="taskDescription" >{{old('taskDescription')}}</textarea>
                         @error('taskDescription')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

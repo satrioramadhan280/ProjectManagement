@@ -46,7 +46,10 @@ class ProjectController extends Controller
 
     public function add()
     {
-        return view('project.add');
+        $today = Carbon::now()->format('Y-m-d');
+        $tmrw = Carbon::tomorrow()->format('Y-m-d');
+
+        return view('project.add', compact('today', 'tmrw'));
     }
 
     public function addProject(Request $request)
