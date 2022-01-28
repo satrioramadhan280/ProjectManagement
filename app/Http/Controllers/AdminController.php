@@ -48,7 +48,7 @@ class AdminController extends Controller
             'name' => 'required|string|min:3',
             'username' => ['required', 'string', 'min:6', 'unique:users'],
             'email' => 'required|min:5|unique:users',
-            'dateOfBirth' => 'before:today',
+            'dateOfBirth' => 'required|before:today',
             'roleID' => 'required| gt:0'
         ]);
 
@@ -176,7 +176,7 @@ class AdminController extends Controller
 
     public function changePassword(Request $request,  $user){
         $request->validate([
-            'newPassword' => 'required|min:8',
+            'newPassword' => 'required|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
             'password_confirmation' => 'required|min:8|same:newPassword'
         ]);
 

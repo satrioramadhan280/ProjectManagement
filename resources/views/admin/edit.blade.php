@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Edit Employee
+Edit Profile
 @endsection
 
 @section('content')
@@ -11,8 +11,8 @@ Edit Employee
   <fieldset>
     <div id="legend">
       <legend class="">Edit Profile</legend>
+      <hr>
     </div>
-    <hr>
     <div class="control-group">
       <label class="control-label" for="name">Name</label>
       <div class="controls">
@@ -98,11 +98,29 @@ Edit Employee
     </div>
     @endcan
 
+    @cannot('Admin')
+    <div class="control-group">
+      <label class="control-label" for="role">Select Role</label>
+      <div class="controls">
+          <select disabled class="custom-select form-control mb-1 @error('roleID') is-invalid @enderror" id="roleID" name="roleID">
+            @foreach($roles as $role)
+              <option value="{{$role->id}}" {{old('roleID', $user->roleID) == $role->id ? 'selected' : ''}}>{{$role->display}}</option>
+            @endforeach
+          </select>
+          @error('roleID')
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
+          @enderror
+      </div>
+    </div>
+    @endcannot
+
     <div class="control-group mt-2">
       <div class="controls">
         <button class="btn btn-primary" type="submit">Update</button>
       </form>
-      
+      <a href="{{ url()->previous() }}" class="btn btn-light">Cancel</a>
       </div>
     </div>
   </fieldset>

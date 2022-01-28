@@ -20,6 +20,7 @@
                     <div class="d-flex flex-column justify-content-center ">
                         <div class="d-flex justify-content-center"><img class="rounded-circle border border-3 d-inline" src="{{asset("uploads/users_photo/".Auth::user()->photo)}}" height="100px" width="100px" alt=""></div>   
                         <div class="text-center mt-1 h5">{{Auth::user()->name}}</div>
+                        <div class="text-center">{{Auth::user()->roles->display}}</div>
                         @cannot('Admin')
                         <div class="text-center mt-1">
                             <a class="nav-link" href="/user/{{Auth::user()->username}}/about">

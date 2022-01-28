@@ -91,20 +91,22 @@ class ProjectController extends Controller
     }
 
     public function editProjectView(Project $project){
-        return view('project.edit', compact('project'));
+        $startDate = Carbon::parse($project->startDate)->format('Y-m-d');
+        $endDate = Carbon::parse($project->endDate)->format('Y-m-d');
+        
+        return view('project.edit', compact('project', 'startDate', 'endDate'));
     }
 
     public function editProject(Request $request, Project $project){
         $request->validate([
             'projectTitle' => 'required|min:3|max:50',
-            'endDate' => 'required|after:today',
-            'startDate' => 'required|after_or_equal:today|equal:',
+            'startDate' => 'required|after_or_equal:today',
             'endDate' => 'required|after_or_equal:today',
         ]);
 
-        $project->title = $request->input('projectTitle');
-        $project->startDate = Carbon::parse($request->startDate);
-        $project->endDate = Carbon::parse($request->endDate);
+        $project->title = $request->projectTitle;
+        $project->startDate = Carbon::parse($request->startDate)->format('Y-m-d');
+        $project->endDate = Carbon::parse($request->endDate)->format('Y-m-d');
         $project->save();
 
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks'])->with('update', 'Update Project Sucessful');

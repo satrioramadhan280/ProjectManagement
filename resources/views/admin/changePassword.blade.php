@@ -17,7 +17,7 @@ Change Password
           <input type="password" id="password" name="newPassword" class="form-control @error('newPassword') is-invalid @enderror">
         @error('newPassword')
         <span class="invalid-feedback" role="alert">
-          <strong>{{ $message }}</strong>
+          <strong>{{ 'Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character' }}</strong>
         </span>
         @enderror
       </div>
@@ -36,6 +36,7 @@ Change Password
     <div class="control-group mt-2">
       <div class="controls">
         <button class="btn btn-primary" type="submit">Change Password</button>
+        <a href="{{ url()->previous() }}" class="btn btn-light">Cancel</a>
       </div>
     </div>
   </fieldset>

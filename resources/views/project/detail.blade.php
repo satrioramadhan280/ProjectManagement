@@ -243,14 +243,14 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="taskName" class="form-label">Task Name <label style="font-size: 13px">(*required)</label></label>
-                        <input type="text" class="form-control @error('taskName') is-invalid @enderror" name="taskName" value="{{ old('taskName') }}">
+                        <input type="text" class="form-control @error('taskName') is-invalid @enderror" name="taskName" value="{{ old('taskName') }}" placeholder="Insert Task Name [min 3 characters]">
                         @error('taskName')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                         <label for="descrption" class="form-label mt-3">Description <label style="font-size: 13px">(*required)</label></label>
-                        <textarea class="form-control @error('taskDescription') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="taskDescription" >{{old('taskDescription')}}</textarea>
+                        <textarea class="form-control @error('taskDescription') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="taskDescription" placeholder="Insert Task Description [min 5 characters]"  >{{old('taskDescription')}}</textarea>
                         @error('taskDescription')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -271,7 +271,6 @@
                                     </label>
                                 </div>
                             @endforeach
-                        </div>
                             @endif
                         </div>                        
                     </div>
@@ -325,7 +324,6 @@
 @endif
 
 
-
 <div class="d-flex mt-3 justify-content-between">
 
     {{-- Section Tabs --}}
@@ -345,6 +343,7 @@
                 @endcannot
 
             </ul>
+        
             <div class="mt-3">
                 @if ($user_tabs=='tasks')
                     {{-- Isi dari Tasks --}}
@@ -406,7 +405,7 @@
                             @endif
                         </div>
                     </div>
-
+            
 
                     @endforeach
                     @else
@@ -455,7 +454,8 @@
                                                         @csrf
                                                         <div class="form-group">
                                                             <input type='hidden' name="filePath" value="{{ $file['path'] }}">
-                                                            <input type="submit" class="btn btn-sm btn-primary" value="Download">
+                                                            <button type="submit" class="" style="border: none;
+                                                            background: none;" value="Download"><span data-feather="download"></span></button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -467,7 +467,8 @@
                                                         @method('DELETE')
                                                         <div class="form-group">
                                                             <input type='hidden' name="filePath" value="{{ $file['path'] }}">
-                                                            <input type="submit" class="btn btn-sm btn-danger delete-file" value="Delete">
+                                                            <button type="submit" class="" style="border: none;
+                                                            background: none;" value="Delete"><span data-feather="trash-2"></span></button>
                                                         </div>
                                                     </form>
                                                 </div>

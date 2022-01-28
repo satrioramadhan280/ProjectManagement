@@ -44,12 +44,20 @@
         </tr>
     </thead>
     <tbody class="mt-3">
+       
+            
+        
         <div class="d-flex flex-row justify-content-end">
             <div class="d-flex  mb-3"><a class="btn btn-primary"
                 href="{{ route('markAsReadAll') }}">Mark All as Read</a></div>
             <div class="d-flex ml-3 mb-3"><a class="btn btn-danger"
                     href="{{ route('deleteAllRead') }}">Delete All Read</a></div>
         </div>
+        @if ($notifications->isEmpty())
+        <td>
+            There no notifications available
+        </td>
+        @else
         @foreach ($notifications as $notification)
             <tr class="
                 @if($notification->status == 0)
@@ -59,7 +67,7 @@
                 @if ($notification->notification_type_id == 1)
                     
                         <td class="col-3">You have been Assigned to Project</td>
-                        <td class="col-3"></td>
+                        <td class="col-3">-</td>
                         <td class="col-2">{{$projects[$notification->project_id-1]->title}}</td>
                         <td class="col-2">{{$notification->created_at}}</td>
                         <td class="col-1"><a class="btn btn-primary"
@@ -72,7 +80,7 @@
                 @elseif($notification->notification_type_id == 2)
                     
                         <td class="col-3">You have been Assigned to Task <span class="font-weight-bold">"{{$tasks[$notification->task_id-1]->name}}"</span></td>
-                        <td class="col-3"></td>
+                        <td class="col-3">-</td>
                         <td class="col-2">{{$projects[$tasks[$notification->task_id-1]->project_id-1]->title}}</td>
                 
                         <td class="col-2">{{$notification->created_at}}</td>
@@ -84,7 +92,7 @@
                 @elseif($notification->notification_type_id == 3)
                     
                         <td class="col-3">You have been Removed from Project</td>
-                        <td class="col-3"></td>
+                        <td class="col-3">-</td>
                         <td class="col-2">{{$projects[$notification->project_id-1]->title}}</td>
                         <td class="col-2">{{$notification->created_at}}</td>
                         <td class="col-1"><a class="btn btn-primary"
@@ -94,7 +102,7 @@
                 @elseif($notification->notification_type_id == 4)
             
                         <td class="col-3">Removed from Task'{{$notification->additional_description}}'</td>
-                        <td class="col-3"></td>
+                        <td class="col-3">-</td>
                         <td class="col-2">{{$projects[$notification->project_id-1]->title}}</td>
                         <td class="col-2">{{$notification->created_at}}</td>
                         <td class="col-1">
@@ -104,7 +112,7 @@
                 @elseif($notification->notification_type_id == 5)
             
                     <td class="col-3">New Project Created</td>
-                    <td class="col-3"></td>
+                    <td class="col-3">-</td>
                     <td class="col-2">{{$projects[$notification->project_id-1]->title}}</td>
                     <td class="col-2">{{$notification->created_at}}</td>
                     <td class="col-1"><a class="btn btn-primary"
@@ -114,7 +122,7 @@
                 @elseif($notification->notification_type_id == 6)
             
                     <td class="col-3">Project Deleted</td>
-                    <td class="col-3"></td>
+                    <td class="col-3">-</td>
                     <td class="col-2">{{$notification->additional_description}}</td>
                     <td class="col-2">{{$notification->created_at}}</td>
                     <td class="col-1"><a class="" disable
@@ -124,7 +132,7 @@
                 @elseif($notification->notification_type_id == 7)
             
                     <td class="col-3">Project Status Updated to '<span class="font-weight-bold">{{$notification->additional_description}}</span>'</td>
-                    <td class="col-3"></td>
+                    <td class="col-3">-</td>
                     <td class="col-2">{{$projects[$notification->project_id-1]->title}}</td>
                     <td class="col-2">{{$notification->created_at}}</td>
                     <td class="col-1"><a class="btn btn-primary"
@@ -159,12 +167,9 @@
                     <td class="col-2 "><div class="d-flex align-items-center justify-content-center"><span data-feather="check"></span></div></td> 
                 
                 @endif
-            </tr>
-                    
-            
-            
+            </tr> 
         @endforeach
-        
+        @endif
     </tbody>
 </table>
 @endsection

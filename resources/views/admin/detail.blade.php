@@ -147,7 +147,7 @@
             <a class="nav-link @if ($user_tabs=='about') text-dark and Active  @endif"
                 href="/user/{{$user->username}}/about" style="color: rgba(0, 0, 0, 0.466)">About</a>
         </li>
-        @if ($user->roleID == 7)
+        @if ($user->roleID == 7 || $user->roleID == 8 || $user->roleID == 9 || $user->roleID == 10)
         <li class="nav-item" onclick="">
             <a class="nav-link @if ($user_tabs=='projects') text-dark and Active @endif"
             href="/user/{{$user->username}}/projects" style="color: rgba(0, 0, 0, 0.466)">Projects</a>

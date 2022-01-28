@@ -70,7 +70,7 @@
             <th class="text-white" scope="col">No</th>
             <th class="text-white" scope="col">Name</th>
             <th class="text-white" scope="col">Department</th>
-            <th class="text-white" scope="col">Detail</th>
+            <th class="text-white" scope="col">Action</th>
         </tr>
     </thead>
     <tbody>

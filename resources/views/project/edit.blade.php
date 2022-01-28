@@ -27,13 +27,14 @@ Edit Project
     </div>
     <div class="mb-3">
         <label for="startDate" class="form-label">Start Date</label>
-        <input class="form-control" type="date" name="startDate" value="{{ $project->startDate }}">
+        <input class="form-control" type="date" name="startDate" value="{{$startDate}}">
     </div>
     <div class="mb-3">
         <label for="endDate" class="form-label">End Date</label>
-        <input class="form-control" type="date" name="endDate" value="{{ $project->endDate }}">
+        <input class="form-control" type="date" name="endDate" value="{{$endDate}}">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="{{ url()->previous() }}" class="btn btn-light">Cancel</a>
 </form>
 
 @endsection

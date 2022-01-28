@@ -48,6 +48,7 @@
         @enderror
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="{{ url()->previous() }}" class="btn btn-light">Cancel</a>
     </form>
 
     {{-- <script>

@@ -34,7 +34,7 @@ class HomeController extends Controller
         $projectsDept4 = Project::where('status_id', '1')->where('deptID', '6')->paginate(10);
 
 
-
+        
         $onProjectsDept1 = Project::join('project_user', 'projects.id', '=', 'project_user.project_id')
             ->where('projects.status_id', '1')
             ->where('projects.deptID', '3')
