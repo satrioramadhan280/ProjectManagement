@@ -434,7 +434,7 @@
 
                         @if(!$files->isEmpty())
                             <table class="table mt-4">
-                                <thead>
+                                <thead class="bg-danger text-white">
                                     <tr>
                                         <th scope="col">Name</th>
                                         <th scope="col">Type</th>
