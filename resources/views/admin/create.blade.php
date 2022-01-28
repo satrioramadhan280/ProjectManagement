@@ -10,8 +10,8 @@ Add New User
   <fieldset>
     <div id="legend">
       <legend class="">Add New User</legend>
+      <hr>
     </div>
-    <hr>
     <div class="control-group">
       <label class="control-label" for="name">Name</label>
       <div class="controls">
