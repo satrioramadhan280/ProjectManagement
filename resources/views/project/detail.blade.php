@@ -169,18 +169,21 @@
 
 
 
-<div class="d-flex flex-row">
+<div class="d-flex flex-row align-items-center">
+
+    <span onclick="history.back()" class="mr-2" style="width: 24px; height: 24px; cursor: pointer;" data-feather="arrow-left-circle"></span>
+
     <h4 class="mt-1">{{ $project->title }}</h4>
-    
+
     @if (Auth::user()->roleID == 2 || Auth::user()->roleID == 3 || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 ||
     Auth::user()->roleID == 6)
         <form class="ml-3" action="/deleteProject/{{$project->id}}" method="POST">
             @csrf
             @method('delete')
             <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure want to delete this project?')"><span data-feather="trash-2"></span> Delete Project</button>
-        </form>    
-        
-    @endif  
+        </form>
+
+    @endif
 </div>
 <div class="d-fl;ex flex-column justify-content-between">
     <div><span>Start Date : {{$project->startDate->format('d-m-Y')}}</span></div>
@@ -189,7 +192,7 @@
 <hr>
     @if ($project->users()->where('user_id', Auth::user()->id)->first() || Auth::user()->roleID == 2 || Auth::user()->roleID == 3 || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 ||
     Auth::user()->roleID == 6)
-    
+
     <div class="mt-4 mb-4 d-inline">
         {{-- <a href="{{ route('add_task_view', [$project->id]) }}" class="btn btn-primary"><span data-feather="clipboard"></span> Add  Task</a> --}}
         <div class="d-flex flex-row">
@@ -219,7 +222,7 @@
                 <span data-feather="user-plus"></span> Add / Remove Member
             </button>
             <a href="{{ route('edit_project_view', [$project->id]) }}" class="btn btn-primary ml-3 mr-3"> Edit Project</a>
-           
+
         </div>
     </div>
 
@@ -235,7 +238,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
-               
+
 
                 <div class="modal-body">
                     <div class="mb-3">
@@ -263,7 +266,7 @@
                                 </label>
                             </div>
                             @endforeach
-                        </div>                        
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -377,9 +380,9 @@
                                 </div>
                             </div>
                             @if ($task->users()->where('user_id', Auth::user()->id)->first() || Auth::user()->roleID == 3
-                            || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 || Auth::user()->roleID == 6)       
+                            || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 || Auth::user()->roleID == 6)
                             <div class="d-flex flex-column">
-                                
+
                                 {{-- @if (Auth::user()->projects->id == $project->id) --}}
                                 <div>
                                     <form action="/projects/detail/{{$project->id}}/{{$task->id}}/change_task_status" method="POST">
@@ -799,7 +802,7 @@
         myInput.focus()
     })
 
-    
+
     function closeDialog() {
         $('#exampleModal1').modal('hide');
     }
