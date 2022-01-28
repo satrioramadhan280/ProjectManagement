@@ -45,7 +45,7 @@
             <a id='addProjectbtn' href="{{ route('add_project_view') }}" class="btn btn-primary"><span data-feather="file"></span> Add Project</a>
         @endcanany
         <form class="d-flex mt-3" method="GET" action="{{ route('searchProject') }}">
-            <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search" name="search"
+            <input class="form-control mr-2" type="search" placeholder="Search by Project Title" aria-label="Search" name="search"
                 value="{{ old('search') }}">
             <button class="btn btn-primary" type="submit">Search</button>
         </form>
@@ -59,7 +59,7 @@
                     <th scope="col">Department</th>
                     <th scope="col">Status</th>
                     <th scope="col">End Date</th>
-                    <th scope="col">Action</th>
+                    <th scope="col" class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -86,18 +86,23 @@
                                 <td class="col-2">{{ $project->status->name }}</td>
                                 <td class="col-2">{{ $project->endDate }}</td>
                                 <td class="col-1">
-                                    <div class="row">
-                                        <div class="col-sm-auto">
+                                    <div class="d-flex flex-row">
+                                        <div class="col-sm-auto d-flex flex-row">
                                             <form method="GET" action="{{ route('download_file') }}">
                                                 @csrf
                                                 <div class="form-group">
                                                     <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
-                                                    <input type="submit" class="btn btn-sm btn-primary" value="Download SR">
+                                                    {{-- <input  class=""> --}}
+                                                    
+                                                    {{-- <a type="submit"  value="Download"></a> --}}
+                                                    
+                                                    <button type="submit" class="" value="Download" style="border: none;
+                                                    background: none;"><span data-feather="download"></span></button>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class="col-sm-auto">
-                                            <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
+                                            <a class="text-decoration-none"  target="_blank" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}" style="color: black"><span data-feather="eye"></span></a>
                                         </div>
                                     </div>
                                 </td>
@@ -119,18 +124,26 @@
                             <td class="col-2">{{ $project->status->name }}</td>
                             <td class="col-2">{{ $project->endDate }}</td>
                             <td class="col-1">
-                                <div class="row">
-                                    <div class="col-sm-auto">
+                                
+                            
+                             
+                                <div class="d-flex flex-row">
+                                    <div class="col-sm-auto d-flex flex-row">
                                         <form method="GET" action="{{ route('download_file') }}">
                                             @csrf
                                             <div class="form-group">
                                                 <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
-                                                <input type="submit" class="btn btn-sm btn-primary" value="Download SR">
+                                                {{-- <input  class=""> --}}
+                                                
+                                                {{-- <a type="submit"  value="Download"></a> --}}
+                                                
+                                                <button type="submit" class="" value="Download" style="border: none;
+                                                background: none;"><span data-feather="download"></span></button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="col-sm-auto">
-                                        <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
+                                        <a class="text-decoration-none"  target="_blank" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}" style="color: black"><span data-feather="eye"></span></a>
                                     </div>
                                 </div>
                             </td>
@@ -152,18 +165,23 @@
                             <td class="col-2">{{ $project->status->name }}</td>
                             <td class="col-2">{{ $project->endDate }}</td>
                             <td class="col-1">
-                                <div class="row">
-                                    <div class="col-sm-auto">
+                                <div class="d-flex flex-row">
+                                    <div class="col-sm-auto d-flex flex-row">
                                         <form method="GET" action="{{ route('download_file') }}">
                                             @csrf
                                             <div class="form-group">
                                                 <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
-                                                <input type="submit" class="btn btn-sm btn-primary" value="Download SR">
+                                                {{-- <input  class=""> --}}
+                                                
+                                                {{-- <a type="submit"  value="Download"></a> --}}
+                                                
+                                                <button type="submit" class="" value="Download" style="border: none;
+                                                background: none;"><span data-feather="download"></span></button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="col-sm-auto">
-                                        <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
+                                        <a class="text-decoration-none"  target="_blank" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}" style="color: black"><span data-feather="eye"></span></a>
                                     </div>
                                 </div>
                             </td>
@@ -185,18 +203,23 @@
                             <td class="col-2">{{ $project->status->name }}</td>
                             <td class="col-2">{{ $project->endDate }}</td>
                             <td class="col-1">
-                                <div class="row">
-                                    <div class="col-sm-auto">
+                                <div class="d-flex flex-row">
+                                    <div class="col-sm-auto d-flex flex-row">
                                         <form method="GET" action="{{ route('download_file') }}">
                                             @csrf
                                             <div class="form-group">
                                                 <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
-                                                <input type="submit" class="btn btn-sm btn-primary" value="Download SR">
+                                                {{-- <input  class=""> --}}
+                                                
+                                                {{-- <a type="submit"  value="Download"></a> --}}
+                                                
+                                                <button type="submit" class="" value="Download" style="border: none;
+                                                background: none;"><span data-feather="download"></span></button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="col-sm-auto">
-                                        <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
+                                        <a class="text-decoration-none"  target="_blank" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}" style="color: black"><span data-feather="eye"></span></a>
                                     </div>
                                 </div>
                             </td>
@@ -218,18 +241,23 @@
                             <td class="col-2">{{ $project->status->name }}</td>
                             <td class="col-2">{{ $project->endDate }}</td>
                             <td class="col-1">
-                                <div class="row">
-                                    <div class="col-sm-auto">
+                                <div class="d-flex flex-row">
+                                    <div class="col-sm-auto d-flex flex-row">
                                         <form method="GET" action="{{ route('download_file') }}">
                                             @csrf
                                             <div class="form-group">
                                                 <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
-                                                <input type="submit" class="btn btn-sm btn-primary" value="Download SR">
+                                                {{-- <input  class=""> --}}
+                                                
+                                                {{-- <a type="submit"  value="Download"></a> --}}
+                                                
+                                                <button type="submit" class="" value="Download" style="border: none;
+                                                background: none;"><span data-feather="download"></span></button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="col-sm-auto">
-                                        <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
+                                        <a class="text-decoration-none"  target="_blank" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}" style="color: black"><span data-feather="eye"></span></a>
                                     </div>
                                 </div>
                             </td>

@@ -258,15 +258,22 @@
                         @enderror
                         <label for="taskMember" class="form-label mt-3">Assign Task Member <label style="font-size: 13px">(*required at least 1)</label></label>
                         <div class="d-flex flex-wrap">
+                            
+                            @if ($task_members->isEmpty())
+                                <span>No members have been assigned to this project.</span>
+                                
+                            @else 
                             @foreach ($task_members as $task_member)
-                            <div class="form-check d-block" style="width: 200px">
-                                <input class="form-check-input" type="checkbox" value="{{$users[$task_member->user_id-1]->id}}" id="flexCheckDefault" name="users[]">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    {{$users[$task_member->user_id-1]->name}}
-                                </label>
-                            </div>
+                                <div class="form-check d-block" style="width: 200px">
+                                    <input class="form-check-input" type="checkbox" value="{{$users[$task_member->user_id-1]->id}}" id="flexCheckDefault" name="users[]">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        {{$users[$task_member->user_id-1]->name}}
+                                    </label>
+                                </div>
                             @endforeach
                         </div>
+                            @endif
+                        </div>                        
                     </div>
                 </div>
                 <div class="modal-footer">
