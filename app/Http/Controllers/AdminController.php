@@ -135,13 +135,17 @@ class AdminController extends Controller
         
         $currUser = User::where('username', $user)->first();
         
-        if($request->email != $currUser->email || $request->username != $currUser->username){     
+        if($request->username != $currUser->username){     
             $request->validate([
                 'username' => 'required|string|min:6|unique:users',
+            ]);
+        }
+        
+        if($request->email != $currUser->email){
+            $request->validate([
                 'email' => 'required|string|min:6|unique:users'
             ]);
         }
-
 
         if(Auth::user()->roleID == 1){
             User::where('id', $currUser->id)->update([
@@ -162,7 +166,7 @@ class AdminController extends Controller
             ]);
         }
         
-        return redirect('/user/'.$currUser->username.'/about')->with('update', 'Profile has been updated!');
+        return redirect('/user/'.$request->username.'/about')->with('update', 'Profile has been updated!');
     }
     
     public function editPassword($user){
