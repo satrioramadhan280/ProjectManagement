@@ -11,11 +11,32 @@
         @can('Admin')
             <a href="{{ url('/admin/create') }}" class="btn btn-primary mb-3">Add New User</a>
         @endcan
-        <form class="d-flex" method="GET" action="/searchUser">
-            <input class="form-control mr-2 @error('search') is-invalid @enderror" type="search" placeholder="Search"
-                aria-label="Search" name="search" value="{{ old('search') }}">
-            <button class="btn btn-primary" type="submit">Search</button>
-        </form>
+        <div class="d-block">
+            <form class="d-flex flex-row justify-content-start align-items-center" method="GET" action="/searchUser">
+                <div class="flex-fill pt-2 pr-2 pb-2">
+                    <input class="form-control mr-2 mb-2" type="search" placeholder="Search" aria-label="Search" name="search" value="{{ request()->query('search') }}">
+                    @canany(['Admin', 'HDiv'])
+                    <div class="w-25">
+                        <select class="form-select" name="filterDept" aria-label="Default select example">
+                            <option value="">Filter Department</option>
+                            @foreach ($roles as $role)
+                                @php
+                                    $display = $role->display;
+                                    $array_of_display = explode(" ", $display);
+                                    $slice_display = array_slice($array_of_display, 2);
+                                    $combined_display = implode(" ", $slice_display);
+                                @endphp
+                                <option value="{{ $role->id }}" @if(request()->query('filterDept') == $role->id) selected @endif> {{ $combined_display }} </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @endcanany
+                </div>
+                <div class="pb-5">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
         @error('search')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

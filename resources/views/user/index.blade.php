@@ -31,37 +31,33 @@
     {{ session('delete') }}
 </div>
 @endif
-@canany(['Admin', 'HDiv'])
-<label for="">Department: All</label>
-<a class="btn btn-primary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-    aria-haspopup="true" aria-expanded="false">
-    Filter Department
-</a>
-<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" href="/user/index">All</a>
-    @foreach ($roles as $role)
-    @if ($role->id == 3)
-    <a class="dropdown-item" href="/department/{{ $role->id }}">IT Customer Relationship Management</a>
-    @endif
-    @if ($role->id == 4)
-    <a class="dropdown-item" href="/department/{{ $role->id }}">IT Branch Delivery System</a>
-    @endif
-    @if ($role->id == 5)
-    <a class="dropdown-item" href="/department/{{ $role->id }}">IT Micro and Retail Core Loan System</a>
-    @endif
-    @if ($role->id == 6)
-    <a class="dropdown-item" href="/department/{{ $role->id }}">IT Internal Application</a>
-    @endif
-    @endforeach
-</div>
-@endcanany
 @can('Admin')
 <a href="{{ url('/admin/create') }}" class="btn btn-primary"><span data-feather="user-plus"></span> Add New User</a>
 @endcan
 <div class="d-block">
-    <form class="d-flex" method="GET" action="/searchUser">
-        <input class="form-control mr-2 mt-2" type="search" placeholder="Search" aria-label="Search" name="search">
-        <button class="btn btn-primary" type="submit">Search</button>
+    <form class="d-flex flex-row justify-content-start align-items-center" method="GET" action="/searchUser">
+        <div class="flex-fill pt-2 pr-2 pb-2">
+            <input class="form-control mr-2 mb-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            @canany(['Admin', 'HDiv'])
+            <div class="w-25">
+                <select class="form-select" name="filterDept" aria-label="Default select example">
+                    <option value="" selected>Filter Department</option>
+                    @foreach ($roles as $role)
+                        @php
+                            $display = $role->display;
+                            $array_of_display = explode(" ", $display);
+                            $slice_display = array_slice($array_of_display, 2);
+                            $combined_display = implode(" ", $slice_display);
+                        @endphp
+                        <option value="{{ $role->id }}"> {{ $combined_display }} </option>
+                    @endforeach
+                </select>
+            </div>
+            @endcanany
+        </div>
+        <div class="pb-5">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
     </form>
 </div>
 <table class="table mt-3">

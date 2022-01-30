@@ -94,13 +94,13 @@ class AdminController extends Controller
         else{
             $deptID = 0;
         }
-        
+
         $projects = Project::join('project_user', 'projects.id', '=', 'project_user.project_id')
             ->where('projects.deptID', $deptID)
             ->where('project_user.user_id', $user->id)->paginate(10);
         $id = ($projects->currentpage() - 1) * $projects->perpage() + 1;
-        
-        
+
+
         return view('admin.detail', compact('user', 'user_tabs', 'role', 'projects', 'id'));
     }
 
@@ -131,16 +131,16 @@ class AdminController extends Controller
             'name' => 'required|string|min:3',
             'dateOfBirth' => 'before:today',
         ]);
-           
-        
+
+
         $currUser = User::where('username', $user)->first();
-        
-        if($request->username != $currUser->username){     
+
+        if($request->username != $currUser->username){
             $request->validate([
                 'username' => 'required|string|min:6|unique:users',
             ]);
         }
-        
+
         if($request->email != $currUser->email){
             $request->validate([
                 'email' => 'required|string|min:6|unique:users'
@@ -165,10 +165,10 @@ class AdminController extends Controller
                 'dateOfBirth' => Carbon::parse($request->dateOfBirth)->format('Y-m-d'),
             ]);
         }
-        
+
         return redirect('/user/'.$request->username.'/about')->with('update', 'Profile has been updated!');
     }
-    
+
     public function editPassword($user){
         $user = User::where('username', $user)->first();
         return view('admin.changePassword', compact('user'));
@@ -205,7 +205,7 @@ class AdminController extends Controller
     public function update_pp($id, Request $request){
         // dd($request->photo);
 
-    
+
         $user = User::where('id', $id)->first();
         // dd($user);
 
@@ -216,7 +216,7 @@ class AdminController extends Controller
 
         $user->photo = 'dsadsadsa.png';
         if($request->photo == null){
-            
+
         }
 
         // Else nya akan membuat path untuk image yg diupload disimpan dalam public
@@ -236,15 +236,34 @@ class AdminController extends Controller
 
     public function searchUser(Request $request){
         $search = $request->search;
+        $filterDept = $request->filterDept;
 
-        if($search == null){
+        /* if($search == null){
             return redirect('/user/index');
-        }
+        } */
         if(auth()->user()->roleID == 1){
-            $searches = User::where('name', 'like', '%'.$search.'%')->where('roleID', '!=', '1')->paginate(10);
+            if($filterDept){
+                $searches = User::where('name', 'like', '%'.$search.'%')
+                ->where('roleID', '!=', '1')
+                ->whereIn('roleID', [$filterDept, $filterDept + 4])
+                ->paginate(10);
+            }else{
+                $searches = User::where('name', 'like', '%'.$search.'%')
+                ->where('roleID', '!=', '1')
+                ->paginate(10);
+            }
         }
         else if(auth()->user()->roleID == 2){
-            $searches = User::where('name', 'like', '%'.$search.'%')->where('roleID', '!=', '1')->paginate(10);
+            if($filterDept){
+                $searches = User::where('name', 'like', '%'.$search.'%')
+                ->where('roleID', '!=', '1')
+                ->whereIn('roleID', [$filterDept, $filterDept + 4])
+                ->paginate(10);
+            }else{
+                $searches = User::where('name', 'like', '%'.$search.'%')
+                ->where('roleID', '!=', '1')
+                ->paginate(10);
+            }
         }
         else if(auth()->user()->roleID == 3 || auth()->user()->roleID == 7){
             $list = [3, 7];
@@ -280,7 +299,8 @@ class AdminController extends Controller
         }
 
         $id = ($searches->currentpage() - 1) * $searches->perpage() + 1;
-        return view('user.searchUser', compact('searches', 'search', 'id'));
+        $roles = Role::where('id', 3)->orWhere('id', 4)->orWhere('id', 5)->orWhere('id', 6)->get();
+        return view('user.searchUser', compact('searches', 'search', 'id', 'roles'));
     }
 
     public function resetPassword(Request $request){
@@ -292,7 +312,7 @@ class AdminController extends Controller
             'dateOfBirth' => 'required|before:today'
         ]);
 
-        
+
         $currUser = User::where('username', $username)->where('dateOfBirth', $dateOfBirth)->first();
         $passwordDate = Carbon::parse($currUser->dateOfBirth)->format('ymd');
         if($currUser != null){
