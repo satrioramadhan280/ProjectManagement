@@ -62,6 +62,7 @@ class HomeController extends Controller
         $id7 = ($onProjectsDept3->currentpage() - 1) * $onProjectsDept3->perpage() + 1;
         $id8 = ($onProjectsDept4->currentpage() - 1) * $onProjectsDept4->perpage() + 1;
 
+        
         // Chart
         // Day   branch, cr, micro, internal
         // [1,  37.8, 80.8, 41.8, 99],

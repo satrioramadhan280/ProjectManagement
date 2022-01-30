@@ -67,10 +67,10 @@ Edit Profile
       <label class="control-label" for="dateOfBirth">Date of Birth</label>
       <div class="controls">
         @can('Admin')
-          <input readonly type="date" id="dateOfBirth" name="dateOfBirth"  class="form-control @error('dateOfBirth') is-invalid @enderror" value="{{$user->dateOfBirth}}">
+          <input readonly type="date" id="dateOfBirth" name="dateOfBirth"  class="form-control @error('dateOfBirth') is-invalid @enderror" value="{{$dob}}">
         @endcan
         @canany(['HDiv','HDept1', 'MDept1', 'HDept2', 'MDept2', 'HDept3', 'MDept3', 'HDept4', 'MDept4'])
-          <input type="date" id="dateOfBirth" name="dateOfBirth"  class="form-control @error('dateOfBirth') is-invalid @enderror" value="{{$user->dateOfBirth}}">
+          <input type="date" id="dateOfBirth" name="dateOfBirth"  class="form-control @error('dateOfBirth') is-invalid @enderror" value="{{$dob}}">
         @endcanany
         @error('dateOfBirth')
         <span class="invalid-feedback" role="alert">
@@ -120,7 +120,7 @@ Edit Profile
       <div class="controls">
         <button class="btn btn-primary" type="submit">Update</button>
       </form>
-      <a href="{{ url()->previous() }}" class="btn btn-light">Cancel</a>
+      <a href="{{ old('redirect_to', URL::previous())}}" class="btn btn-light">Cancel</a>
       </div>
     </div>
   </fieldset>

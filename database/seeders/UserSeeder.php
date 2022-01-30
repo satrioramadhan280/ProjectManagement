@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('admin'),
             'photo' => 'photo-profile.png',
             'roleID' => 1,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Head Division',
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 2,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Head Department1',
@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 3,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Head Department2',
@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 4,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Head Department3',
@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 5,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Head Department4',
@@ -67,7 +67,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 6,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Member Department1',
@@ -76,7 +76,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Member Department2',
@@ -85,7 +85,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Member Department3',
@@ -94,7 +94,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Member Department4',
@@ -103,7 +103,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Derick Yudanegara',
@@ -112,7 +112,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
 
         // Dummy #gelombang 1
@@ -123,7 +123,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'User2 Last',
@@ -132,7 +132,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'User3 Last',
@@ -141,7 +141,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'User3 Last',
@@ -150,7 +150,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
 
         // Dummy #gelombang 2
@@ -161,7 +161,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Anton Joni Malaka Bu',
@@ -170,7 +170,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Jeremy',
@@ -179,7 +179,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Jessica',
@@ -188,7 +188,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         
         // Dummy #gelombang 3
@@ -199,7 +199,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Michael',
@@ -208,7 +208,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Sisca',
@@ -217,7 +217,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Dora',
@@ -226,7 +226,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
 
         // Dummy #gelombang 4
@@ -237,7 +237,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Kikky',
@@ -246,7 +246,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Verrent',
@@ -255,7 +255,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Sinta',
@@ -264,7 +264,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
 
         // Dummy #gelombang 5
@@ -275,7 +275,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Marco',
@@ -284,7 +284,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Amadea',
@@ -293,7 +293,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Fanny',
@@ -302,7 +302,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
 
         // Dummy #gelombang 6
@@ -313,7 +313,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Leonardo',
@@ -322,7 +322,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Putri',
@@ -331,7 +331,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Margaretha',
@@ -340,7 +340,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
 
         // Dummy #gelombang 7
@@ -351,7 +351,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Kevin de Bruyne',
@@ -360,7 +360,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Cristiano Ronaldo',
@@ -369,7 +369,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Leo Messi',
@@ -378,7 +378,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
 
         // Dummy #gelombang 8
@@ -389,7 +389,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 7,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Bruno Fernandes',
@@ -398,7 +398,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 8,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Alexander Lacazette',
@@ -407,7 +407,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 9,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
         User::create([
             'name' => 'Mo Salah',
@@ -416,7 +416,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('xyz12345'),
             'photo' => 'photo-profile.png',
             'roleID' => 10,
-            'dateOfBirth' => '1990-01-01'
+            'dateOfBirth' => '01-01-1990'
         ]);
     }
 }

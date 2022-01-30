@@ -79,7 +79,7 @@ Add New User
     <div class="control-group">
       <div class="controls">
         <button class="btn btn-primary" type="submit">Register</button>
-        <a href="{{ url()->previous() }}" class="btn btn-light">Cancel</a>
+        <a href="{{ old('redirect_to', URL::previous())}}" class="btn btn-light">Cancel</a>
       </div>
     </div>
   </fieldset>

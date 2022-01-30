@@ -91,12 +91,12 @@
             <td class="col-3">IT Internal Application</td>
             @endif
             <td class="col-2">
-                <a class="btn btn-primary" href="/admin/{{ $user->username }}/edit">Edit Profile</a>
+                <a class="" href="/admin/{{ $user->username }}/edit" style="color: black"><span data-feather="eye"></span></a>
                 <form action="/admin/{{$user->username}}/delete" method="POST" class="d-inline">
                     @csrf
                     @method('delete')
                     <button type="submit" onclick="return confirm('Are you sure want to delete this user?')"
-                    class="btn btn-danger">Delete User</button>
+                    style="border: none; background: none; "><span data-feather="trash-2"></span></button>
                 </form>
             </td>
         </tr>
@@ -123,7 +123,7 @@
         @if ($user->roleID == 6 || $user->roleID == 10)
         <td class="col-3">IT Internal Application</td>
         @endif
-        <td class="col-1"><a class="btn btn-primary" href="/user/{{ $user->username }}/about">Detail</a>
+        <td class="col-1"><a class="" href="/user/{{ $user->username }}/about" style="color: black"><span data-feather="eye"></span></a>
         </td>
     </tr>
     @endforeach
@@ -137,7 +137,7 @@
         @if ($user->roleID == 3 || $user->roleID == 7)
         <td class="col-3">IT Customer Relationship Management</td>
         @endif
-        <td class="col-1"><a class="btn btn-primary" href="/user/{{ $user->username }}/about">Detail</a>
+        <td class="col-1"><a class="" href="/user/{{ $user->username }}/about" style="color: black"><span data-feather="eye"></span></a>
         </td>
     </tr>
     @endforeach
@@ -151,7 +151,7 @@
         @if ($user->roleID == 4 || $user->roleID == 8)
         <td class="col-3">IT Branch Delivery System</td>
         @endif
-        <td class="col-1"><a class="btn btn-primary" href="/user/{{ $user->username }}/about">Detail</a>
+        <td class="col-1"><a class="" href="/user/{{ $user->username }}/about" style="color: black"><span data-feather="eye"></span></a>
         </td>
     </tr>
     @endforeach
@@ -165,7 +165,7 @@
         @if ($user->roleID == 5 || $user->roleID == 9)
         <td class="col-3">IT Micro and Retail Core Loan System</td>
         @endif
-        <td class="col-1"><a class="btn btn-primary" href="/user/{{ $user->username }}/about">Detail</a>
+        <td class="col-1"><a class="" href="/user/{{ $user->username }}/about" style="color: black"><span data-feather="eye"></span></a>
         </td>
     </tr>
     @endforeach
@@ -179,7 +179,7 @@
         @if ($user->roleID == 6 || $user->roleID == 10)
         <td class="col-3">IT Internal Application</td>
         @endif
-        <td class="col-1"><a class="btn btn-primary" href="/user/{{ $user->username }}/about">Detail</a>
+        <td class="col-1"><a class="" href="/user/{{ $user->username }}/about" style="color: black"><span data-feather="eye"></span></a>
         </td>
     </tr>
     @endforeach

@@ -177,7 +177,7 @@
 
     @if (Auth::user()->roleID == 2 || Auth::user()->roleID == 3 || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 ||
     Auth::user()->roleID == 6)
-        <form class="ml-3" action="/deleteProject/{{$project->id}}" method="POST">
+        <form class="ml-3 mt-3" action="/deleteProject/{{$project->id}}" method="POST">
             @csrf
             @method('delete')
             <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure want to delete this project?')"><span data-feather="trash-2"></span> Delete Project</button>

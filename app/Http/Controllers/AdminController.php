@@ -115,8 +115,9 @@ class AdminController extends Controller
     {
         $roles = Role::where('name', '!=', 'Admin')->get();
         $user = User::where('username', $user)->first();
+        $dob = Carbon::parse($user->dateOfBirth)->format('d-m-Y');
 
-        return view('admin.edit', compact('user', 'roles'));
+        return view('admin.edit', compact('user', 'roles', 'dob'));
     }
 
     /**
@@ -333,7 +334,7 @@ class AdminController extends Controller
 
 
         $currUser = User::where('username', $username)->where('dateOfBirth', $dateOfBirth)->first();
-        $passwordDate = Carbon::parse($currUser->dateOfBirth)->format('ymd');
+        $passwordDate = Carbon::parse($currUser->dateOfBirth)->format('dmy');
         if($currUser != null){
             $currUser = User::where('username', $username)->where('dateOfBirth', $dateOfBirth)->update([
                 'password' => bcrypt('!Bp4'.$passwordDate)

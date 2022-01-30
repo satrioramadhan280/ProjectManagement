@@ -186,7 +186,7 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">Date Of Birth</label>
             <div class="col">
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                    value="{{$user->dateOfBirth}}">
+                    value="{{ $user->dateOfBirth->format('d-m-Y') }}">
             </div>
         </div>
 
