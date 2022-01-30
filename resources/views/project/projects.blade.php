@@ -58,6 +58,7 @@
                     <th scope="col">Title</th>
                     <th scope="col">Department</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Start Date</th>
                     <th scope="col">End Date</th>
                     <th scope="col" class="text-center">Action</th>
                 </tr>
@@ -84,7 +85,8 @@
                                     <td class="col-3">IT Internal Application</td>
                                 @endif
                                 <td class="col-2">{{ $project->status->name }}</td>
-                                <td class="col-2">{{ $project->endDate }}</td>
+                                <td class="col-1">{{ $project->startDate->format('d-m-Y') }}</td>
+                                <td class="col-1">{{ $project->endDate->format('d-m-Y') }}</td>
                                 <td class="col-1">
                                     <div class="d-flex flex-row">
                                         <div class="col-sm-auto d-flex flex-row">
@@ -117,12 +119,13 @@
                     @foreach ($projectsDept1 as $project)
                         <tr>
                             <td class="col-1">{{$id1++}}</td>
-                            <td class="col-4">{{ $project->title }}</td>
+                            <td class="col-3">{{ $project->title }}</td>
                             @if ($project->deptID == 3)
                                 <td class="col-3">IT Customer Relationship Management</td>
                             @endif
                             <td class="col-2">{{ $project->status->name }}</td>
-                            <td class="col-2">{{ $project->endDate }}</td>
+                            <td class="col-1">{{ $project->startDate->format('d-m-Y') }}</td>
+                            <td class="col-1">{{ $project->endDate->format('d-m-Y') }}</td>
                             <td class="col-1">
                                 
                             
@@ -158,12 +161,13 @@
                     @foreach ($projectsDept2 as $project)
                         <tr>
                             <td class="col-1">{{$id2++}}</td>
-                            <td class="col-4">{{ $project->title }}</td>
+                            <td class="col-3">{{ $project->title }}</td>
                             @if ($project->deptID == 4)
                                 <td class="col-3">IT Branch Delivery System</td>
                             @endif
                             <td class="col-2">{{ $project->status->name }}</td>
-                            <td class="col-2">{{ $project->endDate }}</td>
+                            <td class="col-1">{{ $project->startDate->format('d-m-Y') }}</td>
+                            <td class="col-1">{{ $project->endDate->format('d-m-Y') }}</td>
                             <td class="col-1">
                                 <div class="d-flex flex-row">
                                     <div class="col-sm-auto d-flex flex-row">
@@ -196,12 +200,13 @@
                     @foreach ($projectsDept3 as $project)
                         <tr>
                             <td class="col-1">{{$id3++}}</td>
-                            <td class="col-4">{{ $project->title }}</td>
+                            <td class="col-3">{{ $project->title }}</td>
                             @if ($project->deptID == 5)
                                 <td class="col-3">IT Micro and Retail Core Loan System</td>
                             @endif
                             <td class="col-2">{{ $project->status->name }}</td>
-                            <td class="col-2">{{ $project->endDate }}</td>
+                            <td class="col-1">{{ $project->startDate->format('d-m-Y') }}</td>
+                            <td class="col-1">{{ $project->endDate->format('d-m-Y') }}</td>
                             <td class="col-1">
                                 <div class="d-flex flex-row">
                                     <div class="col-sm-auto d-flex flex-row">
@@ -234,12 +239,13 @@
                     @foreach ($projectsDept4 as $project)
                         <tr>
                             <td class="col-1">{{$id4++}}</td>
-                            <td class="col-4">{{ $project->title }}</td>
+                            <td class="col-3">{{ $project->title }}</td>
                             @if ($project->deptID == 6)
                                 <td class="col-3">IT Internal Application</td>
                             @endif
                             <td class="col-2">{{ $project->status->name }}</td>
-                            <td class="col-2">{{ $project->endDate }}</td>
+                            <td class="col-1">{{ $project->startDate->format('d-m-Y') }}</td>
+                            <td class="col-1">{{ $project->endDate->format('d-m-Y') }}</td>
                             <td class="col-1">
                                 <div class="d-flex flex-row">
                                     <div class="col-sm-auto d-flex flex-row">
