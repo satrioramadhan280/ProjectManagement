@@ -12,6 +12,17 @@ Change Password
   @method('patch')
   <fieldset>
     <div class="control-group">
+      <label class="control-label" for="newPassword">Current Password</label>
+      <div class="controls">
+          <input type="password" id="currentPassword" name="currentPassword" class="form-control @error('currentPassword') is-invalid @enderror">
+        @error('currentPassword')
+        <span class="invalid-feedback" role="alert">
+          <strong>{{ 'Your current password not match.' }}</strong>
+        </span>
+        @enderror
+      </div>
+    </div>
+    <div class="control-group">
       <label class="control-label" for="newPassword">New Password</label>
       <div class="controls">
           <input type="password" id="password" name="newPassword" class="form-control @error('newPassword') is-invalid @enderror">

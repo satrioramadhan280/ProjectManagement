@@ -10,6 +10,7 @@ use DateTime;
 use Carbon\Carbon;
 use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -175,14 +176,32 @@ class AdminController extends Controller
     }
 
     public function changePassword(Request $request,  $user){
+        
+        $user_col = User::where('username', $user)->first();
+        
+        
+        
         $request->validate([
+            // 'currentPassword' => 'required|not_in:' . $user->password,
+            'currentPassword' => ['required', function ($attribute, $value, $fail) use ($user_col, $request) {
+                if (!Hash::check($request->currentPassword, $user_col->password)) {
+                    return $fail(__('The current password is incorrect.'));
+                }
+            }],
             'newPassword' => 'required|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
             'password_confirmation' => 'required|min:8|same:newPassword'
         ]);
 
-        User::where('username', $user)->update([
-            'password' => bcrypt($request->newPassword)
-        ]);
+        
+        if(Hash::check($request->currentPassword, $user_col->password)){
+            // dd('pass sama nih');
+            User::where('username', $user)->update([
+                'password' => bcrypt($request->newPassword)
+            ]);
+        }
+        
+        
+ 
 
         return redirect('/user/'.$user.'/about')->with('password', 'Change Password successful');
     }
