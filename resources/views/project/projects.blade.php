@@ -32,9 +32,9 @@
             <a id='addProjectbtn' href="{{ route('add_project_view') }}" class="btn btn-primary"><span data-feather="file"></span> Add Project</a>
         @endcanany
         <div class="d-block">
-            <form class="d-flex flex-row justify-content-start align-items-center" method="GET" action="{{ route('searchProject') }}">
+            <form class="d-flex flex-row justify-content-start align-items-start" method="GET" action="{{ route('searchProject') }}">
                 <div class="flex-fill pt-2 pr-2 pb-2">
-                    <input class="form-control mr-2 mb-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                    <input class="form-control mr-2 mb-2" type="search" placeholder="Search by title" aria-label="Search" name="search">
                     <div class="w-25">
                         <select class="form-select" name="filterStatus" aria-label="Default select example">
                             <option value="" selected>Filter Status</option>
@@ -44,7 +44,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="pb-5">
+                <div class="pt-2 pr-2 pb-2">
                     <button class="btn btn-primary" type="submit">Search</button>
                 </div>
             </form>

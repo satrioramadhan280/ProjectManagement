@@ -11,14 +11,15 @@
     @canany(['HDept3', 'MDept3'])<h4>IT Micro and Retail Core Loan System Project's List</h4>@endcan
     @canany(['HDept4', 'MDept4'])<h4>IT Internal Application Project's List</h4>@endcan
     <hr>
+    <h4 class="mb-2 mt-2">Search for '{{ $search }}'</h4>
     <div class="d-inline">
         @canany(['HDept1', 'HDept2', 'HDept3', 'HDept4'])
             <a id='addProjectbtn' href="{{ route('add_project_view') }}" class="btn btn-primary"><span data-feather="file"></span> Add Project</a>
         @endcanany
         <div class="d-block">
-            <form class="d-flex flex-row justify-content-start align-items-center" method="GET" action="{{ route('searchProject') }}">
+            <form class="d-flex flex-row justify-content-start align-items-start" method="GET" action="{{ route('searchProject') }}">
                 <div class="flex-fill pt-2 pr-2 pb-2">
-                    <input class="form-control mr-2 mb-2" type="search" placeholder="Search" aria-label="Search" name="search" value="{{ request()->query('search') }}">
+                    <input class="form-control mr-2 mb-2" type="search" placeholder="Search by title" aria-label="Search" name="search" value="{{ request()->query('search') }}">
                     <div class="w-25">
                         <select class="form-select" name="filterStatus" aria-label="Default select example">
                             <option value="">Filter Status</option>
@@ -28,7 +29,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="pb-5">
+                <div class="pt-2 pr-2 pb-2">
                     <button class="btn btn-primary" type="submit">Search</button>
                 </div>
             </form>
@@ -44,7 +45,6 @@
             {{ session('delete') }}
         </div>
     @endif
-    <h4 class="mb-2 mt-2">Search for '{{ $search }}'</h4>
     <table class="table mt-2">
         <thead>
             <tr class="bg-danger text-white">

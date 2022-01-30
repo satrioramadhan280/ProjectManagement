@@ -35,9 +35,9 @@
 <a href="{{ url('/admin/create') }}" class="btn btn-primary"><span data-feather="user-plus"></span> Add New User</a>
 @endcan
 <div class="d-block">
-    <form class="d-flex flex-row justify-content-start align-items-center" method="GET" action="/searchUser">
+    <form class="d-flex flex-row justify-content-start align-items-start" method="GET" action="/searchUser">
         <div class="flex-fill pt-2 pr-2 pb-2">
-            <input class="form-control mr-2 mb-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            <input class="form-control mr-2 mb-2" type="search" placeholder="Search by name" aria-label="Search" name="search">
             @canany(['Admin', 'HDiv'])
             <div class="w-25">
                 <select class="form-select" name="filterDept" aria-label="Default select example">
@@ -55,7 +55,7 @@
             </div>
             @endcanany
         </div>
-        <div class="pb-5">
+        <div class="pt-2 pr-2 pb-2">
             <button class="btn btn-primary" type="submit">Search</button>
         </div>
     </form>
