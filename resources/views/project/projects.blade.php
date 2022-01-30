@@ -28,27 +28,27 @@
     @endif
 
     <div class="d-inline">
-        <div class="dropdown show d-inline">
-            <label for="">Status: All</label>
-            <a class="btn btn-primary dropdown-toggle" href="{{ route('projects') }}" role="button" id="dropdownMenuLink"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Filter Status
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="{{ route('projects') }}">All</a>
-                @foreach ($statuses as $s)
-                    <a class="dropdown-item" href="{{ route('projectStatus', $s->id) }}">{{ $s->name }}</a>
-                @endforeach
-            </div>
-        </div>
         @canany(['HDept1', 'HDept2', 'HDept3', 'HDept4'])
             <a id='addProjectbtn' href="{{ route('add_project_view') }}" class="btn btn-primary"><span data-feather="file"></span> Add Project</a>
         @endcanany
-        <form class="d-flex mt-3" method="GET" action="{{ route('searchProject') }}">
-            <input class="form-control mr-2" type="search" placeholder="Search by Project Title" aria-label="Search" name="search"
-                value="{{ old('search') }}">
-            <button class="btn btn-primary" type="submit">Search</button>
-        </form>
+        <div class="d-block">
+            <form class="d-flex flex-row justify-content-start align-items-center" method="GET" action="{{ route('searchProject') }}">
+                <div class="flex-fill pt-2 pr-2 pb-2">
+                    <input class="form-control mr-2 mb-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                    <div class="w-25">
+                        <select class="form-select" name="filterStatus" aria-label="Default select example">
+                            <option value="" selected>Filter Status</option>
+                            @foreach ($statuses as $status)
+                                <option value="{{ $status->id }}">{{ $status->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="pb-5">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="mt-3">
         <table class="table mt-2">
@@ -95,9 +95,9 @@
                                                 <div class="form-group">
                                                     <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
                                                     {{-- <input  class=""> --}}
-                                                    
+
                                                     {{-- <a type="submit"  value="Download"></a> --}}
-                                                    
+
                                                     <button type="submit" class="" value="Download" style="border: none;
                                                     background: none;"><span data-feather="download"></span></button>
                                                 </div>
@@ -127,9 +127,9 @@
                             <td class="col-1">{{ $project->startDate->format('d-m-Y') }}</td>
                             <td class="col-1">{{ $project->endDate->format('d-m-Y') }}</td>
                             <td class="col-1">
-                                
-                            
-                             
+
+
+
                                 <div class="d-flex flex-row">
                                     <div class="col-sm-auto d-flex flex-row">
                                         <form method="GET" action="{{ route('download_file') }}">
@@ -137,9 +137,9 @@
                                             <div class="form-group">
                                                 <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
                                                 {{-- <input  class=""> --}}
-                                                
+
                                                 {{-- <a type="submit"  value="Download"></a> --}}
-                                                
+
                                                 <button type="submit" class="" value="Download" style="border: none;
                                                 background: none;"><span data-feather="download"></span></button>
                                             </div>
@@ -176,9 +176,9 @@
                                             <div class="form-group">
                                                 <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
                                                 {{-- <input  class=""> --}}
-                                                
+
                                                 {{-- <a type="submit"  value="Download"></a> --}}
-                                                
+
                                                 <button type="submit" class="" value="Download" style="border: none;
                                                 background: none;"><span data-feather="download"></span></button>
                                             </div>
@@ -215,9 +215,9 @@
                                             <div class="form-group">
                                                 <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
                                                 {{-- <input  class=""> --}}
-                                                
+
                                                 {{-- <a type="submit"  value="Download"></a> --}}
-                                                
+
                                                 <button type="submit" class="" value="Download" style="border: none;
                                                 background: none;"><span data-feather="download"></span></button>
                                             </div>
@@ -254,9 +254,9 @@
                                             <div class="form-group">
                                                 <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
                                                 {{-- <input  class=""> --}}
-                                                
+
                                                 {{-- <a type="submit"  value="Download"></a> --}}
-                                                
+
                                                 <button type="submit" class="" value="Download" style="border: none;
                                                 background: none;"><span data-feather="download"></span></button>
                                             </div>

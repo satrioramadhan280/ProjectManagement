@@ -54,7 +54,7 @@ class ProjectController extends Controller
 
     public function addProject(Request $request)
     {
-        
+
         // dd($request);
         // dd($request->user()->id);
         $request->validate([
@@ -73,7 +73,7 @@ class ProjectController extends Controller
         $project->sysRequirements = $request->file('projectSR')->storeAs($project->folder, $request->projectSR->getClientOriginalName());
 
         $project->startDate = Carbon::parse($request->startDate);
-        $project->endDate = Carbon::parse($request->endDate); 
+        $project->endDate = Carbon::parse($request->endDate);
         $project->save();
 
 
@@ -84,7 +84,7 @@ class ProjectController extends Controller
         $notification->status = 0;
         $notification->save();
 
-        
+
         // $project->users()->attach($request->user()->id);
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks'])->with('create', 'Create Project Sucessful');
         // return redirect()->action([ProjectController::class, 'show']);
@@ -93,7 +93,7 @@ class ProjectController extends Controller
     public function editProjectView(Project $project){
         $startDate = Carbon::parse($project->startDate)->format('Y-m-d');
         $endDate = Carbon::parse($project->endDate)->format('Y-m-d');
-        
+
         return view('project.edit', compact('project', 'startDate', 'endDate'));
     }
 
@@ -183,7 +183,7 @@ class ProjectController extends Controller
             $notification->additional_description = $task->name;
             $notification->save();
         }
-            
+
         $task = Task::where('id', $task->id)->first();
         $task->delete();
 
@@ -330,7 +330,7 @@ class ProjectController extends Controller
         }
 
 
-        
+
 
 
         if($users==null){
@@ -437,10 +437,12 @@ class ProjectController extends Controller
 
     public function searchProject(Request $request){
         $search = $request->search;
+        $filterStatus = $request->filterStatus;
+        $statuses = Status::all();
 
-        if($search == null){
+       /*  if($search == null){
             return redirect('projects/index');
-        }
+        } */
         if(auth()->user()->roleID == 3 || auth()->user()->roleID == 7){
             $deptID = 3;
         }
@@ -454,13 +456,28 @@ class ProjectController extends Controller
             $deptID = 6;
         }
         if(auth()->user()->roleID == 2){
-            $searches = Project::where('title', 'like', '%'.$search.'%')->paginate(10);
+            if($filterStatus){
+                $searches = Project::where('title', 'like', '%'.$search.'%')
+                    ->where('status_id', $filterStatus)
+                    ->paginate(10);
+            }else{
+                $searches = Project::where('title', 'like', '%'.$search.'%')->paginate(10);
+            }
             $id = ($searches->currentpage() - 1) * $searches->perpage() + 1;
-            return view('project.searchProject', compact('searches', 'search', 'id'));
+            return view('project.searchProject', compact('searches', 'search', 'id', 'statuses'));
         }
-        $searches = Project::where('title', 'like', '%'.$search.'%')->where('deptID', $deptID)->paginate(10);
+        if($filterStatus){
+            $searches = Project::where('title', 'like', '%'.$search.'%')
+                ->where('deptID', $deptID)
+                ->where('status_id', $filterStatus)
+                ->paginate(10);
+        }else{
+            $searches = Project::where('title', 'like', '%'.$search.'%')
+                ->where('deptID', $deptID)
+                ->paginate(10);
+        }
         $id = ($searches->currentpage() - 1) * $searches->perpage() + 1;
-        return view('project.searchProject', compact('searches', 'search', 'id'));
+        return view('project.searchProject', compact('searches', 'search', 'id', 'statuses'));
     }
 
     public function changeStatus(Project $project, Status $status){
@@ -490,9 +507,9 @@ class ProjectController extends Controller
         $project->status()->associate($status);
         $project->save();
 
-        
-        
-        
+
+
+
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks'])->with('status', 'Update Status Successful');
     }
 
@@ -524,7 +541,7 @@ class ProjectController extends Controller
         $notification->save();
 
         ProjectUser::where('project_id', $project->id)->delete();
-        
+
         Project::destroy($project->id);
 
         // Update key dari Projects
@@ -546,7 +563,7 @@ class ProjectController extends Controller
             $index++;
             $f->save();
         }
-        
+
         // Update key dari tasks
         DB::statement("ALTER TABLE tasks AUTO_INCREMENT =  1");
         $update = Task::all();
@@ -597,7 +614,7 @@ class ProjectController extends Controller
             $f->save();
         }
 
-    
+
         return redirect('projects/index')->with('delete', 'Project sucessfull deleted');
     }
 
@@ -615,7 +632,7 @@ class ProjectController extends Controller
         $forum->description = $request->description;
         // dd($forum);
         $forum->save();
-        
+
         $forum = Forum::where('user_id', FacadesAuth::user()->id)->orderByDesc('created_at')->first();
         // dd($forum);
         if(FacadesAuth::user()->roleID == 2 || FacadesAuth::user()->roleID == 3 ||
@@ -631,7 +648,7 @@ class ProjectController extends Controller
                 $notification->save();
             }
         }
-        
+
         // $forum_reply->user_id =
 
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum'])->with('post_success', 'Post Successful');
@@ -711,7 +728,7 @@ class ProjectController extends Controller
             $notification->additional_description = "( " . FacadesAuth::user()->name . " ) ". $request->description;
             $notification->save();
         }
-        
+
 
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'forum'])->with('post_reply', 'Post Successful Replied');
     }
@@ -723,7 +740,7 @@ class ProjectController extends Controller
         $forum_reply = ForumReply::where('id', $request->forum_reply_id)->first();
         $forum_reply->delete();
 
-        
+
 
         DB::statement("ALTER TABLE forum_reply AUTO_INCREMENT =  1");
         $updateForumReply = ForumReply::all();
@@ -735,7 +752,7 @@ class ProjectController extends Controller
             $index++;
             $f->save();
         }
-        
+
         DB::statement("ALTER TABLE notifications AUTO_INCREMENT =  1");
         $update = Notification::all();
         $index = 1;

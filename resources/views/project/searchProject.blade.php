@@ -15,11 +15,24 @@
         @canany(['HDept1', 'HDept2', 'HDept3', 'HDept4'])
             <a id='addProjectbtn' href="{{ route('add_project_view') }}" class="btn btn-primary"><span data-feather="file"></span> Add Project</a>
         @endcanany
-        <form class="d-flex mt-2" method="GET" action="{{ route('searchProject') }}">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"
-                value="{{ $search }}">
-            <button class="btn btn-primary" type="submit">Search</button>
-        </form>
+        <div class="d-block">
+            <form class="d-flex flex-row justify-content-start align-items-center" method="GET" action="{{ route('searchProject') }}">
+                <div class="flex-fill pt-2 pr-2 pb-2">
+                    <input class="form-control mr-2 mb-2" type="search" placeholder="Search" aria-label="Search" name="search" value="{{ request()->query('search') }}">
+                    <div class="w-25">
+                        <select class="form-select" name="filterStatus" aria-label="Default select example">
+                            <option value="">Filter Status</option>
+                            @foreach ($statuses as $status)
+                                <option value="{{ $status->id }}" @if(request()->query('filterStatus') == $status->id) selected @endif>{{ $status->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="pb-5">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
     </div>
     @if (session('create'))
         <div class="alert alert-success mt-3">
