@@ -200,8 +200,9 @@
                     <th scope="col">Title</th>
                     <th scope="col">Department</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Start Date</th>
                     <th scope="col">End Date</th>
-                    <th scope="col">Action</th>
+                    <th scope="col" class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -213,7 +214,7 @@
                 @foreach ($projects as $project)
                 <tr>
                     <td class="col-1">{{$id++}}</td>
-                    <td class="col-4">{{ $project->title }}</td>
+                    <td class="col-3">{{ $project->title }}</td>
                     @if ($project->deptID == 3)
                         <td class="col-3">IT Customer Relationship Management</td>
                     @endif
@@ -227,21 +228,26 @@
                         <td class="col-3">IT IT Internal Application</td>
                     @endif
                     <td class="col-2">{{ $project->status->name }}</td>
-                    <td class="col-2">{{ $project->endDate }}</td>
+                    <td class="col-1">{{ $project->startDate->format('d-m-Y') }}</td>
+                    <td class="col-1">{{ $project->endDate->format('d-m-Y') }}</td>
                     <td class="col-1">
-                        <div class="row">
-                            <div class="col-sm-auto">
+                        <div class="d-flex flex-row">
+                            <div class="col-sm-auto d-flex flex-row">
                                 <form method="GET" action="{{ route('download_file') }}">
                                     @csrf
                                     <div class="form-group">
                                         <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
-                                        <input type="submit" class="btn btn-sm btn-primary" value="Download SR">
+                                        {{-- <input  class=""> --}}
+
+                                        {{-- <a type="submit"  value="Download"></a> --}}
+
+                                        <button type="submit" class="" value="Download" style="border: none;
+                                        background: none;"><span data-feather="download"></span></button>
                                     </div>
                                 </form>
                             </div>
                             <div class="col-sm-auto">
-                                <a class="btn btn-sm btn-primary"
-                                    href="{{ route('project_detail_view', [$project->project_id, 'tasks']) }}">Detail</a>
+                                <a class="text-decoration-none" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}" style="color: black"><span data-feather="eye"></span></a>
                             </div>
                         </div>
                     </td>
