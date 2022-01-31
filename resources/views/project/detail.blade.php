@@ -171,8 +171,8 @@
 
 <div class="d-flex flex-row align-items-center">
 
-    <span onclick="history.back()" class="mr-2" style="width: 24px; height: 24px; cursor: pointer;" data-feather="arrow-left-circle"></span>
-
+    
+    <a href="{{ "/" }}" class="text-decoration-none" style="color: black"><span onclick="" class="mr-2" style="width: 24px; height: 24px; cursor: pointer;" data-feather="arrow-left-circle"></span></a>
     <h4 class="mt-1">{{ $project->title }}</h4>
 
     @if (Auth::user()->roleID == 2 || Auth::user()->roleID == 3 || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 ||
@@ -438,7 +438,7 @@
                                         <th scope="col">Name</th>
                                         <th scope="col">Type</th>
                                         <th scope="col">Size</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col" class=""><div class="ml-3">Action</div></th>
                                     </tr>
                                 </thead>
                                 <tbody>

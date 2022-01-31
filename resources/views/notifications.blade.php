@@ -70,8 +70,11 @@
                         <td class="col-3">-</td>
                         <td class="col-2">{{$projects[$notification->project_id-1]->title}}</td>
                         <td class="col-2">{{$notification->created_at}}</td>
-                        <td class="col-1"><a class="btn btn-primary"
-                            href="{{ route('project_detail_view', [$projects[$notification->project_id-1]->id, 'tasks']) }}">Detail
+                        
+                        <td class="col-1 align-items-center">
+                            <a class="text-decoration-non ml-3 mt-4" style="color: black"
+                            href="{{ route('project_detail_view', [$projects[$notification->project_id-1]->id, 'tasks']) }}">
+                            <span data-feather="eye"  style="width: 20px; height: 20px;"></span></a></div>
                         </td>
                         {{-- <td class="col-4 align-items-center bg-warning"></td> --}}
                         
@@ -84,8 +87,11 @@
                         <td class="col-2">{{$projects[$tasks[$notification->task_id-1]->project_id-1]->title}}</td>
                 
                         <td class="col-2">{{$notification->created_at}}</td>
-                        <td class="col-1"><a class="btn btn-primary"
-                            href="{{ route('project_detail_view', [$projects[$tasks[$notification->task_id-1]->project_id-1]->id, 'tasks']) }}">Detail</a>
+                        
+                        <td class="col-1 align-items-center">
+                            <a class="text-decoration-non ml-3 mt-4" style="color: black"
+                            href="{{ route('project_detail_view', [$projects[$tasks[$notification->task_id-1]->project_id-1]->id, 'tasks']) }}">
+                            <span data-feather="eye"  style="width: 20px; height: 20px;"></span></a></div>
                         </td>
                         
                     
@@ -95,8 +101,10 @@
                         <td class="col-3">-</td>
                         <td class="col-2">{{$projects[$notification->project_id-1]->title}}</td>
                         <td class="col-2">{{$notification->created_at}}</td>
-                        <td class="col-1"><a class="btn btn-primary"
-                            href="{{ route('project_detail_view', [$projects[$notification->project_id-1]->id, 'tasks']) }}">Detail
+                        <td class="col-1 align-items-center">
+                            <a class="text-decoration-non ml-3 mt-4" style="color: black"
+                            href="{{ route('project_detail_view', [$projects[$notification->project_id-1]->id, 'tasks']) }}">
+                            <span data-feather="eye"  style="width: 20px; height: 20px;"></span></a></div>
                         </td>
 
                 @elseif($notification->notification_type_id == 4)
@@ -105,8 +113,10 @@
                         <td class="col-3">-</td>
                         <td class="col-2">{{$projects[$notification->project_id-1]->title}}</td>
                         <td class="col-2">{{$notification->created_at}}</td>
-                        <td class="col-1">
-                            
+                        <td class="col-1 align-items-center">
+                            <a class="text-decoration-non ml-3 mt-4" style="color: black"
+                            href="{{ route('project_detail_view', [$projects[$notification->project_id-1]->id, 'tasks']) }}">
+                            <span data-feather="eye"  style="width: 20px; height: 20px;"></span></a></div>
                         </td>
 
                 @elseif($notification->notification_type_id == 5)
@@ -115,8 +125,10 @@
                     <td class="col-3">-</td>
                     <td class="col-2">{{$projects[$notification->project_id-1]->title}}</td>
                     <td class="col-2">{{$notification->created_at}}</td>
-                    <td class="col-1"><a class="btn btn-primary"
-                        href="{{ route('project_detail_view', [$projects[$notification->project_id-1]->id, 'tasks']) }}">Detail
+                    <td class="col-1 align-items-center">
+                        <a class="text-decoration-non ml-3 mt-4" style="color: black"
+                        href="{{ route('project_detail_view', [$projects[$notification->project_id-1]->id, 'tasks']) }}">
+                        <span data-feather="eye"  style="width: 20px; height: 20px;"></span></a></div>
                     </td>
 
                 @elseif($notification->notification_type_id == 6)
@@ -125,8 +137,11 @@
                     <td class="col-3">-</td>
                     <td class="col-2">{{$notification->additional_description}}</td>
                     <td class="col-2">{{$notification->created_at}}</td>
-                    <td class="col-1"><a class="" disable
-                        href="" disabled></a>
+                    
+                    <td class="col-1 align-items-center">
+                        <a class="" disable
+                        href="" disabled>
+                        <span data-feather="eye"  style="width: 20px; height: 20px;"></span></a></div>
                     </td>
 
                 @elseif($notification->notification_type_id == 7)
@@ -135,8 +150,11 @@
                     <td class="col-3">-</td>
                     <td class="col-2">{{$projects[$notification->project_id-1]->title}}</td>
                     <td class="col-2">{{$notification->created_at}}</td>
-                    <td class="col-1"><a class="btn btn-primary"
-                        href="{{ route('project_detail_view', [$projects[$notification->project_id-1]->id, 'tasks']) }}">Detail
+                    
+                    <td class="col-1 align-items-center">
+                        <a class="text-decoration-non ml-3 mt-4" style="color: black"
+                        href="{{ route('project_detail_view', [$projects[$notification->project_id-1]->id, 'tasks']) }}">
+                        <span data-feather="eye"  style="width: 20px; height: 20px;"></span></a></div>
                     </td>
 
                 @elseif($notification->notification_type_id == 8)
@@ -145,8 +163,11 @@
                     <td class="col-3">{{$notification->additional_description}}</td>
                     <td class="col-2">{{$projects[$forums[$notification->forum_id-1]->project_id-1]->title}}</td>
                     <td class="col-2">{{$notification->created_at}}</td>
-                    <td class="col-1"><a class="btn btn-primary"
-                        href="{{ route('project_detail_view', [$projects[$forums[$notification->forum_id-1]->project_id-1]->id, 'forum']) }}">Detail
+                    
+                    <td class="col-1 align-items-center">
+                        <a class="text-decoration-non ml-3 mt-4" style="color: black"
+                        href="{{ route('project_detail_view', [$projects[$forums[$notification->forum_id-1]->project_id-1]->id, 'forum']) }}">
+                        <span data-feather="eye"  style="width: 20px; height: 20px;"></span></a></div>
                     </td>
                 @elseif($notification->notification_type_id == 9)
             
@@ -154,17 +175,21 @@
                     <td class="col-3">{{$notification->additional_description}}</td>
                     <td class="col-2">{{$projects[$forums[$notification->forum_id-1]->project_id-1]->title}}</td>
                     <td class="col-2">{{$notification->created_at}}</td>
-                    <td class="col-1"><a class="btn btn-primary"
-                        href="{{ route('project_detail_view', [$projects[$forums[$notification->forum_id-1]->project_id-1]->id, 'forum']) }}">Detail
+                    
+                    <td class="col-1 align-items-center">
+                        <a class="text-decoration-non ml-3 mt-4" style="color: black"
+                        href="{{ route('project_detail_view', [$projects[$forums[$notification->forum_id-1]->project_id-1]->id, 'forum']) }}">
+                        <span data-feather="eye"  style="width: 20px; height: 20px;"></span></a></div>
                     </td>
+                    
                 @endif  
 
                 @if ($notification->status == 0)
-                    <td class="col-2 align-items-center "><div class="d-flex justify-content-center"><a class="btn btn-primary"
-                        href="/notifications/mark_as_read/{{$notification->id}}">Mark</a></div></td>  
+                    <td class="col-2 align-items-center "><div class="d-flex justify-content-center"><a 
+                        href="/notifications/mark_as_read/{{$notification->id}}" class="text-decoration-none" style="color: rgb(0, 0, 0)"><span data-feather="circle"></span></a></div></td>  
                 
                 @elseif($notification->status == 1)
-                    <td class="col-2 "><div class="d-flex align-items-center justify-content-center"><span data-feather="check"></span></div></td> 
+                    <td class="col-2 "><div class="d-flex align-items-center justify-content-center"><a class="text-decoration-none" style="color: rgb(8, 102, 0)"><span data-feather="check-circle" class=""></span></div></a></td> 
                 
                 @endif
             </tr> 

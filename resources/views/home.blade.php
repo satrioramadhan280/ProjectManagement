@@ -202,7 +202,7 @@
                         @endif
                     @endcan
                     @can('HDept2')
-                         @if ($projectsDept1->isEmpty())
+                         @if ($projectsDept2->isEmpty())
                             <td>There are no on going projects</td>
                         @else
                         @foreach ($projectsDept2 as $project)
@@ -239,7 +239,7 @@
                         @endif
                     @endcan
                     @can('HDept3')
-                         @if ($projectsDept1->isEmpty())
+                         @if ($projectsDept3->isEmpty())
                             <td>There are no on going projects</td>
                         @else
                         @foreach ($projectsDept3 as $project)
@@ -276,7 +276,7 @@
                         @endif
                     @endcan
                     @can('HDept4')
-                         @if ($projectsDept1->isEmpty())
+                         @if ($projectsDept4->isEmpty())
                             <td>There are no on going projects</td>
                         @else
                         @foreach ($projectsDept4 as $project)
@@ -325,6 +325,7 @@
                                 <td class="col-1">{{ $project->startDate->format('d-m-Y') }}</td>
                                 <td class="col-1">{{ $project->endDate->format('d-m-Y') }}</td>
                                 <td class="col-1">
+                                    
                                     <div class="d-flex flex-row">
                                         <div class="col-sm-auto d-flex flex-row">
                                             <form method="GET" action="{{ route('download_file') }}">
@@ -332,9 +333,9 @@
                                                 <div class="form-group">
                                                     <input type='hidden' name="filePath" value="{{ $project->sysRequirements }}">
                                                     {{-- <input  class=""> --}}
-                                                    
+    
                                                     {{-- <a type="submit"  value="Download"></a> --}}
-                                                    
+    
                                                     <button type="submit" class="" value="Download" style="border: none;
                                                     background: none;"><span data-feather="download"></span></button>
                                                 </div>
