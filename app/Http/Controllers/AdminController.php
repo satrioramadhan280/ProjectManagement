@@ -115,7 +115,7 @@ class AdminController extends Controller
     {
         $roles = Role::where('name', '!=', 'Admin')->get();
         $user = User::where('username', $user)->first();
-        $dob = Carbon::parse($user->dateOfBirth)->format('d-m-Y');
+        $dob = Carbon::parse($user->dateOfBirth)->format('Y-m-d');
 
         return view('admin.edit', compact('user', 'roles', 'dob'));
     }
