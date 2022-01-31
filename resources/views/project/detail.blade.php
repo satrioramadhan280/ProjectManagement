@@ -171,8 +171,8 @@
 
 <div class="d-flex flex-row align-items-center">
 
-    
-    <a href="{{ "/" }}" class="text-decoration-none" style="color: black"><span onclick="" class="mr-2" style="width: 24px; height: 24px; cursor: pointer;" data-feather="arrow-left-circle"></span></a>
+
+    <a href="javascript:history.back()" class="text-decoration-none" style="color: black"><span onclick="" class="mr-2" style="width: 24px; height: 24px; cursor: pointer;" data-feather="arrow-left-circle"></span></a>
     <h4 class="mt-1">{{ $project->title }}</h4>
 
     @if (Auth::user()->roleID == 2 || Auth::user()->roleID == 3 || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 ||
@@ -258,11 +258,11 @@
                         @enderror
                         <label for="taskMember" class="form-label mt-3">Assign Task Member <label style="font-size: 13px">(*required at least 1)</label></label>
                         <div class="d-flex flex-wrap">
-                            
+
                             @if ($task_members->isEmpty())
                                 <span>No members have been assigned to this project.</span>
-                                
-                            @else 
+
+                            @else
                             @foreach ($task_members as $task_member)
                                 <div class="form-check d-block" style="width: 200px">
                                     <input class="form-check-input" type="checkbox" value="{{$users[$task_member->user_id-1]->id}}" id="flexCheckDefault" name="users[]">
@@ -272,7 +272,7 @@
                                 </div>
                             @endforeach
                             @endif
-                        </div>                        
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -343,7 +343,7 @@
                 @endcannot
 
             </ul>
-        
+
             <div class="mt-3">
                 @if ($user_tabs=='tasks')
                     {{-- Isi dari Tasks --}}
@@ -405,7 +405,7 @@
                             @endif
                         </div>
                     </div>
-            
+
 
                     @endforeach
                     @else
