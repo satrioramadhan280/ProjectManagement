@@ -93,17 +93,17 @@
                         @endif
                         @can('Admin')
                         <td class="col-2">
-                            <a class="btn btn-primary" href="/admin/{{ $search->username }}/edit">Edit Profile</a>
+                            <a class="" href="/admin/{{ $search->username }}/edit" style="color: black"><span data-feather="eye"></span></a>
                             <form action="/admin/{{$search->username}}/delete" method="POST" class="d-inline">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" onclick="return confirm('Are you sure want to delete this user?')"
-                                class="btn btn-danger">Delete User</button>
+                                style="border: none; background: none; "><span data-feather="trash-2"></span></button>
                             </form>
                         </td>
                         @endcan
                         @cannot('Admin')
-                            <td class="col-1"><a class="btn btn-primary" href="/user/{{$search->username}}/about">Detail</a></td>
+                            <td class="col-1"><a class="" href="/user/{{ $search->username }}/about" style="color: black"><span data-feather="eye"></span></a></td>
                         @endcannot
                     </tr>
                 @endforeach
