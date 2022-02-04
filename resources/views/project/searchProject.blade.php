@@ -81,18 +81,23 @@
                         <td>{{ $search->status->name }}</td>
                         <td>{{ $search->endDate }}</td>
                         <td>
-                            <div class="row">
-                                <div class="col-sm-auto">
+                            <div class="d-flex flex-row">
+                                <div class="col-sm-auto d-flex flex-row">
                                     <form method="GET" action="{{ route('download_file') }}">
                                         @csrf
                                         <div class="form-group">
                                             <input type='hidden' name="filePath" value="{{ $search->sysRequirements }}">
-                                            <input type="submit" class="btn btn-sm btn-primary" value="Download SR">
+                                            {{-- <input  class=""> --}}
+
+                                            {{-- <a type="submit"  value="Download"></a> --}}
+
+                                            <button type="submit" class="" value="Download" style="border: none;
+                                            background: none;"><span data-feather="download"></span></button>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="col-sm-auto">
-                                    <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$search->id, 'tasks']) }}">Detail</a>
+                                    <a class="text-decoration-none" href="{{ route('project_detail_view', [$search->id, 'tasks']) }}" style="color: black"><span data-feather="eye"></span></a>
                                 </div>
                             </div>
                         </td>
