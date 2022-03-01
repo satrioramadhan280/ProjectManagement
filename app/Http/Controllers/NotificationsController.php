@@ -26,6 +26,7 @@ class NotificationsController extends Controller
         $forums = Forum::all();
         $roles = Role::all();
         
+        
         return view('notifications', compact('notifications', 'notification_types', 'users', 'projects', 'tasks', 'forums', 'roles'));
     }
 

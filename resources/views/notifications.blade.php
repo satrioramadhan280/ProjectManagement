@@ -33,15 +33,28 @@
 <hr>
 <table class="table">
     <thead>
-        <tr class="bg-danger text-white">
-            {{-- <th scope="col">No</th> --}}
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
-            <th scope="col">Project</th>
-            <th scope="col">Time</th>
-            <th scope="col">Action</th>
-            <th scope="col">Read Status</th>
-        </tr>
+        @if (Auth::user()->username == 'admin')
+            <tr class="bg-danger text-white">
+                {{-- <th scope="col">No</th> --}}
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Time</th>
+                
+                <th scope="col"><div class="d-flex justify-content-center"><span>Read Status</span></div></th>
+            </tr>
+        @else
+            <tr class="bg-danger text-white">
+                {{-- <th scope="col">No</th> --}}
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Project</th>
+                <th scope="col">Time</th>
+                <th scope="col">Action</th>
+                <th scope="col">Read Status</th>
+            </tr>
+        @endif
+
+        
     </thead>
     <tbody class="mt-3">
        
@@ -181,11 +194,42 @@
                         href="{{ route('project_detail_view', [$projects[$forums[$notification->forum_id-1]->project_id-1]->id, 'forum']) }}">
                         <span data-feather="eye"  style="width: 20px; height: 20px;"></span></a></div>
                     </td>
+
+                @elseif($notification->notification_type_id == 10)
+        
+                    <td class="col-3">Register User</td>
+                    <td class="col-4">New user <span class="font-weight-bold">{{$notification->additional_description}}</span> has been registered.</td>
+                    <td class="col-3">{{$notification->created_at}}</td>
+
+                @elseif($notification->notification_type_id == 11)
+        
+                    <td class="col-3">Delete User</td>
+                    <td class="col-4">User <span class="font-weight-bold">{{$notification->additional_description}}</span> has been deleted.</td>
+                    <td class="col-3">{{$notification->created_at}}</td>
                     
-                @endif  
+
+                @elseif($notification->notification_type_id == 12)
+        
+                    <td class="col-3">User Changed Role / Department</td>
+                    <td class="col-4">{{$notification->additional_description}}</td>
+                    <td class="col-3">{{$notification->created_at}}</td>
+                    
+                
+
+                @elseif($notification->notification_type_id == 13)
+            
+                    <td class="col-3">Change Role / Department</td>
+                    <td class="col-3">{{$notification->additional_description}}</td>
+                    <td class="col-2">-</td>
+                    <td class="col-2">{{$notification->created_at}}</td>
+                    
+                    <td class="col-1 align-items-center">
+                        -
+                    </td>
+                @endif
 
                 @if ($notification->status == 0)
-                    <td class="col-2 align-items-center "><div class="d-flex justify-content-center"><a 
+                    <td class="col-2 align-items-center "><div class="d-flex justify-content-center "><a 
                         href="/notifications/mark_as_read/{{$notification->id}}" class="text-decoration-none" style="color: rgb(0, 0, 0)"><span data-feather="circle"></span></a></div></td>  
                 
                 @elseif($notification->status == 1)

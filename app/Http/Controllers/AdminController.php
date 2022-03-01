@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Project;
+use App\Models\ProjectUser;
+use App\Models\TaskUser;
 use DateTime;
 use Carbon\Carbon;
 use Kyslik\ColumnSortable\Sortable;
@@ -65,6 +68,12 @@ class AdminController extends Controller
 
         $users->save();
 
+        $notification = new Notification();
+        $notification->  notification_type_id = 10;
+        $notification->user_id = Auth::user()->id;
+        $notification->additional_description = $request->username;
+        $notification->status = 0;
+        $notification->save();
 
         return redirect('/user/index')->with('create', $users->name.' has been registered. Default password: xyz12345');
     }
@@ -157,6 +166,52 @@ class AdminController extends Controller
                 'dateOfBirth' => Carbon::parse($request->dateOfBirth)->format('Y-m-d'),
                 'roleID' => $request->roleID
             ]);
+
+            $role = Role::where('id', $request->roleID)->first();
+            if($currUser->roleID != $request->roleID){
+                $notification = new Notification();
+                $notification->  notification_type_id = 12;
+                $notification->user_id = Auth::user()->id;
+                $notification->additional_description = "[ ". $request->username . " ] changed role/department to ". $role->display;
+                $notification->status = 0;
+                $notification->save();
+
+                $notification = new Notification();
+                $notification->  notification_type_id = 13;
+                $notification->user_id = $currUser->id;
+                $notification->additional_description = "[ ". $request->username . " ] changed role/department to ". $role->display;
+                $notification->status = 0;
+                $notification->save();
+
+                $tasks = TaskUser::where('user_id', $currUser->id)->get();
+                foreach ($tasks as $task) {
+                    $task->delete();
+                }
+                $updateTasks = TaskUser::all();
+                // Misalnya salah satu record di delete, id task akan tidak teratur
+                // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
+                $index = 1;
+                foreach ($updateTasks as $key => $f) {
+                    $f->id = $index;
+                    $index++;
+                    $f->save();
+                }
+
+                $project_users = ProjectUser::where('user_id', $currUser->id)->get();
+                foreach ($project_users as $project_user) {
+                    $project_user->delete();
+                }
+                $updateProjectUser = ProjectUser::all();
+                // Misalnya salah satu record di delete, id task akan tidak teratur
+                // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
+                $index = 1;
+                foreach ($updateProjectUser as $key => $f) {
+                    $f->id = $index;
+                    $index++;
+                    $f->save();
+                }
+            }
+
             return redirect('/user/index')->with('update', 'Profile has been updated!');
         }
         if($currUser->roleID != 1){
@@ -166,6 +221,7 @@ class AdminController extends Controller
                 'email' => $request->email,
                 'dateOfBirth' => Carbon::parse($request->dateOfBirth)->format('Y-m-d'),
             ]);
+            
         }
 
         return redirect('/user/'.$request->username.'/about')->with('update', 'Profile has been updated!');
@@ -216,6 +272,14 @@ class AdminController extends Controller
     public function destroy($username)
     {
         $user = User::where('username', $username)->first();
+        $notification = new Notification();
+        $notification->  notification_type_id = 11;
+        $notification->user_id = Auth::user()->id;
+        $notification->additional_description = $user->username;
+        $notification->status = 0;
+        $notification->save();
+
+        
         User::destroy($user->id);
         return redirect('/user/index')->with('delete', 'Delete User Successful');
     }

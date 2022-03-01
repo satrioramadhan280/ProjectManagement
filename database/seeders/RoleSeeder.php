@@ -40,19 +40,19 @@ class RoleSeeder extends Seeder
         ]);
         Role::create([
             'name' => 'MemberDepartment1',
-            'display' => 'IT Customer Relationship Management'
+            'display' => 'IT Customer Relationship Management Member'
         ]);
         Role::create([
             'name' => 'MemberDepartment2',
-            'display' => 'IT Branch Delivery System'
+            'display' => 'IT Branch Delivery System Member'
         ]);
         Role::create([
             'name' => 'MemberDepartment3',
-            'display' => 'IT Micro and Retail Core Loan System'
+            'display' => 'IT Micro and Retail Core Loan System Member' 
         ]);
         Role::create([
             'name' => 'MemberDepartment4',
-            'display' => 'IT Internal Application'
+            'display' => 'IT Internal Application Member'
         ]);
     }
 }

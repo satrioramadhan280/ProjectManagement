@@ -60,5 +60,25 @@ class NotificationTypeSeeder extends Seeder
             'id' => 9,
             'display' => "Reply Forum",
         ]);
+
+        NotificationType::create([
+            'id' => 10,
+            'display' => "Register User",
+        ]);
+
+        NotificationType::create([
+            'id' => 11,
+            'display' => "Delete User",
+        ]);
+
+        NotificationType::create([
+            'id' => 12,
+            'display' => "Change Role/Department",
+        ]);
+
+        NotificationType::create([
+            'id' => 13,
+            'display' => "User Change Role/Department",
+        ]);
     }
 }
