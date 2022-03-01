@@ -101,7 +101,7 @@ class ProjectController extends Controller
         $request->validate([
             'projectTitle' => 'required|min:3|max:50',
             'startDate' => 'required',
-            'endDate' => 'required|after_or_equal:today',
+            'endDate' => 'required|after:startDate',
         ]);
 
         $project->title = $request->projectTitle;
