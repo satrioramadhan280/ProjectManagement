@@ -100,7 +100,7 @@ class ProjectController extends Controller
     public function editProject(Request $request, Project $project){
         $request->validate([
             'projectTitle' => 'required|min:3|max:50',
-            'startDate' => 'required|after_or_equal:today',
+            'startDate' => 'required',
             'endDate' => 'required|after_or_equal:today',
         ]);
 
