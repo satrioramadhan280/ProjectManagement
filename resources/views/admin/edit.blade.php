@@ -81,6 +81,7 @@ Edit Profile
     </div>
 
     @can('Admin')
+    @if($user->username != 'admin')
     <div class="control-group">
       <label class="control-label" for="role">Select Role</label>
       <div class="controls">
@@ -96,26 +97,33 @@ Edit Profile
           @enderror
       </div>
     </div>
+    @endif
+    
     @endcan
 
     @cannot('Admin')
-    <div class="control-group">
-      <label class="control-label" for="role">Select Role</label>
-      <div class="controls">
-          <select disabled class="custom-select form-control mb-1 @error('roleID') is-invalid @enderror" id="roleID" name="roleID">
-            @foreach($roles as $role)
-              <option value="{{$role->id}}" {{old('roleID', $user->roleID) == $role->id ? 'selected' : ''}}>{{$role->display}}</option>
-            @endforeach
-          </select>
-          @error('roleID')
-          <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-          </span>
-          @enderror
+    @if($user->username != 'admin')
+      <div class="control-group">
+        <label class="control-label" for="role">Select Role</label>
+        <div class="controls">
+            <select disabled class="custom-select form-control mb-1 @error('roleID') is-invalid @enderror" id="roleID" name="roleID">
+              @foreach($roles as $role)
+                <option value="{{$role->id}}" {{old('roleID', $user->roleID) == $role->id ? 'selected' : ''}}>{{$role->display}}</option>
+              @endforeach
+            </select>
+            @error('roleID')
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
       </div>
-    </div>
+    @endif
     @endcannot
 
+    
+
+    @if($user->username != 'admin')
     <div class="control-group mt-2">
       <div class="controls">
         <button class="btn btn-primary" type="submit">Update</button>
@@ -123,5 +131,6 @@ Edit Profile
       <a href="{{ old('redirect_to', URL::previous())}}" class="btn btn-light">Cancel</a>
       </div>
     </div>
+    @endif
   </fieldset>
 @endsection

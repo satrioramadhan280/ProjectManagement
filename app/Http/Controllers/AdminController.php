@@ -392,20 +392,24 @@ class AdminController extends Controller
         $dateOfBirth = $request->dateOfBirth;
 
         $request->validate([
-            'username' => 'required',
-            'dateOfBirth' => 'required|before:today'
-        ]);
+            'username' => ['required', 'string'],
+            'dateOfBirth' => 'required|before:today',
 
+        ]);
+        
 
         $currUser = User::where('username', $username)->where('dateOfBirth', $dateOfBirth)->first();
-        $passwordDate = Carbon::parse($currUser->dateOfBirth)->format('dmy');
-        if($currUser != null){
-            $currUser = User::where('username', $username)->where('dateOfBirth', $dateOfBirth)->update([
+        $ogUser = User::where('username', $username)->first();
+        
+        
+        if($currUser != null && $ogUser->roleID != 1){
+            $passwordDate = Carbon::parse($ogUser->dateOfBirth)->format('dmy');
+            $currUser = User::where('username', $username)->update([
                 'password' => bcrypt('!Bp4'.$passwordDate)
             ]);
             return redirect('/')->with('changePassword', 'Reset Password Successfull. Password : !Bp4yymmdd based on your date of birth');
         }
-        else{
+        else if($ogUser->roleID == 1){
             return redirect('/password/reset')->with('fail', 'These credentials do not match our records.');
         }
     }
