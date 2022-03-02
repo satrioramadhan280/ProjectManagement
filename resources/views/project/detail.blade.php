@@ -167,7 +167,17 @@
     </div>
 @endif
 
+@if (session('uploadFile'))
+    <div class="alert alert-success mt-3">
+        {{ session('uploadFile') }}
+    </div>
+@endif
 
+@if (session('deleteFile'))
+    <div class="alert alert-success mt-3">
+        {{ session('deleteFile') }}
+    </div>
+@endif
 
 <div class="d-flex flex-row align-items-center">
 
@@ -468,7 +478,7 @@
                                                         <div class="form-group">
                                                             <input type='hidden' name="filePath" value="{{ $file['path'] }}">
                                                             <button type="submit" class="" style="border: none;
-                                                            background: none;" value="Delete"><span data-feather="trash-2"></span></button>
+                                                            background: none;" value="Delete"  onclick="return confirm('Are you sure want to delete this file?')" ><span data-feather="trash-2"></span></button>
                                                         </div>
                                                     </form>
                                                 </div>
