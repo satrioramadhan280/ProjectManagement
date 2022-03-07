@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Auth;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -160,7 +161,34 @@ class ProjectController extends Controller
 
         $forums = Forum::where('project_id', $project->id)->orderByDesc('created_at')->get();
         $forums_reply = ForumReply::orderBy('created_at')->get();
-        return view('project.detail', compact('project', 'statuses', 'files', 'tasks', 'users', 'head', 'user_tabs', 'task_members', 'users_department', 'project_members', 'task_user', 'forums', 'forums_reply'));
+
+        // dd($project->id);
+        $getTasks = Task::where('project_id', $project->id)->get();
+        $count = count($getTasks);
+        
+        $i = 0;
+        
+        $data = [];
+
+        foreach($getTasks as $key){
+            $data[$i] = array(
+                "taskID" => $key->id,
+                "taskName" => $key->name,
+                "tanggalMulai" => $key->created_at->format('d'),
+                "tahunMulai" => $key->created_at->format('Y'),
+                "bulanMulai" => $key->created_at->format('m'),
+            );
+            $i = $i + 1;
+        }
+        
+    
+
+        // dd($data);
+
+        $wow = 'wowwwww';
+        // dd(json_encode($data));
+
+        return view('project.detail', compact('data', 'count', 'wow', 'getTasks', 'project', 'statuses', 'files', 'tasks', 'users', 'head', 'user_tabs', 'task_members', 'users_department', 'project_members', 'task_user', 'forums', 'forums_reply'));
     }
 
     public function taskView(Project $project, Task $task) {

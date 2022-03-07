@@ -116,6 +116,60 @@
 
 </style>
 
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['gantt']});
+      google.charts.setOnLoadCallback(drawChart);
+  
+      function drawChart() {
+  
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Task ID');
+        data.addColumn('string', 'Task Name');
+        data.addColumn('string', 'Resource');
+        data.addColumn('date', 'Start Date');
+        data.addColumn('date', 'End Date');
+        data.addColumn('number', 'Duration');
+        data.addColumn('number', 'Percent Complete');
+        data.addColumn('string', 'Dependencies');
+  
+        var count = {!!json_encode($count)!!};
+        var data_array = {!!json_encode($data)!!};
+
+        // console.log(count);
+        // console.log(data);
+        for (let i = 0, len = count; i < len; i++) {
+            data.addRows([
+            
+            // ['2014Spring', 'Spring 2014', 'spring',
+            //  new Date(2014, 2, 22), new Date(2014, 5, 20), null, 100, null],
+
+             [i.toString(), data_array[i]['taskName'], 'spring',
+             new Date(data_array[i]['tahunMulai'], data_array[i]['bulanMulai'-1], data_array[i]['tanggalMulai']), new Date(data_array[i]['tahunMulai'], 5, 20), null, 100, null],
+            
+            
+        
+            // {!!json_encode($wow)!!},
+          ]);
+        }
+
+        
+  
+        var options = {
+          height: 400,
+          gantt: {
+            trackHeight: 30
+          }
+        };
+  
+        var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+  
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+
 
 @extends('layouts.app')
 
@@ -344,12 +398,16 @@
                   <a class="nav-link @if ($user_tabs=='tasks') text-dark and Active  @endif" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}" style="color: rgba(0, 0, 0, 0.466)">Tasks</a>
                 </li>
                 @cannot('Admin')
+                <li class="nav-item">
+                    <a class="nav-link @if ($user_tabs=='gantt_charts') text-dark and Active  @endif" href="{{ route('project_detail_view', [$project->id, 'gantt_charts']) }}" style="color: rgba(0, 0, 0, 0.466)">Gantt Charts</a>
+                </li>
                 <li class="nav-item" onclick="">
                     <a class="nav-link @if ($user_tabs=='files') text-dark and Active @endif" href="{{ route('project_detail_view', [$project->id, 'files']) }}" style="color: rgba(0, 0, 0, 0.466)">Files</a>
                 </li>
                 <li class="nav-item" onclick="">
                     <a class="nav-link @if ($user_tabs=='forum') text-dark and Active @endif" href="{{ route('project_detail_view', [$project->id, 'forum']) }}" style="color: rgba(0, 0, 0, 0.466)">Forum</a>
                 </li>
+                
                 @endcannot
 
             </ul>
@@ -421,6 +479,12 @@
                     @else
                         <h4 class="m-4">There are no tasks available</h4>
                     @endif
+
+                @elseif ($user_tabs=='gantt_charts')
+                    <div class="m-4">
+                        <h3>Gantt Charts</h3>
+                        <div id="chart_div"></div>
+                    </div>
 
                 @elseif ($user_tabs=='files')
 
