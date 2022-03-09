@@ -400,7 +400,7 @@
                                 </div>
                             @endforeach
                             @endif
-                            <label style="font-size: 13px" class="mt-1">(*Remember that you can't change the task member once the task is created)</label>
+                            
                         </div>                        
                     </div>
                 </div>

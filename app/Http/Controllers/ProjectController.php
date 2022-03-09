@@ -259,7 +259,12 @@ class ProjectController extends Controller
             $percentage = $percentage + $key->percentage;
             $count = $count + 1;
         }
-        $percentage = round($percentage/$count, 2);
+        if($percentage == 0){
+
+        }
+        else{
+            $percentage = round($percentage/$count, 2);
+        }
 
         $project->progress = $percentage; 
 
@@ -325,7 +330,7 @@ class ProjectController extends Controller
             'taskName' => 'required|min:3',
             'taskDescription' => 'required|min:10',
             'users' => 'required',
-            'endDate' => 'required|after:startDate',
+            'endDate' => 'required|after:startDate|before:'. $project->endDate,
             'startDate' => 'required|after_or_equal:today',
         ]);
 
@@ -383,17 +388,17 @@ class ProjectController extends Controller
     {
         $users = $request->input('users');
         // dd($users);
-
+        $project = Project::where('id', $task->project_id)->first();
         $request->validate([
             'taskName' => 'required|min:3',
             'taskDescription' => 'required|min:10',
             'users' => 'required',
-            'endDate' => 'required|after:startDate',
+            'endDate' => 'required|after:startDate|before:'. $project->endDate,
             
         ]);
 
         $curr_task = Task::where('id', $task->id)->first();
-        $project = Project::where('id', $task->project_id)->first();
+        
 
         $curr_task->name = $request->input('taskName');
         $curr_task->description = $request->input('taskDescription');
