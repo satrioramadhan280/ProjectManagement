@@ -14,6 +14,7 @@ class Project extends Model
 
     protected $attributes = [
         'status_id' => 1,
+        'progress' => 0,
     ];
     protected $dates = ['startDate', 'endDate'];
 
