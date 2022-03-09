@@ -194,11 +194,16 @@ class ProjectController extends Controller
             $count = $count + 1;
         }
          
+        if($percentage == 0){
 
+        }
+        else{
+            $percentage = round($percentage/$count, 2);
+        }
         $my_project = array(
                 "p_ID" => $project->id,
                 "p_Name" => $project->title,
-                "p_Percentage" => round($percentage/$count, 2),
+                "p_Percentage" => $percentage,
                 "tanggalMulai" => $project->startDate->format('d'),
                 "tahunMulai" => $project->startDate->format('Y'),
                 "bulanMulai" => $project->startDate->format('m'),
