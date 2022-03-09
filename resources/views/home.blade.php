@@ -156,7 +156,7 @@
                                             </form>
                                         </div>
                                         <div class="col-sm-auto">
-                                            <a class="text-decoration-none" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}" style="color: black"><span data-feather="eye"></span></a>
+                                            <a class="text-decoration-none" href="{{ route('project_detail_view', [$project->id, 'gantt_chart']) }}" style="color: black"><span data-feather="eye"></span></a>
                                         </div>
                                     </div>
                                 </td>
@@ -193,7 +193,7 @@
                                             </form>
                                         </div>
                                         <div class="col-sm-auto">
-                                            <a class="text-decoration-none" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}" style="color: black"><span data-feather="eye"></span></a>
+                                            <a class="text-decoration-none" href="{{ route('project_detail_view', [$project->id, 'gantt_chart']) }}" style="color: black"><span data-feather="eye"></span></a>
                                         </div>
                                     </div>
                                 </td>
@@ -230,7 +230,7 @@
                                             </form>
                                         </div>
                                         <div class="col-sm-auto">
-                                            <a class="text-decoration-none" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}" style="color: black"><span data-feather="eye"></span></a>
+                                            <a class="text-decoration-none" href="{{ route('project_detail_view', [$project->id, 'gantt_chart']) }}" style="color: black"><span data-feather="eye"></span></a>
                                         </div>
                                     </div>
                                 </td>
@@ -267,7 +267,7 @@
                                             </form>
                                         </div>
                                         <div class="col-sm-auto">
-                                            <a class="text-decoration-none" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}" style="color: black"><span data-feather="eye"></span></a>
+                                            <a class="text-decoration-none" href="{{ route('project_detail_view', [$project->id, 'gantt_chart']) }}" style="color: black"><span data-feather="eye"></span></a>
                                         </div>
                                     </div>
                                 </td>
@@ -304,7 +304,7 @@
                                             </form>
                                         </div>
                                         <div class="col-sm-auto">
-                                            <a class="text-decoration-none" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}" style="color: black"><span data-feather="eye"></span></a>
+                                            <a class="text-decoration-none" href="{{ route('project_detail_view', [$project->id, 'gantt_chart']) }}" style="color: black"><span data-feather="eye"></span></a>
                                         </div>
                                     </div>
                                 </td>

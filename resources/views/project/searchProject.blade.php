@@ -97,7 +97,7 @@
                                     </form>
                                 </div>
                                 <div class="col-sm-auto">
-                                    <a class="text-decoration-none" href="{{ route('project_detail_view', [$search->id, 'tasks']) }}" style="color: black"><span data-feather="eye"></span></a>
+                                    <a class="text-decoration-none" href="{{ route('project_detail_view', [$search->id, 'gantt_chart']) }}" style="color: black"><span data-feather="eye"></span></a>
                                 </div>
                             </div>
                         </td>

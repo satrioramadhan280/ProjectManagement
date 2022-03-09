@@ -90,7 +90,7 @@ class ProjectController extends Controller
 
 
         // $project->users()->attach($request->user()->id);
-        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks'])->with('create', 'Create Project Sucessful');
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'gantt_chart'])->with('create', 'Create Project Sucessful');
         // return redirect()->action([ProjectController::class, 'show']);
     }
 
@@ -113,7 +113,7 @@ class ProjectController extends Controller
         $project->endDate = Carbon::parse($request->endDate)->format('Y-m-d');
         $project->save();
 
-        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks'])->with('update', 'Update Project Sucessful');
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'gantt_chart'])->with('update', 'Update Project Sucessful');
     }
 
     public function formatBytes($bytes, $precision = 2) {
@@ -440,6 +440,9 @@ class ProjectController extends Controller
         if($percentage==100){
             $project->status_id = 2;
         }
+        else{
+            $project->status_id = 1;
+        }
 
         $project->save();
 
@@ -745,7 +748,7 @@ class ProjectController extends Controller
 
 
 
-        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks'])->with('status', 'Update Status Successful');
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'gantt_chart'])->with('status', 'Update Status Successful');
     }
 
     public function projectStatus(Status $status){

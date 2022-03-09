@@ -90,7 +90,7 @@
                                             </form>
                                         </div>
                                         <div class="col-sm-auto">
-                                            <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
+                                            <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'gantt_chart']) }}">Detail</a>
                                         </div>
                                     </div>
                                 </td>
@@ -124,7 +124,7 @@
                                                 </form>
                                             </div>
                                             <div class="col-sm-auto">
-                                                <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
+                                                <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'gantt_chart']) }}">Detail</a>
                                             </div>
                                         </div>
                                     </td>
@@ -158,7 +158,7 @@
                                                 </form>
                                             </div>
                                             <div class="col-sm-auto">
-                                                <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
+                                                <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'gantt_chart']) }}">Detail</a>
                                             </div>
                                         </div>
                                     </td>
@@ -193,7 +193,7 @@
                                                 </form>
                                             </div>
                                             <div class="col-sm-auto">
-                                                <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
+                                                <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'gantt_chart']) }}">Detail</a>
                                             </div>
                                         </div>
                                     </td>
@@ -227,7 +227,7 @@
                                             </form>
                                         </div>
                                         <div class="col-sm-auto">
-                                            <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}">Detail</a>
+                                            <a class="btn btn-sm btn-primary" href="{{ route('project_detail_view', [$project->id, 'gantt_chart']) }}">Detail</a>
                                         </div>
                                     </div>
                                 </td>
