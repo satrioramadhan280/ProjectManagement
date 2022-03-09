@@ -88,6 +88,7 @@ Route::post('/projects/addMember/{project}', [ProjectController::class, 'addMemb
 Route::prefix('task')->group(function () {
     Route::get('/add/{project}', [ProjectController::class, 'addTaskView'])->name('add_task_view');
     Route::post('/addTask/{project}', [ProjectController::class, 'addTask'])->name('add_task');
+    Route::post('/update_task/{task}', [ProjectController::class, 'updateTask'])->name('update_task');
 });
 
 // Route::post('/change_profile_picture/{id}', [AdminController::class, 'show'], function ($id, Request $request) {

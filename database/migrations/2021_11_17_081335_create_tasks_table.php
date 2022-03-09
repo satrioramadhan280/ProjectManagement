@@ -22,6 +22,7 @@ class CreateTasksTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('status');
+            $table->integer('percentage');
             $table->timestamps();
         });
     }

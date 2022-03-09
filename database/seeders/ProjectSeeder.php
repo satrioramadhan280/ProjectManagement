@@ -23,8 +23,9 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-1/fileSR1.pdf',
             'folder' => 'projectFiles/PR-1',
             'status_id' => 1,
-            'startDate' => '2022-01-21',
-            'endDate' => '2022-02-28',
+            'startDate' => '2022-02-21',
+            'endDate' => '2022-04-02',
+            'progress' => 0,
         ]);
 
         Project::create([
@@ -35,6 +36,7 @@ class ProjectSeeder extends Seeder
             'status_id' => 4,
             'startDate' => '2022-01-21',
             'endDate' => '2022-02-28',
+            'progress' => 0,
         ]);
 
         Project::create([
@@ -43,8 +45,9 @@ class ProjectSeeder extends Seeder
             'sysRequirements' => 'projectFiles/PR-3/fileSR3.pdf',
             'folder' => 'projectFiles/PR-3',
             'status_id' => 7,
-            'startDate' => '2022-01-21',
-            'endDate' => '2022-02-01',
+            'startDate' => '2022-02-21',
+            'endDate' => '2022-04-02',
+            'progress' => 0,
         ]);
 
         Project::create([
@@ -55,6 +58,7 @@ class ProjectSeeder extends Seeder
             'status_id' => 7,
             'startDate' => '2022-01-21',
             'endDate' => '2022-02-03',
+            'progress' => 0,
         ]);
 
         Project::create([
@@ -65,6 +69,7 @@ class ProjectSeeder extends Seeder
             'status_id' => 1,
             'startDate' => '2022-01-21',
             'endDate' => '2022-02-28',
+            'progress' => 0,
         ]);
 
         Project::create([
@@ -75,6 +80,7 @@ class ProjectSeeder extends Seeder
             'status_id' => 6,
             'startDate' => '2022-01-21',
             'endDate' => '2022-02-28',
+            'progress' => 0,
         ]);
 
         Project::create([
@@ -84,7 +90,7 @@ class ProjectSeeder extends Seeder
             'folder' => 'projectFiles/PR-7',
             'status_id' => 7,
             'startDate' => '2022-01-21',
-            'endDate' => '2022-02-10',
+            'endDate' => '2022-02-10','progress' => 0,
         ]);
 
         Project::create([
@@ -94,7 +100,7 @@ class ProjectSeeder extends Seeder
             'folder' => 'projectFiles/PR-8',
             'status_id' => 7,
             'startDate' => '2022-01-21',
-            'endDate' => '2022-02-12',
+            'endDate' => '2022-02-12','progress' => 0,
         ]);
 
         Project::create([
@@ -104,7 +110,7 @@ class ProjectSeeder extends Seeder
             'folder' => 'projectFiles/PR-9',
             'status_id' => 1,
             'startDate' => '2022-01-21',
-            'endDate' => '2022-02-28',
+            'endDate' => '2022-02-28','progress' => 0,
         ]);
 
         Project::create([
@@ -114,7 +120,7 @@ class ProjectSeeder extends Seeder
             'folder' => 'projectFiles/PR-10',
             'status_id' => 4,
             'startDate' => '2022-01-21',
-            'endDate' => '2022-02-28',
+            'endDate' => '2022-02-28','progress' => 0,
         ]);
 
         Project::create([
@@ -124,7 +130,7 @@ class ProjectSeeder extends Seeder
             'folder' => 'projectFiles/PR-11',
             'status_id' => 6,
             'startDate' => '2022-01-21',
-            'endDate' => '2022-02-28',
+            'endDate' => '2022-02-28','progress' => 0,
         ]);
 
         Project::create([
@@ -134,7 +140,7 @@ class ProjectSeeder extends Seeder
             'folder' => 'projectFiles/PR-12',
             'status_id' => 7,
             'startDate' => '2022-01-21',
-            'endDate' => '2022-02-20',
+            'endDate' => '2022-02-20','progress' => 0,
         ]);
 
         Project::create([
@@ -144,7 +150,7 @@ class ProjectSeeder extends Seeder
             'folder' => 'projectFiles/PR-13',
             'status_id' => 1,
             'startDate' => '2022-01-21',
-            'endDate' => '2022-02-28',
+            'endDate' => '2022-02-28','progress' => 0,
         ]);
         
         Project::create([
@@ -154,7 +160,7 @@ class ProjectSeeder extends Seeder
             'folder' => 'projectFiles/PR-14',
             'status_id' => 4,
             'startDate' => '2022-01-21',
-            'endDate' => '2022-02-28',
+            'endDate' => '2022-02-28','progress' => 0,
         ]);
 
         Project::create([
@@ -164,7 +170,7 @@ class ProjectSeeder extends Seeder
             'folder' => 'projectFiles/PR-15',
             'status_id' => 6,
             'startDate' => '2022-01-21',
-            'endDate' => '2022-02-28',
+            'endDate' => '2022-02-28','progress' => 0,
         ]);
 
         Project::create([
@@ -174,7 +180,7 @@ class ProjectSeeder extends Seeder
             'folder' => 'projectFiles/PR-16',
             'status_id' => 7,
             'startDate' => '2022-01-21',
-            'endDate' => '2022-02-25',
+            'endDate' => '2022-02-25','progress' => 0,
         ]);
 
     }

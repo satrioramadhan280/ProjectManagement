@@ -42,7 +42,9 @@ class ProjectController extends Controller
         $id3 = ($projectsDept3->currentpage() - 1) * $projectsDept3->perpage() + 1;
         $id4 = ($projectsDept4->currentpage() - 1) * $projectsDept4->perpage() + 1;
 
-        return view('project.projects', compact('projectsDiv', 'projectsDept1', 'projectsDept2', 'projectsDept3', 'projectsDept4', 'statuses', 'id', 'id1', 'id2', 'id3', 'id4'));
+        
+
+        return view('project.projects', compact( 'projectsDiv', 'projectsDept1', 'projectsDept2', 'projectsDept3', 'projectsDept4', 'statuses', 'id', 'id1', 'id2', 'id3', 'id4'));
     }
 
     public function add()
@@ -75,6 +77,7 @@ class ProjectController extends Controller
 
         $project->startDate = Carbon::parse($request->startDate);
         $project->endDate = Carbon::parse($request->endDate);
+        $project->progress = 0;
         $project->save();
 
 
@@ -169,26 +172,52 @@ class ProjectController extends Controller
         $i = 0;
         
         $data = [];
+        $my_project = [];
 
+        $percentage = 0;
+        $count = 0;
         foreach($getTasks as $key){
             $data[$i] = array(
                 "taskID" => $key->id,
                 "taskName" => $key->name,
+                "taskPercentage" => $key->percentage,
                 "tanggalMulai" => $key->created_at->format('d'),
                 "tahunMulai" => $key->created_at->format('Y'),
                 "bulanMulai" => $key->created_at->format('m'),
+                "tanggalSelesai" => $key->updated_at->format('d'),
+                "tahunSelesai" => $key->updated_at->format('Y'),
+                "bulanSelesai" => $key->updated_at->format('m'),
             );
             $i = $i + 1;
+            
+            $percentage = $percentage + $key->percentage;
+            $count = $count + 1;
         }
+         
+
+        $my_project = array(
+                "p_ID" => $project->id,
+                "p_Name" => $project->title,
+                "p_Percentage" => round($percentage/$count, 2),
+                "tanggalMulai" => $project->startDate->format('d'),
+                "tahunMulai" => $project->startDate->format('Y'),
+                "bulanMulai" => $project->startDate->format('m'),
+                "tanggalSelesai" => $project->endDate->format('d'),
+                "tahunSelesai" => $project->endDate->format('Y'),
+                "bulanSelesai" => $project->endDate->format('m'),
+            );
+          
         
-    
+        
+        
+        $today = Carbon::now()->format('Y-m-d');
 
-        // dd($data);
-
+        // dd($my_project);
+        
         $wow = 'wowwwww';
         // dd(json_encode($data));
 
-        return view('project.detail', compact('data', 'count', 'wow', 'getTasks', 'project', 'statuses', 'files', 'tasks', 'users', 'head', 'user_tabs', 'task_members', 'users_department', 'project_members', 'task_user', 'forums', 'forums_reply'));
+        return view('project.detail', compact('today','my_project', 'data', 'count', 'wow', 'getTasks', 'project', 'statuses', 'files', 'tasks', 'users', 'head', 'user_tabs', 'task_members', 'users_department', 'project_members', 'task_user', 'forums', 'forums_reply'));
     }
 
     public function taskView(Project $project, Task $task) {
@@ -215,9 +244,30 @@ class ProjectController extends Controller
         $task = Task::where('id', $task->id)->first();
         $task->delete();
 
+        $getTasks = Task::where('project_id', $project->id)->get();
+        $i = 0;
+        $percentage = 0;
+        $count = 0;
+        foreach($getTasks as $key){
+            $i = $i + 1;
+            
+            $percentage = $percentage + $key->percentage;
+            $count = $count + 1;
+        }
+        $percentage = round($percentage/$count, 2);
+
+        $project->progress = $percentage; 
+
+        if($percentage==100){
+            $project->status_id = 2;
+        }
+
+        $project->save();
+
          // Pada saat delete, auto increment terjadi
          DB::statement("ALTER TABLE tasks AUTO_INCREMENT =  1");
 
+         
 
          $updateTasks = Task::all();
          // Misalnya salah satu record di delete, id task akan tidak teratur
@@ -266,20 +316,24 @@ class ProjectController extends Controller
     {
         $users = $request->input('users');
         // dd($users);
-
         $request->validate([
             'taskName' => 'required|min:3',
             'taskDescription' => 'required|min:10',
-            'users' => 'required'
+            'users' => 'required',
+            'endDate' => 'required|after:startDate',
+            'startDate' => 'required|after_or_equal:today',
         ]);
 
-
+        
 
         $task = new Task;
         $task->name = $request->input('taskName');
         $task->project()->associate($project);
         $task->description = $request->input('taskDescription');
         $task->status = 'Ongoing';
+        $task->created_at = $request->startDate;
+        $task->updated_at = $request->endDate;
+        $task->percentage = 0;
         $task->save();
 
         foreach($users as $user){
@@ -296,6 +350,159 @@ class ProjectController extends Controller
             $notification->status = 0;
             $notification->save();
         }
+        
+        $getTasks = Task::where('project_id', $project->id)->get();
+        $i = 0;
+        $percentage = 0;
+        $count = 0;
+        foreach($getTasks as $key){
+            $i = $i + 1;
+            
+            $percentage = $percentage + $key->percentage;
+            $count = $count + 1;
+        }
+        $percentage = round($percentage/$count, 2);
+
+        $project->progress = $percentage; 
+
+        if($percentage==100){
+            $project->status_id = 2;
+        }
+
+        $project->save();
+
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
+    }
+
+    public function updateTask(Request $request, Task $task)
+    {
+        $users = $request->input('users');
+        // dd($users);
+
+        $request->validate([
+            'taskName' => 'required|min:3',
+            'taskDescription' => 'required|min:10',
+            'users' => 'required',
+            'endDate' => 'required|after:startDate',
+            
+        ]);
+
+        $curr_task = Task::where('id', $task->id)->first();
+        $project = Project::where('id', $task->project_id)->first();
+
+        $curr_task->name = $request->input('taskName');
+        $curr_task->description = $request->input('taskDescription');
+        if($request->percentage < 100){
+            $curr_task->status = 'Ongoing';
+        }
+        else{
+            $curr_task->status = 'Completed';
+        }
+        $curr_task->updated_at = $request->endDate;
+        $curr_task->percentage = $request->percentage;
+        $curr_task->save();
+
+        $task_users = TaskUser::where('task_id', $task->id)->get();
+
+        
+        $flag = 0;
+        $project_users = ProjectUser::where('project_id', $project->id)->get();
+
+        // dd($project_users);
+
+        foreach($task_users as $task_user){
+            $task_user->delete();
+        }
+
+        foreach($users as $user){
+            $task_user = new TaskUser();
+            $task_user->task_id = $task->id;
+            $task_user->project_id = $project->id;
+            $task_user->user_id = $user;
+            $task_user->save();
+        }
+
+
+        $getTasks = Task::where('project_id', $project->id)->get();
+        $i = 0;
+        $percentage = 0;
+        $count = 0;
+        foreach($getTasks as $key){
+            $i = $i + 1;
+            
+            $percentage = $percentage + $key->percentage;
+            $count = $count + 1;
+        }
+        $percentage = round($percentage/$count, 2);
+
+        $project->progress = $percentage; 
+
+        if($percentage==100){
+            $project->status_id = 2;
+        }
+
+        $project->save();
+
+
+
+        // $project_users = ProjectUser::where('project_id', $project->id)->get();
+        // foreach($project_users as $project_user){
+
+        //     $notification = new Notification();
+        //     $notification-> notification_type_id = 3;
+        //     $notification->user_id = $project_user->user_id;
+        //     $notification->assign_project_id = $project->id;
+        //     $notification->status = 0;
+        //     $notification->save();
+
+        // }
+
+        // Pada saat delete, auto increment terjadi
+        DB::statement("ALTER TABLE project_user AUTO_INCREMENT =  1");
+
+
+        $updateProjectUser = ProjectUser::all();
+        // Misalnya salah satu record di delete, id task akan tidak teratur
+        // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
+        $index = 1;
+        foreach ($updateProjectUser as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
+
+        DB::statement("ALTER TABLE task_user AUTO_INCREMENT =  1");
+        $updateTaskUser = TaskUser::all();
+        // Misalnya salah satu record di delete, id task akan tidak teratur
+        // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
+        $index = 1;
+        foreach ($updateTaskUser as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
+
+        DB::statement("ALTER TABLE tasks AUTO_INCREMENT =  1");
+        $updateTasks = Task::all();
+        // Misalnya salah satu record di delete, id task akan tidak teratur
+        // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
+        $index = 1;
+        foreach ($updateTasks as $key => $f) {
+            $f->id = $index;
+            $index++;
+            $f->save();
+        }
+
+        DB::statement("ALTER TABLE notifications AUTO_INCREMENT =  1");
+         $update = Notification::all();
+         // Misalnya salah satu record di delete, id task akan tidak teratur
+         // Mengatasinya dengan update id dimana index nya dimulai dari 1 lagi
+         $index = 1;
+         foreach ($update as $key => $f) {
+             $f->id = $index;
+             $index++;
+             $f->save();
+         }
 
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
     }
