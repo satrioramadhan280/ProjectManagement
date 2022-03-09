@@ -290,7 +290,7 @@ class ProjectController extends Controller
              $f->save();
          }
 
-        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks'])->with('taskRemove', 'Task Sucessfully deleted');
     }
 
     public function taskChangeStatus(Project $project, Task $task)
@@ -303,7 +303,7 @@ class ProjectController extends Controller
             $task->status = 'Ongoing';
         }
         $task->save();
-        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks'])->with('updateTaskStatus', 'Update Task Status Sucessful');
     }
 
 
@@ -371,7 +371,7 @@ class ProjectController extends Controller
 
         $project->save();
 
-        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks'])->with('addTask', 'New Task has been added');
     }
 
     public function updateTask(Request $request, Task $task)
@@ -507,7 +507,7 @@ class ProjectController extends Controller
              $f->save();
          }
 
-        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks']);
+        return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks'])->with('updateTask', 'Task successfully updated');
     }
 
     public function addMember(Request $request, Project $project){

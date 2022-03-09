@@ -247,6 +247,30 @@
     </div>
 @endif
 
+@if (session('addTask'))
+    <div class="alert alert-success mt-3">
+        {{ session('addTask') }}
+    </div>
+@endif
+
+@if (session('updateTaskStatus'))
+    <div class="alert alert-success mt-3">
+        {{ session('updateTaskStatus') }}
+    </div>
+@endif
+
+@if (session('taskRemove'))
+    <div class="alert alert-success mt-3">
+        {{ session('taskRemove') }}
+    </div>
+@endif
+
+@if (session('updateTask'))
+    <div class="alert alert-success mt-3">
+        {{ session('updateTask') }}
+    </div>
+@endif
+
 <div class="d-flex flex-row align-items-center">
 
     
