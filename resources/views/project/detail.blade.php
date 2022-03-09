@@ -121,9 +121,9 @@
     <script type="text/javascript">
       google.charts.load('current', {'packages':['gantt']});
       google.charts.setOnLoadCallback(drawChart);
-
+  
       function drawChart() {
-
+  
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Task ID');
         data.addColumn('string', 'Task Name');
@@ -133,37 +133,37 @@
         data.addColumn('number', 'Duration');
         data.addColumn('number', 'Percent Complete');
         data.addColumn('string', 'Dependencies');
-
+  
         var count = {!!json_encode($count)!!};
         var data_array = {!!json_encode($data)!!};
         var my_project = {!!json_encode($my_project)!!};
         var percentage = Number(my_project['p_Percentage']).toFixed(2);
 
-
+        
         // console.log(count);
         console.log(my_project);
 
         data.addRows([
                  ['Project',  'Project Progress',  my_project['p_Name'],
-                 new Date(my_project['tahunMulai'], my_project['bulanMulai']-1, my_project['tanggalMulai']),
+                 new Date(my_project['tahunMulai'], my_project['bulanMulai']-1, my_project['tanggalMulai']), 
                 new Date(my_project['tahunSelesai'], my_project['bulanSelesai']-1, my_project['tanggalSelesai']), null, my_project['p_Percentage'], null],
         ]);
         for (let i = 0, len = count; i < len; i++) {
             data.addRows([
-
+            
             // ['2014Spring', 'Spring 2014', 'spring',
             //  new Date(2014, 2, 22), new Date(2014, 5, 20), null, 100, null],
 
              [i.toString(), 'Task ' + (i+1).toString(), data_array[i]['taskName'],
-             new Date(data_array[i]['tahunMulai'], data_array[i]['bulanMulai']-1, data_array[i]['tanggalMulai']),
+             new Date(data_array[i]['tahunMulai'], data_array[i]['bulanMulai']-1, data_array[i]['tanggalMulai']), 
              new Date(data_array[i]['tahunSelesai'], data_array[i]['bulanSelesai']-1, data_array[i]['tanggalSelesai']), null, data_array[i]['taskPercentage'], null],
             // {!!json_encode($wow)!!},
           ]);
         }
+        
 
-
-
-
+       
+  
         var options = {
           height: 275,
           gantt: {
@@ -176,9 +176,9 @@
             }
           }
         };
-
+  
         var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
-
+  
         chart.draw(data, options);
       }
     </script>
@@ -273,7 +273,7 @@
 
 <div class="d-flex flex-row align-items-center">
 
-
+    
     <a href="{{ "/" }}" class="text-decoration-none" style="color: black"><span onclick="" class="mr-2" style="width: 24px; height: 24px; cursor: pointer;" data-feather="arrow-left-circle"></span></a>
     <h4 class="mt-1">{{ $project->title }}</h4>
 
@@ -359,9 +359,9 @@
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
-
+                        
                         <div class="d-flex flex-row justify-content-between mt-3">
-
+                            
                             <div class="pr-3">
                                 <label for="startDate" class="form-label">Start Date</label>
                                 <input class="form-control @error('startDate') is-invalid @enderror" type="date" name="startDate" value="{{$today}}">
@@ -382,15 +382,15 @@
                             </div>
                         </div>
                         <label for="taskMember" class="form-label mt-2" style="font-size: 13px">(*Note that you can't change the task start date, only end date)</label>
-
+                        
                         <label for="taskMember" class="form-label mt-3">Assign Task Member <label style="font-size: 13px">(*required at least 1)</label></label>
-
+                        
                         <div class="d-flex flex-wrap">
-
+                            
                             @if ($task_members->isEmpty())
                                 <span>No members have been assigned to this project.</span>
-
-                            @else
+                                
+                            @else 
                             @foreach ($task_members as $task_member)
                                 <div class="form-check d-block" style="width: 200px">
                                     <input class="form-check-input" type="checkbox" value="{{$users[$task_member->user_id-1]->id}}" id="flexCheckDefault" name="users[]">
@@ -466,19 +466,19 @@
                 <li class="nav-item">
                   <a class="nav-link @if ($user_tabs=='tasks') text-dark and Active  @endif" href="{{ route('project_detail_view', [$project->id, 'tasks']) }}" style="color: rgba(0, 0, 0, 0.466)">Tasks</a>
                 </li>
-
-
+                
+                
                 <li class="nav-item" onclick="">
                     <a class="nav-link @if ($user_tabs=='files') text-dark and Active @endif" href="{{ route('project_detail_view', [$project->id, 'files']) }}" style="color: rgba(0, 0, 0, 0.466)">Files</a>
                 </li>
                 <li class="nav-item" onclick="">
                     <a class="nav-link @if ($user_tabs=='forum') text-dark and Active @endif" href="{{ route('project_detail_view', [$project->id, 'forum']) }}" style="color: rgba(0, 0, 0, 0.466)">Forum</a>
                 </li>
-
+                
                 @endcannot
 
             </ul>
-
+        
             <div class="mt-3">
                 @if ($user_tabs=='tasks')
                     {{-- Isi dari Tasks --}}
@@ -493,7 +493,7 @@
                                     <span>{{$task->status}}</span>
                                     <span>&nbsp;{{$task->percentage}}%</span>
                                     <img class="ml-1" src="{{asset("img/icons/ongoing.png")}}" height="20px" width="20px" alt="">
-
+                                    
 
                                 @elseif ($task->status == 'Completed')
                                     <span>{{$task->status}}</span>
@@ -531,43 +531,43 @@
                                             </a>
                                         @endif
                                     @endforeach</span>
-
+                                    
                                 </div>
-
+                                
                             </div>
-
+                            
                             @if ($task->users()->where('user_id', Auth::user()->id)->first() || Auth::user()->roleID == 3
                             || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 || Auth::user()->roleID == 6)
                             <div class="d-flex">
 
                                 {{-- @if (Auth::user()->projects->id == $project->id) --}}
-
+                                
                                 <div class="ml-3 d-flex flex-row">
                                     <div>
                                         <button type="button" id="openmodal"  class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalUpdateTask-{{$task->id}}">
                                             <span data-feather="edit" style="width: 15px;height: 20px;" ></span>
                                         </button>
                                     </div>
-
+                                    
                                     <div class="ml-2">
                                         <form action="/projects/detail/{{$project->id}}/{{$task->id}}/remove" method="POST">
                                             @csrf
                                             <button type="submit" class="btn btn-danger btn-sm"><span data-feather="trash-2" style="width: 15px;height: 20px;" ></span></button>
-                                        </form>
+                                        </form> 
                                     </div>
                                 </div>
                                 <!-- Modal 1 -->
                                 <div class="modal fade"   id="modalUpdateTask-{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
                                     >
-
+                                
                                     <div class="modal-dialog" role="document">
                                     <div class="modal-content" >
                                         <form action="{{ route('update_task', [$task->id]) }}" method="POST">
                                             @csrf
                                             <div class="modal-header">
-
+                                            
                                             <h5 class="modal-title" id="exampleModalLabel">Update Task</h5>
-
+                                            
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal" onclick="closeDialog()">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -593,9 +593,9 @@
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                     @enderror
-
+                                                    
                                                     <div class="d-flex flex-row justify-content-between mt-3">
-
+                                                        
                                                         <div class="pr-3">
                                                             <label for="startDate" class="form-label">Start Date</label>
                                                             <input disabled class="form-control @error('startDate') is-invalid @enderror" type="date" name="startDate" value="{{ $task->created_at->format('Y-m-d') }}">
@@ -616,35 +616,35 @@
                                                         </div>
                                                     </div>
                                                     <label for="taskMember" class="form-label mt-3" style="font-size: 13px"></label>
-
+                                                    
                                                     <label for="taskMember" class="form-label mt-4">Assign Task Member <label style="font-size: 13px">(*required at least 1)</label></label>
                                                     <div class="d-flex flex-wrap">
                                                         @csrf
-
+                                                       
                                                         @foreach ($task_members as $task_member)
                                                             <div class="form-check d-block" style="width: 200px">
-                                                                <input class="form-check-input" type="checkbox" value="{{$users[$task_member->user_id-1]->id}}" id="flexCheckDefault" name="users[]"
+                                                                <input class="form-check-input" type="checkbox" value="{{$users[$task_member->user_id-1]->id}}" id="flexCheckDefault" name="users[]" 
                                                                 @foreach($task_user as $user)
                                                                     @if($user->user_id == $task_member->user_id && $user->task_id == $task->id)
                                                                         checked @endif
                                                                 @endforeach
-
+                                                                
                                                                 >
                                                                 <label class="form-check-label" for="flexCheckDefault">
                                                                     {{$users[$task_member->user_id-1]->name}}
                                                                 </label>
                                                             </div>
                                                         @endforeach
-                                                    </div>
+                                                    </div>   
                                                     <label for="taskMember" class="form-label mt-4">Task Percentage</label></label>
                                                     <div class="d-flex flex-row justify-content-center">
-
+                                                        
                                                         <input type="range" name="percentage" min="0" max="100" onchange="updateTextInput(this.value, {{$task->id}});" value="{{$task->percentage}}" style="width: 500px">
                                                         <div class="d-flex flex-row  ml-3 mr-5" style="width: 10px">
                                                             <input class="" type="text" id="textInput-{{$task->id}}" value="{{$task->percentage}}" style="border: none; width: 30px" >
                                                             <span class="">%</span>
                                                         </div>
-                                                    </div>
+                                                    </div>   
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -670,7 +670,7 @@
                             @endif
                         </div>
                     </div>
-
+            
 
                     @endforeach
                     @else
@@ -972,7 +972,7 @@
         let text2 = id;
         let result = text1.concat(text2);
         console.log(id);
-            document.getElementById(result).value=val;
+            document.getElementById(result).value=val; 
     }
 
     $('.delete-file').on('click', function (e) {
@@ -984,7 +984,7 @@
         }
     });
 
-
+    
 
     $('.task-record').ready(function () {
         var coll = document.getElementsByClassName("task-record");
@@ -1090,14 +1090,14 @@
         myInput.focus()
     })
 
-
+    
 
 
     function closeDialog() {
         $('#exampleModal1').modal('hide');
     }
 
-
+    
 
 </script>
 

@@ -517,6 +517,7 @@ class ProjectController extends Controller
              $f->save();
          }
 
+
         return redirect()->action([ProjectController::class, 'detailView'], ['project' => $project->id, 'user_tabs' => 'tasks'])->with('updateTask', 'Task successfully updated');
     }
 
