@@ -372,7 +372,7 @@
                                 @enderror
                             </div>
                             <div class="pl-3">
-                                <label for="startDate" class="form-label">End Date</label>
+                                <label for="endDate" class="form-label">End Date</label>
                                 <input class="form-control @error('endDate') is-invalid @enderror" type="date" name="endDate" value="">
                                 @error('endDate')
                                     <span class="invalid-feedback" role="alert">
@@ -782,14 +782,19 @@
                                         <form  method="POST" action="/projects/detail/{{$project->id}}/forum">
                                             @csrf
 
-                                            <div class="d-flex justify-content-start">
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" placeholder="Post a comment"></textarea>
-
+                                            <div class="d-flex justify-content-start flex-column">
+                                                <textarea class="form-control @error('description') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="description" placeholder="Post a comment"></textarea>
+                                                @error('description')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                             </div>
                                             <div class="d-flex justify-content-end mt-2">
                                                 <input class="btn-sm btn-primary pl-3 pr-3" type="submit" value="Post" name="post">
                                             </div>
                                         </form>
+                                        
                                     </div>
 
                                 </div>
@@ -958,7 +963,7 @@
     </div>
 
 </div>
-@if (count($errors) > 0)
+@if (($errors->has('taskName')||$errors->has('taskDescription')|| $errors->has('startDate')||$errors->has('endDate') ))
     <script type="text/javascript">
         $(document).ready(function() {
              $('#exampleModal1').modal('show');
