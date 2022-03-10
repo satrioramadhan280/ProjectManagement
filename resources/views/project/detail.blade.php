@@ -785,10 +785,10 @@
                                             <div class="d-flex justify-content-start flex-column">
                                                 <textarea class="form-control @error('description') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="description" placeholder="Post a comment"></textarea>
                                                 @error('description')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                             <div class="d-flex justify-content-end mt-2">
                                                 <input class="btn-sm btn-primary pl-3 pr-3" type="submit" value="Post" name="post">
@@ -868,9 +868,15 @@
                                         </div>
                                         <form class=" flex-row justify-content-between mt-2" method="POST" action="/projects/detail/{{$project->id}}/forum/{{$forum->id}}/reply">
                                             @csrf
-                                            <div class="form-group">
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+                                            <div class="form-group d-flex flex-column">
+                                                <textarea class="form-control @error('reply-description') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+                                                @error('reply-description')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
+                                            
                                             <div class="d-flex justify-content-end">
                                                 <input class="btn-sm btn-primary pl-3 pr-3" type="submit" value="Post" name="post">
                                             </div>

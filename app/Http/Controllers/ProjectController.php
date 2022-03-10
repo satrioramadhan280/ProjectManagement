@@ -958,13 +958,13 @@ class ProjectController extends Controller
 
 
         $request->validate([
-            'description' => 'required|min:3',
+            'reply-description' => 'required',
         ]);
 
         $forum_reply = new ForumReply();
         $forum_reply->forum_id = $request->forum_id;
         $forum_reply->user_id = FacadesAuth::user()->id;
-        $forum_reply->description = $request->description;
+        $forum_reply->description = $request->reply-description;
         $forum_reply->save();
 
         $forum = Forum::where('id', $request->forum_id)->first();
