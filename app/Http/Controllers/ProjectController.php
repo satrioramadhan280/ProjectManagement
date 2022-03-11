@@ -221,6 +221,7 @@ class ProjectController extends Controller
         
         $wow = 'wowwwww';
         // dd(json_encode($data));
+        
 
         return view('project.detail', compact('today','my_project', 'data', 'count', 'wow', 'getTasks', 'project', 'statuses', 'files', 'tasks', 'users', 'head', 'user_tabs', 'task_members', 'users_department', 'project_members', 'task_user', 'forums', 'forums_reply'));
     }

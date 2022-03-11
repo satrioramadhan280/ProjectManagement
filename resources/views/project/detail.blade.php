@@ -536,8 +536,19 @@
 
                             </div>
 
-                            @if ($task->users()->where('user_id', Auth::user()->id)->first() || Auth::user()->roleID == 3
-                            || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 || Auth::user()->roleID == 6)
+                            @php
+                                $i = 0
+                            @endphp
+                            @foreach ($project_members as $project_member)
+                                @if($project_member->id == Auth::user()->id )
+                                    @php
+                                        $i = 1
+                                    @endphp    
+                                @endif
+                            @endforeach
+
+                            @if ($task->users()->where('user_id', Auth::user()->id)->first() ||Auth::user()->roleID == 2 || Auth::user()->roleID == 3
+                            || Auth::user()->roleID == 4 || Auth::user()->roleID == 5 || Auth::user()->roleID == 6 || $i==1)
                             <div class="d-flex">
 
                                 {{-- @if (Auth::user()->projects->id == $project->id) --}}
@@ -556,6 +567,10 @@
                                         </form>
                                     </div>
                                 </div>
+
+                                
+                                
+                                
                                 <!-- Modal 1 -->
                                 <div class="modal fade"   id="modalUpdateTask-{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
                                     >
